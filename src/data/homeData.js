@@ -1,0 +1,189 @@
+export const homeData = {
+  hero: {
+    title: "PAISA VASOOL Tours",
+    tagline: "Chalo, Bag Bharo, Nikal Pado!",
+    cards: [
+      { title: "India Tours", subtitle: "264 Tours • 666 Departures" },
+      { title: "World Tours", subtitle: "329 Tours • 569 Departures" },
+      { title: "Women's Special Tours", subtitle: "47 Tours • 64 Departures" },
+      { title: "Seniors' Special Tours", subtitle: "30 Tours • 46 Departures" },
+    ],
+  },
+  destinations: [
+    { name: "Europe", tourCount: "127 tours", icon: "Compass" },
+    { name: "South East Asia", tourCount: "59 tours", icon: "MapPin" },
+    { name: "Australia New Zealand", tourCount: "22 tours", icon: "Plane" },
+    { name: "America", tourCount: "40 tours", icon: "TentTree" },
+    { name: "Africa", tourCount: "12 tours", icon: "Trees" },
+    { name: "Japan China Korea", tourCount: "27 tours", icon: "Waves" },
+    { name: "Rajasthan", tourCount: "36 tours", icon: "MountainSnow" },
+    { name: "Kerala", tourCount: "20 tours", icon: "Landmark" },
+    { name: "Andaman", tourCount: "9 tours", icon: "ShipWheel" },
+    { name: "Jammu and Kashmir", tourCount: "16 tours", icon: "Sun" },
+    { name: "Leh Ladakh", tourCount: "14 tours", icon: "Sparkles" },
+    { name: "Himachal", tourCount: "9 tours", icon: "Compass" },
+  ],
+  liveTours: {
+    cards: [
+      { destination: "Europe", liveTourCount: "9", color1: "#4A7BA7", color2: "#6BA3D0", color3: "#90C8E8" },
+      { destination: "South East Asia", liveTourCount: "4", color1: "#5A8FB5", color2: "#7BB3D8", color3: "#A0D8F0" },
+      { destination: "Jammu and Kashmir", liveTourCount: "3", color1: "#6A9FC3", color2: "#8BC3E0", color3: "#B0E8F8" },
+      { destination: "Leh Ladakh", liveTourCount: "3", color1: "#7AAFCB", color2: "#9BCDE8", color3: "#C0F0FF" },
+    ],
+  },
+  chinaPromo: {
+    packages: [
+      { days: "7 Days", name: "Highlights of China", price: "₹1,59,000", slug: "highlights-of-china-tour-package" },
+      { days: "9 Days", name: "Best of China", price: "₹1,98,000", slug: "best-of-china-tour-package" },
+      { days: "14 Days", name: "All of China", price: "₹3,25,000", slug: "all-of-china-tour-package" },
+      { days: "9 Days", name: "Women's Special China", price: "₹2,65,000", slug: "womens-special-china-tour-package" },
+      { days: "9 Days", name: "Seniors' Special China", price: "₹1,97,000", slug: "seniors-special-china-tour-package" },
+    ],
+  },
+  mostLovedTours: {
+    promoDestinations: [
+      { name: "Kerala", days: "6 Days", price: "₹35,000" },
+      { name: "Japan", days: "5 Days", price: "₹1,75,000" },
+      { name: "Europe", days: "6 Days", price: "₹1,69,000" },
+    ],
+    destinations: [
+      { name: "Best of Kashmir", price: "From ₹50,000", guests: "18.2k", slug: "best-of-kashmir-tour-package" },
+      { name: "Highlights of Kerala", price: "From ₹35,000", guests: "11.1k", slug: "highlights-of-kerala-tour-package" },
+      { name: "Best of Andaman", price: "From ₹75,000", guests: "8.2k", slug: "best-of-andaman-tour-package" },
+      { name: "Highlights of Rajasthan", price: "From ₹35,000", guests: "8k", slug: "highlights-of-rajasthan-tour-package" },
+      { name: "Singapore Thailand Malaysia", price: "From ₹1,88,000", guests: "29.2k", slug: "singapore-thailand-malaysia-tour-package" },
+      { name: "Best of Thailand", price: "From ₹85,000", guests: "24.6k", slug: "best-of-thailand-tour-package" },
+      { name: "European Jewels", price: "From ₹4,20,000", guests: "12.2k", slug: "european-jewels-tour-package" },
+      { name: "Singapore Malaysia", price: "From ₹1,62,000", guests: "15k", slug: "singapore-malaysia-tour-package" },
+    ],
+  },
+  trustReviews: {
+    stats: [
+      { value: "9.8L+", label: "Happy guests", icon: "Users" },
+      { value: "76.8K+", label: "Tours completed", icon: "CheckCircle" },
+      { value: "325+", label: "Tour Experts", icon: "Users" },
+      { value: "2.5K+", label: "Tour destinations", icon: "CheckCircle" },
+    ],
+    reviews: [
+      {
+        type: "Family",
+        destination: "Dalhousie Dharamshala Amritsar",
+        excerpt: "Amazing planning, comfortable stay and a very well managed tour experience...",
+        guest: "Anil",
+        date: "Jul, 2026",
+      },
+      {
+        type: "Family",
+        destination: "All of Scandinavia",
+        excerpt: "The tour was beautifully organized and our tour manager took care of every detail...",
+        guest: "Rajshree",
+        date: "Jul, 2026",
+      },
+      {
+        type: "Customized Tailormade",
+        destination: "Bali",
+        excerpt: "Everything from searching for the trip, booking it and enjoying the holiday was absolutely amazing...",
+        guest: "Ramkumar",
+        date: "Jul, 2026",
+      },
+    ],
+  },
+  featuredTour: {
+    region: "South East Asia",
+    title: "Best of Vietnam",
+    locations: "Hanoi • Halong Bay Cruise • Halong • Da Nang • Hoi An • Ho Chi Minh City",
+    days: "8 Days",
+    date: "01 Aug",
+    departure: "Ex-Mumbai",
+    price: "₹1,41,000",
+  },
+  continueTravel: {
+    heading: "Hey Guest, Continue your travel plan",
+    tours: [
+      { name: "Best of Thailand", duration: "6 Days", price: "₹85,000 /pp", cta: "Book Now", slug: "best-of-thailand-tour-package" },
+      { name: "Best of Andaman", duration: "7 Days", price: "₹75,000 /pp", cta: "Book Now", slug: "best-of-andaman-tour-package" },
+      { name: "Seniors' Special China", duration: "9 Days", price: "₹1,95,000 /pp", cta: "Book Now", slug: "seniors-special-china-tour-package" },
+      { name: "All of Ladakh", duration: "13 Days", price: "₹87,000 /pp", cta: "Book Now", slug: "all-of-ladakh-tour-package" },
+    ],
+  },
+  departureCities: {
+    cities: [
+      { name: "Mumbai", departures: "1184 Departures", startingPrice: "₹30,000", slug: "mumbai" },
+      { name: "Pune", departures: "77 Departures", startingPrice: "₹31,000", slug: "pune" },
+      { name: "Ahmedabad", departures: "318 Departures", startingPrice: "₹79,000", slug: "ahmedabad" },
+      { name: "Hyderabad", departures: "327 Departures", startingPrice: "₹79,000", slug: "hyderabad" },
+      { name: "Bangalore", departures: "78 Departures", startingPrice: "₹85,000", slug: "bangalore" },
+      { name: "Kolkata", departures: "322 Departures", startingPrice: "₹79,000", slug: "kolkata" },
+      { name: "Delhi", departures: "337 Departures", startingPrice: "₹77,000", slug: "delhi" },
+      { name: "Indore", departures: "296 Departures", startingPrice: "₹85,000", slug: "indore" },
+    ],
+  },
+  tourInclusions: {
+    features: [
+      {
+        title: "Accommodation",
+        description: "Comfortable & convenient hotels carefully selected by our travel team.",
+        icon: "Bed",
+      },
+      {
+        title: "All meals",
+        description: "Enjoy thoughtfully planned breakfast, lunch and dinner during your tour.",
+        icon: "Utensils",
+      },
+      {
+        title: "On-tour transport",
+        description: "Air-conditioned rail, sea and road transport as part of your itinerary.",
+        icon: "Bus",
+      },
+      {
+        title: "Tour managers",
+        description: "Experienced tour managers specializing in India and World tours.",
+        icon: "Users",
+      },
+      {
+        title: "Best value itinerary",
+        description: "Carefully researched itineraries designed to maximize your travel experience.",
+        icon: "Map",
+      },
+      {
+        title: "To and fro airfare",
+        description: "Selected group tours include airfare with convenient joining and leaving options.",
+        icon: "Plane",
+      },
+    ],
+  },
+  faq: {
+    questions: [
+      {
+        question: "Where can I find information about Travel World tours and products?",
+        answer: "You can find comprehensive information about all our tours, packages, and products on our website. Visit our homepage or use our search feature to explore tours by destination, duration, and price range.",
+      },
+      {
+        question: "What type of tours or packages does Travel World offer?",
+        answer: "We offer a wide variety of tours including family packages, group tours, honeymoon packages, women's special tours, seniors' tours, and customized holidays. Our destinations span across India and the world.",
+      },
+      {
+        question: "Does Travel World book train tickets?",
+        answer: "Yes, we offer integrated travel solutions including train bookings as part of our comprehensive tour packages. Train transportation is included in many of our itineraries for enhanced comfort.",
+      },
+      {
+        question: "Where can I find Travel World offices or sales partners?",
+        answer: "Travel World has offices and sales partners across major cities in India. You can locate the nearest office through our website or contact our customer service team for assistance.",
+      },
+      {
+        question: "How many travellers will be there as part of a group tour?",
+        answer: "Our group tours typically have 15-30 participants depending on the destination and season. We maintain group sizes that allow for personalized attention while creating a great travel community experience.",
+      },
+    ],
+    categories: [
+      "General Enquiries",
+      "Food",
+      "Visa",
+      "Travel Details",
+      "Booking & Payment",
+      "Flight Booking",
+      "Customized Holidays",
+      "Cancellation & Refunds",
+    ],
+  },
+};

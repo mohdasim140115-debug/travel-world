@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #fcf8f0;
   --foreground: #171717;
 }
 
@@ -12,15 +12,427 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* =====================================================
+   ACCESSIBILITY: visible keyboard focus everywhere
+===================================================== */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* =====================================================
+   RESPECT prefers-reduced-motion
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* =====================================================
+   INDIA TOUR PACKAGES PAGE
+===================================================== */
+
+.india-page {
+  background: #fff;
+  color: #1d1d1f;
+}
+
+.india-container {
+  /* Unified with the homepage's 1280px container + ~24px side
+     padding, so India/World/city/speciality listing pages don't
+     feel narrower or gappier than the rest of the site. */
+  width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+/* INTRO */
+
+.india-intro {
+  background: #fff;
+  border-bottom: 1px solid #e7e7e7;
+  padding: 18px 0 8px;
+}
+
+.india-intro-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 45px;
+  align-items: start;
+}
+
+.india-breadcrumb {
+  color: #777;
+  font-size: 11px;
+  margin-bottom: 17px;
+}
+
+.india-breadcrumb span {
+  margin: 0 5px;
+}
+
+.india-intro-content h1 {
+  font-size: 28px;
+  line-height: 1.2;
+  margin: 0 0 7px;
+  font-weight: 600;
+}
+
+.india-intro-content > p {
+  max-width: 790px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #333;
+  margin: 0;
+}
+
+@media (min-width: 900px) {
+  .india-intro-content h1 {
+    font-size: 34px;
+  }
+}
+
+.india-extra-text {
+  margin-top: 8px !important;
+}
+
+.india-read-more {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  border: 0;
+  background: transparent;
+  color: #111;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: underline;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.india-read-more svg {
+  transition: transform 0.2s ease;
+}
+
+.rotate-chevron {
+  transform: rotate(180deg);
+}
+
+.india-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f5f7fa;
+  padding: 7px 9px;
+  margin-top: 7px;
+  font-size: 12px;
+}
+
+.india-stars {
+  display: flex;
+  gap: 1px;
+  color: #ff6b00;
+}
+
+.rating-divider {
+  width: 1px;
+  height: 15px;
+  background: #ccc;
+}
+
+.india-rating a {
+  color: #1d4ed8;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* CALLBACK */
+
+.callback-card {
+  border: 1px solid #bfdbfe;
+  background: #eff6ff;
+  padding: 14px;
+  border-radius: 3px;
+}
+
+.callback-card h3 {
+  font-size: 14px;
+  margin: 0 0 13px;
+  font-weight: 500;
+}
+
+.callback-card label {
+  display: none;
+}
+
+.callback-card > input,
+.mobile-input {
+  width: 100%;
+  height: 36px;
+  border: 1px solid #555;
+  background: #fff;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+
+.callback-card > input {
+  padding: 0 10px;
+  font-size: 12px;
+  outline: none;
+}
+
+.mobile-input {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.mobile-input > span:first-child {
+  padding-left: 8px;
+}
+
+.country-code {
+  font-size: 12px;
+  padding: 0 8px;
+  color: #555;
+}
+
+.mobile-input input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  height: 100%;
+  font-size: 12px;
+}
+
+.callback-card > button {
+  width: 100%;
+  height: 38px;
+  border: 0;
+  border-radius: 3px;
+  background: #2563eb;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.callback-card > button:hover {
+  background: #1d4ed8;
+}
+
+/* TABS + LISTING HEADER */
+
+.india-tabs-section {
+  background: #f7f7f7;
+  padding: 27px 0 50px;
+  min-height: 500px;
+}
+
+.india-tabs {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 5px;
+}
+
+.india-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.india-tabs button {
+  white-space: nowrap;
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid #c8c8c8;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+}
+
+.india-tabs button.active {
+  color: #fff;
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.india-listing-heading {
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  align-items: start;
+  gap: 20px;
+  padding: 18px 0 12px;
+}
+
+.india-listing-heading h2 {
+  font-size: 18px;
+  line-height: 1.25;
+  margin: 0 0 4px;
+}
+
+.india-listing-heading p {
+  color: #777;
+  font-size: 13px;
+  margin: 0;
+}
+
+.live-tours-badge {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #16a45a;
+  color: #fff;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.live-tours-badge span {
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.listing-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.listing-actions select {
+  width: 165px;
+  height: 34px;
+  background: #fff;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 0 9px;
+  font-size: 11px;
+}
+
+.grid-view {
+  border: 0;
+  background: transparent;
+  text-decoration: underline;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+/* TEMP */
+
+.listing-coming {
+  min-height: 260px;
+  border: 1px dashed #cbd1da;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #667085;
+}
+
+.listing-coming h3 {
+  margin: 10px 0 4px;
+  color: #222;
+}
+
+.listing-coming p {
+  font-size: 13px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .india-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .callback-card {
+    max-width: 420px;
+  }
+
+  .india-listing-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .live-tours-badge {
+    justify-self: start;
+  }
+
+  .listing-actions {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 600px) {
+  .india-container {
+    width: min(100% - 24px, 1280px);
+  }
+
+  .india-intro {
+    padding-top: 14px;
+  }
+
+  .india-intro-content h1 {
+    font-size: 22px;
+  }
+
+  .india-tabs-section {
+    padding-top: 18px;
+  }
+
+  .listing-actions {
+    flex-wrap: wrap;
+  }
 }

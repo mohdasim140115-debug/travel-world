@@ -1,0 +1,107 @@
+"use client";
+
+import { useState } from "react";
+import { X } from "lucide-react";
+
+export default function FlightBookingModal({ flight, from, to, onClose }) {
+  const [submitted, setSubmitted] = useState(false);
+
+  if (!flight) return null;
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    setSubmitted(true);
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+      <div className="w-full max-w-[440px] rounded-[8px] bg-white p-5 shadow-xl">
+        <div className="flex items-center justify-between">
+          <h3 className="text-[15px] font-bold text-[#0B1F3A]">
+            {submitted ? "Booking Request Received" : "Confirm Your Flight"}
+          </h3>
+          <button type="button" onClick={onClose} aria-label="Close" className="text-[#6B7280]">
+            <X size={18} />
+          </button>
+        </div>
+
+        {submitted ? (
+          <div className="mt-4">
+            <p className="text-[12px] leading-[1.6] text-[#4B5563]">
+              Thank you! This is a demo booking flow — no payment has been processed. Our team will
+              reach out shortly with your {from} to {to} flight details.
+            </p>
+            <button
+              type="button"
+              onClick={onClose}
+              className="mt-4 h-[38px] w-full rounded-[4px] bg-[#071426] text-[12px] font-bold text-white"
+            >
+              Close
+            </button>
+          </div>
+        ) : (
+          <>
+            <div className="mt-4 space-y-2 rounded-[6px] bg-[#F9FAFB] p-3 text-[11px] text-[#374151]">
+              <div className="flex justify-between">
+                <span className="text-[#6B7280]">Route</span>
+                <strong>
+                  {from} ({flight.fromCode}) → {to} ({flight.toCode})
+                </strong>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-[#6B7280]">Airline</span>
+                <strong>
+                  {flight.airline} · {flight.flightNumber}
+                </strong>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-[#6B7280]">Departure</span>
+                <strong>{flight.departureTime}</strong>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-[#6B7280]">Arrival</span>
+                <strong>{flight.arrivalTime}</strong>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-[#6B7280]">Passengers</span>
+                <strong>1 Adult, Economy</strong>
+              </div>
+              <div className="flex justify-between border-t border-[#E5E7EB] pt-2">
+                <span className="text-[#6B7280]">Fare</span>
+                <strong className="text-[13px]">₹{flight.price.toLocaleString("en-IN")}</strong>
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="mt-4 space-y-2">
+              <input
+                type="text"
+                required
+                placeholder="Full Name"
+                className="h-[38px] w-full rounded-[4px] border border-[#D1D5DB] px-3 text-[12px] outline-none"
+              />
+              <input
+                type="email"
+                required
+                placeholder="Email"
+                className="h-[38px] w-full rounded-[4px] border border-[#D1D5DB] px-3 text-[12px] outline-none"
+              />
+              <input
+                type="tel"
+                required
+                placeholder="Mobile Number"
+                className="h-[38px] w-full rounded-[4px] border border-[#D1D5DB] px-3 text-[12px] outline-none"
+              />
+
+              <button
+                type="submit"
+                className="mt-2 h-[40px] w-full rounded-[4px] bg-[#2563EB] text-[12px] font-bold text-white transition hover:bg-[#1D4ED8]"
+              >
+                Continue Booking
+              </button>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
