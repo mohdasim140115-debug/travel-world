@@ -18,7 +18,7 @@ export default function MobileNavAccordion({ data, overviewHref, overviewLabel, 
       <Link
         href={overviewHref}
         onClick={onNavigate}
-        className="block border-b border-[#E5E7EB] px-4 py-3 text-[13px] font-semibold text-[#0B1F3A] no-underline"
+        className="block border-b border-[#E5E7EB] px-4 py-3 text-[13px] font-semibold text-[#183B3D] no-underline"
       >
         {overviewLabel}
       </Link>
@@ -33,7 +33,7 @@ export default function MobileNavAccordion({ data, overviewHref, overviewLabel, 
               key={item.href}
               href={item.href}
               onClick={onNavigate}
-              className="rounded-full border border-[#D1D5DB] px-3 py-1 text-[11px] font-medium text-[#0B1F3A] no-underline"
+              className="rounded-full border border-[#D1D5DB] px-3 py-1 text-[11px] font-medium text-[#183B3D] no-underline"
             >
               {item.name}
             </Link>
@@ -48,7 +48,7 @@ export default function MobileNavAccordion({ data, overviewHref, overviewLabel, 
             <button
               type="button"
               onClick={() => setOpenRegion(isOpen ? null : idx)}
-              className="flex w-full items-center justify-between px-4 py-3 text-left text-[13px] font-semibold text-[#0B1F3A]"
+              className="flex w-full items-center justify-between px-4 py-3 text-left text-[13px] font-semibold text-[#183B3D]"
             >
               {region.name}
               {isOpen ? <ChevronDown size={15} /> : <ChevronRight size={15} />}
@@ -59,7 +59,7 @@ export default function MobileNavAccordion({ data, overviewHref, overviewLabel, 
                 <Link
                   href={region.all.href}
                   onClick={onNavigate}
-                  className="mb-2 inline-block text-[12px] font-semibold text-[#0B1F3A] no-underline underline"
+                  className="mb-2 inline-block text-[12px] font-semibold text-[#183B3D] no-underline underline"
                 >
                   All of {region.name}
                 </Link>
@@ -70,7 +70,7 @@ export default function MobileNavAccordion({ data, overviewHref, overviewLabel, 
                       <Link
                         href={col.heading.href}
                         onClick={onNavigate}
-                        className="text-[12px] font-semibold text-[#0B1F3A] no-underline"
+                        className="text-[12px] font-semibold text-[#183B3D] no-underline"
                       >
                         {col.heading.name}
                       </Link>

@@ -157,7 +157,7 @@ function SectionTitle({ children }) {
         {children}
       </h2>
 
-      <div className="mx-auto mt-2 h-[2px] w-[65px] bg-[#2563EB]" />
+      <div className="mx-auto mt-2 h-[2px] w-[65px] bg-[#008C95]" />
     </div>
   );
 }
@@ -201,13 +201,13 @@ function SmallTourCard({ item }) {
   return (
     <Link
       href={href}
-      className="group block w-[270px] shrink-0 rounded-[8px] border border-[#bcc8db] bg-white p-2 no-underline transition hover:border-[#2563EB] hover:shadow-md"
+      className="group block w-[270px] shrink-0 rounded-[8px] border border-[#bcc8db] bg-white p-2 no-underline transition hover:border-[#20B8B5] hover:shadow-md"
     >
 
       <div className="h-[150px] rounded-[6px] bg-gradient-to-br from-sky-200 via-orange-200 to-slate-500" />
 
       <div className="mt-2">
-        <span className="inline-block border border-[#BFDBFE] bg-[#EFF6FF] px-1 py-[1px] text-[7px] font-semibold text-[#2563EB]">
+        <span className="inline-block border border-[#20B8B5] bg-[#EFF9F8] px-1 py-[1px] text-[7px] font-semibold text-[#008C95]">
           GROUP TOUR
         </span>
 
@@ -240,7 +240,7 @@ function SmallTourCard({ item }) {
             </strong>
           </div>
 
-          <span className="flex h-[28px] items-center justify-center rounded-[2px] bg-[#2563EB] text-[8px] font-semibold text-white transition-colors group-hover:bg-[#1D4ED8]">
+          <span className="flex h-[28px] items-center justify-center rounded-[2px] bg-[#FF7A3D] text-[8px] font-semibold text-white transition-colors group-hover:bg-[#EA642C]">
             View Details
           </span>
         </div>
@@ -279,7 +279,7 @@ export default function IndiaTourExplore() {
               onClick={() => setCityTab("city")}
               className={`h-[34px] min-w-[85px] border px-4 text-[10px] ${
                 cityTab === "city"
-                  ? "border-[#2563EB] bg-[#2563EB] text-white"
+                  ? "border-[#008C95] bg-[#008C95] text-white"
                   : "border-[#444] bg-white"
               }`}
             >
@@ -291,7 +291,7 @@ export default function IndiaTourExplore() {
               onClick={() => setCityTab("state")}
               className={`h-[34px] min-w-[85px] border px-4 text-[10px] ${
                 cityTab === "state"
-                  ? "border-[#2563EB] bg-[#2563EB] text-white"
+                  ? "border-[#008C95] bg-[#008C95] text-white"
                   : "border-[#444] bg-white"
               }`}
             >
@@ -344,7 +344,7 @@ export default function IndiaTourExplore() {
                 onClick={() => setInterest(item)}
                 className={`h-[30px] border px-4 text-[9px] ${
                   interest === item
-                    ? "border-[#2563EB] bg-[#2563EB] text-white"
+                    ? "border-[#008C95] bg-[#008C95] text-white"
                     : "border-[#777] bg-white"
                 }`}
               >
@@ -363,9 +363,9 @@ export default function IndiaTourExplore() {
             ))}
 
             {/* SHOW ALL */}
-            <div className="flex w-[270px] flex-col items-center justify-center rounded-[8px] border border-[#BFDBFE] bg-[#EFF6FF] p-5 text-center">
+            <div className="flex w-[270px] flex-col items-center justify-center rounded-[8px] border border-[#20B8B5] bg-[#EFF9F8] p-5 text-center">
               
-              <p className="text-[11px] font-medium text-[#2563EB]">
+              <p className="text-[11px] font-medium text-[#008C95]">
                 Journey doesn't stop at this point
               </p>
 
@@ -378,7 +378,7 @@ export default function IndiaTourExplore() {
                 Start exploring a diverse range of additional tours.
               </p>
 
-              <button className="mt-5 flex h-[32px] w-full items-center justify-center gap-2 rounded-[3px] bg-[#2563EB] text-[9px] font-semibold text-white transition hover:bg-[#1D4ED8]">
+              <button className="mt-5 flex h-[32px] w-full items-center justify-center gap-2 rounded-[3px] bg-[#FF7A3D] text-[9px] font-semibold text-white transition hover:bg-[#EA642C]">
                 Show all tours
                 <ArrowRight size={12} />
               </button>
@@ -406,7 +406,7 @@ export default function IndiaTourExplore() {
                 onClick={() => setSeason(item)}
                 className={`h-[32px] min-w-[125px] border px-4 text-[9px] ${
                   season === item
-                    ? "border-[#2563EB] bg-[#2563EB] text-white"
+                    ? "border-[#008C95] bg-[#008C95] text-white"
                     : "border-[#444] bg-white"
                 }`}
               >
@@ -450,7 +450,7 @@ export default function IndiaTourExplore() {
                 onClick={() => setDuration(item)}
                 className={`h-[30px] border px-4 text-[9px] ${
                   duration === item
-                    ? "border-[#2563EB] bg-[#2563EB] text-white"
+                    ? "border-[#008C95] bg-[#008C95] text-white"
                     : "border-[#777] bg-white"
                 }`}
               >
@@ -470,7 +470,7 @@ export default function IndiaTourExplore() {
                 <Link
                   key={item.slug}
                   href={`/package/${item.slug}`}
-                  className="group block w-[270px] shrink-0 overflow-hidden rounded-[8px] border border-[#cfd4dc] bg-white no-underline shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#2563EB] hover:shadow-[0_6px_16px_rgba(0,0,0,0.10)]"
+                  className="group block w-[270px] shrink-0 overflow-hidden rounded-[8px] border border-[#cfd4dc] bg-white no-underline shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#20B8B5] hover:shadow-[0_6px_16px_rgba(0,0,0,0.10)]"
                 >
                   <div className="relative flex h-[160px] items-center justify-center overflow-hidden bg-gradient-to-br from-[#b7d7eb] via-[#e8d9b5] to-[#98b1c7] px-3 text-center">
                     <span className="text-[12px] font-semibold text-[#31465a]">
@@ -480,7 +480,7 @@ export default function IndiaTourExplore() {
 
                   <div className="p-3">
                     <div className="flex flex-wrap gap-1">
-                      <span className="border border-[#BFDBFE] bg-[#EFF6FF] px-1.5 py-0.5 text-[8px] font-semibold text-[#2563EB]">
+                      <span className="border border-[#20B8B5] bg-[#EFF9F8] px-1.5 py-0.5 text-[8px] font-semibold text-[#008C95]">
                         GROUP TOUR
                       </span>
 
@@ -489,7 +489,7 @@ export default function IndiaTourExplore() {
                       </span>
                     </div>
 
-                    <h3 className="mt-2 text-[14px] font-semibold text-[#1e1e1e] transition-colors group-hover:text-[#2563EB]">
+                    <h3 className="mt-2 text-[14px] font-semibold text-[#1e1e1e] transition-colors group-hover:text-[#008C95]">
                       {item.title}
                     </h3>
 
@@ -509,7 +509,7 @@ export default function IndiaTourExplore() {
                         <strong className="text-[16px] leading-none text-[#111]">₹{item.price}</strong>
                       </div>
 
-                      <span className="flex h-[30px] items-center justify-center rounded-[3px] bg-[#2563EB] px-3 text-[10px] font-semibold text-white transition-colors group-hover:bg-[#1D4ED8]">
+                      <span className="flex h-[30px] items-center justify-center rounded-[3px] bg-[#FF7A3D] px-3 text-[10px] font-semibold text-white transition-colors group-hover:bg-[#EA642C]">
                         View Details
                       </span>
                     </div>
@@ -548,7 +548,7 @@ export default function IndiaTourExplore() {
                   className={`h-[190px] rounded-[6px] bg-gradient-to-br ${blog.style}`}
                 />
 
-                <h3 className="mt-2 text-[12px] font-medium leading-[1.3] text-[#222] group-hover:text-[#2563EB]">
+                <h3 className="mt-2 text-[12px] font-medium leading-[1.3] text-[#222] group-hover:text-[#008C95]">
                   {blog.title}
                 </h3>
               </article>

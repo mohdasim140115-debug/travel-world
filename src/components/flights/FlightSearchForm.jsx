@@ -25,7 +25,7 @@ function CityField({ label, value, onChange, placeholder }) {
       </label>
 
       <div className="mt-1 flex items-center gap-2 rounded-[4px] border border-[#D1D5DB] bg-white px-2 py-2">
-        <MapPin size={14} className="shrink-0 text-[#0B1F3A]" />
+        <MapPin size={14} className="shrink-0 text-[#183B3D]" />
 
         <input
           type="text"
@@ -37,7 +37,7 @@ function CityField({ label, value, onChange, placeholder }) {
             setOpen(true);
           }}
           onBlur={() => setTimeout(() => setOpen(false), 120)}
-          className="w-full min-w-0 border-0 bg-transparent text-[12px] font-semibold text-[#0B1F3A] outline-none"
+          className="w-full min-w-0 border-[#183B3D] bg-transparent text-[12px] font-semibold text-[#183B3D] outline-none"
         />
       </div>
 
@@ -55,7 +55,7 @@ function CityField({ label, value, onChange, placeholder }) {
               }}
               className="flex w-full items-center justify-between px-3 py-2 text-left text-[12px] hover:bg-[#F5F7FA]"
             >
-              <span className="font-medium text-[#0B1F3A]">{airport.city}</span>
+              <span className="font-medium text-[#183B3D]">{airport.city}</span>
               <span className="text-[10px] text-[#6B7280]">{airport.code}</span>
             </button>
           ))}
@@ -94,14 +94,14 @@ export default function FlightSearchForm({ initialFrom = "Mumbai", initialTo = "
       onSubmit={handleSearch}
       className={`w-full rounded-[8px] border border-[#E5E7EB] bg-white p-4 shadow-sm ${compact ? "" : "sm:p-5"}`}
     >
-      <div className="flex items-center gap-4 text-[12px] font-semibold text-[#0B1F3A]">
+      <div className="flex items-center gap-4 text-[12px] font-semibold text-[#183B3D]">
         <label className="flex items-center gap-1.5">
           <input
             type="radio"
             name="tripType"
             checked={tripType === "oneway"}
             onChange={() => setTripType("oneway")}
-            className="accent-[#0B2033]"
+            className="accent-[#008C95]"
           />
           One Way
         </label>
@@ -112,7 +112,7 @@ export default function FlightSearchForm({ initialFrom = "Mumbai", initialTo = "
             name="tripType"
             checked={tripType === "roundtrip"}
             onChange={() => setTripType("roundtrip")}
-            className="accent-[#0B2033]"
+            className="accent-[#008C95]"
           />
           Round Trip
         </label>
@@ -125,7 +125,7 @@ export default function FlightSearchForm({ initialFrom = "Mumbai", initialTo = "
           type="button"
           onClick={handleSwap}
           aria-label="Swap origin and destination"
-          className="mx-auto hidden h-8 w-8 items-center justify-center rounded-full border border-[#D1D5DB] bg-white text-[#0B1F3A] lg:flex"
+          className="mx-auto hidden h-8 w-8 items-center justify-center rounded-full border border-[#D1D5DB] bg-white text-[#183B3D] lg:flex"
         >
           <ArrowLeftRight size={14} />
         </button>
@@ -137,8 +137,8 @@ export default function FlightSearchForm({ initialFrom = "Mumbai", initialTo = "
             Departure
           </label>
           <div className="mt-1 flex items-center gap-2 rounded-[4px] border border-[#D1D5DB] bg-white px-2 py-2">
-            <CalendarDays size={14} className="shrink-0 text-[#0B1F3A]" />
-            <input type="date" className="w-full min-w-0 border-0 bg-transparent text-[11px] font-semibold text-[#0B1F3A] outline-none" />
+            <CalendarDays size={14} className="shrink-0 text-[#183B3D]" />
+            <input type="date" className="w-full min-w-0 border-[#183B3D] bg-transparent text-[11px] font-semibold text-[#183B3D] outline-none" />
           </div>
         </div>
 
@@ -151,11 +151,11 @@ export default function FlightSearchForm({ initialFrom = "Mumbai", initialTo = "
               tripType === "roundtrip" ? "bg-white" : "bg-[#F3F4F6]"
             }`}
           >
-            <CalendarDays size={14} className="shrink-0 text-[#0B1F3A]" />
+            <CalendarDays size={14} className="shrink-0 text-[#183B3D]" />
             <input
               type="date"
               disabled={tripType !== "roundtrip"}
-              className="w-full min-w-0 border-0 bg-transparent text-[11px] font-semibold text-[#0B1F3A] outline-none disabled:text-[#9CA3AF]"
+              className="w-full min-w-0 border-[#183B3D] bg-transparent text-[11px] font-semibold text-[#183B3D] outline-none disabled:text-[#9CA3AF]"
             />
           </div>
         </div>
@@ -165,8 +165,8 @@ export default function FlightSearchForm({ initialFrom = "Mumbai", initialTo = "
             Passengers &amp; Class
           </label>
           <div className="mt-1 flex items-center gap-2 rounded-[4px] border border-[#D1D5DB] bg-white px-2 py-2">
-            <Users size={14} className="shrink-0 text-[#0B1F3A]" />
-            <span className="truncate text-[11px] font-semibold text-[#0B1F3A]">
+            <Users size={14} className="shrink-0 text-[#183B3D]" />
+            <span className="truncate text-[11px] font-semibold text-[#183B3D]">
               1 Adult, 0 Child, 0 Infant &middot; Economy
             </span>
           </div>
@@ -174,7 +174,7 @@ export default function FlightSearchForm({ initialFrom = "Mumbai", initialTo = "
 
         <button
           type="submit"
-          className="flex h-[38px] items-center justify-center gap-2 rounded-[4px] bg-[#2563EB] px-5 text-[12px] font-bold text-white transition hover:bg-[#1D4ED8]"
+          className="flex h-[38px] items-center justify-center gap-2 rounded-[4px] bg-[#FF7A3D] px-5 text-[12px] font-bold text-white transition hover:bg-[#EA642C]"
         >
           <Search size={14} />
           Search

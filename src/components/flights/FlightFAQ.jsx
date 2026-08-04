@@ -10,7 +10,7 @@ export default function FlightFAQ({ faqs, heading = "Frequently Asked Questions"
     <section className="px-4 py-12 sm:px-6 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="text-center">
-          <h2 className="text-[22px] font-bold text-[#0B1F3A] sm:text-[26px]">{heading}</h2>
+          <h2 className="text-[26px] font-bold text-[#183B3D] sm:text-[30px]">{heading}</h2>
           {subheading && <p className="mt-2 text-[13px] text-[#60646C]">{subheading}</p>}
         </div>
 
@@ -23,7 +23,7 @@ export default function FlightFAQ({ faqs, heading = "Frequently Asked Questions"
                 onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)}
                 className="flex w-full items-center justify-between bg-white p-4 text-left transition-colors hover:bg-[#FAFAFA] sm:p-5"
               >
-                <span className="text-left text-[13px] font-semibold text-[#0B1F3A] sm:text-[14px]">
+                <span className="text-left text-[13px] font-semibold text-[#183B3D] sm:text-[14px]">
                   {faq.question}
                 </span>
                 <ChevronDown

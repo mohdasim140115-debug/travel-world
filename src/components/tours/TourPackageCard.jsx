@@ -15,7 +15,7 @@ export default function TourPackageCard({ item }) {
   return (
     <Link
       href={`/package/${item.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-[8px] border border-[#cfd4dc] bg-white no-underline shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#2563EB] hover:shadow-[0_8px_20px_rgba(0,0,0,0.10)]"
+      className="group flex h-full flex-col overflow-hidden rounded-[8px] border border-[#cfd4dc] bg-white no-underline shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#20B8B5] hover:shadow-[0_8px_20px_rgba(0,0,0,0.10)]"
     >
       {/* IMAGE */}
       <div className="relative h-[130px] shrink-0 overflow-hidden">
@@ -27,7 +27,7 @@ export default function TourPackageCard({ item }) {
               key={tag}
               className={`border px-1.5 py-[2px] text-[8px] font-semibold ${
                 tag.includes("GROUP")
-                  ? "border-[#BFDBFE] bg-[#EFF6FF] text-[#2563EB]"
+                  ? "border-[#20B8B5] bg-[#EFF9F8] text-[#008C95]"
                   : tag.includes("SALE")
                   ? "border-red-400 bg-red-50 text-red-600"
                   : "border-pink-400 bg-pink-50 text-pink-600"
@@ -57,7 +57,7 @@ export default function TourPackageCard({ item }) {
 
       {/* CONTENT */}
       <div className="flex flex-1 flex-col p-3">
-        <h3 className="text-[17px] font-semibold text-[#1e1e1e] transition-colors group-hover:text-[#2563EB]">
+        <h3 className="text-[17px] font-semibold text-[#1e1e1e] transition-colors group-hover:text-[#008C95]">
           {item.title}
         </h3>
 
@@ -85,16 +85,16 @@ export default function TourPackageCard({ item }) {
 
         {/* PRICE + CTA */}
         <div className="mt-auto pt-3">
-          <div className="flex items-end justify-between gap-2 rounded-[7px] border border-[#BFDBFE] bg-[#EFF6FF] p-3">
+          <div className="flex items-end justify-between gap-2 rounded-[7px] border border-[#20B8B5] bg-[#EFF9F8] p-3">
             <div>
               <p className="text-[12px] text-[#777]">Starting price per person</p>
-              <strong className="text-[22px] leading-none text-[#0B1F3A]">{item.price}</strong>
+              <strong className="text-[22px] leading-none text-[#183B3D]">{item.price}</strong>
               <p className="mt-1 text-[12px]">
                 EMI from <span className="font-semibold underline">{item.emi}</span>
               </p>
             </div>
 
-            <div className="flex h-[38px] shrink-0 items-center justify-center rounded-[3px] bg-[#2563EB] px-4 text-[14px] font-semibold text-white transition-colors group-hover:bg-[#1D4ED8]">
+            <div className="flex h-[38px] shrink-0 items-center justify-center rounded-[3px] bg-[#FF7A3D] px-4 text-[14px] font-semibold text-white transition-colors group-hover:bg-[#EA642C]">
               View Details
             </div>
           </div>
@@ -106,7 +106,7 @@ export default function TourPackageCard({ item }) {
                 event.preventDefault();
                 event.stopPropagation();
               }}
-              className="underline hover:text-[#2563EB]"
+              className="underline hover:text-[#008C95]"
             >
               Compare
             </button>
@@ -117,7 +117,7 @@ export default function TourPackageCard({ item }) {
                 event.preventDefault();
                 event.stopPropagation();
               }}
-              className="underline hover:text-[#2563EB]"
+              className="underline hover:text-[#008C95]"
             >
               Enquire Now
             </button>

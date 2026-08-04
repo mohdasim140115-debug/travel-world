@@ -136,7 +136,7 @@ export default function IndiaTourBottom() {
       ========================================== */}
       <section
         id="reviews"
-        className="relative overflow-hidden bg-[#071426] py-12"
+        className="relative overflow-hidden bg-[#006D77] py-12"
       >
         <div className="india-container relative">
           {/* Decorative quotes */}
@@ -174,7 +174,7 @@ export default function IndiaTourBottom() {
           <div className="relative z-10 mt-7 flex justify-center">
             <button
               type="button"
-              className="h-[36px] min-w-[170px] rounded-[3px] bg-[#2563EB] px-6 text-[10px] font-semibold text-white transition hover:bg-[#1D4ED8]"
+              className="h-[36px] min-w-[170px] rounded-[3px] bg-[#008C95] px-6 text-[10px] font-semibold text-white transition hover:bg-[#006D77]"
             >
               Read 15K+ Reviews
             </button>
@@ -197,7 +197,7 @@ export default function IndiaTourBottom() {
               questions about India tours.
             </p>
 
-            <div className="mx-auto mt-2 h-[2px] w-[65px] bg-[#2563EB]" />
+            <div className="mx-auto mt-2 h-[2px] w-[65px] bg-[#008C95]" />
           </div>
 
           <div className="mx-auto mt-7 max-w-[820px] space-y-2">
@@ -341,7 +341,7 @@ export default function IndiaTourBottom() {
           <div className="grid min-h-[72px] grid-cols-2 items-center gap-4 py-3 md:grid-cols-5">
             
             <div className="flex items-center gap-3">
-              <MapPin size={17} className="text-[#173e74]" />
+              <MapPin size={17} className="text-[#008C95]" />
 
               <div>
                 <p className="text-[8px] text-[#777]">
@@ -355,7 +355,7 @@ export default function IndiaTourBottom() {
             </div>
 
             <div className="flex items-center gap-3">
-              <Phone size={17} className="text-[#173e74]" />
+              <Phone size={17} className="text-[#008C95]" />
 
               <div>
                 <p className="text-[8px] text-[#777]">
@@ -374,7 +374,7 @@ export default function IndiaTourBottom() {
             <div className="flex items-center gap-3">
               <MessageSquare
                 size={17}
-                className="text-[#173e74]"
+                className="text-[#008C95]"
               />
 
               <div>
@@ -389,7 +389,7 @@ export default function IndiaTourBottom() {
             </div>
 
             <div className="flex items-center gap-3">
-              <Mail size={17} className="text-[#173e74]" />
+              <Mail size={17} className="text-[#008C95]" />
 
               <div>
                 <p className="text-[8px] text-[#777]">

@@ -45,7 +45,7 @@ export default function PackageBooking({ tour }) {
                   onClick={() => setSelectedCity(city)}
                   className={`rounded-full border px-4 py-2 text-[10px] font-semibold ${
                     selectedCity === city
-                      ? "border-[#2563EB] bg-[#eef3ff] text-[#2563EB]"
+                      ? "border-[#008C95] bg-[#eef3ff] text-[#008C95]"
                       : "border-[#ccc] bg-white text-[#333]"
                   }`}
                 >
@@ -61,7 +61,7 @@ export default function PackageBooking({ tour }) {
                 <button
                   type="button"
                   onClick={() => setGuests((value) => Math.max(1, value - 1))}
-                  className="flex h-6 w-6 items-center justify-center rounded-full border border-[#ccc] text-[#2563EB]"
+                  className="flex h-6 w-6 items-center justify-center rounded-full border border-[#ccc] text-[#008C95]"
                   aria-label="Decrease guests"
                 >
                   <Minus size={12} />
@@ -70,7 +70,7 @@ export default function PackageBooking({ tour }) {
                 <button
                   type="button"
                   onClick={() => setGuests((value) => value + 1)}
-                  className="flex h-6 w-6 items-center justify-center rounded-full border border-[#ccc] text-[#2563EB]"
+                  className="flex h-6 w-6 items-center justify-center rounded-full border border-[#ccc] text-[#008C95]"
                   aria-label="Increase guests"
                 >
                   <Plus size={12} />
@@ -88,14 +88,14 @@ export default function PackageBooking({ tour }) {
                     key={`${departure.date}-${index}`}
                     type="button"
                     onClick={() => setSelectedIndex(index)}
-                    className={`grid w-full gap-3 border-b p-4 text-left last:border-b-0 sm:grid-cols-[1fr_120px_120px] ${
-                      isSelected ? "bg-[#EFF6FF]" : "bg-white"
+                    className={`grid w-full gap-3 border-[#183B3D] p-4 text-left last:border-[#183B3D]-0 sm:grid-cols-[1fr_120px_120px] ${
+                      isSelected ? "bg-[#EFF9F8]" : "bg-white"
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <div
                         className={`flex h-10 w-10 items-center justify-center rounded-full ${
-                          isSelected ? "bg-[#2563EB] text-white" : "bg-[#edf3ff] text-[#2563EB]"
+                          isSelected ? "bg-[#008C95] text-white" : "bg-[#edf3ff] text-[#008C95]"
                         }`}
                       >
                         <CalendarDays size={17} />
@@ -125,7 +125,7 @@ export default function PackageBooking({ tour }) {
                       <strong className="text-[15px]">₹{formatPrice(departure.price)}</strong>
 
                       {isSelected && (
-                        <p className="mt-1 text-[9px] font-semibold text-[#2563EB]">Selected</p>
+                        <p className="mt-1 text-[9px] font-semibold text-[#008C95]">Selected</p>
                       )}
                     </div>
                   </button>
@@ -183,11 +183,11 @@ export default function PackageBooking({ tour }) {
                 <strong className="text-[19px] text-[#111]">₹{formatPrice(basicPrice)}</strong>
               </div>
 
-              <button className="mt-5 h-[40px] w-full bg-[#2563EB] text-[11px] font-semibold text-white transition hover:bg-[#1D4ED8]">
+              <button className="mt-5 h-[40px] w-full bg-[#FF7A3D] text-[11px] font-semibold text-white transition hover:bg-[#EA642C]">
                 Book Online
               </button>
 
-              <button className="mt-2 h-[38px] w-full border border-[#2563EB] text-[11px] font-semibold text-[#2563EB]">
+              <button className="mt-2 h-[38px] w-full border border-[#008C95] text-[11px] font-semibold text-[#008C95]">
                 Enquire Now
               </button>
             </aside>
@@ -216,7 +216,7 @@ export default function PackageBooking({ tour }) {
                 />
               </div>
 
-              <button className="mt-3 flex h-[40px] w-full items-center justify-center gap-2 bg-[#2563EB] text-[11px] font-semibold text-white transition hover:bg-[#1D4ED8]">
+              <button className="mt-3 flex h-[40px] w-full items-center justify-center gap-2 bg-[#FF7A3D] text-[11px] font-semibold text-white transition hover:bg-[#EA642C]">
                 <Phone size={14} />
                 Request Call Back
               </button>

@@ -9,37 +9,37 @@ export default function MostLovedTours() {
     <section className="px-4 py-12 sm:px-6 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="grid gap-6 lg:grid-cols-[1fr_2fr]">
-          <div className="relative overflow-hidden rounded-[10px] bg-[#DBEAFE] p-6 sm:p-8">
+          <div className="relative overflow-hidden rounded-[10px] bg-[#E2F5F2] p-6 sm:p-8">
             <div className="relative z-10">
-              <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-[#2563EB]">
+              <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-[#008C95]">
                 Curated for you
               </p>
-              <h3 className="mt-2 text-[28px] font-black text-[#0B1F3A] leading-[1.1]">
+              <h3 className="mt-2 text-[28px] font-black text-[#183B3D] leading-[1.1]">
                 TRAVEL WORLD
               </h3>
-              <h4 className="mt-1 text-[24px] font-black text-[#0B1F3A]">PAISA VASOOL</h4>
-              <p className="mt-2 text-[18px] font-bold text-[#0B1F3A]">Tours</p>
-              <p className="mt-3 text-[16px] italic text-[#334155]">Chalo, Bag Bharo, Nikal Pado!</p>
+              <h4 className="mt-1 text-[24px] font-black text-[#183B3D]">PAISA VASOOL</h4>
+              <p className="mt-2 text-[18px] font-bold text-[#183B3D]">Tours</p>
+              <p className="mt-3 text-[16px] italic text-[#667A7B]">Chalo, Bag Bharo, Nikal Pado!</p>
             </div>
 
             <div className="mt-6 grid grid-cols-3 gap-2">
               {mostLovedTours.promoDestinations.map((dest) => (
                 <div
                   key={dest.name}
-                  className="flex h-[60px] flex-col items-center justify-center rounded-full border-2 border-[#93C5FD] bg-white/80 text-center"
+                  className="flex h-[60px] flex-col items-center justify-center rounded-full border-2 border-[#7FE0D8] bg-white/80 text-center"
                 >
-                  <div className="text-[11px] font-semibold text-[#0B1F3A]">{dest.name}</div>
+                  <div className="text-[11px] font-semibold text-[#183B3D]">{dest.name}</div>
                   <div className="text-[10px] text-[#60646C]">{dest.days}</div>
-                  <div className="text-[11px] font-bold text-[#0B1F3A]">{dest.price}</div>
+                  <div className="text-[11px] font-bold text-[#183B3D]">{dest.price}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] p-6 sm:p-8">
+          <div className="overflow-hidden rounded-[10px] border border-[#D8E7E5] bg-[#F8F1E5] p-6 sm:p-8">
             <div className="flex items-center gap-2">
               <Heart className="h-5 w-5 text-[#FF6B6B]" />
-              <h3 className="text-[20px] font-bold text-[#0B1F3A]">Most Loved by Our Guests</h3>
+              <h3 className="text-[20px] font-bold text-[#183B3D]">Most Loved by Our Guests</h3>
             </div>
             <p className="mt-2 text-[13px] text-[#60646C]">
               1,26,522 guests have travelled so far.
@@ -56,7 +56,7 @@ export default function MostLovedTours() {
                     <div className="absolute inset-0 opacity-30" />
                   </div>
                   <div className="p-3">
-                    <h4 className="text-[13px] font-bold text-[#0B1F3A]">{dest.name}</h4>
+                    <h4 className="text-[13px] font-bold text-[#183B3D]">{dest.name}</h4>
                     <p className="mt-1 text-[12px] text-[#60646C]">{dest.price}</p>
                     <p className="mt-2 text-[11px] text-[#4B5563]">
                       {dest.guests} guests travelled

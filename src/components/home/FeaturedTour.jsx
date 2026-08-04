@@ -9,9 +9,9 @@ export default function FeaturedTour() {
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="relative overflow-hidden rounded-[10px]">
           <div
-            className="relative h-[280px] w-full bg-gradient-to-r from-[#1a2a4a] via-[#2d5a8c] to-[#4a8bc2]"
+            className="relative h-[280px] w-full"
             style={{
-              backgroundImage: `linear-gradient(90deg, rgba(11,32,51,0.7) 0%, rgba(11,32,51,0.4) 50%, transparent 100%), linear-gradient(135deg, #2d5a8c 0%, #4a8bc2 100%)`,
+              backgroundImage: `linear-gradient(90deg, rgba(0,91,96,0.75) 0%, rgba(0,91,96,0.4) 50%, transparent 100%), linear-gradient(135deg, #006D77 0%, #168AAD 100%)`,
             }}
           >
             <div className="absolute inset-0">
@@ -32,10 +32,10 @@ export default function FeaturedTour() {
               <p className="text-[13px] font-semibold text-white">
                 {featuredTour.days} | {featuredTour.date} | from {featuredTour.departure}
               </p>
-              <p className="text-[18px] font-black text-[#93C5FD]">{featuredTour.price}</p>
+              <p className="text-[18px] font-black text-[#7FE0D8]">{featuredTour.price}</p>
             </div>
             <div className="mt-6 flex gap-3">
-              <button className="rounded-full bg-white px-6 py-2 text-[13px] font-bold text-[#0B1F3A] transition duration-200 hover:bg-[#EFF6FF]">
+              <button className="rounded-full bg-white px-6 py-2 text-[13px] font-bold text-[#183B3D] transition duration-200 hover:bg-[#EFF9F8]">
                 Book now
               </button>
               <p className="text-[11px] text-white/70">*T&C Apply</p>

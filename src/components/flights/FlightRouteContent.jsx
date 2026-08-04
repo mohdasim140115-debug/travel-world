@@ -12,8 +12,8 @@ export default function FlightRouteContent({ route }) {
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <div className="rounded-[8px] border border-[#E5E7EB] bg-white p-4">
             <div className="flex items-center gap-2">
-              <Plane size={16} className="text-[#0B1F3A]" />
-              <h3 className="text-[13px] font-semibold text-[#0B1F3A]">
+              <Plane size={16} className="text-[#183B3D]" />
+              <h3 className="text-[13px] font-semibold text-[#183B3D]">
                 Airlines flying {route.from} to {route.to}
               </h3>
             </div>
@@ -26,8 +26,8 @@ export default function FlightRouteContent({ route }) {
 
           <div className="rounded-[8px] border border-[#E5E7EB] bg-white p-4">
             <div className="flex items-center gap-2">
-              <Clock3 size={16} className="text-[#0B1F3A]" />
-              <h3 className="text-[13px] font-semibold text-[#0B1F3A]">
+              <Clock3 size={16} className="text-[#183B3D]" />
+              <h3 className="text-[13px] font-semibold text-[#183B3D]">
                 {route.from} to {route.to} flight duration and best time to fly
               </h3>
             </div>
@@ -41,8 +41,8 @@ export default function FlightRouteContent({ route }) {
 
           <div className="rounded-[8px] border border-[#E5E7EB] bg-white p-4">
             <div className="flex items-center gap-2">
-              <Info size={16} className="text-[#0B1F3A]" />
-              <h3 className="text-[13px] font-semibold text-[#0B1F3A]">
+              <Info size={16} className="text-[#183B3D]" />
+              <h3 className="text-[13px] font-semibold text-[#183B3D]">
                 {route.to} Airport Tips
               </h3>
             </div>
@@ -56,7 +56,7 @@ export default function FlightRouteContent({ route }) {
 
         {route.relatedTours && route.relatedTours.length > 0 && (
           <div className="mt-6 rounded-[8px] border border-[#BFD7F5] bg-[#F0F6FF] p-4">
-            <h3 className="text-[13px] font-semibold text-[#0B1F3A]">
+            <h3 className="text-[13px] font-semibold text-[#183B3D]">
               Explore {route.to} group tour packages
             </h3>
             <div className="mt-3 flex flex-wrap gap-2">
@@ -64,7 +64,7 @@ export default function FlightRouteContent({ route }) {
                 <Link
                   key={tour.href}
                   href={tour.href}
-                  className="rounded-full border border-[#0B1F3A] px-4 py-2 text-[11px] font-semibold text-[#0B1F3A] no-underline transition hover:bg-[#071426] hover:text-white"
+                  className="rounded-full border border-[#183B3D] px-4 py-2 text-[11px] font-semibold text-[#183B3D] no-underline transition hover:bg-[#006D77] hover:text-white"
                 >
                   {tour.label}
                 </Link>
@@ -75,15 +75,15 @@ export default function FlightRouteContent({ route }) {
 
         {route.otherRouteObjects && route.otherRouteObjects.length > 0 && (
           <div className="mt-8">
-            <h3 className="text-[15px] font-semibold text-[#0B1F3A]">Other routes travellers search</h3>
+            <h3 className="text-[15px] font-semibold text-[#183B3D]">Other routes travellers search</h3>
             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {route.otherRouteObjects.map((other) => (
                 <Link
                   key={other.slug}
                   href={`/flights/${other.slug}`}
-                  className="flex items-center justify-between rounded-[8px] border border-[#E5E7EB] bg-white p-4 no-underline transition hover:border-[#0B1F3A]"
+                  className="flex items-center justify-between rounded-[8px] border border-[#E5E7EB] bg-white p-4 no-underline transition hover:border-[#183B3D]"
                 >
-                  <span className="text-[12px] font-semibold text-[#0B1F3A]">
+                  <span className="text-[12px] font-semibold text-[#183B3D]">
                     {other.from} to {other.to} Flights
                   </span>
                   <span className="text-[10px] font-medium text-[#6B7280]">

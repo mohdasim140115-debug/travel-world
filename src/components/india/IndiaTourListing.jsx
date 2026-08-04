@@ -192,7 +192,7 @@ function Checkbox({ label }) {
     <label className="mb-2 flex cursor-pointer items-center gap-2 text-[11px] text-[#333]">
       <input
         type="checkbox"
-        className="h-[12px] w-[12px] accent-[#2563EB]"
+        className="h-[12px] w-[12px] accent-[#008C95]"
       />
 
       <span>{label}</span>
@@ -215,7 +215,7 @@ function PackageCard({ item }) {
         href={`/package/${item.slug}`}
         className="group block no-underline"
       >
-        <article className="grid min-h-[190px] cursor-pointer grid-cols-[220px_minmax(0,1fr)_220px] gap-3 rounded-[8px] border border-[#cfd4dc] bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-[#2563EB] hover:shadow-[0_4px_14px_rgba(0,0,0,0.10)]">
+        <article className="grid min-h-[190px] cursor-pointer grid-cols-[220px_minmax(0,1fr)_220px] gap-3 rounded-[8px] border border-[#cfd4dc] bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-[#20B8B5] hover:shadow-[0_4px_14px_rgba(0,0,0,0.10)]">
 
           {/* =============================================
               IMAGE
@@ -241,7 +241,7 @@ function PackageCard({ item }) {
                   key={tag}
                   className={`border px-1.5 py-[2px] text-[8px] font-semibold ${
                     tag.includes("GROUP")
-                      ? "border-[#BFDBFE] bg-[#EFF6FF] text-[#2563EB]"
+                      ? "border-[#20B8B5] bg-[#EFF9F8] text-[#008C95]"
                       : tag.includes("SALE")
                       ? "border-red-400 bg-red-50 text-red-600"
                       : "border-pink-400 bg-pink-50 text-pink-600"
@@ -254,7 +254,7 @@ function PackageCard({ item }) {
 
             {/* TITLE */}
 
-            <h3 className="text-[17px] font-semibold text-[#1e1e1e] transition-colors group-hover:text-[#2563EB]">
+            <h3 className="text-[17px] font-semibold text-[#1e1e1e] transition-colors group-hover:text-[#008C95]">
               {item.title}
             </h3>
 
@@ -309,13 +309,13 @@ function PackageCard({ item }) {
               PRICE
           ============================================= */}
 
-          <div className="flex flex-col rounded-[7px] border border-[#BFDBFE] bg-[#EFF6FF] p-3 text-center">
+          <div className="flex flex-col rounded-[7px] border border-[#20B8B5] bg-[#EFF9F8] p-3 text-center">
 
             <p className="mt-3 text-[12px] text-[#777]">
               Starting price per person
             </p>
 
-            <strong className="mt-1 text-[24px] leading-none text-[#0B1F3A]">
+            <strong className="mt-1 text-[24px] leading-none text-[#183B3D]">
               {item.price}
             </strong>
 
@@ -328,7 +328,7 @@ function PackageCard({ item }) {
 
             {/* VIEW DETAILS */}
 
-            <div className="mt-auto flex h-[40px] w-full items-center justify-center rounded-[3px] bg-[#2563EB] text-[14px] font-semibold text-white transition-colors group-hover:bg-[#1D4ED8]">
+            <div className="mt-auto flex h-[40px] w-full items-center justify-center rounded-[3px] bg-[#FF7A3D] text-[14px] font-semibold text-white transition-colors group-hover:bg-[#EA642C]">
               View Details
             </div>
 
@@ -367,7 +367,7 @@ function PackageCard({ item }) {
             event.preventDefault();
             event.stopPropagation();
           }}
-          className="underline hover:text-[#2563EB]"
+          className="underline hover:text-[#008C95]"
         >
           Compare
         </button>
@@ -378,7 +378,7 @@ function PackageCard({ item }) {
             event.preventDefault();
             event.stopPropagation();
           }}
-          className="underline hover:text-[#2563EB]"
+          className="underline hover:text-[#008C95]"
         >
           Enquire Now
         </button>
@@ -411,7 +411,7 @@ function JoiningLeavingBox() {
   ];
 
   return (
-    <div className="rounded-[8px] border-2 border-[#2563EB] bg-[#EFF6FF] p-3">
+    <div className="rounded-[8px] border-2 border-[#008C95] bg-[#EFF9F8] p-3">
       <h3 className="mb-2 text-[12px] font-semibold text-[#222]">
         View India Tour Packages
       </h3>
@@ -421,7 +421,7 @@ function JoiningLeavingBox() {
           <button
             key={option}
             type="button"
-            className="rounded-full border border-[#b9c0ca] bg-white px-3 py-1 text-[9px] text-[#555] hover:border-[#2563EB]"
+            className="rounded-full border border-[#b9c0ca] bg-white px-3 py-1 text-[9px] text-[#555] hover:border-[#20B8B5]"
           >
             {option}
           </button>
@@ -476,7 +476,7 @@ export default function IndiaTourListing() {
               min="9000"
               max="365000"
               defaultValue="365000"
-              className="w-full accent-[#2563EB]"
+              className="w-full accent-[#008C95]"
             />
 
             <div className="mt-1 flex justify-between text-[8px]">

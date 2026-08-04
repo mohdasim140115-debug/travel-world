@@ -52,19 +52,22 @@ export default async function FlightRoutePage({ params }) {
         {/* =====================================================
             ROUTE HERO
         ===================================================== */}
-        <section className="relative overflow-hidden bg-[#071426] px-4 pb-8 pt-6 sm:px-6 lg:px-0">
+        <section
+          className="relative overflow-hidden px-4 pb-8 pt-6 sm:px-6 lg:px-0"
+          style={{ background: "linear-gradient(135deg, #006D77, #168AAD)" }}
+        >
           <Plane className="pointer-events-none absolute right-6 top-6 h-20 w-20 rotate-45 text-white/10" />
 
           <div className="relative mx-auto w-full max-w-[1280px]">
             <div className="flex flex-wrap items-center gap-1 text-[11px] text-slate-300">
-              <Link href="/" className="hover:text-[#60A5FA]">Home</Link>
+              <Link href="/" className="hover:text-[#BFF3EE]">Home</Link>
               <ChevronRight size={11} />
-              <Link href="/flights" className="hover:text-[#60A5FA]">Flights</Link>
+              <Link href="/flights" className="hover:text-[#BFF3EE]">Flights</Link>
               <ChevronRight size={11} />
               <span className="text-white">{route.from} to {route.to}</span>
             </div>
 
-            <h1 className="mt-3 text-[24px] font-bold text-white sm:text-[28px]">
+            <h1 className="mt-3 text-[28px] font-bold text-white sm:text-[36px]">
               {route.from} to {route.to} Flights
             </h1>
 

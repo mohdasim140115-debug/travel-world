@@ -16,7 +16,7 @@ const TIME_SLOTS = [
 function FilterGroup({ title, children }) {
   return (
     <div className="border-b border-[#E5E7EB] px-3 py-4">
-      <h4 className="mb-3 text-[12px] font-semibold text-[#0B1F3A]">{title}</h4>
+      <h4 className="mb-3 text-[12px] font-semibold text-[#183B3D]">{title}</h4>
       {children}
     </div>
   );
@@ -30,7 +30,7 @@ function Checkbox({ label, checked, onChange, hint }) {
           type="checkbox"
           checked={checked}
           onChange={onChange}
-          className="h-[12px] w-[12px] accent-[#0B2033]"
+          className="h-[12px] w-[12px] accent-[#008C95]"
         />
         {label}
       </span>
@@ -55,8 +55,8 @@ export default function FlightFilters({
   return (
     <aside className="self-start rounded-[8px] border border-[#E5E7EB] bg-white">
       <div className="flex items-center justify-between border-b border-[#E5E7EB] px-3 py-3">
-        <h3 className="text-[13px] font-semibold text-[#0B1F3A]">Filter your Flight</h3>
-        <button type="button" onClick={onReset} className="text-[9px] font-semibold text-[#0B1F3A] underline">
+        <h3 className="text-[13px] font-semibold text-[#183B3D]">Filter your Flight</h3>
+        <button type="button" onClick={onReset} className="text-[9px] font-semibold text-[#183B3D] underline">
           Reset
         </button>
       </div>
@@ -79,7 +79,7 @@ export default function FlightFilters({
           max={priceBounds.max}
           value={maxPrice}
           onChange={(event) => onPriceChange(Number(event.target.value))}
-          className="w-full accent-[#0B2033]"
+          className="w-full accent-[#008C95]"
         />
         <div className="mt-1 flex justify-between text-[10px] text-[#6B7280]">
           <span>₹{priceBounds.min.toLocaleString("en-IN")}</span>

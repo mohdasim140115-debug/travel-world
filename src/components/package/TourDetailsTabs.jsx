@@ -20,7 +20,7 @@ export default function TourDetailsTabs({ details }) {
 
   return (
     <div className="mt-5 rounded-[7px] border bg-white">
-      <div className="flex flex-wrap gap-2 border-b p-3">
+      <div className="flex flex-wrap gap-2 border-[#183B3D] p-3">
         {tabs.map((tab) => (
           <button
             key={tab.key}
@@ -28,7 +28,7 @@ export default function TourDetailsTabs({ details }) {
             onClick={() => setActive(tab.key)}
             className={`rounded-full border px-4 py-2 text-[10px] font-semibold ${
               active === tab.key
-                ? "border-[#2563EB] bg-[#eef3ff] text-[#2563EB]"
+                ? "border-[#008C95] bg-[#eef3ff] text-[#008C95]"
                 : "border-[#ccc] bg-white text-[#333]"
             }`}
           >

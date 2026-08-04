@@ -32,7 +32,7 @@ export default function DestinationStrip() {
 
           const content = (
             <>
-              <div className="flex h-[72px] w-[72px] items-center justify-center rounded-full bg-[#DBEAFE] text-[#0B1F3A]">
+              <div className="flex h-[72px] w-[72px] items-center justify-center rounded-full bg-[#E2F5F2] text-[#007F86] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#008C95] group-hover:text-white">
                 <Icon className="h-8 w-8" />
               </div>
               <div className="mt-3 max-w-[100px] text-[13px] font-semibold text-[#111827]">
@@ -47,7 +47,7 @@ export default function DestinationStrip() {
               <Link
                 key={destination.name}
                 href={href}
-                className="flex min-w-[118px] cursor-pointer flex-col items-center text-center no-underline hover:opacity-90"
+                className="group flex min-w-[118px] cursor-pointer flex-col items-center text-center no-underline"
               >
                 {content}
               </Link>

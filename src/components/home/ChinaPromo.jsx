@@ -7,7 +7,7 @@ export default function ChinaPromo() {
   return (
     <section className="px-4 py-12 sm:px-6 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
-        <div className="overflow-hidden rounded-[10px] border border-[#E2E8F0] bg-[#F8FAFC] p-6 sm:p-8">
+        <div className="overflow-hidden rounded-[10px] border border-[#D8E7E5] bg-[#F8F1E5] p-6 sm:p-8">
           <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
             <div>
               <h2 className="text-[32px] font-black leading-[1.2] text-[#2B2B2B] sm:text-[36px]">
@@ -26,14 +26,14 @@ export default function ChinaPromo() {
                     href={`/package/${pkg.slug}`}
                     className={`min-w-max cursor-pointer rounded-[8px] border px-4 py-4 no-underline transition hover:-translate-y-[1px] hover:shadow-md ${
                       idx === 0
-                        ? "border-[#2563EB] bg-[#EFF6FF] hover:border-[#1D4ED8]"
-                        : "border-[#E2E8F0] bg-white hover:border-[#BFDBFE]"
+                        ? "border-[#008C95] bg-[#EFF9F8] hover:border-[#006D77]"
+                        : "border-[#D8E7E5] bg-white hover:border-[#20B8B5]"
                     }`}
                   >
-                    <div className="text-[13px] font-semibold text-[#0B1F3A]">{pkg.days}</div>
-                    <div className="mt-1 text-[14px] font-bold text-[#0B1F3A]">{pkg.name}</div>
-                    <div className="mt-2 text-[11px] text-[#64748B]">Starting from</div>
-                    <div className="text-[15px] font-bold text-[#0B1F3A]">{pkg.price}</div>
+                    <div className="text-[13px] font-semibold text-[#183B3D]">{pkg.days}</div>
+                    <div className="mt-1 text-[14px] font-bold text-[#183B3D]">{pkg.name}</div>
+                    <div className="mt-2 text-[11px] text-[#667A7B]">Starting from</div>
+                    <div className="text-[15px] font-bold text-[#183B3D]">{pkg.price}</div>
                   </Link>
                 ))}
               </div>

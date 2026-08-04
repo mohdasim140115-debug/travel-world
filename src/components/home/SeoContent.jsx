@@ -4,7 +4,7 @@ export default function SeoContent() {
   return (
     <section className="px-4 py-12 sm:px-6 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
-        <h2 className="text-[24px] font-bold text-[#0B1F3A] sm:text-[28px]">
+        <h2 className="text-[28px] font-bold text-[#183B3D] sm:text-[32px]">
           Find the best travel packages at Travel World
         </h2>
 
@@ -20,7 +20,7 @@ export default function SeoContent() {
           </p>
         </div>
 
-        <button className="mt-6 flex items-center gap-2 text-[13px] font-semibold text-[#2563EB]">
+        <button className="mt-6 flex items-center gap-2 text-[13px] font-semibold text-[#008C95]">
           Read More
           <ChevronDown className="h-4 w-4" />
         </button>

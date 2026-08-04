@@ -4,7 +4,10 @@ export default function PartnerBanner() {
   return (
     <section className="px-4 py-12 sm:px-6 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
-        <div className="relative overflow-hidden rounded-[10px] bg-gradient-to-r from-[#1a3a5a] via-[#2d5a8c] to-[#4a8bc2] p-8 sm:p-12">
+        <div
+          className="relative overflow-hidden rounded-[10px] p-8 sm:p-12"
+          style={{ background: "linear-gradient(135deg, #006D77 0%, #168AAD 100%)" }}
+        >
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="text-white">
               <h2 className="text-[28px] font-bold leading-[1.2] sm:text-[32px]">
@@ -16,13 +19,13 @@ export default function PartnerBanner() {
               <p className="mt-4 text-[13px] leading-[1.6] text-white/80">
                 Discover memorable experiences and exciting attractions with Travel World.
               </p>
-              <button className="mt-6 rounded-full bg-white px-6 py-2 text-[13px] font-bold text-[#0B1F3A] transition duration-200 hover:bg-[#EFF6FF]">
+              <button className="mt-6 rounded-full bg-white px-6 py-2 text-[13px] font-bold text-[#183B3D] transition duration-200 hover:bg-[#EFF9F8]">
                 Explore Tours
               </button>
             </div>
 
             <div className="relative h-[200px] w-full flex-shrink-0 lg:h-[200px] lg:w-[300px]">
-              <div className="absolute inset-0 rounded-[10px] bg-gradient-to-br from-blue-300/30 via-sky-300/20 to-blue-100/10" />
+              <div className="absolute inset-0 rounded-[10px] bg-gradient-to-br from-[#7FE0D8]/30 via-[#20B8B5]/20 to-white/10" />
               <div className="absolute left-6 top-6 h-24 w-24 rounded-full border-2 border-white/30" />
               <div className="absolute bottom-12 right-8 h-20 w-32 rounded-[40%_60%_50%_50%] border-2 border-white/20" />
             </div>

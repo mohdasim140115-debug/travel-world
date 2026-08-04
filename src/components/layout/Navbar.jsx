@@ -60,7 +60,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="relative border-b border-slate-700/60 bg-[#071426] text-white">
+    <nav className="relative border-b border-slate-700/60 bg-[#006D77] text-white">
       <div className="mx-auto flex h-[36px] max-w-[1280px] items-center justify-center overflow-x-auto px-3 sm:px-6 lg:px-0">
         <div className="flex items-center gap-2 whitespace-nowrap text-[13px] font-medium sm:gap-4">
           {links.map((link) => {
@@ -69,11 +69,11 @@ export default function Navbar() {
 
             const inner = (
               <div
-                className={`flex items-center gap-1 rounded-[4px] px-2 py-1 transition ${
-                  isActive ? "bg-white text-[#0B1F3A]" : ""
+                className={`flex items-center gap-1 rounded-[4px] border-b-2 px-2 py-1 transition ${
+                  isActive ? "border-[#20B8B5] bg-white text-[#183B3D]" : "border-transparent"
                 }`}
               >
-                <span className={isActive ? "" : "transition hover:text-[#60A5FA]"}>{link.label}</span>
+                <span className={isActive ? "" : "transition hover:text-[#BFF3EE]"}>{link.label}</span>
                 {link.hasChevron ? <ChevronDown className="h-3.5 w-3.5" /> : null}
                 {isMega ? (
                   <ChevronDown className={`h-3.5 w-3.5 ${isActive ? "rotate-180" : ""}`} />
@@ -134,7 +134,7 @@ export default function Navbar() {
             type="button"
             onClick={() => setMobileMenu(mobileMenu === key ? null : key)}
             className={`flex items-center gap-1 rounded-[4px] px-2 py-1 text-[12px] font-medium ${
-              mobileMenu === key ? "bg-white text-[#0B1F3A]" : "text-white"
+              mobileMenu === key ? "bg-white text-[#183B3D]" : "text-white"
             }`}
           >
             {key === "india" ? "India" : "World"}

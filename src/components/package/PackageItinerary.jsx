@@ -23,7 +23,7 @@ export default function PackageItinerary({ itinerary }) {
               <div className="absolute left-[19px] top-10 h-full w-px bg-[#d8d8d8]" />
             )}
 
-            <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#2563EB] text-[11px] font-bold text-white">
+            <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#20B8B5] text-[11px] font-bold text-white">
               {day.day}
             </div>
 
@@ -39,7 +39,7 @@ export default function PackageItinerary({ itinerary }) {
                   <h3 className="mt-1 text-[14px] font-semibold text-[#1e1e1e]">{day.title}</h3>
                 </div>
 
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#c9d3e2] text-[#2563EB]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#c9d3e2] text-[#008C95]">
                   {isOpen ? <Minus size={13} /> : <Plus size={13} />}
                 </span>
               </button>

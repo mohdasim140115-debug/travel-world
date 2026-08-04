@@ -30,7 +30,7 @@ function Checkbox({ label, checked, onChange }) {
         type="checkbox"
         checked={checked}
         onChange={onChange}
-        className="h-[12px] w-[12px] accent-[#2563EB]"
+        className="h-[12px] w-[12px] accent-[#008C95]"
       />
       <span>{label}</span>
     </label>
@@ -112,7 +112,7 @@ export default function TourFilterSidebar({
             max={priceBounds.max}
             value={maxPrice}
             onChange={(event) => onPriceChange(Number(event.target.value))}
-            className="w-full accent-[#2563EB]"
+            className="w-full accent-[#008C95]"
           />
 
           <div className="mt-1 flex justify-between text-[8px]">
@@ -179,7 +179,7 @@ export default function TourFilterSidebar({
               onClick={() => onToggleDuration(duration)}
               className={`border px-1 py-2 text-[8px] ${
                 selectedDurations.includes(duration)
-                  ? "border-[#2563EB] bg-[#eef3ff] text-[#2563EB]"
+                  ? "border-[#008C95] bg-[#eef3ff] text-[#008C95]"
                   : "border-[#ccc] bg-white"
               }`}
             >

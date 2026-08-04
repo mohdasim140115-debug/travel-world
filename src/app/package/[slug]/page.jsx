@@ -173,16 +173,16 @@ export default async function PackageDetailPage({ params }) {
             BREADCRUMB
         =================================================== */}
 
-        <section className="border-b bg-white">
+        <section className="border-[#183B3D] bg-white">
           <div className="mx-auto max-w-[1280px] px-4 py-3">
             <div className="flex flex-wrap items-center gap-1 text-[11px] text-[#777]">
-              <Link href="/" className="hover:text-[#2563EB]">
+              <Link href="/" className="hover:text-[#008C95]">
                 Home
               </Link>
 
               <ChevronRight size={11} />
 
-              <Link href={parentCrumb.href} className="hover:text-[#2563EB]">
+              <Link href={parentCrumb.href} className="hover:text-[#008C95]">
                 {parentCrumb.label}
               </Link>
 
@@ -190,7 +190,7 @@ export default async function PackageDetailPage({ params }) {
                 <>
                   <ChevronRight size={11} />
 
-                  <Link href={categoryCrumb.href} className="hover:text-[#2563EB]">
+                  <Link href={categoryCrumb.href} className="hover:text-[#008C95]">
                     {categoryCrumb.label}
                   </Link>
                 </>
@@ -244,7 +244,7 @@ export default async function PackageDetailPage({ params }) {
                     <div className="flex items-center justify-center rounded-[6px] bg-gradient-to-br from-[#e9d7aa] to-[#9fb3be]">
                       <MapPin
                         size={34}
-                        className="text-[#2563EB]"
+                        className="text-[#008C95]"
                       />
                     </div>
 
@@ -263,7 +263,7 @@ export default async function PackageDetailPage({ params }) {
 
                   <div className="flex flex-wrap gap-2">
 
-                    <span className="border border-[#BFDBFE] bg-[#EFF6FF] px-2 py-1 text-[10px] font-semibold uppercase text-[#2563EB]">
+                    <span className="border border-[#20B8B5] bg-[#EFF9F8] px-2 py-1 text-[10px] font-semibold uppercase text-[#008C95]">
                       {tour.tourType}
                     </span>
 
@@ -359,7 +359,7 @@ export default async function PackageDetailPage({ params }) {
                   </span>
                 </p>
 
-                <button className="mt-5 h-[42px] w-full rounded-[3px] bg-[#2563EB] text-[12px] font-semibold text-white transition hover:bg-[#1D4ED8]">
+                <button className="mt-5 h-[42px] w-full rounded-[3px] bg-[#FF7A3D] text-[12px] font-semibold text-white transition duration-200 hover:bg-[#EA642C] hover:-translate-y-0.5">
                   Dates & Availability
                 </button>
 
@@ -368,7 +368,7 @@ export default async function PackageDetailPage({ params }) {
                   <div>
                     <Clock3
                       size={17}
-                      className="mx-auto text-[#2563EB]"
+                      className="mx-auto text-[#008C95]"
                     />
 
                     <p className="mt-1 text-[9px]">
@@ -379,7 +379,7 @@ export default async function PackageDetailPage({ params }) {
                   <div>
                     <MapPin
                       size={17}
-                      className="mx-auto text-[#2563EB]"
+                      className="mx-auto text-[#008C95]"
                     />
 
                     <p className="mt-1 text-[9px]">
@@ -390,7 +390,7 @@ export default async function PackageDetailPage({ params }) {
                   <div>
                     <CalendarDays
                       size={17}
-                      className="mx-auto text-[#2563EB]"
+                      className="mx-auto text-[#008C95]"
                     />
 
                     <p className="mt-1 text-[9px]">
@@ -400,7 +400,7 @@ export default async function PackageDetailPage({ params }) {
 
                 </div>
 
-                <button className="mt-5 flex h-[38px] w-full items-center justify-center gap-2 border border-[#2563EB] bg-white text-[11px] font-semibold text-[#2563EB]">
+                <button className="mt-5 flex h-[38px] w-full items-center justify-center gap-2 border border-[#008C95] bg-white text-[11px] font-semibold text-[#008C95]">
                   <Phone size={14} />
                   Enquire Now
                 </button>
@@ -442,7 +442,7 @@ export default async function PackageDetailPage({ params }) {
                     <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#fff5cc]">
                       <Icon
                         size={18}
-                        className="text-[#2563EB]"
+                        className="text-[#008C95]"
                       />
                     </div>
 
@@ -507,9 +507,9 @@ export default async function PackageDetailPage({ params }) {
               <a
                 key={item}
                 href={`#${item.toLowerCase().replaceAll(" ", "-")}`}
-                className={`whitespace-nowrap border-b-2 px-1 py-4 text-[11px] font-semibold ${
+                className={`whitespace-nowrap border-[#183B3D]-2 px-1 py-4 text-[11px] font-semibold ${
                   index === 0
-                    ? "border-[#2563EB] text-[#2563EB]"
+                    ? "border-[#008C95] text-[#008C95]"
                     : "border-transparent text-[#555]"
                 }`}
               >
@@ -626,7 +626,7 @@ export default async function PackageDetailPage({ params }) {
 
             <div className="mt-5 overflow-hidden rounded-[7px] border">
 
-              <div className="grid grid-cols-3 bg-[#2563EB] px-4 py-3 text-[10px] font-semibold text-white">
+              <div className="grid grid-cols-3 bg-[#008C95] px-4 py-3 text-[10px] font-semibold text-white">
                 <span>City</span>
                 <span>Hotel</span>
                 <span>Check-in / Check-out</span>
@@ -739,7 +739,7 @@ export default async function PackageDetailPage({ params }) {
                 <div
                   key={row.period}
                   className={`grid grid-cols-2 px-5 py-4 text-[10px] ${
-                    index !== arr.length - 1 ? "border-b" : ""
+                    index !== arr.length - 1 ? "border-[#183B3D]" : ""
                   }`}
                 >
                   <span>{row.period}</span>
@@ -800,7 +800,7 @@ export default async function PackageDetailPage({ params }) {
                   >
                     <Icon
                       size={23}
-                      className="text-[#2563EB]"
+                      className="text-[#008C95]"
                     />
 
                     <h3 className="mt-3 text-[13px] font-semibold">
@@ -811,7 +811,7 @@ export default async function PackageDetailPage({ params }) {
                       {upgrade.description}
                     </p>
 
-                    <button className="mt-4 text-[10px] font-semibold text-[#2563EB] underline">
+                    <button className="mt-4 text-[10px] font-semibold text-[#008C95] underline">
                       Know More
                     </button>
                   </div>

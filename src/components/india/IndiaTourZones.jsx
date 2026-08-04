@@ -137,7 +137,7 @@ function ZoneCard({ item }) {
       className="group block no-underline"
     >
       <div
-        className={`relative h-[230px] overflow-hidden rounded-[5px] border border-[#d6d6d6] bg-gradient-to-br shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-200 group-hover:-translate-y-[2px] group-hover:border-[#2563EB] group-hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)] ${item.visual}`}
+        className={`relative h-[230px] overflow-hidden rounded-[5px] border border-[#d6d6d6] bg-gradient-to-br shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-200 group-hover:-translate-y-[2px] group-hover:border-[#20B8B5] group-hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)] ${item.visual}`}
       >
         {/* Decorative mountain shapes */}
         <div className="absolute -bottom-10 -left-8 h-28 w-40 rotate-12 rounded-[50%] bg-black/10" />
@@ -188,7 +188,7 @@ export default function IndiaTourZones() {
                 onClick={() => setPage(number)}
                 className={`h-8 min-w-8 rounded-[3px] border px-2 text-[11px] font-medium ${
                   page === number
-                    ? "border-[#2563EB] bg-white text-[#2563EB]"
+                    ? "border-[#008C95] bg-white text-[#008C95]"
                     : "border-[#d3d7dd] bg-white text-[#333]"
                 }`}
               >
@@ -203,7 +203,7 @@ export default function IndiaTourZones() {
               onClick={() => setPage(27)}
               className={`h-8 min-w-8 rounded-[3px] border px-2 text-[11px] ${
                 page === 27
-                  ? "border-[#2563EB] text-[#2563EB]"
+                  ? "border-[#008C95] text-[#008C95]"
                   : "border-[#d3d7dd] text-[#333]"
               } bg-white`}
             >
@@ -233,7 +233,7 @@ export default function IndiaTourZones() {
               India Tour Packages By Zone
             </h2>
 
-            <div className="mx-auto mt-2 h-[2px] w-20 bg-[#2563EB]" />
+            <div className="mx-auto mt-2 h-[2px] w-20 bg-[#008C95]" />
           </div>
 
           {/* ZONE TABS */}
@@ -245,8 +245,8 @@ export default function IndiaTourZones() {
                 onClick={() => setActiveZone(zone)}
                 className={`h-[40px] min-w-[115px] rounded-[3px] border px-5 text-[11px] font-medium transition ${
                   activeZone === zone
-                    ? "border-[#2563EB] bg-[#2563EB] text-white"
-                    : "border-[#333] bg-white text-[#333] hover:border-[#2563EB] hover:text-[#2563EB]"
+                    ? "border-[#008C95] bg-[#008C95] text-white"
+                    : "border-[#333] bg-white text-[#333] hover:border-[#20B8B5] hover:text-[#008C95]"
                 }`}
               >
                 {zone}
@@ -271,7 +271,7 @@ export default function IndiaTourZones() {
                 <button
                   key={state}
                   type="button"
-                  className="rounded-[3px] border border-[#d9dde3] bg-white px-5 py-2 text-[10px] text-[#333] hover:border-[#2563EB]"
+                  className="rounded-[3px] border border-[#d9dde3] bg-white px-5 py-2 text-[10px] text-[#333] hover:border-[#20B8B5]"
                 >
                   {state}
                 </button>

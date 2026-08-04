@@ -2,10 +2,10 @@ import Link from "next/link";
 import { ArrowRight, Plane } from "lucide-react";
 
 const gradients = [
-  "from-[#0B2033] via-[#173e74] to-[#3f6fb5]",
-  "from-[#1d4aa7] via-[#3f6fb5] to-[#8fb3e6]",
-  "from-[#173e74] via-[#0B2033] to-[#3f6fb5]",
-  "from-[#0B2033] via-[#2b527f] to-[#6a9cd6]",
+  "from-[#006D77] via-[#168AAD] to-[#7FE0D8]",
+  "from-[#005B60] via-[#008C95] to-[#20B8B5]",
+  "from-[#168AAD] via-[#006D77] to-[#20B8B5]",
+  "from-[#006D77] via-[#0F9AA8] to-[#7FE0D8]",
 ];
 
 export default function PopularFlightRoutes({ routes }) {
@@ -13,7 +13,7 @@ export default function PopularFlightRoutes({ routes }) {
     <section className="px-4 py-12 sm:px-6 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="text-center">
-          <h2 className="text-[22px] font-bold text-[#0B1F3A] sm:text-[26px]">
+          <h2 className="text-[26px] font-bold text-[#183B3D] sm:text-[30px]">
             Discover the Most Popular Flight Routes
           </h2>
           <p className="mx-auto mt-2 max-w-[620px] text-[13px] text-[#60646C]">
@@ -36,7 +36,7 @@ export default function PopularFlightRoutes({ routes }) {
               </div>
 
               <div className="p-3">
-                <p className="text-[13px] font-semibold text-[#0B1F3A] group-hover:text-[#173e74]">
+                <p className="text-[13px] font-semibold text-[#183B3D] group-hover:text-[#008C95]">
                   {route.from} to {route.to}
                 </p>
                 <p className="mt-1 flex items-center gap-1 text-[11px] font-medium text-[#6B7280]">

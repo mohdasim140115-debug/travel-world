@@ -61,19 +61,18 @@ export default function FlightsPage() {
         {/* =====================================================
             HERO
         ===================================================== */}
-        <section className="relative overflow-hidden bg-[#071426] px-4 py-14 sm:px-6 lg:px-0">
-          <div className="absolute inset-0 opacity-20">
-            <div className="h-full w-full bg-gradient-to-br from-[#173e74] via-[#0B2033] to-[#000000]" />
-          </div>
-
+        <section
+          className="relative overflow-hidden px-4 py-14 sm:px-6 lg:px-0"
+          style={{ background: "linear-gradient(135deg, #006D77, #168AAD)" }}
+        >
           <Plane className="pointer-events-none absolute right-6 top-8 h-24 w-24 rotate-45 text-white/10 sm:h-32 sm:w-32" />
 
           <div className="relative mx-auto w-full max-w-[1280px]">
             <div className="text-center text-white">
-              <h1 className="text-[26px] font-bold sm:text-[32px]">
+              <h1 className="text-[30px] font-bold sm:text-[38px]">
                 Book Domestic &amp; International Flights
               </h1>
-              <p className="mt-2 text-[13px] text-slate-300">
+              <p className="mt-2 text-[15px] text-white/80">
                 Search flights across popular Indian and international routes.
               </p>
             </div>
@@ -89,8 +88,8 @@ export default function FlightsPage() {
         ===================================================== */}
         <section className="px-4 py-10 sm:px-6 lg:px-0">
           <div className="mx-auto w-full max-w-[1280px]">
-            <div className="rounded-[8px] border border-[#DCE7F5] bg-[#F0F6FF] p-5">
-              <h2 className="text-[16px] font-bold text-[#0B1F3A]">
+            <div className="rounded-[8px] border border-[#D8E7E5] bg-[#EFF9F8] p-5">
+              <h2 className="text-[16px] font-bold text-[#183B3D]">
                 Book Flight Tickets Online with Travel World
               </h2>
               <p className="mt-2 text-[12px] leading-[1.7] text-[#4B5563]">

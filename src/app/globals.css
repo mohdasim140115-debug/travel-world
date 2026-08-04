@@ -2,7 +2,44 @@
 
 :root {
   --background: #fcf8f0;
-  --foreground: #171717;
+  --foreground: #183b3d;
+
+  /* =====================================================
+     TRAVEL THEME — reusable design tokens
+     Tropical/ocean/travel palette. Prefer these variables
+     (or the matching Tailwind arbitrary-value hex) over any
+     new hardcoded colors so the whole site stays consistent.
+  ===================================================== */
+
+  /* Teal / turquoise / ocean family */
+  --color-teal-primary: #008c95;
+  --color-teal-dark: #006d77;
+  --color-teal-darker: #005b60;
+  --color-turquoise: #20b8b5;
+  --color-turquoise-light: #7fe0d8;
+  --color-ocean-blue: #168aad;
+
+  /* Sunset orange — main conversion CTA */
+  --color-cta: #ff7a3d;
+  --color-cta-hover: #ea642c;
+
+  /* Backgrounds */
+  --color-cream: #fff9f0;
+  --color-aqua-bg: #eff9f8;
+  --color-sand-bg: #f8f1e5;
+  --color-icon-bg: #e2f5f2;
+  --color-white: #ffffff;
+
+  /* Text */
+  --color-text-main: #183b3d;
+  --color-text-secondary: #667a7b;
+
+  /* Borders */
+  --color-border: #d8e7e5;
+
+  /* Semantic */
+  --color-success: #239b76;
+  --color-error: #dc2626;
 }
 
 @theme inline {
@@ -42,7 +79,7 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--color-teal-primary);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -73,7 +110,7 @@ textarea:focus-visible,
 
 .india-page {
   background: #fff;
-  color: #1d1d1f;
+  color: var(--color-text-main);
 }
 
 .india-container {
@@ -88,7 +125,7 @@ textarea:focus-visible,
 
 .india-intro {
   background: #fff;
-  border-bottom: 1px solid #e7e7e7;
+  border-bottom: 1px solid var(--color-border);
   padding: 18px 0 8px;
 }
 
@@ -100,8 +137,8 @@ textarea:focus-visible,
 }
 
 .india-breadcrumb {
-  color: #777;
-  font-size: 11px;
+  color: var(--color-text-secondary);
+  font-size: 12px;
   margin-bottom: 17px;
 }
 
@@ -110,23 +147,24 @@ textarea:focus-visible,
 }
 
 .india-intro-content h1 {
-  font-size: 28px;
+  font-size: 32px;
   line-height: 1.2;
   margin: 0 0 7px;
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--color-text-main);
 }
 
 .india-intro-content > p {
   max-width: 790px;
   font-size: 15px;
   line-height: 1.65;
-  color: #333;
+  color: var(--color-text-secondary);
   margin: 0;
 }
 
 @media (min-width: 900px) {
   .india-intro-content h1 {
-    font-size: 34px;
+    font-size: 42px;
   }
 }
 
@@ -140,8 +178,8 @@ textarea:focus-visible,
   gap: 3px;
   border: 0;
   background: transparent;
-  color: #111;
-  font-size: 12px;
+  color: var(--color-teal-dark);
+  font-size: 13px;
   font-weight: 600;
   text-decoration: underline;
   padding: 5px 0;
@@ -160,10 +198,10 @@ textarea:focus-visible,
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #f5f7fa;
+  background: var(--color-aqua-bg);
   padding: 7px 9px;
   margin-top: 7px;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .india-stars {
@@ -175,11 +213,11 @@ textarea:focus-visible,
 .rating-divider {
   width: 1px;
   height: 15px;
-  background: #ccc;
+  background: var(--color-border);
 }
 
 .india-rating a {
-  color: #1d4ed8;
+  color: var(--color-teal-dark);
   font-weight: 600;
   text-decoration: underline;
 }
@@ -187,16 +225,17 @@ textarea:focus-visible,
 /* CALLBACK */
 
 .callback-card {
-  border: 1px solid #bfdbfe;
-  background: #eff6ff;
+  border: 1px solid var(--color-border);
+  background: var(--color-aqua-bg);
   padding: 14px;
-  border-radius: 3px;
+  border-radius: 8px;
 }
 
 .callback-card h3 {
-  font-size: 14px;
+  font-size: 15px;
   margin: 0 0 13px;
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--color-text-main);
 }
 
 .callback-card label {
@@ -207,16 +246,17 @@ textarea:focus-visible,
 .mobile-input {
   width: 100%;
   height: 36px;
-  border: 1px solid #555;
+  border: 1px solid var(--color-border);
   background: #fff;
-  border-radius: 2px;
+  border-radius: 6px;
   margin-bottom: 10px;
 }
 
 .callback-card > input {
   padding: 0 10px;
-  font-size: 12px;
+  font-size: 13px;
   outline: none;
+  color: var(--color-text-main);
 }
 
 .mobile-input {
@@ -230,9 +270,9 @@ textarea:focus-visible,
 }
 
 .country-code {
-  font-size: 12px;
+  font-size: 13px;
   padding: 0 8px;
-  color: #555;
+  color: var(--color-text-secondary);
 }
 
 .mobile-input input {
@@ -241,34 +281,35 @@ textarea:focus-visible,
   border: 0;
   outline: 0;
   height: 100%;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .callback-card > button {
   width: 100%;
-  height: 38px;
+  height: 40px;
   border: 0;
-  border-radius: 3px;
-  background: #2563eb;
+  border-radius: 6px;
+  background: var(--color-cta);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 7px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .callback-card > button:hover {
-  background: #1d4ed8;
+  background: var(--color-cta-hover);
+  transform: translateY(-2px);
 }
 
 /* TABS + LISTING HEADER */
 
 .india-tabs-section {
-  background: #f7f7f7;
+  background: var(--color-sand-bg);
   padding: 27px 0 50px;
   min-height: 500px;
 }
@@ -290,18 +331,19 @@ textarea:focus-visible,
   white-space: nowrap;
   height: 32px;
   padding: 0 14px;
-  border: 1px solid #c8c8c8;
+  border: 1px solid var(--color-border);
   background: #fff;
-  border-radius: 4px;
+  border-radius: 20px;
   font-size: 13px;
-  color: #555;
+  color: var(--color-text-secondary);
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .india-tabs button.active {
   color: #fff;
-  background: #2563eb;
-  border-color: #2563eb;
+  background: var(--color-teal-primary);
+  border-color: var(--color-teal-primary);
 }
 
 .india-listing-heading {
@@ -313,13 +355,14 @@ textarea:focus-visible,
 }
 
 .india-listing-heading h2 {
-  font-size: 18px;
+  font-size: 19px;
   line-height: 1.25;
   margin: 0 0 4px;
+  color: var(--color-text-main);
 }
 
 .india-listing-heading p {
-  color: #777;
+  color: var(--color-text-secondary);
   font-size: 13px;
   margin: 0;
 }
@@ -329,7 +372,7 @@ textarea:focus-visible,
   display: flex;
   align-items: center;
   gap: 5px;
-  background: #16a45a;
+  background: var(--color-success);
   color: #fff;
   border-radius: 20px;
   padding: 4px 10px;
@@ -354,17 +397,19 @@ textarea:focus-visible,
   width: 165px;
   height: 34px;
   background: #fff;
-  border: 1px solid #aaa;
-  border-radius: 3px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
   padding: 0 9px;
-  font-size: 11px;
+  font-size: 12px;
+  color: var(--color-text-main);
 }
 
 .grid-view {
   border: 0;
   background: transparent;
   text-decoration: underline;
-  font-size: 10px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
   cursor: pointer;
 }
 
@@ -372,18 +417,18 @@ textarea:focus-visible,
 
 .listing-coming {
   min-height: 260px;
-  border: 1px dashed #cbd1da;
+  border: 1px dashed var(--color-border);
   background: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #667085;
+  color: var(--color-text-secondary);
 }
 
 .listing-coming h3 {
   margin: 10px 0 4px;
-  color: #222;
+  color: var(--color-text-main);
 }
 
 .listing-coming p {
@@ -425,7 +470,7 @@ textarea:focus-visible,
   }
 
   .india-intro-content h1 {
-    font-size: 22px;
+    font-size: 26px;
   }
 
   .india-tabs-section {

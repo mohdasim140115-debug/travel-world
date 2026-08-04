@@ -69,7 +69,7 @@ export default function FlightResults({ route }) {
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="flex flex-col gap-2 pb-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-[16px] font-bold text-[#0B1F3A]">
+            <h2 className="text-[16px] font-bold text-[#183B3D]">
               {filteredFlights.length} Flight Options
             </h2>
             <p className="text-[11px] text-[#6B7280]">
@@ -80,7 +80,7 @@ export default function FlightResults({ route }) {
           <select
             value={sortBy}
             onChange={(event) => setSortBy(event.target.value)}
-            className="h-[36px] rounded-[4px] border border-[#D1D5DB] bg-white px-3 text-[11px] font-medium text-[#0B1F3A]"
+            className="h-[36px] rounded-[4px] border border-[#D1D5DB] bg-white px-3 text-[11px] font-medium text-[#183B3D]"
           >
             <option value="recommended">Sort by: Recommended</option>
             <option value="cheapest">Sort by: Cheapest</option>

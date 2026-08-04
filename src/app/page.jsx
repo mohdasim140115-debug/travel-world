@@ -18,7 +18,7 @@ import FloatingActions from "@/components/layout/FloatingActions";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#FCF8F0] text-slate-900">
+    <div className="min-h-screen bg-[#FFF9F0] text-[#183B3D]">
       <Header />
       <Navbar />
       <main className="mx-auto flex w-full max-w-[1280px] flex-col px-4 pb-16 sm:px-6 lg:px-0">

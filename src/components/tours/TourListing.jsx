@@ -15,7 +15,7 @@ import { toCardItem, filterPackages } from "./tourUtils";
 
 function JoiningLeavingBox({ heading, cities }) {
   return (
-    <div className="rounded-[8px] border-2 border-[#2563EB] bg-[#EFF6FF] p-3">
+    <div className="rounded-[8px] border-2 border-[#008C95] bg-[#EFF9F8] p-3">
       <h3 className="mb-2 text-[12px] font-semibold text-[#222]">{heading}</h3>
 
       <div className="flex flex-wrap gap-2">
@@ -23,7 +23,7 @@ function JoiningLeavingBox({ heading, cities }) {
           <button
             key={city}
             type="button"
-            className="rounded-full border border-[#b9c0ca] bg-white px-3 py-1 text-[9px] text-[#555] hover:border-[#2563EB]"
+            className="rounded-full border border-[#b9c0ca] bg-white px-3 py-1 text-[9px] text-[#555] hover:border-[#20B8B5]"
           >
             {city}
           </button>
@@ -109,7 +109,7 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
       <button
         type="button"
         onClick={() => setMobileFiltersOpen(true)}
-        className="flex h-[42px] w-full items-center justify-center gap-2 rounded-[6px] border border-[#d6d6d6] bg-white text-[12px] font-semibold text-[#222] transition hover:border-[#2563EB] hover:text-[#2563EB] lg:hidden"
+        className="flex h-[42px] w-full items-center justify-center gap-2 rounded-[6px] border border-[#d6d6d6] bg-white text-[12px] font-semibold text-[#222] transition hover:border-[#20B8B5] hover:text-[#008C95] lg:hidden"
       >
         <SlidersHorizontal size={14} />
         Filter Your Tour
@@ -133,7 +133,7 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
           />
 
           <div className="absolute inset-y-0 left-0 flex w-[86%] max-w-[320px] flex-col overflow-y-auto bg-[#f5f5f5] shadow-xl transition-transform duration-300">
-            <div className="flex items-center justify-between border-b bg-white px-3 py-3">
+            <div className="flex items-center justify-between border-[#183B3D] bg-white px-3 py-3">
               <h3 className="text-[13px] font-semibold">Filter Your Tour</h3>
               <button
                 type="button"
@@ -150,7 +150,7 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
             <button
               type="button"
               onClick={() => setMobileFiltersOpen(false)}
-              className="sticky bottom-0 mt-auto h-[44px] w-full bg-[#2563EB] text-[12px] font-semibold text-white"
+              className="sticky bottom-0 mt-auto h-[44px] w-full bg-[#FF7A3D] text-[12px] font-semibold text-white"
             >
               Show {filteredPackages.length} Packages
             </button>
@@ -165,7 +165,7 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
             <button
               type="button"
               onClick={handleReset}
-              className="mt-3 rounded-full border border-[#2563EB] px-4 py-2 text-[11px] font-semibold text-[#2563EB] transition hover:bg-[#2563EB] hover:text-white"
+              className="mt-3 rounded-full border border-[#008C95] px-4 py-2 text-[11px] font-semibold text-[#008C95] transition hover:bg-[#008C95] hover:text-white"
             >
               Clear Filters
             </button>

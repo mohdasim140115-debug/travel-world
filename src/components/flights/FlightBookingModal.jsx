@@ -17,7 +17,7 @@ export default function FlightBookingModal({ flight, from, to, onClose }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
       <div className="w-full max-w-[440px] rounded-[8px] bg-white p-5 shadow-xl">
         <div className="flex items-center justify-between">
-          <h3 className="text-[15px] font-bold text-[#0B1F3A]">
+          <h3 className="text-[15px] font-bold text-[#183B3D]">
             {submitted ? "Booking Request Received" : "Confirm Your Flight"}
           </h3>
           <button type="button" onClick={onClose} aria-label="Close" className="text-[#6B7280]">
@@ -34,7 +34,7 @@ export default function FlightBookingModal({ flight, from, to, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="mt-4 h-[38px] w-full rounded-[4px] bg-[#071426] text-[12px] font-bold text-white"
+              className="mt-4 h-[38px] w-full rounded-[4px] bg-[#006D77] text-[12px] font-bold text-white"
             >
               Close
             </button>
@@ -94,7 +94,7 @@ export default function FlightBookingModal({ flight, from, to, onClose }) {
 
               <button
                 type="submit"
-                className="mt-2 h-[40px] w-full rounded-[4px] bg-[#2563EB] text-[12px] font-bold text-white transition hover:bg-[#1D4ED8]"
+                className="mt-2 h-[40px] w-full rounded-[4px] bg-[#FF7A3D] text-[12px] font-bold text-white transition hover:bg-[#EA642C]"
               >
                 Continue Booking
               </button>

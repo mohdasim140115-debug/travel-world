@@ -2,10 +2,10 @@ import { ChevronDown, LogIn, Mic, Phone, Search } from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="border-b border-slate-700/70 bg-[#071426] text-white">
+    <header className="border-b border-slate-700/70 bg-[#006D77] text-white">
       <div className="mx-auto flex h-[76px] w-full max-w-[1280px] items-center justify-between px-4 sm:px-6 lg:px-0">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#2563EB] text-sm font-bold text-white">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-bold text-[#006D77]">
             ✦
           </div>
           <div className="text-[18px] font-semibold tracking-[0.2em] text-white sm:text-[20px]">
@@ -18,10 +18,10 @@ export default function Header() {
             <Search className="mr-3 h-4 w-4 text-slate-500" />
             <input
               aria-label="Search tours"
-              className="w-full border-0 bg-transparent text-[14px] text-slate-700 outline-none placeholder:text-slate-400"
+              className="w-full border-[#183B3D] bg-transparent text-[14px] text-slate-700 outline-none placeholder:text-slate-400"
               placeholder='Search "Rann of Kutch"'
             />
-            <button className="ml-3 flex h-8 w-8 items-center justify-center rounded-full bg-[#071426] text-white">
+            <button className="ml-3 flex h-8 w-8 items-center justify-center rounded-full bg-[#006D77] text-white">
               <Mic className="h-4 w-4" />
             </button>
           </div>
@@ -29,7 +29,7 @@ export default function Header() {
 
         <div className="flex items-center gap-3 sm:gap-4">
           <div className="hidden items-center gap-2 rounded-full border border-slate-400/40 bg-slate-800/50 px-3 py-2 sm:flex">
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#2563EB] text-white">
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#20B8B5] text-white">
               <Phone className="h-4 w-4" />
             </div>
             <div>
@@ -44,7 +44,7 @@ export default function Header() {
             Login
           </button>
 
-          <button className="flex items-center gap-2 rounded-full border border-slate-400/40 bg-white px-3 py-2 text-sm font-medium text-[#0B1F3A]">
+          <button className="flex items-center gap-2 rounded-full border border-slate-400/40 bg-white px-3 py-2 text-sm font-medium text-[#183B3D]">
             <span className="text-base">🇮🇳</span>
             <span className="hidden sm:inline">India</span>
             <ChevronDown className="h-4 w-4" />
