@@ -9,6 +9,7 @@ import {
   Heart,
   Search,
 } from "lucide-react";
+import { getDestinationImage } from "@/data/destinationImages";
 
 /* =========================================================
    PACKAGE DATA
@@ -192,7 +193,7 @@ function Checkbox({ label }) {
     <label className="mb-2 flex cursor-pointer items-center gap-2 text-[11px] text-[#333]">
       <input
         type="checkbox"
-        className="h-[12px] w-[12px] accent-[#008C95]"
+        className="h-[12px] w-[12px] accent-[#0F4C81]"
       />
 
       <span>{label}</span>
@@ -205,25 +206,53 @@ function Checkbox({ label }) {
 ========================================================= */
 
 function PackageCard({ item }) {
+  const image = item.image || getDestinationImage(item.title);
+
   return (
     <div className="relative">
       {/* =================================================
           MAIN CLICKABLE CARD
+          Mobile: stacked (image on top, content, price+CTA).
+          md+: original 3-column side-by-side grid.
       ================================================= */}
 
       <Link
         href={`/package/${item.slug}`}
         className="group block no-underline"
       >
-        <article className="grid min-h-[190px] cursor-pointer grid-cols-[220px_minmax(0,1fr)_220px] gap-3 rounded-[8px] border border-[#cfd4dc] bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-[#20B8B5] hover:shadow-[0_4px_14px_rgba(0,0,0,0.10)]">
+        <article className="flex cursor-pointer flex-col gap-2 rounded-xl border border-[#cfd4dc] bg-white p-2.5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-[#17BEBB] hover:shadow-[0_4px_14px_rgba(0,0,0,0.10)] md:gap-3 md:p-3 md:grid md:min-h-[190px] md:grid-cols-[220px_minmax(0,1fr)_220px]">
 
           {/* =============================================
-              IMAGE
+              IMAGE + TAGS (mobile: small square thumbnail
+              with tags beside it; md+: full image column,
+              tags move into the content column below)
           ============================================= */}
 
-          <div className="relative overflow-hidden rounded-[6px] bg-gradient-to-br from-[#b7d7eb] via-[#e8d9b5] to-[#98b1c7]">
-            <div className="absolute inset-0 flex items-center justify-center px-4 text-center text-[13px] font-semibold text-[#31465a]">
-              {item.title}
+          <div className="flex gap-3 md:contents">
+            <div className="relative h-[84px] w-[84px] shrink-0 overflow-hidden rounded-lg md:h-auto md:w-auto md:rounded-xl">
+              <img
+                src={image}
+                alt={item.title}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+
+            {/* TAGS (mobile only, beside image) */}
+            <div className="flex flex-1 flex-wrap content-start gap-1 md:hidden">
+              {item.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className={`border px-1.5 py-[2px] text-[8px] font-semibold ${
+                    tag.includes("GROUP")
+                      ? "border-[#17BEBB] bg-[#F7FAFC] text-[#0F4C81]"
+                      : tag.includes("SALE")
+                      ? "border-amber-400 bg-amber-50 text-amber-700"
+                      : "border-pink-400 bg-pink-50 text-pink-600"
+                  }`}
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
 
@@ -231,19 +260,19 @@ function PackageCard({ item }) {
               CONTENT
           ============================================= */}
 
-          <div className="min-w-0 py-1">
+          <div className="min-w-0 md:py-1">
 
-            {/* TAGS */}
+            {/* TAGS (desktop only, in content column) */}
 
-            <div className="mb-2 flex flex-wrap gap-1">
+            <div className="mb-2 hidden flex-wrap gap-1 md:flex">
               {item.tags.map((tag) => (
                 <span
                   key={tag}
                   className={`border px-1.5 py-[2px] text-[8px] font-semibold ${
                     tag.includes("GROUP")
-                      ? "border-[#20B8B5] bg-[#EFF9F8] text-[#008C95]"
+                      ? "border-[#17BEBB] bg-[#F7FAFC] text-[#0F4C81]"
                       : tag.includes("SALE")
-                      ? "border-red-400 bg-red-50 text-red-600"
+                      ? "border-amber-400 bg-amber-50 text-amber-700"
                       : "border-pink-400 bg-pink-50 text-pink-600"
                   }`}
                 >
@@ -254,19 +283,19 @@ function PackageCard({ item }) {
 
             {/* TITLE */}
 
-            <h3 className="text-[17px] font-semibold text-[#1e1e1e] transition-colors group-hover:text-[#008C95]">
+            <h3 className="text-[17px] font-semibold text-[#1e1e1e] transition-colors group-hover:text-[#0F4C81]">
               {item.title}
             </h3>
 
             {/* ALL INCLUSIVE */}
 
-            <span className="mt-2 inline-block text-[13px] font-semibold underline">
+            <span className="mt-1 inline-block text-[13px] font-semibold underline md:mt-2">
               ∞ All Inclusive
             </span>
 
             {/* DAYS / CITIES / DATES */}
 
-            <div className="mt-8 flex items-center gap-2 text-[13px] font-medium text-[#222]">
+            <div className="mt-1 flex flex-wrap items-center gap-2 text-[13px] font-medium text-[#222] md:mt-8">
               <span>{item.days}</span>
 
               <span className="text-[#aaa]">
@@ -288,7 +317,7 @@ function PackageCard({ item }) {
 
             {/* HIGHLIGHTS */}
 
-            <div className="mt-3 border-t border-[#ddd] pt-2">
+            <div className="mt-1.5 border-t border-[#ddd] pt-1.5 md:mt-3 md:pt-2">
               <p className="text-[12px] font-semibold text-[#56a33b]">
                 Tour Highlights
               </p>
@@ -309,17 +338,17 @@ function PackageCard({ item }) {
               PRICE
           ============================================= */}
 
-          <div className="flex flex-col rounded-[7px] border border-[#20B8B5] bg-[#EFF9F8] p-3 text-center">
+          <div className="flex flex-col rounded-xl border border-[#17BEBB] bg-[#F7FAFC] p-2.5 text-center md:p-3">
 
-            <p className="mt-3 text-[12px] text-[#777]">
+            <p className="text-[12px] text-[#777] md:mt-3">
               Starting price per person
             </p>
 
-            <strong className="mt-1 text-[24px] leading-none text-[#183B3D]">
+            <strong className="text-[20px] leading-none text-[#0F172A] md:mt-1 md:text-[24px]">
               {item.price}
             </strong>
 
-            <p className="mt-2 text-[12px]">
+            <p className="mt-1 text-[12px] md:mt-2">
               EMI from{" "}
               <span className="font-semibold underline">
                 {item.emi}
@@ -328,13 +357,13 @@ function PackageCard({ item }) {
 
             {/* VIEW DETAILS */}
 
-            <div className="mt-auto flex h-[40px] w-full items-center justify-center rounded-[3px] bg-[#FF7A3D] text-[14px] font-semibold text-white transition-colors group-hover:bg-[#EA642C]">
+            <div className="mt-2 flex h-[38px] w-full items-center justify-center rounded-[8px] bg-[#FF7A1A] text-[14px] font-semibold text-white transition-colors group-hover:bg-[#E56A0F] md:mt-auto md:h-[42px] md:rounded-[3px]">
               View Details
             </div>
 
-            {/* space for bottom actions */}
+            {/* space for bottom actions (desktop only) */}
 
-            <div className="mt-3 h-[18px]" />
+            <div className="hidden md:mt-3 md:block md:h-[18px]" />
           </div>
         </article>
       </Link>
@@ -351,7 +380,7 @@ function PackageCard({ item }) {
           event.preventDefault();
           event.stopPropagation();
         }}
-        className="absolute left-[196px] top-[20px] z-20 flex h-7 w-7 items-center justify-center rounded-full bg-[#26394b]/70 text-white transition hover:bg-[#26394b]"
+        className="absolute right-2 top-2 z-20 flex h-7 w-7 items-center justify-center rounded-full bg-[#26394b]/70 text-white transition hover:bg-[#26394b] md:left-[196px] md:right-auto md:top-[20px]"
       >
         <Heart size={14} />
       </button>
@@ -360,14 +389,14 @@ function PackageCard({ item }) {
           COMPARE / ENQUIRE
       ================================================= */}
 
-      <div className="absolute bottom-[22px] right-[25px] z-20 flex w-[190px] justify-between text-[9px]">
+      <div className="mt-1.5 flex justify-between px-1 text-[12px] md:absolute md:bottom-[22px] md:right-[25px] md:mt-0 md:w-[190px] md:px-0 md:text-[9px]">
         <button
           type="button"
           onClick={(event) => {
             event.preventDefault();
             event.stopPropagation();
           }}
-          className="underline hover:text-[#008C95]"
+          className="underline hover:text-[#0F4C81]"
         >
           Compare
         </button>
@@ -378,7 +407,7 @@ function PackageCard({ item }) {
             event.preventDefault();
             event.stopPropagation();
           }}
-          className="underline hover:text-[#008C95]"
+          className="underline hover:text-[#0F4C81]"
         >
           Enquire Now
         </button>
@@ -411,7 +440,7 @@ function JoiningLeavingBox() {
   ];
 
   return (
-    <div className="rounded-[8px] border-2 border-[#008C95] bg-[#EFF9F8] p-3">
+    <div className="rounded-xl border-2 border-[#0F4C81] bg-[#F7FAFC] p-3">
       <h3 className="mb-2 text-[12px] font-semibold text-[#222]">
         View India Tour Packages
       </h3>
@@ -421,7 +450,7 @@ function JoiningLeavingBox() {
           <button
             key={option}
             type="button"
-            className="rounded-full border border-[#b9c0ca] bg-white px-3 py-1 text-[9px] text-[#555] hover:border-[#20B8B5]"
+            className="rounded-full border border-[#b9c0ca] bg-white px-3 py-1 text-[9px] text-[#555] hover:border-[#17BEBB]"
           >
             {option}
           </button>
@@ -443,13 +472,13 @@ function JoiningLeavingBox() {
 
 export default function IndiaTourListing() {
   return (
-    <div className="grid grid-cols-[220px_minmax(0,1fr)] gap-7">
+    <div className="grid grid-cols-1 gap-7 md:grid-cols-[220px_minmax(0,1fr)]">
 
       {/* =================================================
-          LEFT FILTERS
+          LEFT FILTERS (hidden on mobile)
       ================================================= */}
 
-      <aside className="self-start border border-[#d6d6d6] bg-white">
+      <aside className="hidden self-start border border-[#d6d6d6] bg-white md:block">
 
         {/* FILTER HEADER */}
 
@@ -476,7 +505,7 @@ export default function IndiaTourListing() {
               min="9000"
               max="365000"
               defaultValue="365000"
-              className="w-full accent-[#008C95]"
+              className="w-full accent-[#0F4C81]"
             />
 
             <div className="mt-1 flex justify-between text-[8px]">
@@ -651,9 +680,12 @@ export default function IndiaTourListing() {
 
       {/* =================================================
           RIGHT PACKAGE LIST
+          Vertical stacked list at every screen size — card
+          itself switches to a stacked mobile layout / 3-col
+          desktop layout internally (see PackageCard).
       ================================================= */}
 
-      <div className="space-y-3">
+      <div className="min-w-0 space-y-3">
 
         {/* FIRST 4 */}
 

@@ -9,10 +9,10 @@ export default function FAQ() {
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <section className="px-4 py-12 sm:px-6 lg:px-0">
+    <section className="px-3 py-12 sm:px-6 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="text-center">
-          <h2 className="text-[28px] font-bold text-[#183B3D] sm:text-[32px]">
+          <h2 className="text-[28px] font-bold text-[#0F172A] sm:text-[32px]">
             Frequently Asked Questions
           </h2>
           <p className="mt-2 text-[13px] text-[#60646C]">
@@ -24,7 +24,7 @@ export default function FAQ() {
           {faq.questions.map((q, idx) => (
             <div
               key={idx}
-              className="overflow-hidden rounded-[8px] border border-[#E5E7EB] bg-white"
+              className="overflow-hidden rounded-xl border border-[#E5E7EB] bg-white"
             >
               <button
                 type="button"
@@ -32,7 +32,7 @@ export default function FAQ() {
                 onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)}
                 className="flex w-full items-center justify-between bg-white p-4 text-left transition-colors hover:bg-[#FAFAFA] sm:p-5"
               >
-                <span className="text-left text-[13px] font-semibold text-[#183B3D] sm:text-[14px]">
+                <span className="text-left text-[13px] font-semibold text-[#0F172A] sm:text-[14px]">
                   {q.question}
                 </span>
                 <ChevronDown
@@ -60,7 +60,7 @@ export default function FAQ() {
             {faq.categories.map((cat) => (
               <button
                 key={cat}
-                className="rounded-full border border-[#183B3D] px-4 py-2 text-[11px] font-semibold text-[#183B3D] transition hover:bg-[#006D77] hover:text-white"
+                className="rounded-full border border-[#0F172A] px-4 py-2 text-[11px] font-semibold text-[#0F172A] transition hover:bg-[#0B3B63] hover:text-white"
               >
                 {cat}
               </button>
@@ -69,7 +69,7 @@ export default function FAQ() {
           <p className="mt-4 text-[13px] text-[#4B5563]">
             We've got you covered.
           </p>
-          <button className="mt-4 rounded-full bg-[#FF7A3D] shadow-sm shadow-orange-900/20 transition-all duration-200 hover:bg-[#EA642C] hover:shadow-md hover:-translate-y-0.5 px-6 py-2 text-[13px] font-bold text-white">
+          <button className="mt-4 rounded-full bg-[#FF7A1A] shadow-md shadow-orange-900/20 transition-all duration-200 hover:bg-[#E56A0F] hover:shadow-lg hover:-translate-y-0.5 px-6 py-2 text-[13px] font-bold text-white">
             View all FAQs
           </button>
         </div>

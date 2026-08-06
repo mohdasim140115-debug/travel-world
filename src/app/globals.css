@@ -1,45 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fcf8f0;
-  --foreground: #183b3d;
+  --background: #ffffff;
+  --foreground: #0F172A;
 
   /* =====================================================
      TRAVEL THEME — reusable design tokens
-     Tropical/ocean/travel palette. Prefer these variables
-     (or the matching Tailwind arbitrary-value hex) over any
-     new hardcoded colors so the whole site stays consistent.
+     Premium travel-brand palette (Booking.com / Expedia / Airbnb
+     inspired). Prefer these variables (or the matching Tailwind
+     arbitrary-value hex) over any new hardcoded colors so the
+     whole site stays consistent.
   ===================================================== */
 
-  /* Teal / turquoise / ocean family */
-  --color-teal-primary: #008c95;
-  --color-teal-dark: #006d77;
-  --color-teal-darker: #005b60;
-  --color-turquoise: #20b8b5;
-  --color-turquoise-light: #7fe0d8;
-  --color-ocean-blue: #168aad;
+  /* Blue / teal brand family */
+  --color-teal-primary: #0F4C81;   /* Primary — Deep Ocean Blue */
+  --color-teal-dark: #0B3B63;      /* Primary Dark — gradient/overlay stops */
+  --color-teal-darker: #082C4B;    /* Darkest navy — deep overlays */
+  --color-turquoise: #17BEBB;      /* Accent — Teal */
+  --color-turquoise-light: #A9D8F0;/* Light Sky Blue — gradient/hover-text tint */
+  --color-ocean-blue: #4DA8DA;     /* Secondary — Sky Blue */
 
-  /* Sunset orange — main conversion CTA */
-  --color-cta: #ff7a3d;
-  --color-cta-hover: #ea642c;
+  /* Sunset orange — main conversion CTA only */
+  --color-cta: #FF7A1A;
+  --color-cta-hover: #E56A0F;
 
   /* Backgrounds */
-  --color-cream: #fff9f0;
-  --color-aqua-bg: #eff9f8;
-  --color-sand-bg: #f8f1e5;
-  --color-icon-bg: #e2f5f2;
+  --color-cream: #ffffff;
+  --color-aqua-bg: #F7FAFC;
+  --color-sand-bg: #F7FAFC;
+  --color-icon-bg: #E6F7F5;
   --color-white: #ffffff;
 
   /* Text */
-  --color-text-main: #183b3d;
-  --color-text-secondary: #667a7b;
+  --color-text-main: #0F172A;      /* Headings */
+  --color-text-secondary: #475569; /* Body text */
 
   /* Borders */
-  --color-border: #d8e7e5;
+  --color-border: #E5E7EB;
 
   /* Semantic */
   --color-success: #239b76;
   --color-error: #dc2626;
+  --color-rating-star: #F5A623;
 }
 
 @theme inline {
@@ -59,6 +61,54 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* =====================================================
+   SITE-WIDE TYPOGRAPHY SYSTEM
+   Every component across the site was hand-built with
+   Tailwind arbitrary text-[Npx] values instead of a shared
+   type scale, so the same handful of raw pixel sizes repeat
+   everywhere (nav, cards, tables, forms, footers...). Rather
+   than hand-edit every file, this remaps those exact classes
+   to one consistent, hierarchical scale — metadata never
+   below 12px, clear H1 > H2 > H3 > card-title > body >
+   metadata steps, and clamp() for headings so they scale
+   fluidly with viewport width instead of jumping at
+   breakpoints. Font-weight/line-height authored per element
+   (font-bold, leading-tight, etc.) are left untouched.
+===================================================== */
+
+/* metadata / helper text — never below 12px */
+.text-\[7px\], .text-\[8px\], .text-\[9px\] { font-size: 12px; }
+.text-\[10px\], .text-\[11px\] { font-size: 13px; }
+
+/* small descriptions / metadata */
+.text-\[12px\], .text-\[13px\] { font-size: 14px; }
+
+/* body text */
+.text-\[14px\] { font-size: 15px; }
+.text-\[15px\] { font-size: 16px; }
+
+/* card title / small H3 */
+.text-\[16px\] { font-size: 17px; }
+.text-\[17px\] { font-size: 18px; }
+.text-\[18px\] { font-size: 19px; }
+.text-\[19px\] { font-size: 20px; }
+.text-\[20px\] { font-size: clamp(20px, 2.2vw, 22px); }
+
+/* section H2 */
+.text-\[22px\], .text-\[23px\] { font-size: clamp(22px, 2.6vw, 28px); }
+.text-\[24px\], .text-\[25px\] { font-size: clamp(23px, 2.7vw, 29px); }
+.text-\[26px\] { font-size: clamp(24px, 2.9vw, 30px); }
+.text-\[28px\] { font-size: clamp(25px, 3vw, 32px); }
+
+/* H1 */
+.text-\[27px\] { font-size: clamp(28px, 4vw, 38px); }
+.text-\[30px\] { font-size: clamp(28px, 4.2vw, 36px); }
+.text-\[32px\] { font-size: clamp(28px, 4.4vw, 38px); }
+.text-\[34px\] { font-size: clamp(30px, 4.6vw, 40px); }
+.text-\[36px\] { font-size: clamp(31px, 4.8vw, 42px); }
+.text-\[38px\] { font-size: clamp(31px, 5vw, 43px); }
+.text-\[40px\] { font-size: clamp(32px, 5.2vw, 44px); }
 
 .no-scrollbar {
   -ms-overflow-style: none;
@@ -82,6 +132,31 @@ textarea:focus-visible,
   outline: 2px solid var(--color-teal-primary);
   outline-offset: 2px;
   border-radius: 2px;
+}
+
+/* =====================================================
+   MOBILE HERO — fade-in + gentle balloon float
+===================================================== */
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 /* =====================================================
@@ -207,7 +282,7 @@ textarea:focus-visible,
 .india-stars {
   display: flex;
   gap: 1px;
-  color: #ff6b00;
+  color: var(--color-rating-star);
 }
 
 .rating-divider {
@@ -228,7 +303,8 @@ textarea:focus-visible,
   border: 1px solid var(--color-border);
   background: var(--color-aqua-bg);
   padding: 14px;
-  border-radius: 8px;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(15, 76, 129, 0.06);
 }
 
 .callback-card h3 {
@@ -248,8 +324,14 @@ textarea:focus-visible,
   height: 36px;
   border: 1px solid var(--color-border);
   background: #fff;
-  border-radius: 6px;
+  border-radius: 10px;
   margin-bottom: 10px;
+  transition: border-color 0.2s ease;
+}
+
+.callback-card > input:focus,
+.mobile-input:focus-within {
+  border-color: var(--color-teal-primary);
 }
 
 .callback-card > input {
@@ -288,7 +370,7 @@ textarea:focus-visible,
   width: 100%;
   height: 40px;
   border: 0;
-  border-radius: 6px;
+  border-radius: 10px;
   background: var(--color-cta);
   color: #fff;
   display: flex;
@@ -298,12 +380,14 @@ textarea:focus-visible,
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(255, 122, 26, 0.25);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .callback-card > button:hover {
   background: var(--color-cta-hover);
   transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 122, 26, 0.32);
 }
 
 /* TABS + LISTING HEADER */
@@ -338,6 +422,11 @@ textarea:focus-visible,
   color: var(--color-text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+.india-tabs button:hover {
+  border-color: var(--color-turquoise);
+  color: var(--color-teal-primary);
 }
 
 .india-tabs button.active {
@@ -398,7 +487,7 @@ textarea:focus-visible,
   height: 34px;
   background: #fff;
   border: 1px solid var(--color-border);
-  border-radius: 6px;
+  border-radius: 10px;
   padding: 0 9px;
   font-size: 12px;
   color: var(--color-text-main);

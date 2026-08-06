@@ -15,9 +15,9 @@ export default function FlightBookingModal({ flight, from, to, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-      <div className="w-full max-w-[440px] rounded-[8px] bg-white p-5 shadow-xl">
+      <div className="w-full max-w-[440px] rounded-xl bg-white p-5 shadow-xl">
         <div className="flex items-center justify-between">
-          <h3 className="text-[15px] font-bold text-[#183B3D]">
+          <h3 className="text-[15px] font-bold text-[#0F172A]">
             {submitted ? "Booking Request Received" : "Confirm Your Flight"}
           </h3>
           <button type="button" onClick={onClose} aria-label="Close" className="text-[#6B7280]">
@@ -34,14 +34,14 @@ export default function FlightBookingModal({ flight, from, to, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="mt-4 h-[38px] w-full rounded-[4px] bg-[#006D77] text-[12px] font-bold text-white"
+              className="mt-4 h-[38px] w-full rounded-[4px] bg-[#0B3B63] text-[12px] font-bold text-white"
             >
               Close
             </button>
           </div>
         ) : (
           <>
-            <div className="mt-4 space-y-2 rounded-[6px] bg-[#F9FAFB] p-3 text-[11px] text-[#374151]">
+            <div className="mt-4 space-y-2 rounded-xl bg-[#F9FAFB] p-3 text-[11px] text-[#374151]">
               <div className="flex justify-between">
                 <span className="text-[#6B7280]">Route</span>
                 <strong>
@@ -94,7 +94,7 @@ export default function FlightBookingModal({ flight, from, to, onClose }) {
 
               <button
                 type="submit"
-                className="mt-2 h-[40px] w-full rounded-[4px] bg-[#FF7A3D] text-[12px] font-bold text-white transition hover:bg-[#EA642C]"
+                className="mt-2 h-[40px] w-full rounded-[4px] bg-[#FF7A1A] text-[12px] font-bold text-white transition hover:bg-[#E56A0F]"
               >
                 Continue Booking
               </button>

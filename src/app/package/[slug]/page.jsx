@@ -173,16 +173,16 @@ export default async function PackageDetailPage({ params }) {
             BREADCRUMB
         =================================================== */}
 
-        <section className="border-[#183B3D] bg-white">
+        <section className="border-[#0F172A] bg-white">
           <div className="mx-auto max-w-[1280px] px-4 py-3">
             <div className="flex flex-wrap items-center gap-1 text-[11px] text-[#777]">
-              <Link href="/" className="hover:text-[#008C95]">
+              <Link href="/" className="hover:text-[#0F4C81]">
                 Home
               </Link>
 
               <ChevronRight size={11} />
 
-              <Link href={parentCrumb.href} className="hover:text-[#008C95]">
+              <Link href={parentCrumb.href} className="hover:text-[#0F4C81]">
                 {parentCrumb.label}
               </Link>
 
@@ -190,7 +190,7 @@ export default async function PackageDetailPage({ params }) {
                 <>
                   <ChevronRight size={11} />
 
-                  <Link href={categoryCrumb.href} className="hover:text-[#008C95]">
+                  <Link href={categoryCrumb.href} className="hover:text-[#0F4C81]">
                     {categoryCrumb.label}
                   </Link>
                 </>
@@ -218,20 +218,20 @@ export default async function PackageDetailPage({ params }) {
 
                 {/* IMAGE GALLERY */}
 
-                <div className="grid h-[290px] gap-2 overflow-hidden rounded-[8px] md:grid-cols-[1.8fr_1fr]">
+                <div className="grid h-[220px] gap-2 overflow-hidden rounded-xl sm:h-[290px] md:grid-cols-[1.8fr_1fr]">
 
                   {/* MAIN IMAGE */}
 
-                  <div className="relative flex items-end overflow-hidden bg-gradient-to-br from-[#d2aa52] via-[#b8cbd0] to-[#647d90] p-6">
+                  <div className="relative flex items-end overflow-hidden bg-gradient-to-br from-[#d2aa52] via-[#b8cbd0] to-[#647d90] p-4 sm:p-6">
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
                     <div className="relative z-10 text-white">
-                      <p className="text-[12px] font-medium">
+                      <p className="text-[11px] font-medium sm:text-[12px]">
                         {tour.location}
                       </p>
 
-                      <p className="mt-1 text-[28px] font-bold" aria-hidden="true">
+                      <p className="mt-1 text-[22px] font-bold sm:text-[28px]" aria-hidden="true">
                         {tour.title}
                       </p>
                     </div>
@@ -239,18 +239,22 @@ export default async function PackageDetailPage({ params }) {
 
                   {/* SMALL IMAGES */}
 
-                  <div className="hidden grid-rows-2 gap-2 md:grid">
+                  <div className="grid grid-cols-2 gap-2 md:grid-cols-1 md:grid-rows-2">
 
-                    <div className="flex items-center justify-center rounded-[6px] bg-gradient-to-br from-[#e9d7aa] to-[#9fb3be]">
+                    <div className="flex items-center justify-center rounded-xl bg-gradient-to-br from-[#e9d7aa] to-[#9fb3be]">
+                      <MapPin
+                        size={28}
+                        className="text-[#0F4C81] sm:hidden"
+                      />
                       <MapPin
                         size={34}
-                        className="text-[#008C95]"
+                        className="hidden text-[#0F4C81] sm:block"
                       />
                     </div>
 
-                    <div className="relative flex items-center justify-center rounded-[6px] bg-gradient-to-br from-[#bfd7e6] to-[#dcc590]">
-                      <span className="rounded bg-white/90 px-4 py-2 text-[12px] font-semibold shadow">
-                        View all photos
+                    <div className="relative flex items-center justify-center rounded-xl bg-gradient-to-br from-[#bfd7e6] to-[#dcc590]">
+                      <span className="rounded-xl bg-white/90 px-2 py-1.5 text-center text-[10px] font-semibold shadow-md sm:px-4 sm:py-2 sm:text-[12px]">
+                        +45 guest photos
                       </span>
                     </div>
 
@@ -263,7 +267,7 @@ export default async function PackageDetailPage({ params }) {
 
                   <div className="flex flex-wrap gap-2">
 
-                    <span className="border border-[#20B8B5] bg-[#EFF9F8] px-2 py-1 text-[10px] font-semibold uppercase text-[#008C95]">
+                    <span className="border border-[#17BEBB] bg-[#F7FAFC] px-2 py-1 text-[10px] font-semibold uppercase text-[#0F4C81]">
                       {tour.tourType}
                     </span>
 
@@ -342,36 +346,36 @@ export default async function PackageDetailPage({ params }) {
                   PRICE CARD
               ============================================= */}
 
-              <aside className="self-start rounded-[8px] border border-[#aac3ff] bg-[#f7f9ff] p-5 shadow-sm">
+              <aside className="self-start rounded-xl border border-[#aac3ff] bg-[#f7f9ff] p-4 shadow-md sm:p-5">
 
-                <p className="text-center text-[10px] text-[#777]">
+                <p className="text-center text-[11px] text-[#777] sm:text-[10px]">
                   Starting price per person
                 </p>
 
-                <div className="mt-1 text-center text-[30px] font-bold">
+                <div className="mt-1 text-center text-[28px] font-bold sm:text-[30px]">
                   ₹{formatPrice(tour.price)}
                 </div>
 
-                <p className="mt-2 text-center text-[10px]">
+                <p className="mt-2 text-center text-[11px] sm:text-[10px]">
                   EMI from{" "}
                   <span className="font-semibold underline">
                     ₹{formatPrice(tour.emi)}/month
                   </span>
                 </p>
 
-                <button className="mt-5 h-[42px] w-full rounded-[3px] bg-[#FF7A3D] text-[12px] font-semibold text-white transition duration-200 hover:bg-[#EA642C] hover:-translate-y-0.5">
+                <button className="mt-4 h-[46px] w-full rounded-[6px] bg-[#FF7A1A] text-[14px] font-semibold text-white transition duration-200 hover:bg-[#E56A0F] hover:-translate-y-0.5 sm:mt-5 sm:h-[42px] sm:rounded-[3px] sm:text-[12px]">
                   Dates & Availability
                 </button>
 
-                <div className="mt-5 grid grid-cols-3 border-t pt-4 text-center">
+                <div className="mt-4 grid grid-cols-3 border-t pt-4 text-center sm:mt-5">
 
                   <div>
                     <Clock3
                       size={17}
-                      className="mx-auto text-[#008C95]"
+                      className="mx-auto text-[#0F4C81]"
                     />
 
-                    <p className="mt-1 text-[9px]">
+                    <p className="mt-1 text-[10px] sm:text-[9px]">
                       {tour.days} Days
                     </p>
                   </div>
@@ -379,10 +383,10 @@ export default async function PackageDetailPage({ params }) {
                   <div>
                     <MapPin
                       size={17}
-                      className="mx-auto text-[#008C95]"
+                      className="mx-auto text-[#0F4C81]"
                     />
 
-                    <p className="mt-1 text-[9px]">
+                    <p className="mt-1 text-[10px] sm:text-[9px]">
                       {tour.cities} Cities
                     </p>
                   </div>
@@ -390,17 +394,17 @@ export default async function PackageDetailPage({ params }) {
                   <div>
                     <CalendarDays
                       size={17}
-                      className="mx-auto text-[#008C95]"
+                      className="mx-auto text-[#0F4C81]"
                     />
 
-                    <p className="mt-1 text-[9px]">
+                    <p className="mt-1 text-[10px] sm:text-[9px]">
                       {tour.departures.length} Dates
                     </p>
                   </div>
 
                 </div>
 
-                <button className="mt-5 flex h-[38px] w-full items-center justify-center gap-2 border border-[#008C95] bg-white text-[11px] font-semibold text-[#008C95]">
+                <button className="mt-4 flex h-[44px] w-full items-center justify-center gap-2 rounded-[6px] border border-[#0F4C81] bg-white text-[13px] font-semibold text-[#0F4C81] sm:mt-5 sm:h-[38px] sm:rounded-none sm:text-[11px]">
                   <Phone size={14} />
                   Enquire Now
                 </button>
@@ -419,7 +423,7 @@ export default async function PackageDetailPage({ params }) {
 
             {/* INCLUDES */}
 
-            <div className="rounded-[7px] border bg-white p-5">
+            <div className="rounded-xl border bg-white p-5">
 
               <h2 className="text-[16px] font-semibold">
                 Tour Includes
@@ -442,11 +446,11 @@ export default async function PackageDetailPage({ params }) {
                     <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#fff5cc]">
                       <Icon
                         size={18}
-                        className="text-[#008C95]"
+                        className="text-[#0F4C81]"
                       />
                     </div>
 
-                    <p className="mt-2 text-[9px]">
+                    <p className="mt-2 text-[11px] sm:text-[9px]">
                       {label}
                     </p>
                   </div>
@@ -457,7 +461,7 @@ export default async function PackageDetailPage({ params }) {
 
             {/* HIGHLIGHTS */}
 
-            <div className="rounded-[7px] border bg-white p-5">
+            <div className="rounded-xl border bg-white p-5">
 
               <h2 className="text-[16px] font-semibold">
                 Tour Highlights
@@ -468,7 +472,7 @@ export default async function PackageDetailPage({ params }) {
                 {tour.highlights.map((item) => (
                   <div
                     key={item}
-                    className="flex items-start gap-2 text-[11px]"
+                    className="flex items-start gap-2 text-[13px] sm:text-[11px]"
                   >
                     <CircleCheck
                       size={15}
@@ -494,7 +498,7 @@ export default async function PackageDetailPage({ params }) {
             STICKY NAVIGATION
         =================================================== */}
 
-        <div className="sticky top-0 z-30 border-y bg-white shadow-sm">
+        <div className="sticky top-0 z-30 border-y bg-white shadow-md">
           <div className="mx-auto flex max-w-[1280px] gap-7 overflow-x-auto px-4">
             {[
               "Itinerary",
@@ -507,9 +511,9 @@ export default async function PackageDetailPage({ params }) {
               <a
                 key={item}
                 href={`#${item.toLowerCase().replaceAll(" ", "-")}`}
-                className={`whitespace-nowrap border-[#183B3D]-2 px-1 py-4 text-[11px] font-semibold ${
+                className={`whitespace-nowrap border-[#0F172A]-2 px-1 py-4 text-[11px] font-semibold ${
                   index === 0
-                    ? "border-[#008C95] text-[#008C95]"
+                    ? "border-[#0F4C81] text-[#0F4C81]"
                     : "border-transparent text-[#555]"
                 }`}
               >
@@ -573,7 +577,7 @@ export default async function PackageDetailPage({ params }) {
 
             <div className="mt-5 grid gap-4 md:grid-cols-2">
 
-              <div className="rounded-[7px] border bg-white p-5">
+              <div className="rounded-xl border bg-white p-5">
                 <h3 className="text-[14px] font-semibold text-green-700">
                   What&apos;s Included
                 </h3>
@@ -583,7 +587,7 @@ export default async function PackageDetailPage({ params }) {
                   {tour.inclusions.map((item) => (
                     <div
                       key={item}
-                      className="flex gap-2 text-[11px]"
+                      className="flex gap-2 text-[13px] sm:text-[11px]"
                     >
                       <Check
                         size={14}
@@ -597,12 +601,12 @@ export default async function PackageDetailPage({ params }) {
                 </div>
               </div>
 
-              <div className="rounded-[7px] border bg-white p-5">
-                <h3 className="text-[14px] font-semibold text-red-600">
+              <div className="rounded-xl border bg-white p-5">
+                <h3 className="text-[14px] font-semibold text-[#0F172A]">
                   What&apos;s Not Included
                 </h3>
 
-                <div className="mt-4 space-y-3 text-[11px] text-[#555]">
+                <div className="mt-4 space-y-3 text-[13px] text-[#555] sm:text-[11px]">
                   {(tour.exclusions || DEFAULT_EXCLUSIONS).map((item) => (
                     <p key={item}>• {item}</p>
                   ))}
@@ -624,9 +628,26 @@ export default async function PackageDetailPage({ params }) {
               Accommodation
             </h2>
 
-            <div className="mt-5 overflow-hidden rounded-[7px] border">
+            {/* MOBILE: stacked cards */}
+            <div className="mt-5 space-y-3 sm:hidden">
+              {[tour.location.split("•")[0], tour.location.split("•")[1] || tour.location].map((city) => (
+                <div key={city} className="rounded-xl border bg-white p-4">
+                  <p className="text-[10px] font-semibold uppercase tracking-wide text-[#0F4C81]">City</p>
+                  <p className="text-[14px] font-semibold text-[#0F172A]">{city}</p>
 
-              <div className="grid grid-cols-3 bg-[#008C95] px-4 py-3 text-[10px] font-semibold text-white">
+                  <p className="mt-3 text-[10px] font-semibold uppercase tracking-wide text-[#0F4C81]">Hotel</p>
+                  <p className="text-[13px] text-[#333]">Comfortable selected hotel</p>
+
+                  <p className="mt-3 text-[10px] font-semibold uppercase tracking-wide text-[#0F4C81]">Check-in / Check-out</p>
+                  <p className="text-[13px] text-[#333]">As per itinerary</p>
+                </div>
+              ))}
+            </div>
+
+            {/* sm+: original table, unchanged */}
+            <div className="mt-5 hidden overflow-hidden rounded-xl border sm:block">
+
+              <div className="grid grid-cols-3 bg-[#0F4C81] px-4 py-3 text-[10px] font-semibold text-white">
                 <span>City</span>
                 <span>Hotel</span>
                 <span>Check-in / Check-out</span>
@@ -672,40 +693,40 @@ export default async function PackageDetailPage({ params }) {
 
             <div className="mt-5 grid gap-4 md:grid-cols-2">
 
-              <div className="rounded-[7px] border bg-white p-5">
+              <div className="rounded-xl border bg-white p-5">
                 <h3 className="text-[13px] font-semibold">Weather</h3>
-                <p className="mt-2 text-[10px] leading-5 text-[#666]">
+                <p className="mt-2 text-[12px] leading-6 text-[#666] sm:text-[10px] sm:leading-5">
                   {tour.needToKnow?.weather ||
                     "Weather conditions may vary depending on destination and travel dates."}
                 </p>
               </div>
 
-              <div className="rounded-[7px] border bg-white p-5">
+              <div className="rounded-xl border bg-white p-5">
                 <h3 className="text-[13px] font-semibold">Transport</h3>
-                <p className="mt-2 text-[10px] leading-5 text-[#666]">
+                <p className="mt-2 text-[12px] leading-6 text-[#666] sm:text-[10px] sm:leading-5">
                   {tour.needToKnow?.transport ||
                     "Comfortable transportation will be provided as mentioned in the itinerary."}
                 </p>
               </div>
 
-              <div className="rounded-[7px] border bg-white p-5">
+              <div className="rounded-xl border bg-white p-5">
                 <h3 className="text-[13px] font-semibold">Documents Required for Travel</h3>
                 {tour.needToKnow?.documents ? (
-                  <ul className="mt-2 space-y-1 text-[10px] leading-5 text-[#666]">
+                  <ul className="mt-2 space-y-1 text-[12px] leading-6 text-[#666] sm:text-[10px] sm:leading-5">
                     {tour.needToKnow.documents.map((doc) => (
                       <li key={doc}>• {doc}</li>
                     ))}
                   </ul>
                 ) : (
-                  <p className="mt-2 text-[10px] leading-5 text-[#666]">
+                  <p className="mt-2 text-[12px] leading-6 text-[#666] sm:text-[10px] sm:leading-5">
                     Carry valid government-issued identification and all necessary travel documents.
                   </p>
                 )}
               </div>
 
-              <div className="rounded-[7px] border bg-white p-5">
+              <div className="rounded-xl border bg-white p-5">
                 <h3 className="text-[13px] font-semibold">Tour Manager</h3>
-                <p className="mt-2 text-[10px] leading-5 text-[#666]">
+                <p className="mt-2 text-[12px] leading-6 text-[#666] sm:text-[10px] sm:leading-5">
                   Tour manager services are provided according to the selected package.
                 </p>
               </div>
@@ -733,22 +754,44 @@ export default async function PackageDetailPage({ params }) {
               the time of booking.
             </p>
 
-            <div className="mt-5 overflow-hidden rounded-[7px] border">
+            {(() => {
+              const tiers = ["#239b76", "#F5A623", "#FF7A1A", "#dc2626", "#dc2626"];
+              const policyRows = tour.cancellationPolicy || DEFAULT_CANCELLATION_POLICY;
 
-              {(tour.cancellationPolicy || DEFAULT_CANCELLATION_POLICY).map((row, index, arr) => (
-                <div
-                  key={row.period}
-                  className={`grid grid-cols-2 px-5 py-4 text-[10px] ${
-                    index !== arr.length - 1 ? "border-[#183B3D]" : ""
-                  }`}
-                >
-                  <span>{row.period}</span>
+              return (
+                <>
+                  {/* MOBILE: color-coded stacked cards */}
+                  <div className="mt-5 space-y-2.5 sm:hidden">
+                    {policyRows.map((row, index) => (
+                      <div
+                        key={row.period}
+                        className="rounded-lg border bg-white py-3 pl-3 pr-4"
+                        style={{ borderLeft: `4px solid ${tiers[index % tiers.length]}` }}
+                      >
+                        <p className="text-[13px] font-semibold text-[#0F172A]">{row.charge}</p>
+                        <p className="mt-0.5 text-[11px] text-[#666]">{row.period}</p>
+                      </div>
+                    ))}
+                  </div>
 
-                  <strong>{row.charge}</strong>
-                </div>
-              ))}
+                  {/* sm+: original list, unchanged */}
+                  <div className="mt-5 hidden overflow-hidden rounded-xl border sm:block">
+                    {policyRows.map((row, index, arr) => (
+                      <div
+                        key={row.period}
+                        className={`grid grid-cols-2 px-5 py-4 text-[10px] ${
+                          index !== arr.length - 1 ? "border-[#0F172A]" : ""
+                        }`}
+                      >
+                        <span>{row.period}</span>
 
-            </div>
+                        <strong>{row.charge}</strong>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              );
+            })()}
           </div>
         </section>
 
@@ -766,7 +809,7 @@ export default async function PackageDetailPage({ params }) {
               Payment Terms
             </h2>
 
-            <div className="mt-5 space-y-3 rounded-[7px] border bg-white p-5 text-[11px] leading-6 text-[#555]">
+            <div className="mt-5 space-y-3 rounded-xl border bg-white p-5 text-[13px] leading-6 text-[#555] sm:text-[11px]">
               {(tour.paymentTerms || DEFAULT_PAYMENT_TERMS).map((term) => (
                 <p key={term}>• {term}</p>
               ))}
@@ -796,22 +839,22 @@ export default async function PackageDetailPage({ params }) {
                 return (
                   <div
                     key={upgrade.title}
-                    className="rounded-[7px] border bg-white p-5"
+                    className="rounded-xl border bg-white p-5"
                   >
                     <Icon
                       size={23}
-                      className="text-[#008C95]"
+                      className="text-[#0F4C81]"
                     />
 
                     <h3 className="mt-3 text-[13px] font-semibold">
                       {upgrade.title}
                     </h3>
 
-                    <p className="mt-2 text-[10px] leading-5 text-[#777]">
+                    <p className="mt-2 text-[12px] leading-6 text-[#777] sm:text-[10px] sm:leading-5">
                       {upgrade.description}
                     </p>
 
-                    <button className="mt-4 text-[10px] font-semibold text-[#008C95] underline">
+                    <button className="mt-4 text-[10px] font-semibold text-[#0F4C81] underline">
                       Know More
                     </button>
                   </div>
@@ -833,12 +876,11 @@ export default async function PackageDetailPage({ params }) {
                 You may also like
               </h2>
 
-              <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="mt-5 flex gap-4 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory sm:grid sm:overflow-visible sm:grid-cols-2 lg:grid-cols-4">
                 {relatedTours.map((item) => (
-                  <TourPackageCard
-                    key={item.slug}
-                    item={toCardItem(item)}
-                  />
+                  <div key={item.slug} className="min-w-[300px] max-w-[300px] shrink-0 snap-start sm:min-w-0 sm:max-w-none">
+                    <TourPackageCard item={toCardItem(item)} />
+                  </div>
                 ))}
               </div>
             </div>
@@ -862,7 +904,7 @@ export default async function PackageDetailPage({ params }) {
               </p>
             </div>
 
-            <div className="mt-6 grid gap-4 md:grid-cols-3">
+            <div className="mt-6 flex gap-4 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:grid md:overflow-visible md:grid-cols-3">
 
               {[
                 "A wonderful and well-managed tour. Everything was planned perfectly.",
@@ -871,7 +913,7 @@ export default async function PackageDetailPage({ params }) {
               ].map((review, index) => (
                 <div
                   key={review}
-                  className="rounded-[7px] bg-white p-5 text-[#222]"
+                  className="min-w-[260px] max-w-[260px] shrink-0 snap-start rounded-xl bg-white p-5 text-[#222] md:min-w-0 md:max-w-none"
                 >
 
                   <div className="flex text-[#ff9800]">
@@ -884,7 +926,7 @@ export default async function PackageDetailPage({ params }) {
                     ))}
                   </div>
 
-                  <p className="mt-3 text-[10px] leading-5 text-[#555]">
+                  <p className="mt-3 text-[12px] leading-5 text-[#555] md:text-[10px]">
                     &quot;{review}&quot;
                   </p>
 
@@ -900,6 +942,9 @@ export default async function PackageDetailPage({ params }) {
         </section>
 
       </main>
+
+      {/* spacer so the mobile sticky price bar doesn't cover the footer */}
+      <div className="h-[76px] lg:hidden" />
 
       <Footer />
     </>

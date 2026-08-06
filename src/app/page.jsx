@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
+import QuickLinksBar from "@/components/layout/QuickLinksBar";
 import HeroSection from "@/components/home/HeroSection";
 import DestinationStrip from "@/components/home/DestinationStrip";
 import LiveTours from "@/components/home/LiveTours";
@@ -18,10 +19,11 @@ import FloatingActions from "@/components/layout/FloatingActions";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#FFF9F0] text-[#183B3D]">
+    <div className="min-h-screen bg-[#ffffff] text-[#0F172A]">
       <Header />
       <Navbar />
-      <main className="mx-auto flex w-full max-w-[1280px] flex-col px-4 pb-16 sm:px-6 lg:px-0">
+      <main className="mx-auto flex w-full max-w-[1280px] flex-col px-3 pb-16 sm:px-6 lg:px-0">
+        <QuickLinksBar />
         <HeroSection />
         <DestinationStrip />
         <div className="mt-12" />

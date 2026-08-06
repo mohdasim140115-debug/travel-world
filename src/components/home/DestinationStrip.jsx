@@ -25,14 +25,14 @@ const nameAliases = {
 export default function DestinationStrip() {
   return (
     <section className="mt-11 w-full">
-      <div className="flex gap-4 overflow-x-auto px-1 pb-3 no-scrollbar">
+      <div className="grid grid-flow-col grid-rows-2 gap-x-4 gap-y-4 overflow-x-auto px-1 pb-3 no-scrollbar [grid-auto-columns:minmax(100px,auto)] sm:flex sm:[grid-auto-columns:auto]">
         {homeData.destinations.map((destination) => {
           const Icon = iconMap[destination.icon] || Compass;
           const href = getDestinationHref(nameAliases[destination.name] || destination.name);
 
           const content = (
             <>
-              <div className="flex h-[72px] w-[72px] items-center justify-center rounded-full bg-[#E2F5F2] text-[#007F86] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#008C95] group-hover:text-white">
+              <div className="flex h-[72px] w-[72px] items-center justify-center rounded-full bg-[#E6F7F5] text-[#17BEBB] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0F4C81] group-hover:text-white">
                 <Icon className="h-8 w-8" />
               </div>
               <div className="mt-3 max-w-[100px] text-[13px] font-semibold text-[#111827]">

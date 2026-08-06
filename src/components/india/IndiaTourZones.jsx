@@ -25,11 +25,13 @@ const zoneData = {
       name: "Jammu And Kashmir Tour Packages",
       tours: "16 tours",
       visual: "from-blue-300 via-cyan-100 to-emerald-600",
+      image: "/yasser-mir-Ctd--w6W-bw-unsplash.jpg",
     },
     {
       name: "Leh Ladakh Tour Packages",
       tours: "14 tours",
       visual: "from-cyan-300 via-blue-100 to-cyan-300",
+      image: "/darshan-chudasama-s5x1zFAuAbs-unsplash.jpg",
     },
     {
       name: "Amritsar Tour Packages",
@@ -45,6 +47,7 @@ const zoneData = {
       name: "Delhi Tour Packages",
       tours: "35 tours",
       visual: "from-orange-300 via-indigo-200 to-slate-700",
+      image: "/junaid-ahmad-ansari-9WP-NVh2d6U-unsplash.jpg",
     },
     {
       name: "Nainital Mussoorie Corbett Tour Packages",
@@ -58,11 +61,13 @@ const zoneData = {
       name: "Kerala Tour Packages",
       tours: "20 tours",
       visual: "from-emerald-400 via-green-200 to-cyan-500",
+      image: "/philip-liju-srvtMQSWDhE-unsplash.jpg",
     },
     {
       name: "Tamil Nadu Tour Packages",
       tours: "15 tours",
       visual: "from-orange-300 via-indigo-100 to-stone-500",
+      image: "/sreehari-devadas-Jf6swM8lR-I-unsplash.jpg",
     },
     {
       name: "Karnataka Tour Packages",
@@ -78,6 +83,7 @@ const zoneData = {
       name: "Andaman Tour Packages",
       tours: "9 tours",
       visual: "from-cyan-300 via-blue-400 to-emerald-300",
+      image: "/dileesh-kumar-KbirwZJIq7g-unsplash.jpg",
     },
   ],
 
@@ -85,7 +91,8 @@ const zoneData = {
     {
       name: "Rajasthan Tour Packages",
       tours: "36 tours",
-      visual: "from-orange-300 via-teal-200 to-red-500",
+      visual: "from-orange-300 via-teal-200 to-teal-500",
+      image: "/aditya-siva-6rDbvXzIVpQ-unsplash.jpg",
     },
     {
       name: "Gujarat Tour Packages",
@@ -96,6 +103,7 @@ const zoneData = {
       name: "Maharashtra Tour Packages",
       tours: "28 tours",
       visual: "from-green-400 via-slate-300 to-blue-500",
+      image: "/mithil-doshi-pQZBbuPgyW8-unsplash.jpg",
     },
     {
       name: "Madhya Pradesh Tour Packages",
@@ -137,11 +145,23 @@ function ZoneCard({ item }) {
       className="group block no-underline"
     >
       <div
-        className={`relative h-[230px] overflow-hidden rounded-[5px] border border-[#d6d6d6] bg-gradient-to-br shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-200 group-hover:-translate-y-[2px] group-hover:border-[#20B8B5] group-hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)] ${item.visual}`}
+        className={`relative h-[230px] transform-gpu overflow-hidden rounded-[5px] border border-[#d6d6d6] bg-gradient-to-br shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-200 group-hover:-translate-y-[2px] group-hover:border-[#17BEBB] group-hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)] ${item.visual}`}
       >
+        {item.image && (
+          <img
+            src={item.image}
+            alt={item.name}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        )}
+
         {/* Decorative mountain shapes */}
-        <div className="absolute -bottom-10 -left-8 h-28 w-40 rotate-12 rounded-[50%] bg-black/10" />
-        <div className="absolute -bottom-8 right-0 h-24 w-44 -rotate-6 rounded-[50%] bg-white/15" />
+        {!item.image && (
+          <>
+            <div className="absolute -bottom-10 -left-8 h-28 w-40 rotate-12 rounded-[50%] bg-black/10" />
+            <div className="absolute -bottom-8 right-0 h-24 w-44 -rotate-6 rounded-[50%] bg-white/15" />
+          </>
+        )}
 
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent p-3 pt-12">
           <p className="text-[14px] font-semibold leading-tight text-white">
@@ -188,7 +208,7 @@ export default function IndiaTourZones() {
                 onClick={() => setPage(number)}
                 className={`h-8 min-w-8 rounded-[3px] border px-2 text-[11px] font-medium ${
                   page === number
-                    ? "border-[#008C95] bg-white text-[#008C95]"
+                    ? "border-[#0F4C81] bg-white text-[#0F4C81]"
                     : "border-[#d3d7dd] bg-white text-[#333]"
                 }`}
               >
@@ -203,7 +223,7 @@ export default function IndiaTourZones() {
               onClick={() => setPage(27)}
               className={`h-8 min-w-8 rounded-[3px] border px-2 text-[11px] ${
                 page === 27
-                  ? "border-[#008C95] text-[#008C95]"
+                  ? "border-[#0F4C81] text-[#0F4C81]"
                   : "border-[#d3d7dd] text-[#333]"
               } bg-white`}
             >
@@ -233,7 +253,7 @@ export default function IndiaTourZones() {
               India Tour Packages By Zone
             </h2>
 
-            <div className="mx-auto mt-2 h-[2px] w-20 bg-[#008C95]" />
+            <div className="mx-auto mt-2 h-[2px] w-20 bg-[#0F4C81]" />
           </div>
 
           {/* ZONE TABS */}
@@ -245,8 +265,8 @@ export default function IndiaTourZones() {
                 onClick={() => setActiveZone(zone)}
                 className={`h-[40px] min-w-[115px] rounded-[3px] border px-5 text-[11px] font-medium transition ${
                   activeZone === zone
-                    ? "border-[#008C95] bg-[#008C95] text-white"
-                    : "border-[#333] bg-white text-[#333] hover:border-[#20B8B5] hover:text-[#008C95]"
+                    ? "border-[#0F4C81] bg-[#0F4C81] text-white"
+                    : "border-[#333] bg-white text-[#333] hover:border-[#17BEBB] hover:text-[#0F4C81]"
                 }`}
               >
                 {zone}
@@ -254,13 +274,12 @@ export default function IndiaTourZones() {
             ))}
           </div>
 
-          {/* TOUR GRID */}
-          <div className="mx-auto mt-8 grid max-w-[1180px] grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+          {/* TOUR GRID (mobile: horizontal slide carousel; sm+: grid, unchanged) */}
+          <div className="mx-auto mt-8 flex max-w-[1180px] gap-4 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory sm:grid sm:overflow-visible sm:grid-cols-3 md:grid-cols-4">
             {tours.map((item) => (
-              <ZoneCard
-                key={`${activeZone}-${item.name}`}
-                item={item}
-              />
+              <div key={`${activeZone}-${item.name}`} className="min-w-[170px] flex-shrink-0 snap-start sm:min-w-0">
+                <ZoneCard item={item} />
+              </div>
             ))}
           </div>
 
@@ -271,7 +290,7 @@ export default function IndiaTourZones() {
                 <button
                   key={state}
                   type="button"
-                  className="rounded-[3px] border border-[#d9dde3] bg-white px-5 py-2 text-[10px] text-[#333] hover:border-[#20B8B5]"
+                  className="rounded-[3px] border border-[#d9dde3] bg-white px-5 py-2 text-[10px] text-[#333] hover:border-[#17BEBB]"
                 >
                   {state}
                 </button>

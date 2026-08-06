@@ -1,64 +1,61 @@
 import Link from "next/link";
 import { Heart } from "lucide-react";
 import { homeData } from "@/data/homeData";
+import PromoCarousel from "./PromoCarousel";
 
 export default function MostLovedTours() {
   const { mostLovedTours } = homeData;
 
   return (
-    <section className="px-4 py-12 sm:px-6 lg:px-0">
+    <section className="px-3 py-8 sm:px-6 md:py-12 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
-        <div className="grid gap-6 lg:grid-cols-[1fr_2fr]">
-          <div className="relative overflow-hidden rounded-[10px] bg-[#E2F5F2] p-6 sm:p-8">
-            <div className="relative z-10">
-              <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-[#008C95]">
-                Curated for you
-              </p>
-              <h3 className="mt-2 text-[28px] font-black text-[#183B3D] leading-[1.1]">
-                TRAVEL WORLD
-              </h3>
-              <h4 className="mt-1 text-[24px] font-black text-[#183B3D]">PAISA VASOOL</h4>
-              <p className="mt-2 text-[18px] font-bold text-[#183B3D]">Tours</p>
-              <p className="mt-3 text-[16px] italic text-[#667A7B]">Chalo, Bag Bharo, Nikal Pado!</p>
-            </div>
+        <div className="grid gap-5 md:gap-6 lg:grid-cols-[32%_1fr]">
 
-            <div className="mt-6 grid grid-cols-3 gap-2">
-              {mostLovedTours.promoDestinations.map((dest) => (
-                <div
-                  key={dest.name}
-                  className="flex h-[60px] flex-col items-center justify-center rounded-full border-2 border-[#7FE0D8] bg-white/80 text-center"
-                >
-                  <div className="text-[11px] font-semibold text-[#183B3D]">{dest.name}</div>
-                  <div className="text-[10px] text-[#60646C]">{dest.days}</div>
-                  <div className="text-[11px] font-bold text-[#183B3D]">{dest.price}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* ================= LEFT: PROMOTIONAL BANNER CAROUSEL ================= */}
+          <PromoCarousel />
 
-          <div className="overflow-hidden rounded-[10px] border border-[#D8E7E5] bg-[#F8F1E5] p-6 sm:p-8">
+          {/* ================= RIGHT: MOST LOVED GRID ================= */}
+          <div className="min-w-0 overflow-hidden rounded-[16px] border border-[#E5E7EB] bg-[#F7FAFC] p-5 sm:p-7">
             <div className="flex items-center gap-2">
-              <Heart className="h-5 w-5 text-[#FF6B6B]" />
-              <h3 className="text-[20px] font-bold text-[#183B3D]">Most Loved by Our Guests</h3>
+              <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-white shadow-sm">
+                <Heart className="h-4 w-4 fill-[#FF6B6B] text-[#FF6B6B]" />
+              </div>
+              <h3 className="text-[23px] font-bold text-[#0F172A] sm:text-[25px]">Most Loved by Our Guests</h3>
             </div>
-            <p className="mt-2 text-[13px] text-[#60646C]">
-              1,26,522 guests have travelled so far.
+            <p className="mt-1.5 text-[15px] leading-relaxed text-[#60646C] sm:text-[16px]">
+              1,26,704 guests have travelled so far.
             </p>
 
-            <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            <div className="mt-5 flex gap-4 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible lg:grid-cols-4">
               {mostLovedTours.destinations.map((dest) => (
                 <Link
                   key={dest.name}
                   href={`/package/${dest.slug}`}
-                  className="flex cursor-pointer flex-col overflow-hidden rounded-[8px] border border-[#E5E7EB] bg-white no-underline transition hover:-translate-y-[1px] hover:border-[#4A7BA7] hover:shadow-md"
+                  className="group min-w-[180px] flex-shrink-0 snap-start transform-gpu cursor-pointer overflow-hidden rounded-[12px] border border-[#E5E7EB] bg-white no-underline transition-all duration-300 hover:-translate-y-1 hover:border-[#17BEBB] hover:shadow-lg sm:min-w-0"
                 >
-                  <div className="relative h-[120px] bg-gradient-to-br from-[#6BA3D0] to-[#4A7BA7]">
-                    <div className="absolute inset-0 opacity-30" />
+                  <div className="relative h-[130px] overflow-hidden bg-gradient-to-br from-[#6BA3D0] to-[#4A7BA7]">
+                    {dest.image ? (
+                      <img
+                        src={dest.image}
+                        alt={dest.name}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 transition-transform duration-300 group-hover:scale-105" />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+
+                    <span className="absolute left-2 top-2 rounded-full bg-black/70 px-2.5 py-1 text-[13px] font-semibold text-white">
+                      {dest.price}
+                    </span>
+
+                    <h4 className="absolute inset-x-2 bottom-2 line-clamp-2 text-center text-[16px] font-bold leading-tight text-white sm:text-[17px]">
+                      {dest.name}
+                    </h4>
                   </div>
-                  <div className="p-3">
-                    <h4 className="text-[13px] font-bold text-[#183B3D]">{dest.name}</h4>
-                    <p className="mt-1 text-[12px] text-[#60646C]">{dest.price}</p>
-                    <p className="mt-2 text-[11px] text-[#4B5563]">
+
+                  <div className="bg-white py-1.5 text-center">
+                    <p className="text-[12px] text-[#60646C] sm:text-[13px]">
                       {dest.guests} guests travelled
                     </p>
                   </div>

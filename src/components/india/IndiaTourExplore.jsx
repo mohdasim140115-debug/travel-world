@@ -19,7 +19,7 @@ import {
 const cityData = {
   city: [
     { name: "Jaipur", tours: "31 tours", style: "from-orange-300 via-rose-500 to-orange-900" },
-    { name: "Munnar", tours: "15 tours", style: "from-green-300 via-green-600 to-emerald-900" },
+    { name: "Munnar", tours: "15 tours", style: "from-green-300 via-green-600 to-emerald-900", image: "/vivek-kumar-JS_ohjocm00-unsplash.jpg" },
     { name: "Shimla", tours: "15 tours", style: "from-slate-300 via-slate-500 to-slate-900" },
     { name: "Darjeeling", tours: "11 tours", style: "from-lime-300 via-green-500 to-green-900" },
     { name: "Varanasi", tours: "16 tours", style: "from-orange-300 via-orange-600 to-stone-900" },
@@ -27,10 +27,10 @@ const cityData = {
   ],
 
   state: [
-    { name: "Rajasthan", tours: "32 tours", style: "from-orange-300 via-rose-500 to-red-900" },
-    { name: "Kerala", tours: "17 tours", style: "from-green-300 via-emerald-600 to-green-900" },
+    { name: "Rajasthan", tours: "32 tours", style: "from-orange-300 via-rose-500 to-blue-900" },
+    { name: "Kerala", tours: "17 tours", style: "from-green-300 via-emerald-600 to-green-900", image: "/gaurav-kumar-lJgUTYYrCy4-unsplash.jpg" },
     { name: "Himachal Pradesh", tours: "11 tours", style: "from-blue-200 via-slate-500 to-blue-900" },
-    { name: "Gujarat", tours: "17 tours", style: "from-teal-300 via-orange-500 to-red-900" },
+    { name: "Gujarat", tours: "17 tours", style: "from-teal-300 via-orange-500 to-blue-900" },
     { name: "Uttar Pradesh", tours: "24 tours", style: "from-orange-200 via-stone-500 to-slate-900" },
     { name: "Maharashtra", tours: "28 tours", style: "from-green-300 via-slate-600 to-slate-900" },
   ],
@@ -38,7 +38,7 @@ const cityData = {
 
 const seasonData = {
   "March to June": [
-    { name: "Srinagar", tours: "4 tours", style: "from-blue-300 via-emerald-500 to-green-900" },
+    { name: "Srinagar", tours: "4 tours", style: "from-blue-300 via-emerald-500 to-green-900", image: "/anuj-yadav-1KehhzFg_Q0-unsplash.jpg" },
     { name: "Dharamshala", tours: "8 tours", style: "from-slate-300 via-stone-500 to-slate-900" },
     { name: "Sikkim Darjeeling", tours: "14 tours", style: "from-blue-200 via-slate-500 to-blue-900" },
     { name: "Gangtok", tours: "10 tours", style: "from-orange-200 via-green-500 to-slate-900" },
@@ -47,21 +47,21 @@ const seasonData = {
   ],
 
   "July to October": [
-    { name: "Ladakh", tours: "14 tours", style: "from-blue-300 via-indigo-400 to-stone-900" },
+    { name: "Ladakh", tours: "14 tours", style: "from-blue-300 via-indigo-400 to-stone-900", image: "/darshan-chudasama-uWitPuPAzPA-unsplash.jpg" },
     { name: "Kerala", tours: "17 tours", style: "from-green-300 via-emerald-500 to-green-900" },
     { name: "Udaipur", tours: "22 tours", style: "from-blue-200 via-orange-400 to-slate-900" },
     { name: "Coorg", tours: "9 tours", style: "from-green-200 via-green-600 to-slate-900" },
     { name: "Meghalaya", tours: "12 tours", style: "from-cyan-200 via-green-500 to-slate-900" },
-    { name: "Goa", tours: "10 tours", style: "from-sky-200 via-cyan-500 to-blue-900" },
+    { name: "Goa", tours: "10 tours", style: "from-sky-200 via-cyan-500 to-blue-900", image: "/sarang-pande-IijeyJbmrec-unsplash.jpg" },
   ],
 
   "November to February": [
-    { name: "Jaipur", tours: "31 tours", style: "from-orange-200 via-orange-500 to-red-900" },
+    { name: "Jaipur", tours: "31 tours", style: "from-orange-200 via-orange-500 to-blue-900" },
     { name: "Jaisalmer", tours: "10 tours", style: "from-teal-200 via-rose-600 to-orange-900" },
     { name: "Rann of Kutch", tours: "8 tours", style: "from-slate-100 via-slate-400 to-slate-800" },
     { name: "Andaman", tours: "9 tours", style: "from-cyan-200 via-blue-500 to-blue-900" },
     { name: "Varanasi", tours: "16 tours", style: "from-orange-200 via-orange-500 to-stone-900" },
-    { name: "Rajasthan", tours: "32 tours", style: "from-teal-200 via-red-500 to-red-900" },
+    { name: "Rajasthan", tours: "32 tours", style: "from-teal-200 via-teal-500 to-blue-900" },
   ],
 };
 
@@ -130,11 +130,11 @@ const blogs = [
   },
   {
     title: "Rajasthan",
-    style: "from-orange-200 via-orange-600 to-red-900",
+    style: "from-orange-200 via-orange-600 to-blue-900",
   },
   {
     title: "Varanasi Travel Guide",
-    style: "from-orange-200 via-red-500 to-blue-900",
+    style: "from-orange-200 via-teal-500 to-blue-900",
   },
   {
     title: "Travel Stories",
@@ -157,7 +157,7 @@ function SectionTitle({ children }) {
         {children}
       </h2>
 
-      <div className="mx-auto mt-2 h-[2px] w-[65px] bg-[#008C95]" />
+      <div className="mx-auto mt-2 h-[2px] w-[65px] bg-[#0F4C81]" />
     </div>
   );
 }
@@ -176,7 +176,15 @@ function DestinationCard({ item }) {
       href={`/india/${slugifyDestination(item.name)}-tour-packages`}
       className={`group relative block h-[230px] overflow-hidden rounded-[5px] bg-gradient-to-br no-underline ${item.style}`}
     >
-      <div className="absolute -bottom-10 -left-8 h-28 w-40 rotate-12 rounded-full bg-black/10" />
+      {item.image ? (
+        <img
+          src={item.image}
+          alt={item.name}
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      ) : (
+        <div className="absolute -bottom-10 -left-8 h-28 w-40 rotate-12 rounded-full bg-black/10" />
+      )}
 
       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-3 pb-3 pt-14 text-left">
         <h3 className="text-[14px] font-semibold text-white group-hover:underline">
@@ -201,13 +209,13 @@ function SmallTourCard({ item }) {
   return (
     <Link
       href={href}
-      className="group block w-[270px] shrink-0 rounded-[8px] border border-[#bcc8db] bg-white p-2 no-underline transition hover:border-[#20B8B5] hover:shadow-md"
+      className="group block w-[270px] shrink-0 rounded-xl border border-[#bcc8db] bg-white p-2 no-underline transition hover:border-[#17BEBB] hover:shadow-lg"
     >
 
-      <div className="h-[150px] rounded-[6px] bg-gradient-to-br from-sky-200 via-orange-200 to-slate-500" />
+      <div className="h-[150px] rounded-xl bg-gradient-to-br from-sky-200 via-orange-200 to-slate-500" />
 
       <div className="mt-2">
-        <span className="inline-block border border-[#20B8B5] bg-[#EFF9F8] px-1 py-[1px] text-[7px] font-semibold text-[#008C95]">
+        <span className="inline-block border border-[#17BEBB] bg-[#F7FAFC] px-1 py-[1px] text-[7px] font-semibold text-[#0F4C81]">
           GROUP TOUR
         </span>
 
@@ -240,7 +248,7 @@ function SmallTourCard({ item }) {
             </strong>
           </div>
 
-          <span className="flex h-[28px] items-center justify-center rounded-[2px] bg-[#FF7A3D] text-[8px] font-semibold text-white transition-colors group-hover:bg-[#EA642C]">
+          <span className="flex h-[28px] items-center justify-center rounded-[2px] bg-[#FF7A1A] text-[8px] font-semibold text-white transition-colors group-hover:bg-[#E56A0F]">
             View Details
           </span>
         </div>
@@ -279,7 +287,7 @@ export default function IndiaTourExplore() {
               onClick={() => setCityTab("city")}
               className={`h-[34px] min-w-[85px] border px-4 text-[10px] ${
                 cityTab === "city"
-                  ? "border-[#008C95] bg-[#008C95] text-white"
+                  ? "border-[#0F4C81] bg-[#0F4C81] text-white"
                   : "border-[#444] bg-white"
               }`}
             >
@@ -291,7 +299,7 @@ export default function IndiaTourExplore() {
               onClick={() => setCityTab("state")}
               className={`h-[34px] min-w-[85px] border px-4 text-[10px] ${
                 cityTab === "state"
-                  ? "border-[#008C95] bg-[#008C95] text-white"
+                  ? "border-[#0F4C81] bg-[#0F4C81] text-white"
                   : "border-[#444] bg-white"
               }`}
             >
@@ -305,12 +313,11 @@ export default function IndiaTourExplore() {
               <ChevronLeft size={14} />
             </button>
 
-            <div className="grid flex-1 grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
+            <div className="flex flex-1 gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory sm:grid sm:overflow-visible sm:grid-cols-3 md:grid-cols-6">
               {cityData[cityTab].map((item) => (
-                <DestinationCard
-                  key={item.name}
-                  item={item}
-                />
+                <div key={item.name} className="min-w-[150px] flex-shrink-0 snap-start sm:min-w-0">
+                  <DestinationCard item={item} />
+                </div>
               ))}
             </div>
 
@@ -344,7 +351,7 @@ export default function IndiaTourExplore() {
                 onClick={() => setInterest(item)}
                 className={`h-[30px] border px-4 text-[9px] ${
                   interest === item
-                    ? "border-[#008C95] bg-[#008C95] text-white"
+                    ? "border-[#0F4C81] bg-[#0F4C81] text-white"
                     : "border-[#777] bg-white"
                 }`}
               >
@@ -353,19 +360,18 @@ export default function IndiaTourExplore() {
             ))}
           </div>
 
-          <div className="mt-7 flex flex-wrap justify-center gap-4">
+          <div className="mt-7 flex gap-4 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory sm:flex-wrap sm:justify-center sm:overflow-visible">
 
             {interestTours.map((item) => (
-              <SmallTourCard
-                key={item.title}
-                item={item}
-              />
+              <div key={item.title} className="shrink-0 snap-start">
+                <SmallTourCard item={item} />
+              </div>
             ))}
 
             {/* SHOW ALL */}
-            <div className="flex w-[270px] flex-col items-center justify-center rounded-[8px] border border-[#20B8B5] bg-[#EFF9F8] p-5 text-center">
-              
-              <p className="text-[11px] font-medium text-[#008C95]">
+            <div className="flex w-[270px] shrink-0 snap-start flex-col items-center justify-center rounded-xl border border-[#17BEBB] bg-[#F7FAFC] p-5 text-center">
+
+              <p className="text-[11px] font-medium text-[#0F4C81]">
                 Journey doesn't stop at this point
               </p>
 
@@ -378,7 +384,7 @@ export default function IndiaTourExplore() {
                 Start exploring a diverse range of additional tours.
               </p>
 
-              <button className="mt-5 flex h-[32px] w-full items-center justify-center gap-2 rounded-[3px] bg-[#FF7A3D] text-[9px] font-semibold text-white transition hover:bg-[#EA642C]">
+              <button className="mt-5 flex h-[32px] w-full items-center justify-center gap-2 rounded-[3px] bg-[#FF7A1A] text-[9px] font-semibold text-white transition hover:bg-[#E56A0F]">
                 Show all tours
                 <ArrowRight size={12} />
               </button>
@@ -406,7 +412,7 @@ export default function IndiaTourExplore() {
                 onClick={() => setSeason(item)}
                 className={`h-[32px] min-w-[125px] border px-4 text-[9px] ${
                   season === item
-                    ? "border-[#008C95] bg-[#008C95] text-white"
+                    ? "border-[#0F4C81] bg-[#0F4C81] text-white"
                     : "border-[#444] bg-white"
                 }`}
               >
@@ -415,12 +421,11 @@ export default function IndiaTourExplore() {
             ))}
           </div>
 
-          <div className="mx-auto mt-8 grid max-w-[1180px] grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
+          <div className="mx-auto mt-8 flex max-w-[1180px] gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory sm:grid sm:overflow-visible sm:grid-cols-3 md:grid-cols-6">
             {seasonData[season].map((item) => (
-              <DestinationCard
-                key={item.name}
-                item={item}
-              />
+              <div key={item.name} className="min-w-[150px] flex-shrink-0 snap-start sm:min-w-0">
+                <DestinationCard item={item} />
+              </div>
             ))}
           </div>
 
@@ -450,7 +455,7 @@ export default function IndiaTourExplore() {
                 onClick={() => setDuration(item)}
                 className={`h-[30px] border px-4 text-[9px] ${
                   duration === item
-                    ? "border-[#008C95] bg-[#008C95] text-white"
+                    ? "border-[#0F4C81] bg-[#0F4C81] text-white"
                     : "border-[#777] bg-white"
                 }`}
               >
@@ -465,12 +470,12 @@ export default function IndiaTourExplore() {
               <ChevronLeft size={14} />
             </button>
 
-            <div className="flex flex-1 gap-3 overflow-x-auto pb-1">
+            <div className="flex flex-1 gap-3 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory">
               {durationPackages.map((item) => (
                 <Link
                   key={item.slug}
                   href={`/package/${item.slug}`}
-                  className="group block w-[270px] shrink-0 overflow-hidden rounded-[8px] border border-[#cfd4dc] bg-white no-underline shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#20B8B5] hover:shadow-[0_6px_16px_rgba(0,0,0,0.10)]"
+                  className="group block w-[270px] shrink-0 snap-start transform-gpu overflow-hidden rounded-xl border border-[#cfd4dc] bg-white no-underline shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#17BEBB] hover:shadow-[0_6px_16px_rgba(0,0,0,0.10)]"
                 >
                   <div className="relative flex h-[160px] items-center justify-center overflow-hidden bg-gradient-to-br from-[#b7d7eb] via-[#e8d9b5] to-[#98b1c7] px-3 text-center">
                     <span className="text-[12px] font-semibold text-[#31465a]">
@@ -480,7 +485,7 @@ export default function IndiaTourExplore() {
 
                   <div className="p-3">
                     <div className="flex flex-wrap gap-1">
-                      <span className="border border-[#20B8B5] bg-[#EFF9F8] px-1.5 py-0.5 text-[8px] font-semibold text-[#008C95]">
+                      <span className="border border-[#17BEBB] bg-[#F7FAFC] px-1.5 py-0.5 text-[8px] font-semibold text-[#0F4C81]">
                         GROUP TOUR
                       </span>
 
@@ -489,7 +494,7 @@ export default function IndiaTourExplore() {
                       </span>
                     </div>
 
-                    <h3 className="mt-2 text-[14px] font-semibold text-[#1e1e1e] transition-colors group-hover:text-[#008C95]">
+                    <h3 className="mt-2 text-[14px] font-semibold text-[#1e1e1e] transition-colors group-hover:text-[#0F4C81]">
                       {item.title}
                     </h3>
 
@@ -509,7 +514,7 @@ export default function IndiaTourExplore() {
                         <strong className="text-[16px] leading-none text-[#111]">₹{item.price}</strong>
                       </div>
 
-                      <span className="flex h-[30px] items-center justify-center rounded-[3px] bg-[#FF7A3D] px-3 text-[10px] font-semibold text-white transition-colors group-hover:bg-[#EA642C]">
+                      <span className="flex h-[30px] items-center justify-center rounded-[3px] bg-[#FF7A1A] px-3 text-[10px] font-semibold text-white transition-colors group-hover:bg-[#E56A0F]">
                         View Details
                       </span>
                     </div>
@@ -537,18 +542,18 @@ export default function IndiaTourExplore() {
             Popular Blogs
           </SectionTitle>
 
-          <div className="mx-auto mt-8 grid max-w-[1180px] grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+          <div className="mx-auto mt-8 flex max-w-[1180px] gap-4 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory sm:grid sm:overflow-visible sm:grid-cols-3 md:grid-cols-5">
 
             {blogs.map((blog) => (
               <article
                 key={blog.title}
-                className="group cursor-pointer"
+                className="group min-w-[150px] shrink-0 snap-start cursor-pointer sm:min-w-0"
               >
                 <div
-                  className={`h-[190px] rounded-[6px] bg-gradient-to-br ${blog.style}`}
+                  className={`h-[190px] rounded-xl bg-gradient-to-br ${blog.style}`}
                 />
 
-                <h3 className="mt-2 text-[12px] font-medium leading-[1.3] text-[#222] group-hover:text-[#008C95]">
+                <h3 className="mt-2 text-[12px] font-medium leading-[1.3] text-[#222] group-hover:text-[#0F4C81]">
                   {blog.title}
                 </h3>
               </article>

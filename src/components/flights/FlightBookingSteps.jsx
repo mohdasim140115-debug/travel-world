@@ -25,23 +25,23 @@ const steps = [
 
 export default function FlightBookingSteps() {
   return (
-    <section className="px-4 py-12 sm:px-6 lg:px-0">
+    <section className="px-3 py-12 sm:px-6 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
-        <h2 className="text-center text-[26px] font-bold text-[#183B3D] sm:text-[30px]">
+        <h2 className="text-center text-[26px] font-bold text-[#0F172A] sm:text-[30px]">
           How flight booking works on Travel World group tours
         </h2>
 
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map(({ icon: Icon, title, description }, index) => (
-            <div key={title} className="rounded-[8px] border border-[#E5E7EB] bg-white p-4">
+            <div key={title} className="rounded-xl border border-[#E5E7EB] bg-white p-4">
               <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#006D77] text-[11px] font-bold text-white">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0B3B63] text-[11px] font-bold text-white">
                   {index + 1}
                 </div>
-                <Icon size={16} className="text-[#183B3D]" />
+                <Icon size={16} className="text-[#0F172A]" />
               </div>
 
-              <h3 className="mt-3 text-[13px] font-semibold text-[#183B3D]">{title}</h3>
+              <h3 className="mt-3 text-[13px] font-semibold text-[#0F172A]">{title}</h3>
               <p className="mt-1 text-[11px] leading-[1.6] text-[#6B7280]">{description}</p>
             </div>
           ))}

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 
 import MegaMenu from "./MegaMenu";
-import MobileNavAccordion from "./MobileNavAccordion";
 import { indiaNavigation, worldNavigation } from "@/data/navigationData";
 
 const links = [
@@ -23,7 +22,6 @@ const links = [
 
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState(null);
-  const [mobileMenu, setMobileMenu] = useState(null);
   const closeTimer = useRef(null);
 
   function openNow(key) {
@@ -48,7 +46,6 @@ export default function Navbar() {
     function handleKeyDown(event) {
       if (event.key === "Escape") {
         setOpenMenu(null);
-        setMobileMenu(null);
       }
     }
     document.addEventListener("keydown", handleKeyDown);
@@ -60,8 +57,8 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="relative border-b border-slate-700/60 bg-[#006D77] text-white">
-      <div className="mx-auto flex h-[36px] max-w-[1280px] items-center justify-center overflow-x-auto px-3 sm:px-6 lg:px-0">
+    <nav className="relative hidden border-b border-slate-700/60 bg-[#0B3B63] text-white lg:block">
+      <div className="mx-auto hidden h-[36px] max-w-[1280px] items-center justify-center overflow-x-auto px-3 sm:px-6 lg:flex lg:px-0">
         <div className="flex items-center gap-2 whitespace-nowrap text-[13px] font-medium sm:gap-4">
           {links.map((link) => {
             const isMega = Boolean(link.megaMenu);
@@ -70,10 +67,10 @@ export default function Navbar() {
             const inner = (
               <div
                 className={`flex items-center gap-1 rounded-[4px] border-b-2 px-2 py-1 transition ${
-                  isActive ? "border-[#20B8B5] bg-white text-[#183B3D]" : "border-transparent"
+                  isActive ? "border-[#17BEBB] bg-white text-[#0F172A]" : "border-transparent"
                 }`}
               >
-                <span className={isActive ? "" : "transition hover:text-[#BFF3EE]"}>{link.label}</span>
+                <span className={isActive ? "" : "transition hover:text-[#5EEAD4]"}>{link.label}</span>
                 {link.hasChevron ? <ChevronDown className="h-3.5 w-3.5" /> : null}
                 {isMega ? (
                   <ChevronDown className={`h-3.5 w-3.5 ${isActive ? "rotate-180" : ""}`} />
@@ -125,34 +122,6 @@ export default function Navbar() {
           })}
         </div>
       </div>
-
-      {/* MOBILE India/World triggers + accordion (hover doesn't exist on touch) */}
-      <div className="flex gap-1 border-t border-slate-700/40 px-3 py-1.5 lg:hidden">
-        {["india", "world"].map((key) => (
-          <button
-            key={key}
-            type="button"
-            onClick={() => setMobileMenu(mobileMenu === key ? null : key)}
-            className={`flex items-center gap-1 rounded-[4px] px-2 py-1 text-[12px] font-medium ${
-              mobileMenu === key ? "bg-white text-[#183B3D]" : "text-white"
-            }`}
-          >
-            {key === "india" ? "India" : "World"}
-            <ChevronDown className={`h-3 w-3 ${mobileMenu === key ? "rotate-180" : ""}`} />
-          </button>
-        ))}
-      </div>
-
-      {mobileMenu && (
-        <div className="border-t border-slate-700/40 lg:hidden">
-          <MobileNavAccordion
-            data={mobileMenu === "india" ? indiaNavigation : worldNavigation}
-            overviewHref={mobileMenu === "india" ? "/india" : "/world"}
-            overviewLabel={mobileMenu === "india" ? "All India Tour Packages" : "All World Tour Packages"}
-            onNavigate={() => setMobileMenu(null)}
-          />
-        </div>
-      )}
 
       {/* BACKDROP for desktop mega menu */}
       <button

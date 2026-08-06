@@ -38,7 +38,7 @@ function SectionTitle({ children }) {
   return (
     <div className="text-center">
       <h2 className="text-[18px] font-medium text-[#222]">{children}</h2>
-      <div className="mx-auto mt-2 h-[2px] w-[65px] bg-[#008C95]" />
+      <div className="mx-auto mt-2 h-[2px] w-[65px] bg-[#0F4C81]" />
     </div>
   );
 }
@@ -47,7 +47,7 @@ function GradientPill({ name, count, index, href }) {
   return (
     <Link
       href={href || "#"}
-      className={`group relative block h-[145px] overflow-hidden rounded-[5px] border border-[#d6d6d6] bg-gradient-to-br no-underline shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#20B8B5] hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)] ${gradients[index % gradients.length]}`}
+      className={`group relative block h-[145px] transform-gpu overflow-hidden rounded-[5px] border border-[#d6d6d6] bg-gradient-to-br no-underline shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#17BEBB] hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)] ${gradients[index % gradients.length]}`}
     >
       <div className="absolute -bottom-10 -left-8 h-28 w-40 rotate-12 rounded-full bg-black/10" />
 
@@ -226,7 +226,7 @@ export default function TourCategoryPage({ config }) {
                   type="button"
                   className={`h-8 min-w-8 rounded-[3px] border px-2 text-[11px] font-medium ${
                     number === 1
-                      ? "border-[#008C95] bg-white text-[#008C95]"
+                      ? "border-[#0F4C81] bg-white text-[#0F4C81]"
                       : "border-[#d3d7dd] bg-white text-[#333]"
                   }`}
                 >
@@ -286,7 +286,7 @@ export default function TourCategoryPage({ config }) {
                 onClick={() => setInterest(item)}
                 className={`h-[30px] border px-4 text-[9px] ${
                   interest === item
-                    ? "border-[#008C95] bg-[#008C95] text-white"
+                    ? "border-[#0F4C81] bg-[#0F4C81] text-white"
                     : "border-[#777] bg-white"
                 }`}
               >
@@ -314,7 +314,7 @@ export default function TourCategoryPage({ config }) {
                 onClick={() => setSeason(item)}
                 className={`h-[32px] min-w-[125px] border px-4 text-[9px] ${
                   season === item
-                    ? "border-[#008C95] bg-[#008C95] text-white"
+                    ? "border-[#0F4C81] bg-[#0F4C81] text-white"
                     : "border-[#444] bg-white"
                 }`}
               >
@@ -342,7 +342,7 @@ export default function TourCategoryPage({ config }) {
                 onClick={() => setDuration(item)}
                 className={`h-[30px] border px-4 text-[9px] ${
                   duration === item
-                    ? "border-[#008C95] bg-[#008C95] text-white"
+                    ? "border-[#0F4C81] bg-[#0F4C81] text-white"
                     : "border-[#777] bg-white"
                 }`}
               >
@@ -359,12 +359,12 @@ export default function TourCategoryPage({ config }) {
                 <Link
                   key={pkg.slug}
                   href={`/package/${pkg.slug}`}
-                  className="block w-[220px] shrink-0 rounded-[6px] border border-[#bcc8db] bg-white p-2 no-underline"
+                  className="block w-[220px] shrink-0 rounded-xl border border-[#bcc8db] bg-white p-2 no-underline"
                 >
                   <div className="h-[72px] rounded-[4px] bg-gradient-to-br from-sky-200 via-orange-200 to-slate-500" />
 
                   <div className="mt-2">
-                    <span className="inline-block border border-[#20B8B5] bg-[#EFF9F8] px-1 py-[1px] text-[7px] font-semibold text-[#008C95]">
+                    <span className="inline-block border border-[#17BEBB] bg-[#F7FAFC] px-1 py-[1px] text-[7px] font-semibold text-[#0F4C81]">
                       GROUP TOUR
                     </span>
 
@@ -388,7 +388,7 @@ export default function TourCategoryPage({ config }) {
                         <strong className="text-[13px]">{item.price}</strong>
                       </div>
 
-                      <span className="flex h-[28px] items-center justify-center rounded-[2px] bg-[#FF7A3D] text-[8px] font-semibold text-white">
+                      <span className="flex h-[28px] items-center justify-center rounded-[2px] bg-[#FF7A1A] text-[8px] font-semibold text-white">
                         View Details
                       </span>
                     </div>
@@ -420,7 +420,7 @@ export default function TourCategoryPage({ config }) {
                 <Link
                   key={item.name}
                   href={item.href || "#"}
-                  className="group relative block h-[145px] overflow-hidden rounded-[5px] border border-[#d6d6d6] no-underline shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#20B8B5] hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)]"
+                  className="group relative block h-[145px] transform-gpu overflow-hidden rounded-[5px] border border-[#d6d6d6] no-underline shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#17BEBB] hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)]"
                 >
                   <div
                     className={`h-full w-full bg-gradient-to-br ${gradients[index % gradients.length]}`}
@@ -453,7 +453,7 @@ export default function TourCategoryPage({ config }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="rounded-full border border-[#d6d6d6] bg-white px-4 py-2 text-[10px] font-medium text-[#333] no-underline transition hover:border-[#20B8B5] hover:text-[#008C95]"
+                  className="rounded-full border border-[#d6d6d6] bg-white px-4 py-2 text-[10px] font-medium text-[#333] no-underline transition hover:border-[#17BEBB] hover:text-[#0F4C81]"
                 >
                   {item.name}
                 </Link>
@@ -478,7 +478,7 @@ export default function TourCategoryPage({ config }) {
                   className={`h-[115px] rounded-[5px] bg-gradient-to-br ${gradients[index % gradients.length]}`}
                 />
 
-                <h3 className="mt-2 text-[10px] font-medium leading-[1.3] text-[#222] group-hover:text-[#008C95]">
+                <h3 className="mt-2 text-[10px] font-medium leading-[1.3] text-[#222] group-hover:text-[#0F4C81]">
                   {blog}
                 </h3>
               </article>
@@ -491,7 +491,7 @@ export default function TourCategoryPage({ config }) {
       {/* =================================================
           REVIEWS
       ================================================= */}
-      <section id="reviews" className="relative overflow-hidden bg-[#006D77] py-12">
+      <section id="reviews" className="relative overflow-hidden bg-[#0B3B63] py-12">
         <div className="india-container relative">
           <Quote
             size={100}
@@ -517,10 +517,10 @@ export default function TourCategoryPage({ config }) {
             {config.reviews.map((review) => (
               <article
                 key={`${review.name}-${review.tour}`}
-                className="relative flex min-h-[205px] flex-col rounded-[6px] bg-white p-4 text-[#222]"
+                className="relative flex min-h-[205px] flex-col rounded-xl bg-white p-4 text-[#222]"
               >
                 <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-[2px] text-[#ff6b00]">
+                  <div className="flex items-center gap-[2px] text-[#F5A623]">
                     <Star size={11} fill="currentColor" />
                     <span className="text-[10px] font-semibold text-[#222]">5</span>
                   </div>
@@ -558,7 +558,7 @@ export default function TourCategoryPage({ config }) {
 
             <p className="mt-2 text-[10px] text-[#777]">{config.faqSubheading}</p>
 
-            <div className="mx-auto mt-2 h-[2px] w-[65px] bg-[#008C95]" />
+            <div className="mx-auto mt-2 h-[2px] w-[65px] bg-[#0F4C81]" />
           </div>
 
           <div className="mx-auto mt-7 max-w-[820px] space-y-2">
@@ -652,7 +652,7 @@ export default function TourCategoryPage({ config }) {
         <div className="india-container">
           <div className="grid min-h-[72px] grid-cols-2 items-center gap-4 py-3 md:grid-cols-4">
             <div className="flex items-center gap-3">
-              <MapPin size={17} className="text-[#008C95]" />
+              <MapPin size={17} className="text-[#0F4C81]" />
 
               <div>
                 <p className="text-[8px] text-[#777]">150+ Travel World Offices</p>
@@ -661,7 +661,7 @@ export default function TourCategoryPage({ config }) {
             </div>
 
             <div className="flex items-center gap-3">
-              <Phone size={17} className="text-[#008C95]" />
+              <Phone size={17} className="text-[#0F4C81]" />
 
               <div>
                 <p className="text-[8px] text-[#777]">Request a Quote</p>
@@ -672,7 +672,7 @@ export default function TourCategoryPage({ config }) {
             </div>
 
             <div className="flex items-center gap-3">
-              <MessageSquare size={17} className="text-[#008C95]" />
+              <MessageSquare size={17} className="text-[#0F4C81]" />
 
               <div>
                 <p className="text-[8px] text-[#777]">For Feedback</p>
@@ -681,7 +681,7 @@ export default function TourCategoryPage({ config }) {
             </div>
 
             <div className="flex items-center gap-3">
-              <Mail size={17} className="text-[#008C95]" />
+              <Mail size={17} className="text-[#0F4C81]" />
 
               <div>
                 <p className="text-[8px] text-[#777]">For Enquiries</p>

@@ -25,23 +25,40 @@ const benefits = [
 
 export default function FlightBenefits() {
   return (
-    <section className="bg-[#F7F9FC] px-4 py-12 sm:px-6 lg:px-0">
+    <section className="bg-[#F7F9FC] px-3 py-12 sm:px-6 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
-        <h2 className="text-center text-[26px] font-bold text-[#183B3D] sm:text-[30px]">
+        <h2 className="text-center text-[26px] font-bold text-[#0F172A] sm:text-[30px]">
           Why book your flights with Travel World?
         </h2>
 
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {/* MOBILE: plain icon-left / text-right list */}
+        <div className="mt-8 flex flex-col divide-y divide-[#E5E7EB] sm:hidden">
           {benefits.map(({ icon: Icon, title, description }) => (
-            <div
-              key={title}
-              className="group rounded-[8px] border border-[#D8E7E5] bg-white p-4 transition-all duration-200 hover:-translate-y-1 hover:border-[#20B8B5] hover:shadow-md"
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E2F5F2] text-[#007F86] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#008C95] group-hover:text-white">
+            <div key={title} className="flex items-start gap-3 py-4 first:pt-0 last:pb-0">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E6F7F5] text-[#17BEBB]">
                 <Icon size={18} />
               </div>
 
-              <h3 className="mt-3 text-[13px] font-semibold text-[#183B3D]">{title}</h3>
+              <div>
+                <h3 className="text-[14px] font-semibold text-[#0F172A]">{title}</h3>
+                <p className="mt-1 text-[13px] leading-relaxed text-[#6B7280]">{description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* sm+: original card grid, unchanged */}
+        <div className="mt-8 hidden sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+          {benefits.map(({ icon: Icon, title, description }) => (
+            <div
+              key={title}
+              className="group rounded-xl border border-[#E5E7EB] bg-white p-4 transition-all duration-200 hover:-translate-y-1 hover:border-[#17BEBB] hover:shadow-lg"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E6F7F5] text-[#17BEBB] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0F4C81] group-hover:text-white">
+                <Icon size={18} />
+              </div>
+
+              <h3 className="mt-3 text-[13px] font-semibold text-[#0F172A]">{title}</h3>
               <p className="mt-1 text-[11px] leading-[1.6] text-[#6B7280]">{description}</p>
             </div>
           ))}

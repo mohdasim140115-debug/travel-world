@@ -62,8 +62,8 @@ export default function FlightsPage() {
             HERO
         ===================================================== */}
         <section
-          className="relative overflow-hidden px-4 py-14 sm:px-6 lg:px-0"
-          style={{ background: "linear-gradient(135deg, #006D77, #168AAD)" }}
+          className="relative overflow-hidden px-3 py-14 sm:px-6 lg:px-0"
+          style={{ background: "linear-gradient(135deg, #0B3B63, #4DA8DA)" }}
         >
           <Plane className="pointer-events-none absolute right-6 top-8 h-24 w-24 rotate-45 text-white/10 sm:h-32 sm:w-32" />
 
@@ -86,10 +86,10 @@ export default function FlightsPage() {
         {/* =====================================================
             INTRO BOX
         ===================================================== */}
-        <section className="px-4 py-10 sm:px-6 lg:px-0">
+        <section className="px-3 py-10 sm:px-6 lg:px-0">
           <div className="mx-auto w-full max-w-[1280px]">
-            <div className="rounded-[8px] border border-[#D8E7E5] bg-[#EFF9F8] p-5">
-              <h2 className="text-[16px] font-bold text-[#183B3D]">
+            <div className="rounded-xl border border-[#E5E7EB] bg-[#F7FAFC] p-5">
+              <h2 className="text-[16px] font-bold text-[#0F172A]">
                 Book Flight Tickets Online with Travel World
               </h2>
               <p className="mt-2 text-[12px] leading-[1.7] text-[#4B5563]">

@@ -73,9 +73,9 @@ const faqs = [
 
 function ReviewCard({ review }) {
   return (
-    <article className="relative flex min-h-[205px] flex-col rounded-[6px] bg-white p-4 text-[#222]">
+    <article className="relative flex min-h-[205px] flex-col rounded-xl bg-white p-4 text-[#222]">
       <div className="flex items-center gap-2">
-        <div className="flex items-center gap-[2px] text-[#ff6b00]">
+        <div className="flex items-center gap-[2px] text-[#F5A623]">
           <Star size={11} fill="currentColor" />
           <span className="text-[10px] font-semibold text-[#222]">5</span>
         </div>
@@ -136,7 +136,7 @@ export default function IndiaTourBottom() {
       ========================================== */}
       <section
         id="reviews"
-        className="relative overflow-hidden bg-[#006D77] py-12"
+        className="relative overflow-hidden bg-[#0B3B63] py-12"
       >
         <div className="india-container relative">
           {/* Decorative quotes */}
@@ -162,19 +162,18 @@ export default function IndiaTourBottom() {
             </p>
           </div>
 
-          <div className="relative z-10 mx-auto mt-7 grid max-w-[1180px] gap-4 md:grid-cols-3">
+          <div className="relative z-10 mx-auto mt-7 flex max-w-[1180px] gap-4 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:grid md:overflow-visible md:grid-cols-3">
             {reviews.map((review) => (
-              <ReviewCard
-                key={`${review.name}-${review.tour}`}
-                review={review}
-              />
+              <div key={`${review.name}-${review.tour}`} className="min-w-[260px] max-w-[260px] flex-shrink-0 snap-start md:min-w-0 md:max-w-none">
+                <ReviewCard review={review} />
+              </div>
             ))}
           </div>
 
           <div className="relative z-10 mt-7 flex justify-center">
             <button
               type="button"
-              className="h-[36px] min-w-[170px] rounded-[3px] bg-[#008C95] px-6 text-[10px] font-semibold text-white transition hover:bg-[#006D77]"
+              className="h-[36px] min-w-[170px] rounded-[3px] bg-[#0F4C81] px-6 text-[10px] font-semibold text-white transition hover:bg-[#0B3B63]"
             >
               Read 15K+ Reviews
             </button>
@@ -197,7 +196,7 @@ export default function IndiaTourBottom() {
               questions about India tours.
             </p>
 
-            <div className="mx-auto mt-2 h-[2px] w-[65px] bg-[#008C95]" />
+            <div className="mx-auto mt-2 h-[2px] w-[65px] bg-[#0F4C81]" />
           </div>
 
           <div className="mx-auto mt-7 max-w-[820px] space-y-2">
@@ -341,7 +340,7 @@ export default function IndiaTourBottom() {
           <div className="grid min-h-[72px] grid-cols-2 items-center gap-4 py-3 md:grid-cols-5">
             
             <div className="flex items-center gap-3">
-              <MapPin size={17} className="text-[#008C95]" />
+              <MapPin size={17} className="text-[#0F4C81]" />
 
               <div>
                 <p className="text-[8px] text-[#777]">
@@ -355,7 +354,7 @@ export default function IndiaTourBottom() {
             </div>
 
             <div className="flex items-center gap-3">
-              <Phone size={17} className="text-[#008C95]" />
+              <Phone size={17} className="text-[#0F4C81]" />
 
               <div>
                 <p className="text-[8px] text-[#777]">
@@ -374,7 +373,7 @@ export default function IndiaTourBottom() {
             <div className="flex items-center gap-3">
               <MessageSquare
                 size={17}
-                className="text-[#008C95]"
+                className="text-[#0F4C81]"
               />
 
               <div>
@@ -389,7 +388,7 @@ export default function IndiaTourBottom() {
             </div>
 
             <div className="flex items-center gap-3">
-              <Mail size={17} className="text-[#008C95]" />
+              <Mail size={17} className="text-[#0F4C81]" />
 
               <div>
                 <p className="text-[8px] text-[#777]">
