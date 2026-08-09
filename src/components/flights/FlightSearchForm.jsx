@@ -20,7 +20,7 @@ function CityField({ label, value, onChange, placeholder }) {
 
   return (
     <div className="relative min-w-0 flex-1">
-      <label className="block text-[9px] font-semibold uppercase tracking-wide text-[#6B7280]">
+      <label className="block text-[11px] font-semibold uppercase tracking-wide text-[#6B7280]">
         {label}
       </label>
 
@@ -56,7 +56,7 @@ function CityField({ label, value, onChange, placeholder }) {
               className="flex w-full items-center justify-between px-3 py-2 text-left text-[12px] hover:bg-[#F5F7FA]"
             >
               <span className="font-medium text-[#0F172A]">{airport.city}</span>
-              <span className="text-[10px] text-[#6B7280]">{airport.code}</span>
+              <span className="text-[12px] text-[#6B7280]">{airport.code}</span>
             </button>
           ))}
         </div>
@@ -144,7 +144,7 @@ export default function FlightSearchForm({ initialFrom = "Mumbai", initialTo = "
         <CityField label="To" value={to} onChange={setTo} placeholder="Delhi" />
 
         <div>
-          <label className="block text-[9px] font-semibold uppercase tracking-wide text-[#6B7280]">
+          <label className="block text-[11px] font-semibold uppercase tracking-wide text-[#6B7280]">
             Departure
           </label>
           <div className="mt-1 flex items-center gap-2 rounded-[4px] border border-[#D1D5DB] bg-white px-2 py-2">
@@ -154,7 +154,7 @@ export default function FlightSearchForm({ initialFrom = "Mumbai", initialTo = "
         </div>
 
         <div>
-          <label className="block text-[9px] font-semibold uppercase tracking-wide text-[#6B7280]">
+          <label className="block text-[11px] font-semibold uppercase tracking-wide text-[#6B7280]">
             Return
           </label>
           <div
@@ -172,7 +172,7 @@ export default function FlightSearchForm({ initialFrom = "Mumbai", initialTo = "
         </div>
 
         <div>
-          <label className="block text-[9px] font-semibold uppercase tracking-wide text-[#6B7280]">
+          <label className="block text-[11px] font-semibold uppercase tracking-wide text-[#6B7280]">
             Passengers &amp; Class
           </label>
           <div className="mt-1 flex items-center gap-2 rounded-[4px] border border-[#D1D5DB] bg-white px-2 py-2">
@@ -185,7 +185,7 @@ export default function FlightSearchForm({ initialFrom = "Mumbai", initialTo = "
 
         <button
           type="submit"
-          className="flex h-[46px] items-center justify-center gap-2 rounded-[6px] bg-[#FF7A1A] px-5 text-[14px] font-bold text-white transition hover:bg-[#E56A0F] lg:h-[38px] lg:rounded-[4px] lg:text-[12px]"
+          className="flex h-[46px] items-center justify-center gap-2 rounded-[10px] bg-[#FF7A1A] px-5 text-[14px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition hover:-translate-y-0.5 hover:bg-[#E56A0F] lg:h-[38px] lg:rounded-[4px] lg:text-[12px] lg:shadow-none lg:hover:translate-y-0"
         >
           <Search size={14} />
           Search

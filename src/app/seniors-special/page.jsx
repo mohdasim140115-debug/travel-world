@@ -3,12 +3,15 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
 import { packages } from "@/data/packages";
+import JsonLd from "@/components/common/JsonLd";
+import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: "Seniors' Special Tour Packages | Senior Citizen Group Tours",
   description:
     "Explore Seniors' Special tour packages across India and the world — comfortably paced group holidays designed with well-planned itineraries and dedicated tour assistance.",
-};
+  path: "/seniors-special",
+});
 
 const seniorsSlugs = [
   "seniors-special-rajasthan",
@@ -192,6 +195,12 @@ const config = {
 export default function SeniorsSpecialPage() {
   return (
     <>
+      <JsonLd
+        schema={breadcrumbSchema([
+          { name: "Home", href: "/" },
+          { name: "Seniors' Special", href: "/seniors-special" },
+        ])}
+      />
       <Header />
       <Navbar />
 

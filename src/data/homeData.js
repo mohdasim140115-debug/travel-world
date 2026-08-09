@@ -47,14 +47,14 @@ export const homeData = {
       { name: "Europe", days: "6 Days", price: "₹1,69,000" },
     ],
     destinations: [
-      { name: "Best of Kashmir", price: "From ₹50,000", guests: "18.2k", slug: "best-of-kashmir-tour-package", image: "/anuj-yadav-1KehhzFg_Q0-unsplash.jpg" },
-      { name: "Highlights of Kerala", price: "From ₹35,000", guests: "11.1k", slug: "highlights-of-kerala-tour-package", image: "/abhishek-prasad-N3VzleBhOvk-unsplash.jpg" },
-      { name: "Best of Andaman", price: "From ₹75,000", guests: "8.2k", slug: "best-of-andaman-tour-package", image: "/abhishek-chakraborty-WVkU-8J-_8Y-unsplash.jpg" },
-      { name: "Highlights of Rajasthan", price: "From ₹35,000", guests: "8k", slug: "highlights-of-rajasthan-tour-package", image: "/gaurav-sharma-lj3r0SZK7rQ-unsplash.jpg" },
-      { name: "Singapore Thailand Malaysia", price: "From ₹1,88,000", guests: "29.2k", slug: "singapore-thailand-malaysia-tour-package", image: "/kirill-petropavlov-vmGwPt9gpV0-unsplash.jpg" },
-      { name: "Best of Thailand", price: "From ₹85,000", guests: "24.6k", slug: "best-of-thailand-tour-package", image: "/evan-krause-BU6lABNbTpA-unsplash.jpg" },
-      { name: "European Jewels", price: "From ₹4,20,000", guests: "12.2k", slug: "european-jewels-tour-package", image: "/alexander-kagan-t9Td0zfDTwI-unsplash.jpg" },
-      { name: "Singapore Malaysia", price: "From ₹1,62,000", guests: "15k", slug: "singapore-malaysia-tour-package", image: "/hu-nh-ch-ng-xdFOrbFpjO0-unsplash.jpg" },
+      { name: "Best of Kashmir", price: "₹50,000", guests: "18.2k", slug: "best-of-kashmir-tour-package", image: "/anuj-yadav-1KehhzFg_Q0-unsplash.jpg" },
+      { name: "Highlights of Kerala", price: "₹35,000", guests: "11.1k", slug: "highlights-of-kerala-tour-package", image: "/abhishek-prasad-N3VzleBhOvk-unsplash.jpg" },
+      { name: "Best of Andaman", price: "₹75,000", guests: "8.2k", slug: "best-of-andaman-tour-package", image: "/abhishek-chakraborty-WVkU-8J-_8Y-unsplash.jpg" },
+      { name: "Highlights of Rajasthan", price: "₹35,000", guests: "8k", slug: "highlights-of-rajasthan-tour-package", image: "/gaurav-sharma-lj3r0SZK7rQ-unsplash.jpg" },
+      { name: "Singapore Thailand Malaysia", price: "₹1,88,000", guests: "29.2k", slug: "singapore-thailand-malaysia-tour-package", image: "/kirill-petropavlov-vmGwPt9gpV0-unsplash.jpg" },
+      { name: "Best of Thailand", price: "₹85,000", guests: "24.6k", slug: "best-of-thailand-tour-package", image: "/evan-krause-BU6lABNbTpA-unsplash.jpg" },
+      { name: "European Jewels", price: "₹4,20,000", guests: "12.2k", slug: "european-jewels-tour-package", image: "/alexander-kagan-t9Td0zfDTwI-unsplash.jpg" },
+      { name: "Singapore Malaysia", price: "₹1,62,000", guests: "15k", slug: "singapore-malaysia-tour-package", image: "/hu-nh-ch-ng-xdFOrbFpjO0-unsplash.jpg" },
     ],
   },
   trustReviews: {
@@ -196,20 +196,20 @@ export const homeData = {
   faq: {
     questions: [
       {
-        question: "Where can I find information about Travel World tours and products?",
+        question: "Where can I find information about Honor Tour & Travels tours and products?",
         answer: "You can find comprehensive information about all our tours, packages, and products on our website. Visit our homepage or use our search feature to explore tours by destination, duration, and price range.",
       },
       {
-        question: "What type of tours or packages does Travel World offer?",
+        question: "What type of tours or packages does Honor Tour & Travels offer?",
         answer: "We offer a wide variety of tours including family packages, group tours, honeymoon packages, women's special tours, seniors' tours, and customized holidays. Our destinations span across India and the world.",
       },
       {
-        question: "Does Travel World book train tickets?",
+        question: "Does Honor Tour & Travels book train tickets?",
         answer: "Yes, we offer integrated travel solutions including train bookings as part of our comprehensive tour packages. Train transportation is included in many of our itineraries for enhanced comfort.",
       },
       {
-        question: "Where can I find Travel World offices or sales partners?",
-        answer: "Travel World has offices and sales partners across major cities in India. You can locate the nearest office through our website or contact our customer service team for assistance.",
+        question: "Where can I find Honor Tour & Travels offices or sales partners?",
+        answer: "Honor Tour & Travels has offices and sales partners across major cities in India. You can locate the nearest office through our website or contact our customer service team for assistance.",
       },
       {
         question: "How many travellers will be there as part of a group tour?",

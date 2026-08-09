@@ -3,12 +3,15 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
 import { packages } from "@/data/packages";
+import JsonLd from "@/components/common/JsonLd";
+import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: "World Tour Packages | International Holiday Packages",
   description:
-    "Explore World tour packages across Europe, South East Asia, Australia, Japan, Dubai and more with Travel World's curated international group holidays.",
-};
+    "Explore World tour packages across Europe, South East Asia, Australia, Japan, Dubai and more with Honor Tour & Travels's curated international group holidays.",
+  path: "/world",
+});
 
 const worldSlugs = [
   "highlights-of-thailand",
@@ -33,7 +36,7 @@ const config = {
   heading: "World Tour Packages",
   hiddenSections: ["regions", "interests", "seasons", "durations", "blogs"],
   intro:
-    "Step beyond borders with Travel World's international holiday packages, thoughtfully designed to cover the most loved destinations across the globe.",
+    "Step beyond borders with Honor Tour & Travels's international holiday packages, thoughtfully designed to cover the most loved destinations across the globe.",
   introExtra:
     "From the canals of Europe and the beaches of South East Asia to the deserts of the Middle East and the temples of Japan, our group departures combine comfortable stays, curated sightseeing and experienced tour managers so you can travel the world without the planning stress.",
   reviewsLabel: "8,412 Reviews",
@@ -170,9 +173,9 @@ const config = {
   faqSubheading: "We help you prepare for your international trip and answer commonly asked questions.",
   faqs: [
     {
-      question: "What World tour packages does Travel World offer?",
+      question: "What World tour packages does Honor Tour & Travels offer?",
       answer:
-        "Travel World offers international group tours, customized holidays and speciality departures across Europe, South East Asia, America, Australia, Japan, the Middle East and more.",
+        "Honor Tour & Travels offers international group tours, customized holidays and speciality departures across Europe, South East Asia, America, Australia, Japan, the Middle East and more.",
     },
     {
       question: "Is a visa required for World tour packages?",
@@ -211,6 +214,12 @@ const config = {
 export default function WorldPage() {
   return (
     <>
+      <JsonLd
+        schema={breadcrumbSchema([
+          { name: "Home", href: "/" },
+          { name: "World", href: "/world" },
+        ])}
+      />
       <Header />
       <Navbar />
 

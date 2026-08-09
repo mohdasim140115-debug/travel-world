@@ -1,5 +1,5 @@
-import { packages } from "@/data/packages";
-import { getSiblingCityNames, getSiblingRegionNames } from "@/data/navigationData";
+import { packages } from "./packages.js";
+import { getSiblingCityNames, getSiblingRegionNames } from "./navigationData.js";
 
 /* =========================================================
    RAW DESTINATION DATA
@@ -10,7 +10,7 @@ import { getSiblingCityNames, getSiblingRegionNames } from "@/data/navigationDat
    /womens-special and /seniors-special.
 ========================================================= */
 
-const rawDestinations = [
+export const rawDestinations = [
   // ===================== WORLD DESTINATIONS =====================
   {
     slug: "europe-tour-packages",
@@ -19,7 +19,7 @@ const rawDestinations = [
     heading: "Europe Tour Packages",
     metaTitle: "Europe Tour Packages | Europe Holiday Packages",
     metaDescription:
-      "Explore Europe tour packages covering Switzerland, France, Italy, Austria and more with Travel World's curated group holidays and customized itineraries.",
+      "Explore Europe tour packages covering Switzerland, France, Italy, Austria and more with Honor Tour & Travels's curated group holidays and customized itineraries.",
     breadcrumbTrail: ["World", "Europe Tour Packages"],
     packageCount: 127,
     liveTourCount: 8,
@@ -113,7 +113,7 @@ const rawDestinations = [
     heading: "South East Asia Tour Packages",
     metaTitle: "South East Asia Tour Packages | Asia Holiday Packages",
     metaDescription:
-      "Discover South East Asia tour packages across Thailand, Vietnam, Singapore, Malaysia, Indonesia and Cambodia with Travel World's curated group holidays.",
+      "Discover South East Asia tour packages across Thailand, Vietnam, Singapore, Malaysia, Indonesia and Cambodia with Honor Tour & Travels's curated group holidays.",
     breadcrumbTrail: ["World", "South East Asia Tour Packages"],
     packageCount: 59,
     liveTourCount: 4,
@@ -189,7 +189,7 @@ const rawDestinations = [
     heading: "Australia New Zealand Tour Packages",
     metaTitle: "Australia New Zealand Tour Packages | Australia Holiday Packages",
     metaDescription:
-      "Explore Australia New Zealand tour packages covering Sydney, Melbourne, Auckland and Queenstown with Travel World's curated group holidays.",
+      "Explore Australia New Zealand tour packages covering Sydney, Melbourne, Auckland and Queenstown with Honor Tour & Travels's curated group holidays.",
     breadcrumbTrail: ["World", "Australia New Zealand Tour Packages"],
     packageCount: 22,
     liveTourCount: 2,
@@ -264,7 +264,7 @@ const rawDestinations = [
     heading: "America Tour Packages",
     metaTitle: "America Tour Packages | USA Canada Holiday Packages",
     metaDescription:
-      "Explore America tour packages covering the USA and Canada, from New York and Las Vegas to the Canadian Rockies, with Travel World's curated group holidays.",
+      "Explore America tour packages covering the USA and Canada, from New York and Las Vegas to the Canadian Rockies, with Honor Tour & Travels's curated group holidays.",
     breadcrumbTrail: ["World", "America Tour Packages"],
     packageCount: 40,
     liveTourCount: 3,
@@ -339,7 +339,7 @@ const rawDestinations = [
     heading: "Africa Tour Packages",
     metaTitle: "Africa Tour Packages | Africa Safari Holiday Packages",
     metaDescription:
-      "Discover Africa tour packages covering South Africa, Kenya, Egypt and more with Travel World's curated safari and group holiday itineraries.",
+      "Discover Africa tour packages covering South Africa, Kenya, Egypt and more with Honor Tour & Travels's curated safari and group holiday itineraries.",
     breadcrumbTrail: ["World", "Africa Tour Packages"],
     packageCount: 12,
     liveTourCount: 1,
@@ -414,7 +414,7 @@ const rawDestinations = [
     heading: "Japan China Korea Tour Packages",
     metaTitle: "Japan China Korea Tour Packages | East Asia Holiday Packages",
     metaDescription:
-      "Explore Japan China Korea tour packages covering Tokyo, Kyoto, Beijing, Shanghai and Seoul with Travel World's curated East Asia group holidays.",
+      "Explore Japan China Korea tour packages covering Tokyo, Kyoto, Beijing, Shanghai and Seoul with Honor Tour & Travels's curated East Asia group holidays.",
     breadcrumbTrail: ["World", "Japan China Korea Tour Packages"],
     packageCount: 27,
     liveTourCount: 2,
@@ -490,7 +490,7 @@ const rawDestinations = [
     heading: "Rajasthan Tour Packages",
     metaTitle: "Rajasthan Tour Packages | Rajasthan Holiday Packages",
     metaDescription:
-      "Explore Rajasthan tour packages covering Jaipur, Udaipur, Jodhpur and Jaisalmer with Travel World's curated royal heritage group holidays.",
+      "Explore Rajasthan tour packages covering Jaipur, Udaipur, Jodhpur and Jaisalmer with Honor Tour & Travels's curated royal heritage group holidays.",
     breadcrumbTrail: ["India", "Rajasthan Tour Packages"],
     packageCount: 36,
     liveTourCount: 3,
@@ -565,7 +565,7 @@ const rawDestinations = [
     heading: "Kerala Tour Packages",
     metaTitle: "Kerala Tour Packages | Kerala Holiday Packages",
     metaDescription:
-      "Explore Kerala tour packages covering Kochi, Munnar, Alleppey and Kovalam with Travel World's curated backwater and hill station group holidays.",
+      "Explore Kerala tour packages covering Kochi, Munnar, Alleppey and Kovalam with Honor Tour & Travels's curated backwater and hill station group holidays.",
     breadcrumbTrail: ["India", "Kerala Tour Packages"],
     packageCount: 20,
     liveTourCount: 2,
@@ -640,7 +640,7 @@ const rawDestinations = [
     heading: "Andaman Tour Packages",
     metaTitle: "Andaman Tour Packages | Andaman Islands Holiday Packages",
     metaDescription:
-      "Explore Andaman tour packages covering Port Blair, Havelock Island and Neil Island with Travel World's curated island holiday itineraries.",
+      "Explore Andaman tour packages covering Port Blair, Havelock Island and Neil Island with Honor Tour & Travels's curated island holiday itineraries.",
     breadcrumbTrail: ["India", "Andaman Tour Packages"],
     packageCount: 9,
     liveTourCount: 1,
@@ -715,7 +715,7 @@ const rawDestinations = [
     heading: "Jammu Kashmir Tour Packages",
     metaTitle: "Jammu Kashmir Tour Packages | Kashmir Holiday Packages",
     metaDescription:
-      "Explore Jammu Kashmir tour packages covering Srinagar, Gulmarg, Pahalgam and Sonmarg with Travel World's curated Himalayan group holidays.",
+      "Explore Jammu Kashmir tour packages covering Srinagar, Gulmarg, Pahalgam and Sonmarg with Honor Tour & Travels's curated Himalayan group holidays.",
     breadcrumbTrail: ["India", "Jammu Kashmir Tour Packages"],
     packageCount: 16,
     liveTourCount: 2,
@@ -1025,7 +1025,7 @@ function synthesizeDestination(parent, slug) {
     name,
     heading: `${name} Tour Packages`,
     metaTitle: `${name} Tour Packages | ${name} Holiday Packages`,
-    metaDescription: `Explore ${name} tour packages with Travel World's curated group holidays, itineraries and travel assistance.`,
+    metaDescription: `Explore ${name} tour packages with Honor Tour & Travels's curated group holidays, itineraries and travel assistance.`,
     breadcrumbTrail: [parentLabel, `${name} Tour Packages`],
     packageCount: packageSlugs.length,
     liveTourCount: Math.max(1, Math.min(3, packageSlugs.length)),

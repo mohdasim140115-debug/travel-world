@@ -28,7 +28,7 @@ export default function FlightBenefits() {
     <section className="bg-[#F7F9FC] px-3 py-12 sm:px-6 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
         <h2 className="text-center text-[26px] font-bold text-[#0F172A] sm:text-[30px]">
-          Why book your flights with Travel World?
+          Why book your flights with Honor Tour & Travels?
         </h2>
 
         {/* MOBILE: plain icon-left / text-right list */}
@@ -52,14 +52,14 @@ export default function FlightBenefits() {
           {benefits.map(({ icon: Icon, title, description }) => (
             <div
               key={title}
-              className="group rounded-xl border border-[#E5E7EB] bg-white p-4 transition-all duration-200 hover:-translate-y-1 hover:border-[#17BEBB] hover:shadow-lg"
+              className="group rounded-[14px] border border-[#E5E7EB] bg-white p-4 shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#17BEBB] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)]"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E6F7F5] text-[#17BEBB] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0F4C81] group-hover:text-white">
                 <Icon size={18} />
               </div>
 
-              <h3 className="mt-3 text-[13px] font-semibold text-[#0F172A]">{title}</h3>
-              <p className="mt-1 text-[11px] leading-[1.6] text-[#6B7280]">{description}</p>
+              <h3 className="mt-3 text-[14px] font-semibold text-[#0F172A]">{title}</h3>
+              <p className="mt-1 text-[13px] leading-[1.6] text-[#6B7280]">{description}</p>
             </div>
           ))}
         </div>

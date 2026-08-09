@@ -14,7 +14,7 @@ function getTimeSlot(departureTime) {
   return "night";
 }
 
-export default function FlightResults({ route }) {
+export default function FlightResults({ route, airlines: airlineLogos = [] }) {
   const { flights, from, to, fromCode, toCode } = route;
 
   const airlineOptions = useMemo(
@@ -72,7 +72,7 @@ export default function FlightResults({ route }) {
             <h2 className="text-[16px] font-bold text-[#0F172A]">
               {filteredFlights.length} Flight Options
             </h2>
-            <p className="text-[11px] text-[#6B7280]">
+            <p className="text-[13px] text-[#6B7280]">
               {from} ({fromCode}) to {to} ({toCode})
             </p>
           </div>
@@ -80,7 +80,7 @@ export default function FlightResults({ route }) {
           <select
             value={sortBy}
             onChange={(event) => setSortBy(event.target.value)}
-            className="h-[36px] rounded-[4px] border border-[#D1D5DB] bg-white px-3 text-[11px] font-medium text-[#0F172A]"
+            className="h-[40px] rounded-[10px] border border-[#D1D5DB] bg-white px-3 text-[13px] font-medium text-[#0F172A] outline-none transition-colors focus:border-[#17BEBB]"
           >
             <option value="recommended">Sort by: Recommended</option>
             <option value="cheapest">Sort by: Cheapest</option>
@@ -89,7 +89,7 @@ export default function FlightResults({ route }) {
           </select>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[220px_minmax(0,1fr)]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[260px_minmax(0,1fr)]">
           <FlightFilters
             airlineOptions={airlineOptions}
             stops={stops}
@@ -106,7 +106,7 @@ export default function FlightResults({ route }) {
 
           <div className="space-y-3">
             {filteredFlights.length === 0 && (
-              <div className="rounded-xl border border-dashed border-[#D1D5DB] bg-white p-8 text-center text-[12px] text-[#6B7280]">
+              <div className="rounded-[14px] border border-dashed border-[#D1D5DB] bg-white p-8 text-center text-[13px] text-[#6B7280]">
                 No flights match the selected filters. Try resetting your filters.
               </div>
             )}
@@ -117,6 +117,7 @@ export default function FlightResults({ route }) {
                 flight={flight}
                 from={from}
                 to={to}
+                airlines={airlineLogos}
                 onBookNow={setSelectedFlight}
               />
             ))}

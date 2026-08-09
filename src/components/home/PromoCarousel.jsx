@@ -19,7 +19,7 @@ function svgToDataUri(svg) {
 }
 
 const bigTravelDaysPoster = svgToDataUri(`
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 620">
   <defs>
     <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#082C4B"/>
@@ -27,21 +27,21 @@ const bigTravelDaysPoster = svgToDataUri(`
       <stop offset="100%" stop-color="#17BEBB"/>
     </linearGradient>
   </defs>
-  <rect width="600" height="800" fill="url(#sky)"/>
-  <circle cx="470" cy="140" r="80" fill="#FBB627" opacity="0.95"/>
-  <path d="M0 560 Q150 500 300 560 T600 560 V800 H0 Z" fill="#0B3B63" opacity="0.55"/>
-  <path d="M0 630 Q150 580 300 630 T600 630 V800 H0 Z" fill="#082C4B" opacity="0.85"/>
-  <path d="M170 300 L230 260 L320 300 L270 320 L235 350 L210 330 Z" fill="#FFFFFF" opacity="0.9"/>
-  <text x="300" y="420" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#FFFFFF" text-anchor="middle">BIG TRAVEL</text>
-  <text x="300" y="480" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#FBB627" text-anchor="middle">DAYS ARE HERE!</text>
-  <text x="300" y="525" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#FFFFFF" text-anchor="middle">Grab the best deals of the season</text>
-  <rect x="205" y="560" width="190" height="46" rx="23" fill="#FF7A1A"/>
-  <text x="300" y="590" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">Explore Offers</text>
+  <rect width="600" height="620" fill="url(#sky)"/>
+  <circle cx="470" cy="110" r="65" fill="#FBB627" opacity="0.95"/>
+  <path d="M0 420 Q150 375 300 420 T600 420 V620 H0 Z" fill="#0B3B63" opacity="0.55"/>
+  <path d="M0 470 Q150 435 300 470 T600 470 V620 H0 Z" fill="#082C4B" opacity="0.85"/>
+  <path d="M170 220 L230 185 L320 220 L270 238 L235 262 L210 246 Z" fill="#FFFFFF" opacity="0.9"/>
+  <text x="300" y="300" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="900" fill="#FFFFFF" text-anchor="middle">BIG TRAVEL</text>
+  <text x="300" y="352" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="900" fill="#FBB627" text-anchor="middle">DAYS ARE HERE!</text>
+  <text x="300" y="392" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#FFFFFF" text-anchor="middle">Grab the best deals of the season</text>
+  <rect x="205" y="425" width="190" height="46" rx="23" fill="#FF7A1A"/>
+  <text x="300" y="455" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">Explore Offers</text>
 </svg>
 `);
 
 const europePoster = svgToDataUri(`
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 620">
   <defs>
     <linearGradient id="esky" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#0F4C81"/>
@@ -49,23 +49,23 @@ const europePoster = svgToDataUri(`
       <stop offset="100%" stop-color="#A9D8F0"/>
     </linearGradient>
   </defs>
-  <rect width="600" height="800" fill="url(#esky)"/>
-  <rect x="0" y="560" width="600" height="240" fill="#082C4B" opacity="0.5"/>
-  <rect x="270" y="330" width="12" height="230" fill="#FFFFFF" opacity="0.9"/>
-  <path d="M240 400 L360 400 L340 370 L260 370 Z" fill="#FFFFFF" opacity="0.9"/>
-  <path d="M255 460 L345 460 L330 430 L270 430 Z" fill="#FFFFFF" opacity="0.9"/>
-  <path d="M225 560 L375 560 L350 500 L250 500 Z" fill="#FFFFFF" opacity="0.9"/>
-  <circle cx="110" cy="150" r="60" fill="#FBB627" opacity="0.9"/>
-  <text x="300" y="220" font-family="Arial, Helvetica, sans-serif" font-size="60" font-weight="900" fill="#FFFFFF" text-anchor="middle">EUROPE</text>
-  <text x="300" y="260" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#FFFFFF" text-anchor="middle">Switzerland &#8226; Paris &#8226; Italy &#8226; more</text>
-  <rect x="150" y="650" width="300" height="70" rx="10" fill="#082C4B" opacity="0.85"/>
-  <text x="300" y="680" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#FFFFFF" text-anchor="middle">Starting from</text>
-  <text x="300" y="710" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900" fill="#FBB627" text-anchor="middle">&#8377;1,45,000</text>
+  <rect width="600" height="620" fill="url(#esky)"/>
+  <rect x="0" y="420" width="600" height="200" fill="#082C4B" opacity="0.5"/>
+  <rect x="270" y="230" width="12" height="190" fill="#FFFFFF" opacity="0.9"/>
+  <path d="M240 285 L360 285 L340 258 L260 258 Z" fill="#FFFFFF" opacity="0.9"/>
+  <path d="M255 335 L345 335 L330 308 Z" fill="#FFFFFF" opacity="0.9"/>
+  <path d="M225 420 L375 420 L350 365 L250 365 Z" fill="#FFFFFF" opacity="0.9"/>
+  <circle cx="110" cy="110" r="52" fill="#FBB627" opacity="0.9"/>
+  <text x="300" y="170" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="900" fill="#FFFFFF" text-anchor="middle">EUROPE</text>
+  <text x="300" y="205" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#FFFFFF" text-anchor="middle">Switzerland &#8226; Paris &#8226; Italy &#8226; more</text>
+  <rect x="150" y="465" width="300" height="70" rx="10" fill="#082C4B" opacity="0.85"/>
+  <text x="300" y="495" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#FFFFFF" text-anchor="middle">Starting from</text>
+  <text x="300" y="525" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900" fill="#FBB627" text-anchor="middle">&#8377;1,45,000</text>
 </svg>
 `);
 
 const chinaPoster = svgToDataUri(`
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 620">
   <defs>
     <linearGradient id="csky" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#7A2E10"/>
@@ -73,17 +73,17 @@ const chinaPoster = svgToDataUri(`
       <stop offset="100%" stop-color="#FBB627"/>
     </linearGradient>
   </defs>
-  <rect width="600" height="800" fill="url(#csky)"/>
-  <path d="M0 500 L60 470 L120 500 L180 460 L240 500 L300 465 L360 500 L420 470 L480 500 L540 465 L600 500 V800 H0 Z" fill="#082C4B" opacity="0.5"/>
-  <rect x="255" y="330" width="90" height="70" fill="#FFFFFF" opacity="0.9"/>
-  <path d="M240 330 L360 330 L300 300 Z" fill="#FFFFFF" opacity="0.9"/>
-  <rect x="270" y="400" width="60" height="55" fill="#FFFFFF" opacity="0.85"/>
-  <path d="M258 400 L342 400 L300 375 Z" fill="#FFFFFF" opacity="0.85"/>
-  <text x="300" y="210" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="900" fill="#FFFFFF" text-anchor="middle">CHINA</text>
-  <text x="300" y="250" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#FFFFFF" text-anchor="middle">From the Great Wall to the Great Leap</text>
-  <rect x="150" y="650" width="300" height="70" rx="10" fill="#082C4B" opacity="0.85"/>
-  <text x="300" y="680" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#FFFFFF" text-anchor="middle">7 Days, All Inclusive</text>
-  <text x="300" y="710" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900" fill="#FBB627" text-anchor="middle">Just &#8377;1,59,000</text>
+  <rect width="600" height="620" fill="url(#csky)"/>
+  <path d="M0 380 L60 355 L120 380 L180 345 L240 380 L300 350 L360 380 L420 355 L480 380 L540 350 L600 380 V620 H0 Z" fill="#082C4B" opacity="0.5"/>
+  <rect x="255" y="235" width="90" height="65" fill="#FFFFFF" opacity="0.9"/>
+  <path d="M240 235 L360 235 L300 208 Z" fill="#FFFFFF" opacity="0.9"/>
+  <rect x="270" y="300" width="60" height="50" fill="#FFFFFF" opacity="0.85"/>
+  <path d="M258 300 L342 300 L300 278 Z" fill="#FFFFFF" opacity="0.85"/>
+  <text x="300" y="150" font-family="Arial, Helvetica, sans-serif" font-size="60" font-weight="900" fill="#FFFFFF" text-anchor="middle">CHINA</text>
+  <text x="300" y="188" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#FFFFFF" text-anchor="middle">From the Great Wall to the Great Leap</text>
+  <rect x="150" y="465" width="300" height="70" rx="10" fill="#082C4B" opacity="0.85"/>
+  <text x="300" y="495" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#FFFFFF" text-anchor="middle">7 Days, All Inclusive</text>
+  <text x="300" y="525" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900" fill="#FBB627" text-anchor="middle">Just &#8377;1,59,000</text>
 </svg>
 `);
 
@@ -104,7 +104,7 @@ function WelcomeSlide() {
     <div className="flex h-full flex-col justify-center bg-white p-5 sm:p-6">
       <div className="text-center">
         <h3 className="text-[24px] font-black leading-[1.1] text-[#0F172A] sm:text-[26px]">
-          Travel World is Here!
+          Honor Tour & Travels is Here!
         </h3>
         <p className="mt-1 text-[14px] font-bold text-[#0F4C81]">PAISA VASOOL Tours</p>
 
@@ -116,7 +116,7 @@ function WelcomeSlide() {
       <div className="mt-5 grid grid-cols-3 gap-2">
         {mostLovedTours.promoDestinations.map((dest) => (
           <div key={dest.name} className="overflow-hidden rounded-[10px] border border-[#E5E7EB]">
-            <div className="relative h-[64px] bg-gradient-to-br from-[#4DA8DA] via-[#0F4C81] to-[#17BEBB]" />
+            <div className="relative h-[150px] bg-gradient-to-br from-[#4DA8DA] via-[#0F4C81] to-[#17BEBB]" />
             <div className="flex items-center justify-center gap-1 bg-white py-1.5">
               <MapPin className="h-3 w-3 flex-shrink-0 text-[#0F4C81]" />
               <span className="truncate text-[11px] font-semibold text-[#0F172A]">{dest.name}</span>
@@ -144,7 +144,7 @@ function WelcomeCardCompact() {
   return (
     <div className="flex h-full flex-col justify-center bg-white px-3.5 py-3">
       <div className="text-center">
-        <h3 className="text-[16px] font-black leading-tight text-[#0F172A]">Travel World is Here!</h3>
+        <h3 className="text-[16px] font-black leading-tight text-[#0F172A]">Honor Tour & Travels is Here!</h3>
         <p className="text-[11px] font-bold text-[#0F4C81]">PAISA VASOOL Tours</p>
       </div>
 
@@ -205,7 +205,7 @@ export default function PromoCarousel() {
         {promoSlides.map((slide) => (
           <div
             key={slide.id}
-            className="h-[210px] w-[88%] flex-shrink-0 snap-start overflow-hidden rounded-[10px] border border-[#E5E7EB] shadow-sm"
+            className="h-[190px] w-[88%] flex-shrink-0 snap-start overflow-hidden rounded-[10px] border border-[#E5E7EB] shadow-sm"
           >
             {slide.type === "image" ? (
               <img
@@ -222,7 +222,7 @@ export default function PromoCarousel() {
 
       {/* ================= DESKTOP (>=768px, unchanged) ================= */}
       <div
-        className="relative hidden h-[460px] overflow-hidden rounded-[16px] border border-[#E5E7EB] shadow-sm md:block lg:h-[540px]"
+        className="relative hidden h-[420px] overflow-hidden rounded-[16px] border border-[#E5E7EB] shadow-sm md:block lg:h-[460px]"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onTouchStart={handleTouchStart}

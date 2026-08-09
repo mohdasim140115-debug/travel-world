@@ -1,4 +1,4 @@
-import { packages } from "@/data/packages";
+import { packages } from "./packages.js";
 
 /* =========================================================
    DEPARTURE CITY PAGES ("Tour Packages From {City}")
@@ -12,7 +12,7 @@ import { packages } from "@/data/packages";
    in src/data/packages.js.
 ========================================================= */
 
-const rawCities = [
+export const rawCities = [
   {
     slug: "mumbai",
     name: "Mumbai",
@@ -21,9 +21,9 @@ const rawCities = [
     packageCount: 27,
     reviewsLabel: "9,240 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Mumbai covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "Explore thoughtfully planned tour packages from Mumbai covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Mumbai with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Mumbai with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "jaipur-mandawa-tour-package",
       "delhi-agra-tour-package",
@@ -54,9 +54,9 @@ const rawCities = [
     packageCount: 12,
     reviewsLabel: "1,860 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Pune covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "Explore thoughtfully planned tour packages from Pune covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Pune with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Pune with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "highlights-of-rajasthan-tour-package",
       "best-of-kashmir-tour-package",
@@ -83,9 +83,9 @@ const rawCities = [
     packageCount: 18,
     reviewsLabel: "3,120 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Ahmedabad covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "Explore thoughtfully planned tour packages from Ahmedabad covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Ahmedabad with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Ahmedabad with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "highlights-of-rajasthan-tour-package",
       "highlights-of-kerala-tour-package",
@@ -111,9 +111,9 @@ const rawCities = [
     packageCount: 19,
     reviewsLabel: "3,340 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Hyderabad covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "Explore thoughtfully planned tour packages from Hyderabad covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Hyderabad with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Hyderabad with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "highlights-of-kerala-tour-package",
       "best-of-andaman-tour-package",
@@ -139,9 +139,9 @@ const rawCities = [
     packageCount: 14,
     reviewsLabel: "1,980 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Bangalore covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "Explore thoughtfully planned tour packages from Bangalore covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Bangalore with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Bangalore with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "highlights-of-kerala-tour-package",
       "best-of-andaman-tour-package",
@@ -167,9 +167,9 @@ const rawCities = [
     packageCount: 16,
     reviewsLabel: "2,760 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Kolkata covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "Explore thoughtfully planned tour packages from Kolkata covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Kolkata with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Kolkata with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "best-of-andaman-tour-package",
       "best-of-thailand-tour-package",
@@ -195,9 +195,9 @@ const rawCities = [
     packageCount: 22,
     reviewsLabel: "3,580 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Delhi covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "Explore thoughtfully planned tour packages from Delhi covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Delhi with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Delhi with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "best-of-kashmir-tour-package",
       "all-of-ladakh-tour-package",
@@ -223,9 +223,9 @@ const rawCities = [
     packageCount: 15,
     reviewsLabel: "2,410 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Indore covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "Explore thoughtfully planned tour packages from Indore covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Indore with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Indore with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "highlights-of-rajasthan-tour-package",
       "best-of-kashmir-tour-package",
@@ -348,7 +348,7 @@ function buildCityConfig(raw) {
     faqs: [
       {
         question: `What types of tour packages can I find departing from ${raw.name}?`,
-        answer: `Travel World offers a wide range of tour packages from ${raw.name}, including family holidays, group tours, honeymoon packages, women's special tours, seniors' tours and both domestic and international itineraries.`,
+        answer: `Honor Tour & Travels offers a wide range of tour packages from ${raw.name}, including family holidays, group tours, honeymoon packages, women's special tours, seniors' tours and both domestic and international itineraries.`,
       },
       {
         question: `How soon should I book a tour package from ${raw.name}?`,
@@ -364,7 +364,7 @@ function buildCityConfig(raw) {
       },
       {
         question: `Can I book a honeymoon package from ${raw.name}?`,
-        answer: `Yes, Travel World offers curated honeymoon packages departing from ${raw.name} across both domestic and international destinations.`,
+        answer: `Yes, Honor Tour & Travels offers curated honeymoon packages departing from ${raw.name} across both domestic and international destinations.`,
       },
     ],
     seo: {

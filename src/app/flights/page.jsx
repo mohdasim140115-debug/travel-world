@@ -9,12 +9,15 @@ import FlightBenefits from "@/components/flights/FlightBenefits";
 import FlightBookingSteps from "@/components/flights/FlightBookingSteps";
 import FlightFAQ from "@/components/flights/FlightFAQ";
 import { getPopularRoutes } from "@/data/flightRoutes";
+import JsonLd from "@/components/common/JsonLd";
+import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: "Flight Booking Online | Domestic & International Flights",
   description:
-    "Search and book domestic and international flights with Travel World. Compare airlines, timings and fares across popular routes and combine flights with holiday packages.",
-};
+    "Search and book domestic and international flights with Honor Tour & Travels. Compare airlines, timings and fares across popular routes and combine flights with holiday packages.",
+  path: "/flights",
+});
 
 const faqs = [
   {
@@ -33,9 +36,9 @@ const faqs = [
       "Offers vary by airline and season. Our travel experts can share current deals available on your selected route at the time of booking.",
   },
   {
-    question: "Does Travel World offer domestic and international flight booking?",
+    question: "Does Honor Tour & Travels offer domestic and international flight booking?",
     answer:
-      "Yes, Travel World assists with both domestic and international flight bookings, either standalone or bundled with our holiday packages.",
+      "Yes, Honor Tour & Travels assists with both domestic and international flight bookings, either standalone or bundled with our holiday packages.",
   },
   {
     question: "How early should I book my flight?",
@@ -54,6 +57,12 @@ export default function FlightsPage() {
 
   return (
     <>
+      <JsonLd
+        schema={breadcrumbSchema([
+          { name: "Home", href: "/" },
+          { name: "Flights", href: "/flights" },
+        ])}
+      />
       <Header />
       <Navbar />
 
@@ -88,13 +97,13 @@ export default function FlightsPage() {
         ===================================================== */}
         <section className="px-3 py-10 sm:px-6 lg:px-0">
           <div className="mx-auto w-full max-w-[1280px]">
-            <div className="rounded-xl border border-[#E5E7EB] bg-[#F7FAFC] p-5">
+            <div className="rounded-[14px] border border-[#E5E7EB] bg-[#F7FAFC] p-5">
               <h2 className="text-[16px] font-bold text-[#0F172A]">
-                Book Flight Tickets Online with Travel World
+                Book Flight Tickets Online with Honor Tour & Travels
               </h2>
               <p className="mt-2 text-[12px] leading-[1.7] text-[#4B5563]">
                 Whether you are planning a quick domestic getaway or a long-haul international
-                holiday, Travel World makes it simple to compare flight timings, airlines and
+                holiday, Honor Tour & Travels makes it simple to compare flight timings, airlines and
                 fares across popular routes. Search by city, filter by stops or preferred
                 airline, and get in touch with our travel experts to confirm your booking —
                 or combine your flights with one of our curated group tours for a

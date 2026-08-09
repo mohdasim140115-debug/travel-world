@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Building2 } from "lucide-react";
 import { homeData } from "@/data/homeData";
+import { getDestinationImage } from "@/data/destinationImages";
 
 export default function DepartureCities() {
   const { departureCities } = homeData;
@@ -13,32 +13,40 @@ export default function DepartureCities() {
           <span className="text-[#0F4C81]">Your City</span>
         </h2>
         <p className="mx-auto mt-2 max-w-2xl text-center text-[15px] leading-relaxed text-[#60646C] md:mt-3 md:text-[13px] md:leading-[1.6]">
-          From flights and stays to sightseeing and meals — every Travel World tour begins conveniently from your doorstep. Pick your departure city below.
+          From flights and stays to sightseeing and meals — every Honor Tour & Travels tour begins conveniently from your doorstep. Pick your departure city below.
         </p>
 
         <div className="mt-6 flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:mt-8 md:gap-4 sm:grid sm:overflow-visible sm:grid-cols-2 lg:grid-cols-4">
-          {departureCities.cities.map((city) => (
-            <Link
-              key={city.name}
-              href={`/tour-packages-from-${city.slug}`}
-              className="group flex w-full min-w-full flex-shrink-0 snap-start transform-gpu cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#E5E7EB] bg-white no-underline transition hover:-translate-y-[1px] hover:border-[#0F172A] hover:shadow-lg sm:w-auto sm:min-w-0"
-            >
-              <div className="flex items-center justify-between border-b border-[#E5E7EB] p-3.5">
-                <div>
-                  <h4 className="text-[18px] font-bold leading-tight text-[#0F172A] md:text-[15px]">{city.name}</h4>
-                  <p className="mt-1 text-[13px] text-[#60646C] md:text-[12px]">{city.departures}</p>
+          {departureCities.cities.map((city) => {
+            const image = getDestinationImage(city.name);
+            return (
+              <Link
+                key={city.name}
+                href={`/tour-packages-from-${city.slug}`}
+                className="group flex w-full min-w-full flex-shrink-0 snap-start transform-gpu cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#E5E7EB] bg-white no-underline shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-[3px] hover:border-[#17BEBB] hover:shadow-[0_10px_24px_rgba(0,0,0,0.1)] sm:w-auto sm:min-w-0"
+              >
+                <div className="relative h-[110px] w-full overflow-hidden">
+                  <img
+                    src={image}
+                    alt={city.name}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute inset-x-3.5 bottom-2.5">
+                    <h4 className="text-[17px] font-bold leading-tight text-white md:text-[15px]">{city.name}</h4>
+                    <p className="mt-0.5 text-[12px] text-white/85">{city.departures}</p>
+                  </div>
                 </div>
-                <Building2 className="h-5 w-5 flex-shrink-0 text-[#60646C]" />
-              </div>
-              <div className="bg-[#F7FAFC] p-3.5">
-                <p className="text-[12px] text-[#60646C]">Starting from</p>
-                <p className="mt-1 text-[17px] font-bold text-[#0F172A] md:text-[16px]">{city.startingPrice}</p>
-                <span className="mt-2 flex h-[42px] w-full items-center justify-center rounded-[10px] border border-[#0F172A] text-center text-[14px] font-bold text-[#0F172A] transition group-hover:bg-[#0B3B63] group-hover:text-white md:mt-3 md:h-auto md:rounded-xl md:py-2 md:text-[12px]">
-                  View Tours
-                </span>
-              </div>
-            </Link>
-          ))}
+                <div className="bg-[#F7FAFC] p-3.5">
+                  <p className="text-[12px] text-[#60646C]">Starting from</p>
+                  <p className="mt-1 text-[17px] font-bold text-[#0F172A] md:text-[16px]">{city.startingPrice}</p>
+                  <span className="mt-2 flex h-[42px] w-full items-center justify-center rounded-[10px] border border-[#0F172A] text-center text-[14px] font-bold text-[#0F172A] transition group-hover:bg-[#0B3B63] group-hover:text-white group-hover:border-[#0B3B63] md:mt-3 md:h-auto md:rounded-xl md:py-2 md:text-[12px]">
+                    View Tours
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
         <div className="mt-6 rounded-[14px] border border-[#0F4C81]/20 bg-[#F7FAFC] p-4 md:mt-8 sm:p-8">

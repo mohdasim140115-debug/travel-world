@@ -22,7 +22,7 @@ export default function QuickLinksBar() {
               className="relative flex flex-col items-center gap-1.5 text-center no-underline"
             >
               {link.badge ? (
-                <span className="absolute -top-1 right-2 rounded-full bg-[#D62839] px-1.5 py-[1px] text-[8px] font-bold uppercase tracking-wide text-white">
+                <span className="absolute -top-1 right-1 rounded-full bg-[#D62839] px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
                   {link.badge}
                 </span>
               ) : null}
@@ -34,7 +34,7 @@ export default function QuickLinksBar() {
                 <Icon className="h-6 w-6" />
               </div>
 
-              <span className="text-[11px] font-semibold leading-tight text-[#0F172A]">
+              <span className="text-[12px] font-semibold leading-tight text-[#0F172A]">
                 {link.label}
               </span>
             </Link>

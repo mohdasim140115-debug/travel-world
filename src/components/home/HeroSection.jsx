@@ -28,16 +28,16 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="mt-2 w-full">
+    <section className="mt-1.5 w-full">
       <div
-        className="relative overflow-hidden rounded-[12px] border border-[#F0A93A]/30 p-4 md:px-8 md:py-4 lg:px-10 lg:py-4"
+        className="relative overflow-hidden rounded-[12px] border border-[#F0A93A]/30 p-2.5 md:px-8 md:py-4 lg:px-10 lg:py-4"
         style={{
           background: "linear-gradient(135deg, #FFF3DC 0%, #FFEACB 55%, #FFF8EC 100%)",
         }}
       >
 
         {/* TOP CONTENT */}
-        <div className="relative z-10 flex items-start justify-between gap-3 md:flex-col md:gap-5 lg:flex-row lg:items-start lg:justify-between">
+        <div className="relative z-10 flex items-start justify-between gap-1.5 md:flex-col md:gap-5 lg:flex-row lg:items-start lg:justify-between">
 
           {/* LEFT CONTENT */}
           <div className="max-w-[64%] md:max-w-140">
@@ -45,7 +45,7 @@ export default function HeroSection() {
               Premium travel experiences
             </p>
 
-            <h1 className="max-md:animate-[heroFadeIn_0.6s_ease-out] max-md:text-[32px] max-md:font-bold text-[#0F172A] leading-[1.1] md:mt-2 md:whitespace-nowrap md:text-[28px] md:font-black">
+            <h1 className="max-md:animate-[heroFadeIn_0.6s_ease-out] max-md:text-[20px] max-md:font-bold text-[#0F172A] leading-[1.15] md:mt-2 md:whitespace-nowrap md:text-[28px] md:font-black">
               {homeData.hero.title
                 .split(" ")
                 .slice(0, 2)
@@ -53,18 +53,18 @@ export default function HeroSection() {
               <span className="text-[#0F172A]">Tours</span>
             </h1>
 
-            <p className="mt-1.5 max-md:animate-[heroFadeIn_0.8s_ease-out] text-[15px] italic text-[#3A2A0F] md:mt-2 md:text-[16px]">
+            <p className="mt-0.5 max-md:animate-[heroFadeIn_0.8s_ease-out] text-[12px] italic text-[#3A2A0F] md:mt-2 md:text-[16px]">
               {homeData.hero.tagline}
             </p>
           </div>
 
           {/* RIGHT DECORATION */}
-          <div className="relative h-[64px] w-[64px] flex-shrink-0 md:h-[110px] md:w-full md:max-w-[320px] md:flex-shrink md:self-end lg:self-auto">
+          <div className="relative h-[42px] w-[42px] flex-shrink-0 md:h-[110px] md:w-full md:max-w-[320px] md:flex-shrink md:self-end lg:self-auto">
 
             {/* HOT AIR BALLOON */}
             <svg
               viewBox="0 0 200 260"
-              className="absolute right-0 top-0 h-[64px] w-[52px] max-md:animate-[heroFloat_3s_ease-in-out_infinite] md:right-2 md:h-[100px] md:w-[80px] lg:h-[115px] lg:w-[92px]"
+              className="absolute right-0 top-0 h-[42px] w-[34px] max-md:animate-[heroFloat_3s_ease-in-out_infinite] md:right-2 md:h-[100px] md:w-[80px] lg:h-[115px] lg:w-[92px]"
             >
               <defs>
                 <clipPath id="balloonClip">
@@ -137,22 +137,22 @@ export default function HeroSection() {
         </div>
 
         {/* TOUR CARDS */}
-        <div className="mt-[18px] flex gap-3 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory md:mt-4 md:grid md:overflow-visible md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-2 flex gap-2 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory md:mt-4 md:grid md:overflow-visible md:grid-cols-2 lg:grid-cols-4">
           {cardData.map((card) => {
             const href = getTourLink(card.title);
 
             return (
               <div
                 key={card.title}
-                className="group min-w-[230px] max-w-[230px] flex-shrink-0 snap-start rounded-[16px] border border-[#E5E7EB] bg-white p-3 shadow-[0_2px_10px_rgba(15,23,42,0.08)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#17BEBB] hover:shadow-lg md:min-w-0 md:max-w-none md:px-4 md:py-3"
+                className="group min-w-[190px] max-w-[190px] flex-shrink-0 snap-start rounded-[14px] border border-[#E5E7EB] bg-white p-2 shadow-[0_2px_10px_rgba(15,23,42,0.08)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#17BEBB] hover:shadow-lg md:min-w-0 md:max-w-none md:rounded-[16px] md:px-4 md:py-3"
               >
                 {/* CARD TITLE */}
-                <h2 className="text-[19px] font-semibold leading-tight text-[#0F172A] md:text-[16px]">
+                <h2 className="text-[14px] font-semibold leading-tight text-[#0F172A] md:text-[16px]">
                   {card.title}
                 </h2>
 
                 {/* CARD SUBTITLE */}
-                <p className="mt-1.5 text-[12px] leading-relaxed text-[#475569] md:mt-1 md:text-[11px] md:leading-snug">
+                <p className="mt-0.5 text-[11px] leading-snug text-[#475569] md:mt-1 md:text-[11px] md:leading-snug">
                   {card.subtitle}
                 </p>
 
@@ -160,20 +160,20 @@ export default function HeroSection() {
                 {href !== "#" ? (
                   <Link
                     href={href}
-                    className="mt-3 flex h-[44px] w-full items-center justify-center gap-2 rounded-[10px] bg-[#FBB627] text-[15px] font-semibold text-[#0F172A] shadow-md shadow-amber-900/20 transition-all duration-200 hover:bg-[#F0A93A] hover:shadow-lg hover:-translate-y-0.5 active:scale-95 md:mt-4 md:h-[35px] md:text-[13px]"
+                    className="mt-2 flex h-[36px] w-full items-center justify-center gap-2 rounded-[10px] bg-[#FBB627] text-[12px] font-semibold text-[#0F172A] shadow-md shadow-amber-900/20 transition-all duration-200 hover:bg-[#F0A93A] hover:shadow-lg hover:-translate-y-0.5 active:scale-95 md:mt-4 md:h-[35px] md:text-[13px]"
                   >
                     View Tours
 
-                    <ArrowRight className="h-4 w-4 md:h-3.5 md:w-3.5" />
+                    <ArrowRight className="h-3.5 w-3.5 md:h-3.5 md:w-3.5" />
                   </Link>
                 ) : (
                   <button
                     type="button"
-                    className="mt-3 flex h-[44px] w-full cursor-pointer items-center justify-center gap-2 rounded-[10px] bg-[#FBB627] text-[15px] font-semibold text-[#0F172A] shadow-md shadow-amber-900/20 transition-all duration-200 hover:bg-[#F0A93A] hover:shadow-lg hover:-translate-y-0.5 active:scale-95 md:mt-4 md:h-[35px] md:text-[13px]"
+                    className="mt-2 flex h-[36px] w-full cursor-pointer items-center justify-center gap-2 rounded-[10px] bg-[#FBB627] text-[12px] font-semibold text-[#0F172A] shadow-md shadow-amber-900/20 transition-all duration-200 hover:bg-[#F0A93A] hover:shadow-lg hover:-translate-y-0.5 active:scale-95 md:mt-4 md:h-[35px] md:text-[13px]"
                   >
                     View Tours
 
-                    <ArrowRight className="h-4 w-4 md:h-3.5 md:w-3.5" />
+                    <ArrowRight className="h-3.5 w-3.5 md:h-3.5 md:w-3.5" />
                   </button>
                 )}
               </div>

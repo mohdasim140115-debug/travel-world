@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
 import { homeData } from "@/data/homeData";
+import FAQAccordion from "@/components/common/FAQAccordion";
 
 export default function FAQ() {
   const { faq } = homeData;
-  const [openIdx, setOpenIdx] = useState(0);
 
   return (
     <section className="px-3 py-12 sm:px-6 lg:px-0">
@@ -20,36 +18,8 @@ export default function FAQ() {
           </p>
         </div>
 
-        <div className="mx-auto mt-10 w-full max-w-[900px] space-y-3">
-          {faq.questions.map((q, idx) => (
-            <div
-              key={idx}
-              className="overflow-hidden rounded-xl border border-[#E5E7EB] bg-white"
-            >
-              <button
-                type="button"
-                aria-expanded={openIdx === idx}
-                onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)}
-                className="flex w-full items-center justify-between bg-white p-4 text-left transition-colors hover:bg-[#FAFAFA] sm:p-5"
-              >
-                <span className="text-left text-[13px] font-semibold text-[#0F172A] sm:text-[14px]">
-                  {q.question}
-                </span>
-                <ChevronDown
-                  className={`h-5 w-5 flex-shrink-0 text-[#60646C] transition-transform ${
-                    openIdx === idx ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-              {openIdx === idx && (
-                <div className="border-t border-[#E5E7EB] bg-[#F9FAFB] p-4 sm:p-5">
-                  <p className="text-[13px] leading-[1.6] text-[#4B5563]">
-                    {q.answer}
-                  </p>
-                </div>
-              )}
-            </div>
-          ))}
+        <div className="mt-10">
+          <FAQAccordion items={faq.questions} />
         </div>
 
         <div className="mt-10 text-center">
@@ -60,7 +30,7 @@ export default function FAQ() {
             {faq.categories.map((cat) => (
               <button
                 key={cat}
-                className="rounded-full border border-[#0F172A] px-4 py-2 text-[11px] font-semibold text-[#0F172A] transition hover:bg-[#0B3B63] hover:text-white"
+                className="rounded-full border border-[#0F4C81] px-4 py-2 text-[12px] font-semibold text-[#0F4C81] transition hover:bg-[#0B3B63] hover:text-white hover:border-[#0B3B63]"
               >
                 {cat}
               </button>

@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="bg-[#082C4B] text-white">
       <div className="border-b border-slate-700/50 px-3 py-6 sm:px-6 lg:px-0">
         <div className="mx-auto flex w-full max-w-[1280px] flex-wrap gap-3">
-          {["Explore Travel World", "India Tour Packages", "World Tour Packages", "FIT Tourism", "Specialty Tours"].map((pill) => (
+          {["Explore Honor Tour & Travels", "India Tour Packages", "World Tour Packages", "FIT Tourism", "Specialty Tours"].map((pill) => (
             <button
               key={pill}
               className="rounded-full border border-slate-500/30 px-4 py-2 text-[12px] font-semibold text-[#CBD5E1] transition hover:border-[#A9D8F0] hover:text-[#A9D8F0]"
@@ -22,7 +22,7 @@ export default function Footer() {
             <div>
               <h4 className="font-bold text-white">DISCOVER US</h4>
               <ul className="mt-3 space-y-2 text-[12px] text-[#94A3B8]">
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">About Travel World</a></li>
+                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">About Honor Tour & Travels</a></li>
                 <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">About us</a></li>
                 <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Our Team</a></li>
                 <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Tour Managers</a></li>
@@ -58,23 +58,23 @@ export default function Footer() {
             </div>
 
             <div>
-              <p className="text-[14px] font-bold">TRAVEL WORLD</p>
+              <p className="text-[14px] font-bold">HONOR TOUR & TRAVELS</p>
               <p className="mt-2 text-[12px] text-[#94A3B8]">
                 Explore the beautiful World with trusted travel experiences.
               </p>
               <div className="mt-4">
-                <p className="text-[11px] font-semibold text-[#94A3B8]/70">Newsletter</p>
+                <p className="text-[12px] font-semibold text-[#94A3B8]/70">Newsletter</p>
                 <input
                   type="text"
                   placeholder="Full Name"
-                  className="mt-2 w-full rounded-xl border border-slate-600 bg-slate-800/50 px-3 py-2 text-[11px] text-white placeholder:text-slate-500"
+                  className="mt-2 w-full rounded-[10px] border border-slate-600 bg-slate-800/50 px-3 py-2.5 text-[13px] text-white outline-none transition-colors placeholder:text-slate-500 focus:border-[#17BEBB]"
                 />
                 <input
                   type="email"
                   placeholder="Email"
-                  className="mt-2 w-full rounded-xl border border-slate-600 bg-slate-800/50 px-3 py-2 text-[11px] text-white placeholder:text-slate-500"
+                  className="mt-2 w-full rounded-[10px] border border-slate-600 bg-slate-800/50 px-3 py-2.5 text-[13px] text-white outline-none transition-colors placeholder:text-slate-500 focus:border-[#17BEBB]"
                 />
-                <button className="mt-2 w-full rounded-xl bg-[#FF7A1A] py-2 text-[11px] font-bold text-white transition hover:bg-[#E56A0F]">
+                <button className="mt-3 flex h-[42px] w-full items-center justify-center rounded-[10px] bg-[#FF7A1A] text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition hover:-translate-y-0.5 hover:bg-[#E56A0F]">
                   Subscribe
                 </button>
               </div>
@@ -107,8 +107,8 @@ export default function Footer() {
       <div className="px-3 py-8 sm:px-6 lg:px-0">
         <div className="mx-auto w-full max-w-[1280px]">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <div className="text-[11px] text-[#94A3B8]/70">
-              © 2026 Travel World. All rights reserved. | Privacy Policy | Terms & Conditions
+            <div className="text-[12px] text-[#94A3B8]/70">
+              © 2026 Honor Tour & Travels. All rights reserved. | Privacy Policy | Terms & Conditions
             </div>
             <div className="flex gap-4">
               <a href="#" className="rounded-full bg-slate-800 p-2 text-[#94A3B8] transition hover:bg-[#A9D8F0] hover:text-[#082C4B]">

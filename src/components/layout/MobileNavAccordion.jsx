@@ -24,7 +24,7 @@ export default function MobileNavAccordion({ data, overviewHref, overviewLabel, 
       </Link>
 
       <div className="border-b border-[#E5E7EB] px-4 py-3">
-        <p className="text-[10px] font-semibold uppercase tracking-wide text-[#6B7280]">
+        <p className="text-[12px] font-semibold uppercase tracking-wide text-[#6B7280]">
           Top Recommended
         </p>
         <div className="mt-2 flex flex-wrap gap-2">
@@ -33,7 +33,7 @@ export default function MobileNavAccordion({ data, overviewHref, overviewLabel, 
               key={item.href}
               href={item.href}
               onClick={onNavigate}
-              className="rounded-full border border-[#D1D5DB] px-3 py-1 text-[11px] font-medium text-[#0F172A] no-underline"
+              className="rounded-full border border-[#D1D5DB] px-3 py-1.5 text-[12px] font-medium text-[#0F172A] no-underline"
             >
               {item.name}
             </Link>
@@ -82,7 +82,7 @@ export default function MobileNavAccordion({ data, overviewHref, overviewLabel, 
                               key={item.href}
                               href={item.href}
                               onClick={onNavigate}
-                              className="text-[11px] text-[#4B5563] no-underline"
+                              className="py-0.5 text-[12px] text-[#4B5563] no-underline"
                             >
                               {item.name}
                             </Link>

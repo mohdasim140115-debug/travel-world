@@ -22,7 +22,7 @@ export default function MegaMenu({ data, open, onNavigate, onMouseEnter, onMouse
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       aria-hidden={!open}
-      className={`absolute left-1/2 top-full z-40 max-lg:hidden w-[calc(100%-2rem)] max-w-[1280px] -translate-x-1/2 rounded-b-[10px] border border-t-0 border-[#E5E7EB] bg-white text-left shadow-2xl transition-all duration-200 ease-out ${
+      className={`absolute left-1/2 top-full z-40 max-lg:hidden w-[calc(100%-2rem)] max-w-[1280px] -translate-x-1/2 rounded-b-[14px] border border-t-0 border-[#E5E7EB] bg-white text-left shadow-[0_16px_32px_rgba(15,23,42,0.12)] transition-all duration-200 ease-out ${
         open
           ? "visible translate-y-0 opacity-100"
           : "invisible -translate-y-1 opacity-0 pointer-events-none"
@@ -30,7 +30,7 @@ export default function MegaMenu({ data, open, onNavigate, onMouseEnter, onMouse
     >
       {/* TOP RECOMMENDED */}
       <div className="border-b border-[#E5E7EB] px-5 py-4">
-        <p className="text-[10px] font-semibold uppercase tracking-wide text-[#6B7280]">
+        <p className="text-[12px] font-semibold uppercase tracking-wide text-[#6B7280]">
           Top Recommended Destinations
         </p>
         <div className="mt-2 flex flex-wrap gap-2">
@@ -95,7 +95,7 @@ export default function MegaMenu({ data, open, onNavigate, onMouseEnter, onMouse
                         <Link
                           href={item.href}
                           onClick={onNavigate}
-                          className="text-[11px] text-[#4B5563] no-underline hover:text-[#0F4C81] hover:underline"
+                          className="text-[13px] text-[#4B5563] no-underline hover:text-[#0F4C81] hover:underline"
                         >
                           {item.name}
                         </Link>

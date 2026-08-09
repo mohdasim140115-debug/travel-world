@@ -1,715 +1,122 @@
-
 "use client";
 
-import Link from "next/link";
-
-import {
-  CalendarDays,
-  ChevronDown,
-  Heart,
-  Search,
-} from "lucide-react";
-import { getDestinationImage } from "@/data/destinationImages";
+import { useMemo } from "react";
+import { packages } from "@/data/packages";
+import TourListing from "@/components/tours/TourListing";
 
 /* =========================================================
-   PACKAGE DATA
+   Most packages in packages.js don't have a `country` field
+   populated, so it can't be used alone to separate India from
+   World tours. Instead, a package counts as India unless its
+   title/location mentions a known international city/country.
 ========================================================= */
-
-const packages = [
-  {
-    slug: "delhi-agra-tour-package",
-    title: "Delhi Agra",
-    image: "/window.svg",
-    tags: ["GROUP TOUR", "SALE", "Short Trips"],
-    days: "5 Days",
-    cities: "5 Cities",
-    dates: "9 Dates",
-    price: "₹28,000",
-    emi: "₹2,776/month",
-    highlights: "Fatehpur Sikri, Taj Mahal, Mathura, Agra Fort",
-  },
-
-  {
-    slug: "jaipur-mandawa-tour-package",
-    title: "Jaipur Mandawa",
-    image: "/globe.svg",
-    tags: ["GROUP TOUR", "SALE", "Family"],
-    days: "4 Days",
-    cities: "3 Cities",
-    dates: "2 Dates",
-    price: "₹30,000",
-    emi: "₹2,921/month",
-    highlights:
-      "Mandawa Fort, Mandawa Haveli, Podar Haveli Museum",
-  },
-
-  {
-    slug: "delhi-agra-short-tour",
-    title: "Delhi Agra",
-    image: "/window.svg",
-    tags: ["GROUP TOUR", "SALE", "Short Trips"],
-    days: "4 Days",
-    cities: "3 Cities",
-    dates: "5 Dates",
-    price: "₹31,000",
-    emi: "₹3,018/month",
-    highlights:
-      "Raj Ghat, Lotus Temple, Qutub Minar, Red Fort",
-  },
-
-  {
-    slug: "womens-special-mathura-vrindavan-gokul-govardhan",
-    title: "Women's Special Mathura Vrindavan Gokul Govardhan",
-    image: "/globe.svg",
-    tags: ["GROUP TOUR", "SALE", "Women's Special"],
-    days: "4 Days",
-    cities: "4 Cities",
-    dates: "2 Dates",
-    price: "₹31,000",
-    emi: "₹3,018/month",
-    highlights:
-      "Govardhan Hill, Barsana cable car, Radha Rani Temple",
-  },
-
-  {
-    slug: "mathura-vrindavan-gokul-govardhan",
-    title: "Mathura Vrindavan Gokul Govardhan",
-    image: "/window.svg",
-    tags: ["GROUP TOUR", "SALE", "Family"],
-    days: "4 Days",
-    cities: "4 Cities",
-    dates: "13 Dates",
-    price: "₹31,000",
-    emi: "₹3,018/month",
-    highlights:
-      "Govardhan Hill, Barsana cable car, Radha Rani Temple",
-  },
-
-  {
-    slug: "ayodhya-lucknow-tour-package",
-    title: "Ayodhya Lucknow",
-    image: "/window.svg",
-    tags: ["GROUP TOUR", "SALE", "Short Trips"],
-    days: "5 Days",
-    cities: "2 Cities",
-    dates: "7 Dates",
-    price: "₹34,000",
-    emi: "₹3,311/month",
-    highlights:
-      "Ambedkar Park, Rumi Darwaza, Bada Imambara, British Residency",
-  },
-
-  {
-    slug: "best-of-shimla",
-    title: "Best of Shimla",
-    image: "/globe.svg",
-    tags: ["GROUP TOUR", "SALE", "Short Trips"],
-    days: "5 Days",
-    cities: "4 Cities",
-    dates: "1 Date",
-    price: "₹35,000",
-    emi: "₹3,408/month",
-    highlights:
-      "Shimla Mall Road, Chail Palace, Kali Ka Tibba, Kufri Hills",
-  },
-
-  {
-    slug: "jaipur-udaipur-tour-package",
-    title: "Jaipur Udaipur",
-    image: "/window.svg",
-    tags: ["GROUP TOUR", "SALE", "Family"],
-    days: "5 Days",
-    cities: "2 Cities",
-    dates: "5 Dates",
-    price: "₹35,000",
-    emi: "₹3,408/month",
-    highlights:
-      "Hawa Mahal, Jantar Mantar, City Palace, Panna Meena Ka Kund",
-  },
+const WORLD_KEYWORDS = [
+  "thailand", "bangkok", "pattaya", "phuket", "krabi", "chiang mai",
+  "nepal", "kathmandu", "pokhara",
+  "sri lanka", "colombo", "kandy", "nuwara eliya",
+  "switzerland", "zurich", "interlaken", "zermatt", "lucerne",
+  "italy", "milan", "venice", "rome",
+  "paris", "france",
+  "dubai", "abu dhabi",
+  "singapore", "kuala lumpur", "genting",
+  "vietnam", "hanoi", "halong bay", "ho chi minh", "danang",
+  "cambodia", "siem reap", "phnom penh",
+  "japan", "tokyo", "kyoto", "osaka", "hakone",
+  "korea", "seoul",
+  "australia", "sydney", "melbourne", "gold coast", "cairns",
+  "new zealand", "auckland", "rotorua", "queenstown",
+  "europe", "vienna", "budapest", "prague", "austria", "germany",
+  "greece", "athens", "santorini", "mykonos",
+  "scandinavia", "copenhagen", "oslo", "stockholm",
+  "amsterdam", "brussels", "cologne", "netherlands",
+  "london",
+  "usa", "america", "new york", "washington", "las vegas", "los angeles",
+  "philadelphia", "boston", "san francisco",
+  "canada", "vancouver", "banff", "lake louise", "toronto", "niagara falls",
+  "south africa", "cape town", "johannesburg", "kruger",
+  "kenya", "nairobi", "maasai mara", "lake nakuru", "serengeti", "zanzibar",
+  "egypt", "cairo", "luxor", "aswan",
+  "china", "beijing", "xian", "xi'an", "shanghai", "suzhou", "chengdu", "guilin",
+  "bali", "denpasar", "ubud", "nusa dua",
 ];
 
-/* =========================================================
-   FILTER DATA
-========================================================= */
-
-const departureCities = [
-  "Joining / Leaving (138)",
-  "Pune (7)",
-  "Mumbai (136)",
-  "Agartala (2)",
-  "Port Blair (3)",
-  "Srinagar (4)",
-  "Jodhpur (4)",
-  "Cochin (4)",
-  "Amritsar (4)",
-  "Thiruvananthapuram (5)",
-  "Indore (3)",
-  "Bhubaneswar (5)",
-  "Bagdogra (5)",
-  "Chandigarh (5)",
-  "Leh (7)",
-  "Jaipur (1)",
-];
-
-const cities = [
-  "Delhi (25)",
-  "Jaipur (31)",
-  "Udaipur (22)",
-  "Ahmedabad (20)",
-  "Guwahati (17)",
-  "Ayodhya (16)",
-  "Agra (15)",
-  "Munnar (15)",
-  "Shillong (15)",
-  "Varanasi (16)",
-];
-
-/* =========================================================
-   FILTER GROUP
-========================================================= */
-
-function FilterGroup({ title, children }) {
-  return (
-    <div className="border-b border-[#dedede] px-3 py-4">
-      <div className="mb-3 flex items-center justify-between">
-        <h4 className="text-[12px] font-semibold text-[#222]">
-          {title}
-        </h4>
-
-        <ChevronDown size={14} />
-      </div>
-
-      {children}
-    </div>
-  );
+function isIndiaPackage(pkg) {
+  if (pkg.country) return false;
+  if (pkg.state) return true;
+  const haystack = `${pkg.title} ${pkg.location}`.toLowerCase();
+  return !WORLD_KEYWORDS.some((keyword) => haystack.includes(keyword));
 }
 
 /* =========================================================
-   CHECKBOX
+   Builds "Label (count)" option lists from the REAL India
+   package data (packages.js entries that have a `state`),
+   so every filter count on this page matches actual tours —
+   and only India-relevant options ever appear here.
 ========================================================= */
-
-function Checkbox({ label }) {
-  return (
-    <label className="mb-2 flex cursor-pointer items-center gap-2 text-[11px] text-[#333]">
-      <input
-        type="checkbox"
-        className="h-[12px] w-[12px] accent-[#0F4C81]"
-      />
-
-      <span>{label}</span>
-    </label>
-  );
+function countBy(items, getKey) {
+  const counts = new Map();
+  for (const item of items) {
+    const key = getKey(item);
+    if (!key) continue;
+    counts.set(key, (counts.get(key) || 0) + 1);
+  }
+  return counts;
 }
 
-/* =========================================================
-   PACKAGE CARD
-========================================================= */
-
-function PackageCard({ item }) {
-  const image = item.image || getDestinationImage(item.title);
-
-  return (
-    <div className="relative">
-      {/* =================================================
-          MAIN CLICKABLE CARD
-          Mobile: stacked (image on top, content, price+CTA).
-          md+: original 3-column side-by-side grid.
-      ================================================= */}
-
-      <Link
-        href={`/package/${item.slug}`}
-        className="group block no-underline"
-      >
-        <article className="flex cursor-pointer flex-col gap-2 rounded-xl border border-[#cfd4dc] bg-white p-2.5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-[#17BEBB] hover:shadow-[0_4px_14px_rgba(0,0,0,0.10)] md:gap-3 md:p-3 md:grid md:min-h-[190px] md:grid-cols-[220px_minmax(0,1fr)_220px]">
-
-          {/* =============================================
-              IMAGE + TAGS (mobile: small square thumbnail
-              with tags beside it; md+: full image column,
-              tags move into the content column below)
-          ============================================= */}
-
-          <div className="flex gap-3 md:contents">
-            <div className="relative h-[84px] w-[84px] shrink-0 overflow-hidden rounded-lg md:h-auto md:w-auto md:rounded-xl">
-              <img
-                src={image}
-                alt={item.title}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </div>
-
-            {/* TAGS (mobile only, beside image) */}
-            <div className="flex flex-1 flex-wrap content-start gap-1 md:hidden">
-              {item.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className={`border px-1.5 py-[2px] text-[8px] font-semibold ${
-                    tag.includes("GROUP")
-                      ? "border-[#17BEBB] bg-[#F7FAFC] text-[#0F4C81]"
-                      : tag.includes("SALE")
-                      ? "border-amber-400 bg-amber-50 text-amber-700"
-                      : "border-pink-400 bg-pink-50 text-pink-600"
-                  }`}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* =============================================
-              CONTENT
-          ============================================= */}
-
-          <div className="min-w-0 md:py-1">
-
-            {/* TAGS (desktop only, in content column) */}
-
-            <div className="mb-2 hidden flex-wrap gap-1 md:flex">
-              {item.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className={`border px-1.5 py-[2px] text-[8px] font-semibold ${
-                    tag.includes("GROUP")
-                      ? "border-[#17BEBB] bg-[#F7FAFC] text-[#0F4C81]"
-                      : tag.includes("SALE")
-                      ? "border-amber-400 bg-amber-50 text-amber-700"
-                      : "border-pink-400 bg-pink-50 text-pink-600"
-                  }`}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {/* TITLE */}
-
-            <h3 className="text-[17px] font-semibold text-[#1e1e1e] transition-colors group-hover:text-[#0F4C81]">
-              {item.title}
-            </h3>
-
-            {/* ALL INCLUSIVE */}
-
-            <span className="mt-1 inline-block text-[13px] font-semibold underline md:mt-2">
-              ∞ All Inclusive
-            </span>
-
-            {/* DAYS / CITIES / DATES */}
-
-            <div className="mt-1 flex flex-wrap items-center gap-2 text-[13px] font-medium text-[#222] md:mt-8">
-              <span>{item.days}</span>
-
-              <span className="text-[#aaa]">
-                •
-              </span>
-
-              <span className="underline">
-                {item.cities}
-              </span>
-
-              <span className="text-[#aaa]">
-                •
-              </span>
-
-              <span className="underline">
-                {item.dates} ›
-              </span>
-            </div>
-
-            {/* HIGHLIGHTS */}
-
-            <div className="mt-1.5 border-t border-[#ddd] pt-1.5 md:mt-3 md:pt-2">
-              <p className="text-[12px] font-semibold text-[#56a33b]">
-                Tour Highlights
-              </p>
-
-              <div className="mt-1 flex min-w-0 items-center">
-                <p className="truncate text-[13px] text-[#444]">
-                  {item.highlights}
-                </p>
-
-                <span className="ml-1 shrink-0 text-[12px] font-semibold underline">
-                  More
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* =============================================
-              PRICE
-          ============================================= */}
-
-          <div className="flex flex-col rounded-xl border border-[#17BEBB] bg-[#F7FAFC] p-2.5 text-center md:p-3">
-
-            <p className="text-[12px] text-[#777] md:mt-3">
-              Starting price per person
-            </p>
-
-            <strong className="text-[20px] leading-none text-[#0F172A] md:mt-1 md:text-[24px]">
-              {item.price}
-            </strong>
-
-            <p className="mt-1 text-[12px] md:mt-2">
-              EMI from{" "}
-              <span className="font-semibold underline">
-                {item.emi}
-              </span>
-            </p>
-
-            {/* VIEW DETAILS */}
-
-            <div className="mt-2 flex h-[38px] w-full items-center justify-center rounded-[8px] bg-[#FF7A1A] text-[14px] font-semibold text-white transition-colors group-hover:bg-[#E56A0F] md:mt-auto md:h-[42px] md:rounded-[3px]">
-              View Details
-            </div>
-
-            {/* space for bottom actions (desktop only) */}
-
-            <div className="hidden md:mt-3 md:block md:h-[18px]" />
-          </div>
-        </article>
-      </Link>
-
-      {/* =================================================
-          HEART BUTTON
-          Link ke bahar hai so card open nahi karega
-      ================================================= */}
-
-      <button
-        type="button"
-        aria-label={`Save ${item.title}`}
-        onClick={(event) => {
-          event.preventDefault();
-          event.stopPropagation();
-        }}
-        className="absolute right-2 top-2 z-20 flex h-7 w-7 items-center justify-center rounded-full bg-[#26394b]/70 text-white transition hover:bg-[#26394b] md:left-[196px] md:right-auto md:top-[20px]"
-      >
-        <Heart size={14} />
-      </button>
-
-      {/* =================================================
-          COMPARE / ENQUIRE
-      ================================================= */}
-
-      <div className="mt-1.5 flex justify-between px-1 text-[12px] md:absolute md:bottom-[22px] md:right-[25px] md:mt-0 md:w-[190px] md:px-0 md:text-[9px]">
-        <button
-          type="button"
-          onClick={(event) => {
-            event.preventDefault();
-            event.stopPropagation();
-          }}
-          className="underline hover:text-[#0F4C81]"
-        >
-          Compare
-        </button>
-
-        <button
-          type="button"
-          onClick={(event) => {
-            event.preventDefault();
-            event.stopPropagation();
-          }}
-          className="underline hover:text-[#0F4C81]"
-        >
-          Enquire Now
-        </button>
-      </div>
-    </div>
-  );
+function toLabelList(counts, { limit } = {}) {
+  const entries = Array.from(counts.entries()).sort((a, b) => b[1] - a[1]);
+  const sliced = limit ? entries.slice(0, limit) : entries;
+  return sliced.map(([label, count]) => `${label} (${count})`);
 }
-
-/* =========================================================
-   JOINING / LEAVING BOX
-========================================================= */
-
-function JoiningLeavingBox() {
-  const options = [
-    "7 tours from Pune",
-    "136 tours from Mumbai",
-    "2 tours joining & leaving from Agartala",
-    "3 tours joining & leaving from Port Blair",
-    "4 tours joining & leaving from Srinagar",
-    "4 tours joining & leaving from Jodhpur",
-    "4 tours joining & leaving from Cochin",
-    "4 tours joining & leaving from Amritsar",
-    "5 tours joining & leaving from Thiruvananthapuram",
-    "5 tours joining & leaving from Indore",
-    "5 tours joining & leaving from Bhubaneswar",
-    "5 tours joining & leaving from Bagdogra",
-    "6 tours joining & leaving from Chandigarh",
-    "7 tours joining & leaving from Leh",
-    "1 tour joining & leaving from Jaipur",
-  ];
-
-  return (
-    <div className="rounded-xl border-2 border-[#0F4C81] bg-[#F7FAFC] p-3">
-      <h3 className="mb-2 text-[12px] font-semibold text-[#222]">
-        View India Tour Packages
-      </h3>
-
-      <div className="flex flex-wrap gap-2">
-        {options.map((option) => (
-          <button
-            key={option}
-            type="button"
-            className="rounded-full border border-[#b9c0ca] bg-white px-3 py-1 text-[9px] text-[#555] hover:border-[#17BEBB]"
-          >
-            {option}
-          </button>
-        ))}
-      </div>
-
-      <p className="mt-3 text-[9px] font-semibold text-[#d21c1c]">
-        Can&apos;t find tours from your city? Check our joining & leaving
-        option. Book your own flights and join directly at the first
-        destination of the tour.
-      </p>
-    </div>
-  );
-}
-
-/* =========================================================
-   MAIN LISTING
-========================================================= */
 
 export default function IndiaTourListing() {
+  const indiaPackages = useMemo(() => packages.filter(isIndiaPackage), []);
+
+  const filters = useMemo(() => {
+    const departureCounts = countBy(
+      indiaPackages.flatMap((pkg) => (pkg.departureCities || []).map((city) => [pkg, city])).map(([, city]) => city),
+      (city) => city
+    );
+    const joiningLeavingCount = indiaPackages.filter((pkg) => pkg.departureCities?.length).length;
+
+    const cityCounts = countBy(
+      indiaPackages.flatMap((pkg) => pkg.location.split("•").map((c) => c.trim())),
+      (city) => city
+    );
+
+    const packageTypeCounts = countBy(indiaPackages, (pkg) => pkg.tourType);
+    const specialityCounts = countBy(indiaPackages, (pkg) => pkg.category);
+
+    return {
+      departureCities: [
+        ...(joiningLeavingCount ? [`Joining / Leaving (${joiningLeavingCount})`] : []),
+        ...toLabelList(departureCounts),
+      ],
+      cities: toLabelList(cityCounts, { limit: 40 }),
+      packageTypes: [`All (${indiaPackages.length})`, ...toLabelList(packageTypeCounts)],
+      specialityTours: toLabelList(specialityCounts),
+    };
+  }, [indiaPackages]);
+
+  const topDepartureCities = useMemo(() => {
+    const counts = countBy(
+      indiaPackages.flatMap((pkg) => pkg.departureCities || []),
+      (city) => city
+    );
+    return Array.from(counts.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([city, count]) => `${count} tours from ${city}`);
+  }, [indiaPackages]);
+
   return (
-    <div className="grid grid-cols-1 gap-7 md:grid-cols-[220px_minmax(0,1fr)]">
-
-      {/* =================================================
-          LEFT FILTERS (hidden on mobile)
-      ================================================= */}
-
-      <aside className="hidden self-start border border-[#d6d6d6] bg-white md:block">
-
-        {/* FILTER HEADER */}
-
-        <div className="flex items-center justify-between border-b border-[#ddd] px-3 py-3">
-          <h3 className="text-[13px] font-semibold">
-            ☷ Filter Your Tour
-          </h3>
-
-          <button
-            type="button"
-            className="text-[9px] underline"
-          >
-            Reset
-          </button>
-        </div>
-
-        {/* PRICE */}
-
-        <FilterGroup title="Price Range">
-          <div className="px-1">
-
-            <input
-              type="range"
-              min="9000"
-              max="365000"
-              defaultValue="365000"
-              className="w-full accent-[#0F4C81]"
-            />
-
-            <div className="mt-1 flex justify-between text-[8px]">
-              <span>₹9,000</span>
-              <span>₹3,65,000</span>
-            </div>
-
-            <div className="mt-3 grid grid-cols-2 gap-2">
-              {[
-                "₹9,000 - ₹80,000",
-                "₹80,000 - ₹1.6L",
-                "₹1.6L - ₹2.4L",
-                "₹2.4L above",
-              ].map((price) => (
-                <button
-                  key={price}
-                  type="button"
-                  className="border border-[#ccc] bg-white px-1 py-2 text-[8px]"
-                >
-                  {price}
-                </button>
-              ))}
-            </div>
-          </div>
-        </FilterGroup>
-
-        {/* DEPARTURE CITY */}
-
-        <FilterGroup title="Departure City">
-          {departureCities.map((city) => (
-            <Checkbox
-              key={city}
-              label={city}
-            />
-          ))}
-        </FilterGroup>
-
-        {/* COUNTRIES */}
-
-        <FilterGroup title="Countries">
-          <div className="relative mb-3">
-
-            <input
-              type="text"
-              placeholder="Search"
-              className="h-[30px] w-full border border-[#777] px-2 pr-7 text-[10px] outline-none"
-            />
-
-            <Search
-              size={13}
-              className="absolute right-2 top-1/2 -translate-y-1/2"
-            />
-          </div>
-
-          <Checkbox label="India (264)" />
-          <Checkbox label="Nepal (1)" />
-        </FilterGroup>
-
-        {/* CITIES */}
-
-        <FilterGroup title="Cities">
-          <div className="relative mb-3">
-
-            <input
-              type="text"
-              placeholder="Search"
-              className="h-[30px] w-full border border-[#777] px-2 pr-7 text-[10px] outline-none"
-            />
-
-            <Search
-              size={13}
-              className="absolute right-2 top-1/2 -translate-y-1/2"
-            />
-          </div>
-
-          {cities.map((city) => (
-            <Checkbox
-              key={city}
-              label={city}
-            />
-          ))}
-
-          <button
-            type="button"
-            className="mt-1 text-[9px] underline"
-          >
-            View 287 More ›
-          </button>
-        </FilterGroup>
-
-        {/* DEPART BETWEEN */}
-
-        <FilterGroup title="Depart Between">
-          <div className="space-y-2">
-
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Start Date"
-                className="h-[32px] w-full border border-[#777] px-2 text-[9px]"
-              />
-
-              <CalendarDays
-                size={13}
-                className="absolute right-2 top-1/2 -translate-y-1/2"
-              />
-            </div>
-
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="End Date"
-                className="h-[32px] w-full border border-[#777] px-2 text-[9px]"
-              />
-
-              <CalendarDays
-                size={13}
-                className="absolute right-2 top-1/2 -translate-y-1/2"
-              />
-            </div>
-
-          </div>
-        </FilterGroup>
-
-        {/* DURATION */}
-
-        <FilterGroup title="Tour Duration">
-          <div className="grid grid-cols-2 gap-2">
-
-            {[
-              "3 - 15 Days",
-              "15 - 27 Days",
-              "27 - 39 Days",
-              "39 - 50 Days",
-            ].map((duration) => (
-              <button
-                key={duration}
-                type="button"
-                className="border border-[#ccc] px-1 py-2 text-[8px]"
-              >
-                {duration}
-              </button>
-            ))}
-
-          </div>
-        </FilterGroup>
-
-        {/* PACKAGE TYPE */}
-
-        <FilterGroup title="Package Type">
-          <Checkbox label="All (264)" />
-          <Checkbox label="Group Tour (142)" />
-          <Checkbox label="Customized Holidays (97)" />
-          <Checkbox label="Inbound (25)" />
-        </FilterGroup>
-
-        {/* SPECIALITY */}
-
-        <FilterGroup title="Speciality Tour">
-          <Checkbox label="Family (78)" />
-          <Checkbox label="Customized Holidays (71)" />
-          <Checkbox label="Women's Special (27)" />
-          <Checkbox label="Inbound (25)" />
-          <Checkbox label="Fixed Date Holiday (17)" />
-          <Checkbox label="Seniors' Special (17)" />
-          <Checkbox label="Short Trips (10)" />
-          <Checkbox label="Road Trips (7)" />
-          <Checkbox label="Honeymoon Special (2)" />
-        </FilterGroup>
-
-      </aside>
-
-      {/* =================================================
-          RIGHT PACKAGE LIST
-          Vertical stacked list at every screen size — card
-          itself switches to a stacked mobile layout / 3-col
-          desktop layout internally (see PackageCard).
-      ================================================= */}
-
-      <div className="min-w-0 space-y-3">
-
-        {/* FIRST 4 */}
-
-        {packages.slice(0, 4).map((item) => (
-          <PackageCard
-            key={item.slug}
-            item={item}
-          />
-        ))}
-
-        {/* JOINING / LEAVING */}
-
-        <JoiningLeavingBox />
-
-        {/* REMAINING PACKAGES */}
-
-        {packages.slice(4).map((item) => (
-          <PackageCard
-            key={item.slug}
-            item={item}
-          />
-        ))}
-
-      </div>
-    </div>
+    <TourListing
+      packages={indiaPackages}
+      filters={filters}
+      joiningLeaving={{
+        heading: "View India Tour Packages",
+        cities: topDepartureCities,
+      }}
+    />
   );
 }

@@ -1,4 +1,4 @@
-import { findAirportBySlugToken, slugifyCity } from "@/data/airports";
+import { findAirportBySlugToken, slugifyCity } from "./airports.js";
 
 /* =========================================================
    DEMO / STATIC FLIGHT DATA GENERATOR
@@ -362,7 +362,7 @@ export function getRouteFaqs(route) {
       answer: `Air India, IndiGo, SpiceJet, Akasa Air and Air India Express all operate on this sector, so the best choice usually depends on your preferred timing and budget.`,
     },
     {
-      question: `Are flights included in Travel World ${route.to} group tours?`,
+      question: `Are flights included in Honor Tour & Travels ${route.to} group tours?`,
       answer: `Select group tours include return airfare as part of the package, while others offer flexible joining and leaving options so you can book your own ${route.from} to ${route.to} flight.`,
     },
     {

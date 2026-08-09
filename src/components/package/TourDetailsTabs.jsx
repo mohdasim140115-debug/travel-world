@@ -19,17 +19,17 @@ export default function TourDetailsTabs({ details }) {
   const activeTab = tabs.find((tab) => tab.key === active);
 
   return (
-    <div className="mt-5 rounded-xl border bg-white">
-      <div className="flex flex-wrap gap-2 border-[#0F172A] p-3">
+    <div className="mt-6 overflow-hidden rounded-[14px] border border-[#E5E7EB] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+      <div className="flex flex-wrap gap-1 border-b border-[#E5E7EB] p-2">
         {tabs.map((tab) => (
           <button
             key={tab.key}
             type="button"
             onClick={() => setActive(tab.key)}
-            className={`rounded-full border px-4 py-2 text-[10px] font-semibold ${
+            className={`rounded-[10px] px-4 py-2.5 text-[13px] font-semibold transition-colors ${
               active === tab.key
-                ? "border-[#0F4C81] bg-[#eef3ff] text-[#0F4C81]"
-                : "border-[#ccc] bg-white text-[#333]"
+                ? "bg-[#0F4C81] text-white"
+                : "text-[#64748B] hover:bg-[#F7FAFC] hover:text-[#0F4C81]"
             }`}
           >
             {tab.label}
@@ -37,8 +37,8 @@ export default function TourDetailsTabs({ details }) {
         ))}
       </div>
 
-      <div className="p-5">
-        <p className="text-[11px] leading-6 text-[#555]">{activeTab.text}</p>
+      <div className="p-5 sm:p-6">
+        <p className="text-[14px] leading-[1.65] text-[#475569]">{activeTab.text}</p>
       </div>
     </div>
   );

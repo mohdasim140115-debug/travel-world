@@ -17,7 +17,7 @@ export default function PartnerBanner() {
                 in Malaysia & Beyond.
               </p>
               <p className="mt-4 text-[13px] leading-[1.6] text-white/80">
-                Discover memorable experiences and exciting attractions with Travel World.
+                Discover memorable experiences and exciting attractions with Honor Tour & Travels.
               </p>
               <button className="mt-6 rounded-full bg-white px-6 py-2 text-[13px] font-bold text-[#0F172A] transition duration-200 hover:bg-[#F7FAFC]">
                 Explore Tours

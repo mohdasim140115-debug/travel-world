@@ -44,28 +44,28 @@ const reviews = [
 
 const faqs = [
   {
-    question: "What India tour packages does Travel World offer?",
+    question: "What India tour packages does Honor Tour & Travels offer?",
     answer:
-      "Travel World offers a wide range of India tour packages including family tours, group tours, women's special tours, seniors' tours, honeymoon packages, short trips and customized holidays across popular destinations in India.",
+      "Honor Tour & Travels offers a wide range of India tour packages including family tours, group tours, women's special tours, seniors' tours, honeymoon packages, short trips and customized holidays across popular destinations in India.",
   },
   {
-    question: "What is included in Travel World India tour packages?",
+    question: "What is included in Honor Tour & Travels India tour packages?",
     answer:
       "Package inclusions vary by itinerary, but may include accommodation, sightseeing, selected meals, tour transportation, tour manager services and other experiences mentioned in the selected package.",
   },
   {
-    question: "What is the best time to travel within India with Travel World?",
+    question: "What is the best time to travel within India with Honor Tour & Travels?",
     answer:
       "India can be explored throughout the year. Hill destinations are popular during summer, Rajasthan and several heritage destinations during winter, while many southern and coastal destinations can be visited across multiple seasons.",
   },
   {
-    question: "Does Travel World offer group tours within India for seniors?",
+    question: "Does Honor Tour & Travels offer group tours within India for seniors?",
     answer:
       "Yes. Seniors can choose from selected group tours and special itineraries designed around comfortable travel, planned sightseeing and assisted tour experiences.",
   },
   {
     question:
-      "Can I travel to India destinations with Travel World from any Indian city?",
+      "Can I travel to India destinations with Honor Tour & Travels from any Indian city?",
     answer:
       "Departure options depend on the selected tour. Joining and leaving options may also be available, allowing travellers to arrange their own journey and join the group at the specified destination.",
   },
@@ -154,7 +154,7 @@ export default function IndiaTourBottom() {
 
           <div className="relative z-10 text-center text-white">
             <h2 className="text-[19px] font-semibold">
-              Travel World tour reviews
+              Honor Tour & Travels tour reviews
             </h2>
 
             <p className="mt-1 text-[10px] text-white/80">
@@ -323,7 +323,7 @@ export default function IndiaTourBottom() {
 
             <div className="mt-6 border-t border-[#ddd] pt-4">
               <p className="text-[8px] text-[#999]">
-                India Tours | Travel World Holiday Packages | All prices and
+                India Tours | Honor Tour & Travels Holiday Packages | All prices and
                 tour information are subject to availability and selected
                 itinerary.
               </p>
@@ -344,7 +344,7 @@ export default function IndiaTourBottom() {
 
               <div>
                 <p className="text-[8px] text-[#777]">
-                  150+ Travel World Offices
+                  150+ Honor Tour & Travels Offices
                 </p>
 
                 <button className="text-[10px] font-semibold underline">
@@ -382,7 +382,7 @@ export default function IndiaTourBottom() {
                 </p>
 
                 <span className="text-[9px] font-semibold">
-                  feedback@travelworld.com
+                  feedback@honortourtravels.com
                 </span>
               </div>
             </div>
@@ -396,7 +396,7 @@ export default function IndiaTourBottom() {
                 </p>
 
                 <span className="text-[9px] font-semibold">
-                  travel@travelworld.com
+                  travel@honortourtravels.com
                 </span>
               </div>
             </div>

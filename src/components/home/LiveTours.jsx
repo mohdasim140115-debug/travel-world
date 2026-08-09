@@ -1,7 +1,22 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { CheckCircle } from "lucide-react";
 import { homeData } from "@/data/homeData";
 
+const AUTO_SLIDE_MS = 3000;
+
 export default function LiveTours() {
+  const { reviews } = homeData.trustReviews;
+  const [reviewIndex, setReviewIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setReviewIndex((i) => (i + 1) % reviews.length);
+    }, AUTO_SLIDE_MS);
+    return () => clearInterval(timer);
+  }, [reviews.length]);
+
   return (
     <section className="bg-[#F7FAFC] px-3 py-8 sm:px-6 md:py-12 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
@@ -45,13 +60,13 @@ export default function LiveTours() {
           ))}
         </div>
 
-        <div className="mt-6 grid gap-6 md:mt-8 lg:grid-cols-3 lg:gap-8">
-          <div className="lg:col-span-2">
+        <div className="mt-6 grid gap-6 md:mt-8 lg:grid-cols-[1.5fr_1.3fr] lg:gap-8">
+          <div>
             <div className="flex items-start gap-3">
               <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-emerald-600" />
               <div>
                 <p className="text-[19px] font-bold leading-snug text-[#0F172A] md:text-[18px]">
-                  27+ tours are live right now with Travel World
+                  27+ tours are live right now with Honor Tour & Travels
                 </p>
                 <p className="mt-2 text-[15px] leading-relaxed text-[#4B5563] md:mt-3 md:text-[14px] md:leading-[1.6]">
                   Guests everywhere are travelling with ease and care — step into your journey.
@@ -64,23 +79,47 @@ export default function LiveTours() {
             </div>
           </div>
 
-          <div className="rounded-[14px] border border-[#E5E7EB] bg-white p-3.5">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#E6F7F5] text-[12px] font-bold text-[#0F172A]">
-                R
-              </div>
-              <div className="flex-1">
-                <p className="text-[15px] leading-relaxed text-[#2B2B2B] md:text-[13px] md:leading-[1.5]">
-                  "Everything from searching for the trip, booking it, and eventually enjoying it was absolutely amazing."
-                </p>
-                <p className="mt-1 text-[12px] font-semibold text-[#60646C]">Read more</p>
+          <div className="relative overflow-hidden rounded-[14px] border border-[#E5E7EB] bg-white p-4">
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${reviewIndex * 100}%)` }}
+              >
+                {reviews.map((review) => (
+                  <div key={review.guest} className="w-full shrink-0">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#E6F7F5] text-[12px] font-bold text-[#0F172A]">
+                        {review.guest.charAt(0)}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="line-clamp-2 text-[15px] leading-relaxed text-[#2B2B2B] md:text-[13px] md:leading-[1.5]">
+                          "{review.excerpt}"
+                        </p>
+                      </div>
+                    </div>
+                    <div className="mt-3 flex items-center justify-between">
+                      <p className="text-[13px] font-semibold text-[#0F172A]">- {review.guest}</p>
+                      <div className="inline-block shrink-0 rounded-full border border-[#0F172A]/20 bg-[#F7FAFC] px-3 py-1 text-[11px] font-semibold text-[#0F172A]">
+                        {review.destination}
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="mt-2 flex items-center justify-between">
-              <p className="text-[13px] font-semibold text-[#0F172A]">- Ramkumar Iyer</p>
-              <div className="inline-block rounded-full border border-[#0F172A]/20 bg-[#F7FAFC] px-3 py-1 text-[11px] font-semibold text-[#0F172A]">
-                Bali
-              </div>
+
+            <div className="mt-3 flex justify-center gap-1.5">
+              {reviews.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`Show review ${i + 1}`}
+                  onClick={() => setReviewIndex(i)}
+                  className={`h-1.5 rounded-full transition-all duration-200 ${
+                    i === reviewIndex ? "w-5 bg-[#0F4C81]" : "w-1.5 bg-[#E5E7EB]"
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>

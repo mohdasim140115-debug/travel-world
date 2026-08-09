@@ -27,7 +27,7 @@ export default function PopularFlightRoutes({ routes }) {
             <Link
               key={route.slug}
               href={`/flights/${route.slug}`}
-              className="group block overflow-hidden rounded-xl border border-[#E5E7EB] bg-white no-underline shadow-md transition hover:shadow-lg"
+              className="group block min-w-0 overflow-hidden rounded-[14px] border border-[#E5E7EB] bg-white no-underline shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-[2px] hover:border-[#17BEBB] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)]"
             >
               <div
                 className={`relative flex h-[90px] items-center justify-center bg-gradient-to-br sm:h-[110px] ${gradients[index % gradients.length]}`}
@@ -36,10 +36,10 @@ export default function PopularFlightRoutes({ routes }) {
               </div>
 
               <div className="p-2.5 sm:p-3">
-                <p className="text-[12px] font-semibold leading-tight text-[#0F172A] group-hover:text-[#0F4C81] sm:text-[13px]">
+                <p className="truncate text-[13px] font-semibold leading-tight text-[#0F172A] group-hover:text-[#0F4C81]">
                   {route.from} to {route.to}
                 </p>
-                <p className="mt-1 flex items-center gap-1 text-[10px] font-medium text-[#6B7280] sm:text-[11px]">
+                <p className="mt-1 flex items-center gap-1 text-[12px] font-medium text-[#6B7280]">
                   {route.fromCode}-{route.toCode}
                   <ArrowRight size={11} className="opacity-60" />
                 </p>

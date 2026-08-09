@@ -5,6 +5,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
 import { getDestination, getDestinationParams } from "@/data/destinations";
+import JsonLd from "@/components/common/JsonLd";
+import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
 export function generateStaticParams() {
   return getDestinationParams("india");
@@ -15,13 +17,19 @@ export async function generateMetadata({ params }) {
   const result = getDestination("india", destination);
 
   if (!result) {
-    return { title: "India Destination" };
+    return buildMetadata({
+      title: "India Destination Not Found",
+      description: "The destination you are looking for is not available.",
+      path: `/india/${destination}`,
+      noIndex: true,
+    });
   }
 
-  return {
+  return buildMetadata({
     title: result.raw.metaTitle,
     description: result.raw.metaDescription,
-  };
+    path: `/india/${destination}`,
+  });
 }
 
 export default async function IndiaDestinationPage({ params }) {
@@ -34,6 +42,13 @@ export default async function IndiaDestinationPage({ params }) {
 
   return (
     <>
+      <JsonLd
+        schema={breadcrumbSchema([
+          { name: "Home", href: "/" },
+          { name: "India", href: "/india" },
+          { name: result.raw.name, href: `/india/${destination}` },
+        ])}
+      />
       <Header />
       <Navbar />
 

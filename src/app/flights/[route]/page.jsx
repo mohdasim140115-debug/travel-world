@@ -10,6 +10,9 @@ import FlightResults from "@/components/flights/FlightResults";
 import FlightRouteContent from "@/components/flights/FlightRouteContent";
 import FlightFAQ from "@/components/flights/FlightFAQ";
 import { getAllRouteSlugs, getRoute, getRouteFaqs } from "@/data/flightRoutes";
+import { prisma } from "@/lib/prisma";
+import JsonLd from "@/components/common/JsonLd";
+import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
 export function generateStaticParams() {
   return getAllRouteSlugs();
@@ -20,13 +23,19 @@ export async function generateMetadata({ params }) {
   const route = getRoute(slug);
 
   if (!route) {
-    return { title: "Flight Route" };
+    return buildMetadata({
+      title: "Flight Route Not Found",
+      description: "The flight route you are looking for is not available.",
+      path: `/flights/${slug}`,
+      noIndex: true,
+    });
   }
 
-  return {
+  return buildMetadata({
     title: `${route.from} to ${route.to} Flights | Flight Tickets & Booking`,
     description: route.description,
-  };
+    path: `/flights/${route.slug}`,
+  });
 }
 
 export default async function FlightRoutePage({ params }) {
@@ -42,9 +51,17 @@ export default async function FlightRoutePage({ params }) {
     .filter((item) => item && item.slug !== route.slug);
 
   const faqs = getRouteFaqs(route);
+  const airlines = await prisma.airline.findMany({ orderBy: { order: "asc" } });
 
   return (
     <>
+      <JsonLd
+        schema={breadcrumbSchema([
+          { name: "Home", href: "/" },
+          { name: "Flights", href: "/flights" },
+          { name: `${route.from} to ${route.to}`, href: `/flights/${route.slug}` },
+        ])}
+      />
       <Header />
       <Navbar />
 
@@ -87,7 +104,7 @@ export default async function FlightRoutePage({ params }) {
           </div>
         </section>
 
-        <FlightResults route={route} />
+        <FlightResults route={route} airlines={airlines} />
 
         <FlightRouteContent route={{ ...route, otherRouteObjects }} />
 

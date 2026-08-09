@@ -14,8 +14,8 @@ export default function FlightBookingModal({ flight, from, to, onClose }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-      <div className="w-full max-w-[440px] rounded-xl bg-white p-5 shadow-xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 px-4 backdrop-blur-sm">
+      <div className="w-full max-w-[440px] rounded-[20px] bg-white p-5 shadow-[0_24px_60px_rgba(0,0,0,0.3)]">
         <div className="flex items-center justify-between">
           <h3 className="text-[15px] font-bold text-[#0F172A]">
             {submitted ? "Booking Request Received" : "Confirm Your Flight"}
@@ -34,14 +34,14 @@ export default function FlightBookingModal({ flight, from, to, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="mt-4 h-[38px] w-full rounded-[4px] bg-[#0B3B63] text-[12px] font-bold text-white"
+              className="mt-4 h-[44px] w-full rounded-[10px] bg-[#0B3B63] text-[13px] font-bold text-white transition hover:bg-[#0F4C81]"
             >
               Close
             </button>
           </div>
         ) : (
           <>
-            <div className="mt-4 space-y-2 rounded-xl bg-[#F9FAFB] p-3 text-[11px] text-[#374151]">
+            <div className="mt-4 space-y-2 rounded-[14px] border border-[#E5E7EB] bg-[#F7FAFC] p-4 text-[12px] text-[#374151]">
               <div className="flex justify-between">
                 <span className="text-[#6B7280]">Route</span>
                 <strong>
@@ -77,24 +77,24 @@ export default function FlightBookingModal({ flight, from, to, onClose }) {
                 type="text"
                 required
                 placeholder="Full Name"
-                className="h-[38px] w-full rounded-[4px] border border-[#D1D5DB] px-3 text-[12px] outline-none"
+                className="h-[38px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none focus:border-[#17BEBB]"
               />
               <input
                 type="email"
                 required
                 placeholder="Email"
-                className="h-[38px] w-full rounded-[4px] border border-[#D1D5DB] px-3 text-[12px] outline-none"
+                className="h-[38px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none focus:border-[#17BEBB]"
               />
               <input
                 type="tel"
                 required
                 placeholder="Mobile Number"
-                className="h-[38px] w-full rounded-[4px] border border-[#D1D5DB] px-3 text-[12px] outline-none"
+                className="h-[38px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none focus:border-[#17BEBB]"
               />
 
               <button
                 type="submit"
-                className="mt-2 h-[40px] w-full rounded-[4px] bg-[#FF7A1A] text-[12px] font-bold text-white transition hover:bg-[#E56A0F]"
+                className="mt-2 h-[44px] w-full rounded-[10px] bg-[#FF7A1A] text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition hover:bg-[#E56A0F]"
               >
                 Continue Booking
               </button>

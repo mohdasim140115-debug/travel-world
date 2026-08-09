@@ -28,8 +28,14 @@ export function stripCount(label) {
 
 export function packageMatchesKeyword(pkg, keyword) {
   const needle = stripCount(keyword).toLowerCase();
-  const haystack = `${pkg.title} ${pkg.location} ${pkg.category}`.toLowerCase();
+  const haystack = `${pkg.title} ${pkg.location} ${pkg.category} ${pkg.tourType || ""}`.toLowerCase();
   return haystack.includes(needle);
+}
+
+export function packageMatchesDepartureCity(pkg, keyword) {
+  const needle = stripCount(keyword).toLowerCase();
+  if (needle.startsWith("joining")) return Boolean(pkg.departureCities?.length);
+  return (pkg.departureCities || []).some((city) => city.toLowerCase().includes(needle));
 }
 
 function parseDurationBucket(label) {
@@ -49,7 +55,15 @@ export function packageMatchesDuration(pkg, label) {
 }
 
 export function filterPackages(packages, filters) {
-  const { cities = [], countries = [], packageTypes = [], specialityTours = [], durations = [], maxPrice } = filters;
+  const {
+    cities = [],
+    countries = [],
+    packageTypes = [],
+    specialityTours = [],
+    durations = [],
+    departureCities = [],
+    maxPrice,
+  } = filters;
 
   return packages.filter((pkg) => {
     if (cities.length > 0 && !cities.some((city) => packageMatchesKeyword(pkg, city))) return false;
@@ -57,6 +71,7 @@ export function filterPackages(packages, filters) {
     if (packageTypes.length > 0 && !packageTypes.some((type) => packageMatchesKeyword(pkg, type))) return false;
     if (specialityTours.length > 0 && !specialityTours.some((type) => packageMatchesKeyword(pkg, type))) return false;
     if (durations.length > 0 && !durations.some((label) => packageMatchesDuration(pkg, label))) return false;
+    if (departureCities.length > 0 && !departureCities.some((city) => packageMatchesDepartureCity(pkg, city))) return false;
     if (typeof maxPrice === "number" && pkg.price > maxPrice) return false;
     return true;
   });

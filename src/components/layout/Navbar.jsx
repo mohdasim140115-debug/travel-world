@@ -5,17 +5,18 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 
 import MegaMenu from "./MegaMenu";
+import SpecialtyToursMenu from "./SpecialtyToursMenu";
+import CustomizedHolidaysMenu from "./CustomizedHolidaysMenu";
 import { indiaNavigation, worldNavigation } from "@/data/navigationData";
 
 const links = [
   { label: "India", megaMenu: "india", href: "/india" },
   { label: "World", megaMenu: "world", href: "/world" },
-  { label: "Specialty Tours", hasChevron: true },
-  { label: "Customized Holidays", hasChevron: true },
+  { label: "Specialty Tours", megaMenu: "specialty" },
+  { label: "Customized Holidays", megaMenu: "customized" },
   { label: "Flights", hasBadge: true, href: "/flights" },
-  { label: "Corporate Travel" },
-  { label: "NRI Tours" },
-  { label: "Forex", hasChevron: true },
+  { label: "Transport", href: "/transport" },
+  { label: "Hotels", href: "/hotels" },
   { label: "Gift Cards" },
   { label: "Contact Us" },
 ];
@@ -42,6 +43,14 @@ export default function Navbar() {
     setOpenMenu(null);
   }
 
+  function toggleNow(key) {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    setOpenMenu((current) => (current === key ? null : key));
+  }
+
   useEffect(() => {
     function handleKeyDown(event) {
       if (event.key === "Escape") {
@@ -57,7 +66,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="relative hidden border-b border-slate-700/60 bg-[#0B3B63] text-white lg:block">
+    <nav className="sticky top-0 z-50 hidden border-b border-slate-700/60 bg-[#0B3B63] text-white lg:block">
       <div className="mx-auto hidden h-[36px] max-w-[1280px] items-center justify-center overflow-x-auto px-3 sm:px-6 lg:flex lg:px-0">
         <div className="flex items-center gap-2 whitespace-nowrap text-[13px] font-medium sm:gap-4">
           {links.map((link) => {
@@ -66,7 +75,7 @@ export default function Navbar() {
 
             const inner = (
               <div
-                className={`flex items-center gap-1 rounded-[4px] border-b-2 px-2 py-1 transition ${
+                className={`flex items-center gap-1 rounded-[8px] border-b-2 px-2 py-1 transition ${
                   isActive ? "border-[#17BEBB] bg-white text-[#0F172A]" : "border-transparent"
                 }`}
               >
@@ -76,7 +85,7 @@ export default function Navbar() {
                   <ChevronDown className={`h-3.5 w-3.5 ${isActive ? "rotate-180" : ""}`} />
                 ) : null}
                 {link.hasBadge ? (
-                  <span className="rounded-sm bg-[#E53935] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white">
+                  <span className="rounded-sm bg-[#E53935] px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
                     New
                   </span>
                 ) : null}
@@ -84,6 +93,13 @@ export default function Navbar() {
             );
 
             if (isMega) {
+              const menuProps = {
+                open: isActive,
+                onNavigate: closeNow,
+                onMouseEnter: () => openNow(link.megaMenu),
+                onMouseLeave: closeWithDelay,
+              };
+
               return (
                 <div
                   key={link.label}
@@ -91,17 +107,24 @@ export default function Navbar() {
                   onMouseEnter={() => openNow(link.megaMenu)}
                   onMouseLeave={closeWithDelay}
                 >
-                  <Link href={link.href} className="no-underline">
-                    {inner}
-                  </Link>
+                  {link.href ? (
+                    <Link href={link.href} className="no-underline">
+                      {inner}
+                    </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => toggleNow(link.megaMenu)}
+                      className="no-underline"
+                    >
+                      {inner}
+                    </button>
+                  )}
 
-                  <MegaMenu
-                    data={link.megaMenu === "india" ? indiaNavigation : worldNavigation}
-                    open={isActive}
-                    onNavigate={closeNow}
-                    onMouseEnter={() => openNow(link.megaMenu)}
-                    onMouseLeave={closeWithDelay}
-                  />
+                  {link.megaMenu === "india" && <MegaMenu data={indiaNavigation} {...menuProps} />}
+                  {link.megaMenu === "world" && <MegaMenu data={worldNavigation} {...menuProps} />}
+                  {link.megaMenu === "specialty" && <SpecialtyToursMenu {...menuProps} />}
+                  {link.megaMenu === "customized" && <CustomizedHolidaysMenu {...menuProps} />}
                 </div>
               );
             }

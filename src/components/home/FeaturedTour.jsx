@@ -1,24 +1,61 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { homeData } from "@/data/homeData";
+import BookingModal from "@/components/package/BookingModal";
+
+const AUTO_SLIDE_MS = 5000;
+
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-+|-+$)/g, "");
+}
+
+function parsePrice(price) {
+  return Number(String(price).replace(/[^0-9]/g, "")) || 0;
+}
+
+function parseDays(days) {
+  return Number(String(days).match(/\d+/)?.[0]) || 1;
+}
 
 export default function FeaturedTour() {
   const tours = homeData.featuredTour;
   const [index, setIndex] = useState(0);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   const featuredTour = tours[index];
 
   const goPrev = () => setIndex((i) => (i === 0 ? tours.length - 1 : i - 1));
   const goNext = () => setIndex((i) => (i === tours.length - 1 ? 0 : i + 1));
 
+  useEffect(() => {
+    if (bookingOpen) return;
+    const timer = setInterval(goNext, AUTO_SLIDE_MS);
+    return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, bookingOpen]);
+
+  const bookingSummary = {
+    slug: slugify(featuredTour.title),
+    title: featuredTour.title,
+    departureCity: featuredTour.departure.replace(/^Ex-/, ""),
+    departureDate: featuredTour.date,
+    days: parseDays(featuredTour.days),
+    nights: Math.max(parseDays(featuredTour.days) - 1, 1),
+    guests: 1,
+    totalPrice: parsePrice(featuredTour.price),
+  };
+
   return (
     <section className="px-3 py-12 sm:px-6 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="relative overflow-hidden rounded-[14px]">
           <div
-            className="relative h-[340px] w-full transition-all duration-300 sm:h-[320px] lg:h-[360px]"
+            className="relative h-[400px] w-full transition-all duration-300 sm:h-[380px] lg:h-[440px]"
             style={
               featuredTour.image
                 ? undefined
@@ -63,7 +100,11 @@ export default function FeaturedTour() {
               <p className="text-[18px] font-black text-[#A9D8F0]">{featuredTour.price}</p>
             </div>
             <div className="mt-6 flex items-center gap-3">
-              <button className="rounded-full bg-white px-6 py-2 text-[13px] font-bold text-[#0F172A] transition duration-200 hover:bg-[#F7FAFC] active:scale-95">
+              <button
+                type="button"
+                onClick={() => setBookingOpen(true)}
+                className="rounded-full bg-white px-6 py-2 text-[13px] font-bold text-[#0F172A] shadow-lg transition duration-200 hover:-translate-y-0.5 hover:bg-[#F7FAFC] active:scale-95"
+              >
                 Book now
               </button>
               <p className="text-[11px] text-white/70">*T&C Apply</p>
@@ -102,6 +143,8 @@ export default function FeaturedTour() {
           </button>
         </div>
       </div>
+
+      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} summary={bookingSummary} />
     </section>
   );
 }

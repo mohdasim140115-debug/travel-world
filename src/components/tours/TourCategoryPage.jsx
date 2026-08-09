@@ -15,6 +15,7 @@ import {
 
 import TourListing from "./TourListing";
 import { toCardItem } from "./tourUtils";
+import FAQAccordion from "@/components/common/FAQAccordion";
 
 /* =========================================================
    GENERIC TOUR CATEGORY PAGE
@@ -37,7 +38,7 @@ const gradients = [
 function SectionTitle({ children }) {
   return (
     <div className="text-center">
-      <h2 className="text-[18px] font-medium text-[#222]">{children}</h2>
+      <h2 className="text-[20px] font-bold text-[#222] sm:text-[22px]">{children}</h2>
       <div className="mx-auto mt-2 h-[2px] w-[65px] bg-[#0F4C81]" />
     </div>
   );
@@ -47,14 +48,14 @@ function GradientPill({ name, count, index, href }) {
   return (
     <Link
       href={href || "#"}
-      className={`group relative block h-[145px] transform-gpu overflow-hidden rounded-[5px] border border-[#d6d6d6] bg-gradient-to-br no-underline shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#17BEBB] hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)] ${gradients[index % gradients.length]}`}
+      className={`group relative block h-[145px] transform-gpu overflow-hidden rounded-[14px] border border-[#E5E7EB] bg-gradient-to-br no-underline shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#17BEBB] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)] ${gradients[index % gradients.length]}`}
     >
       <div className="absolute -bottom-10 -left-8 h-28 w-40 rotate-12 rounded-full bg-black/10" />
 
       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-3 pb-3 pt-14 text-left">
-        <h3 className="text-[12px] font-semibold text-white group-hover:underline">{name}</h3>
+        <h3 className="text-[14px] font-semibold text-white group-hover:underline">{name}</h3>
 
-        {count && <p className="mt-[2px] text-[9px] text-white/90">{count}</p>}
+        {count && <p className="mt-0.5 text-[12px] text-white/90">{count}</p>}
       </div>
     </Link>
   );
@@ -67,7 +68,6 @@ export default function TourCategoryPage({ config }) {
   const [season, setSeason] = useState(config.seasons.items[0]);
   const [interest, setInterest] = useState(config.interests.items[0]);
   const [duration, setDuration] = useState(config.durations.items[0]);
-  const [openFaq, setOpenFaq] = useState(0);
 
   return (
     <div className="india-page">
@@ -215,7 +215,7 @@ export default function TourCategoryPage({ config }) {
             <div className="mt-8 flex items-center justify-center gap-2">
               <button
                 type="button"
-                className="h-8 rounded-[3px] border border-[#d3d7dd] bg-white px-3 text-[11px] font-medium text-[#333] disabled:text-[#b9bec6]"
+                className="h-9 rounded-[8px] border border-[#D1D5DB] bg-white px-3 text-[13px] font-medium text-[#333] transition hover:border-[#17BEBB] disabled:text-[#b9bec6]"
               >
                 Previous
               </button>
@@ -224,21 +224,21 @@ export default function TourCategoryPage({ config }) {
                 <button
                   key={number}
                   type="button"
-                  className={`h-8 min-w-8 rounded-[3px] border px-2 text-[11px] font-medium ${
+                  className={`h-9 min-w-9 rounded-[8px] border px-2 text-[13px] font-medium transition ${
                     number === 1
                       ? "border-[#0F4C81] bg-white text-[#0F4C81]"
-                      : "border-[#d3d7dd] bg-white text-[#333]"
+                      : "border-[#D1D5DB] bg-white text-[#333] hover:border-[#17BEBB]"
                   }`}
                 >
                   {number}
                 </button>
               ))}
 
-              <span className="text-[12px] text-[#777]">...</span>
+              <span className="text-[13px] text-[#777]">...</span>
 
               <button
                 type="button"
-                className="h-8 rounded-[3px] border border-[#d3d7dd] bg-white px-3 text-[11px] font-medium text-[#333]"
+                className="h-9 rounded-[8px] border border-[#D1D5DB] bg-white px-3 text-[13px] font-medium text-[#333] transition hover:border-[#17BEBB]"
               >
                 Next
               </button>
@@ -284,10 +284,10 @@ export default function TourCategoryPage({ config }) {
                 key={item}
                 type="button"
                 onClick={() => setInterest(item)}
-                className={`h-[30px] border px-4 text-[9px] ${
+                className={`h-[38px] rounded-full border px-4 text-[13px] font-medium transition ${
                   interest === item
                     ? "border-[#0F4C81] bg-[#0F4C81] text-white"
-                    : "border-[#777] bg-white"
+                    : "border-[#D1D5DB] bg-white text-[#333] hover:border-[#17BEBB]"
                 }`}
               >
                 {item}
@@ -312,10 +312,10 @@ export default function TourCategoryPage({ config }) {
                 key={item}
                 type="button"
                 onClick={() => setSeason(item)}
-                className={`h-[32px] min-w-[125px] border px-4 text-[9px] ${
+                className={`h-[38px] min-w-[125px] rounded-full border px-4 text-[13px] font-medium transition ${
                   season === item
                     ? "border-[#0F4C81] bg-[#0F4C81] text-white"
-                    : "border-[#444] bg-white"
+                    : "border-[#D1D5DB] bg-white text-[#333] hover:border-[#17BEBB]"
                 }`}
               >
                 {item}
@@ -340,10 +340,10 @@ export default function TourCategoryPage({ config }) {
                 key={item}
                 type="button"
                 onClick={() => setDuration(item)}
-                className={`h-[30px] border px-4 text-[9px] ${
+                className={`h-[38px] rounded-full border px-4 text-[13px] font-medium transition ${
                   duration === item
                     ? "border-[#0F4C81] bg-[#0F4C81] text-white"
-                    : "border-[#777] bg-white"
+                    : "border-[#D1D5DB] bg-white text-[#333] hover:border-[#17BEBB]"
                 }`}
               >
                 {item}
@@ -359,36 +359,36 @@ export default function TourCategoryPage({ config }) {
                 <Link
                   key={pkg.slug}
                   href={`/package/${pkg.slug}`}
-                  className="block w-[220px] shrink-0 rounded-xl border border-[#bcc8db] bg-white p-2 no-underline"
+                  className="block w-[220px] shrink-0 rounded-[14px] border border-[#E5E7EB] bg-white p-3 no-underline shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-[2px] hover:border-[#17BEBB] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)]"
                 >
-                  <div className="h-[72px] rounded-[4px] bg-gradient-to-br from-sky-200 via-orange-200 to-slate-500" />
+                  <div className="h-[80px] rounded-[10px] bg-gradient-to-br from-sky-200 via-orange-200 to-slate-500" />
 
-                  <div className="mt-2">
-                    <span className="inline-block border border-[#17BEBB] bg-[#F7FAFC] px-1 py-[1px] text-[7px] font-semibold text-[#0F4C81]">
+                  <div className="mt-2.5">
+                    <span className="inline-block rounded-[4px] border border-[#17BEBB] bg-[#F7FAFC] px-1.5 py-0.5 text-[11px] font-semibold text-[#0F4C81]">
                       GROUP TOUR
                     </span>
 
-                    <h3 className="mt-2 min-h-[30px] text-[10px] font-semibold leading-[1.3] text-[#1e1e1e]">
+                    <h3 className="mt-2 min-h-[36px] text-[13px] font-semibold leading-[1.3] text-[#1e1e1e]">
                       {pkg.title}
                     </h3>
 
-                    <span className="mt-1 inline-block text-[9px] font-semibold underline">
+                    <span className="mt-1 inline-block text-[12px] font-semibold underline">
                       ∞ All Inclusive
                     </span>
 
-                    <div className="mt-3 flex gap-2 text-[8px]">
+                    <div className="mt-3 flex gap-2 text-[12px] text-[#475569]">
                       <span>{item.days}</span>
                       <span>•</span>
                       <span className="underline">{item.cities}</span>
                     </div>
 
-                    <div className="mt-3 grid grid-cols-[1fr_72px] items-end gap-2 border-t pt-2">
+                    <div className="mt-3 grid grid-cols-[1fr_80px] items-end gap-2 border-t border-[#E5E7EB] pt-2">
                       <div>
-                        <p className="text-[7px] text-[#777]">Starting price</p>
-                        <strong className="text-[13px]">{item.price}</strong>
+                        <p className="text-[11px] text-[#777]">Starting price</p>
+                        <strong className="text-[15px]">{item.price}</strong>
                       </div>
 
-                      <span className="flex h-[28px] items-center justify-center rounded-[2px] bg-[#FF7A1A] text-[8px] font-semibold text-white">
+                      <span className="flex h-[32px] items-center justify-center rounded-[8px] bg-[#FF7A1A] text-[11px] font-semibold text-white">
                         View Details
                       </span>
                     </div>
@@ -408,7 +408,7 @@ export default function TourCategoryPage({ config }) {
         <section className="bg-white py-12">
           <div className="india-container">
             {config.related.note && (
-              <p className="mx-auto max-w-[820px] text-center text-[11px] leading-[1.7] text-[#555]">
+              <p className="mx-auto max-w-[820px] text-center text-[13px] leading-[1.7] text-[#555]">
                 {config.related.note}
               </p>
             )}
@@ -420,7 +420,7 @@ export default function TourCategoryPage({ config }) {
                 <Link
                   key={item.name}
                   href={item.href || "#"}
-                  className="group relative block h-[145px] transform-gpu overflow-hidden rounded-[5px] border border-[#d6d6d6] no-underline shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#17BEBB] hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)]"
+                  className="group relative block h-[145px] transform-gpu overflow-hidden rounded-[14px] border border-[#E5E7EB] no-underline shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#17BEBB] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)]"
                 >
                   <div
                     className={`h-full w-full bg-gradient-to-br ${gradients[index % gradients.length]}`}
@@ -429,7 +429,7 @@ export default function TourCategoryPage({ config }) {
                   <div className="absolute -bottom-10 -left-8 h-28 w-40 rotate-12 rounded-full bg-black/10" />
 
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-3 pb-3 pt-14 text-left">
-                    <h3 className="text-[12px] font-semibold text-white group-hover:underline">
+                    <h3 className="text-[14px] font-semibold text-white group-hover:underline">
                       {item.name}
                     </h3>
                   </div>
@@ -453,7 +453,7 @@ export default function TourCategoryPage({ config }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="rounded-full border border-[#d6d6d6] bg-white px-4 py-2 text-[10px] font-medium text-[#333] no-underline transition hover:border-[#17BEBB] hover:text-[#0F4C81]"
+                  className="rounded-full border border-[#D1D5DB] bg-white px-4 py-2 text-[12px] font-medium text-[#333] no-underline transition hover:border-[#17BEBB] hover:text-[#0F4C81]"
                 >
                   {item.name}
                 </Link>
@@ -475,10 +475,10 @@ export default function TourCategoryPage({ config }) {
             {config.blogs.map((blog, index) => (
               <article key={blog} className="group cursor-pointer">
                 <div
-                  className={`h-[115px] rounded-[5px] bg-gradient-to-br ${gradients[index % gradients.length]}`}
+                  className={`h-[115px] rounded-[14px] bg-gradient-to-br ${gradients[index % gradients.length]} transition-transform duration-300 group-hover:scale-[1.02]`}
                 />
 
-                <h3 className="mt-2 text-[10px] font-medium leading-[1.3] text-[#222] group-hover:text-[#0F4C81]">
+                <h3 className="mt-2.5 text-[13px] font-medium leading-[1.3] text-[#222] group-hover:text-[#0F4C81]">
                   {blog}
                 </h3>
               </article>
@@ -506,9 +506,9 @@ export default function TourCategoryPage({ config }) {
           />
 
           <div className="relative z-10 text-center text-white">
-            <h2 className="text-[19px] font-semibold">Travel World tour reviews</h2>
+            <h2 className="text-[20px] font-bold sm:text-[22px]">Honor Tour & Travels tour reviews</h2>
 
-            <p className="mt-1 text-[10px] text-white/80">
+            <p className="mt-1 text-[13px] text-white/80">
               What are you waiting for? Chalo Bag Bharo Nikal Pado!
             </p>
           </div>
@@ -517,29 +517,29 @@ export default function TourCategoryPage({ config }) {
             {config.reviews.map((review) => (
               <article
                 key={`${review.name}-${review.tour}`}
-                className="relative flex min-h-[205px] flex-col rounded-xl bg-white p-4 text-[#222]"
+                className="relative flex min-h-[205px] flex-col rounded-[14px] border border-[#E5E7EB]/20 bg-white p-4 text-[#222] shadow-[0_8px_24px_rgba(0,0,0,0.2)]"
               >
                 <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-[2px] text-[#F5A623]">
-                    <Star size={11} fill="currentColor" />
-                    <span className="text-[10px] font-semibold text-[#222]">5</span>
+                  <div className="flex items-center gap-0.5 text-[#F5A623]">
+                    <Star size={12} fill="currentColor" />
+                    <span className="text-[12px] font-semibold text-[#222]">5</span>
                   </div>
 
-                  <span className="rounded-[2px] border border-pink-400 px-1.5 py-[1px] text-[7px] text-pink-600">
+                  <span className="rounded-[4px] border border-[#17BEBB] bg-[#F7FAFC] px-1.5 py-0.5 text-[11px] font-semibold text-[#0F4C81]">
                     {review.category}
                   </span>
                 </div>
 
-                <h3 className="mt-3 text-[12px] font-semibold">{review.tour}</h3>
+                <h3 className="mt-3 text-[14px] font-semibold">{review.tour}</h3>
 
-                <p className="mt-3 line-clamp-3 text-[10px] leading-[1.5] text-[#666]">
+                <p className="mt-3 line-clamp-3 text-[13px] leading-[1.5] text-[#666]">
                   &quot;{review.review}&quot;
                 </p>
 
                 <div className="mt-auto flex items-end justify-between border-t border-[#eee] pt-3">
                   <div>
-                    <strong className="block text-[11px]">{review.name}</strong>
-                    <span className="text-[8px] text-[#888]">Jul, 2026</span>
+                    <strong className="block text-[13px]">{review.name}</strong>
+                    <span className="text-[12px] text-[#888]">Jul, 2026</span>
                   </div>
                 </div>
               </article>
@@ -554,49 +554,15 @@ export default function TourCategoryPage({ config }) {
       <section className="bg-[#f7f7f7] py-12">
         <div className="india-container">
           <div className="text-center">
-            <h2 className="text-[18px] font-semibold text-[#222]">{config.faqHeading}</h2>
+            <h2 className="text-[20px] font-bold text-[#222] sm:text-[22px]">{config.faqHeading}</h2>
 
-            <p className="mt-2 text-[10px] text-[#777]">{config.faqSubheading}</p>
+            <p className="mt-2 text-[13px] text-[#777]">{config.faqSubheading}</p>
 
             <div className="mx-auto mt-2 h-[2px] w-[65px] bg-[#0F4C81]" />
           </div>
 
-          <div className="mx-auto mt-7 max-w-[820px] space-y-2">
-            {config.faqs.map((faq, index) => {
-              const isOpen = openFaq === index;
-
-              return (
-                <div
-                  key={faq.question}
-                  className="overflow-hidden rounded-[4px] border border-[#e4e4e4] bg-white"
-                >
-                  <button
-                    type="button"
-                    aria-expanded={isOpen}
-                    onClick={() => setOpenFaq(isOpen ? null : index)}
-                    className="flex min-h-[44px] w-full items-center justify-between gap-5 px-4 py-3 text-left transition-colors hover:bg-[#FAFAFA]"
-                  >
-                    <span className="text-[11px] font-medium text-[#333]">
-                      {faq.question}
-                    </span>
-
-                    {isOpen ? (
-                      <ChevronUp size={14} className="shrink-0" />
-                    ) : (
-                      <ChevronDown size={14} className="shrink-0" />
-                    )}
-                  </button>
-
-                  {isOpen && (
-                    <div className="border-t border-[#eee] px-4 py-4">
-                      <p className="text-[10px] leading-[1.7] text-[#666]">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+          <div className="mx-auto mt-7 max-w-[820px]">
+            <FAQAccordion items={config.faqs} />
           </div>
         </div>
       </section>
@@ -607,9 +573,9 @@ export default function TourCategoryPage({ config }) {
       <section className="bg-white py-10">
         <div className="india-container">
           <div className="mx-auto max-w-[1040px]">
-            <h2 className="text-[14px] font-semibold text-[#222]">{config.seo.heading}</h2>
+            <h2 className="text-[18px] font-semibold text-[#222]">{config.seo.heading}</h2>
 
-            <div className="mt-4 text-[10px] leading-[1.8] text-[#6b6b6b]">
+            <div className="mt-4 text-[13px] leading-[1.8] text-[#6b6b6b]">
               {config.seo.paragraphs.map((paragraph) => (
                 <p key={paragraph} className="mt-3 first:mt-0">
                   {paragraph}
@@ -627,7 +593,7 @@ export default function TourCategoryPage({ config }) {
             <button
               type="button"
               onClick={() => setShowMoreSeo(!showMoreSeo)}
-              className="mt-3 flex items-center gap-1 text-[10px] font-semibold underline"
+              className="mt-3 flex items-center gap-1 text-[12px] font-semibold underline"
             >
               {showMoreSeo ? "Read Less" : "Read More"}
 
@@ -635,8 +601,8 @@ export default function TourCategoryPage({ config }) {
             </button>
 
             <div className="mt-6 border-t border-[#ddd] pt-4">
-              <p className="text-[8px] text-[#999]">
-                {config.heading} | Travel World Holiday Packages | All prices and
+              <p className="text-[12px] text-[#999]">
+                {config.heading} | Honor Tour & Travels Holiday Packages | All prices and
                 tour information are subject to availability and selected
                 itinerary.
               </p>
@@ -655,8 +621,8 @@ export default function TourCategoryPage({ config }) {
               <MapPin size={17} className="text-[#0F4C81]" />
 
               <div>
-                <p className="text-[8px] text-[#777]">150+ Travel World Offices</p>
-                <button className="text-[10px] font-semibold underline">Locate Us</button>
+                <p className="text-[12px] text-[#777]">150+ Honor Tour & Travels Offices</p>
+                <button className="text-[13px] font-semibold underline">Locate Us</button>
               </div>
             </div>
 
@@ -664,8 +630,8 @@ export default function TourCategoryPage({ config }) {
               <Phone size={17} className="text-[#0F4C81]" />
 
               <div>
-                <p className="text-[8px] text-[#777]">Request a Quote</p>
-                <a href="tel:18003135555" className="text-[10px] font-semibold underline">
+                <p className="text-[12px] text-[#777]">Request a Quote</p>
+                <a href="tel:18003135555" className="text-[13px] font-semibold underline">
                   1800 313 5555
                 </a>
               </div>
@@ -675,8 +641,8 @@ export default function TourCategoryPage({ config }) {
               <MessageSquare size={17} className="text-[#0F4C81]" />
 
               <div>
-                <p className="text-[8px] text-[#777]">For Feedback</p>
-                <span className="text-[9px] font-semibold">feedback@travelworld.com</span>
+                <p className="text-[12px] text-[#777]">For Feedback</p>
+                <span className="text-[13px] font-semibold">feedback@honortourtravels.com</span>
               </div>
             </div>
 
@@ -684,8 +650,8 @@ export default function TourCategoryPage({ config }) {
               <Mail size={17} className="text-[#0F4C81]" />
 
               <div>
-                <p className="text-[8px] text-[#777]">For Enquiries</p>
-                <span className="text-[9px] font-semibold">travel@travelworld.com</span>
+                <p className="text-[12px] text-[#777]">For Enquiries</p>
+                <span className="text-[13px] font-semibold">travel@honortourtravels.com</span>
               </div>
             </div>
           </div>

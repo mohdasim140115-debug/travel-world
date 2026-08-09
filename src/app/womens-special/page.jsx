@@ -3,12 +3,15 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
 import { packages } from "@/data/packages";
+import JsonLd from "@/components/common/JsonLd";
+import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: "Women's Special Tour Packages | Group Holidays for Women",
   description:
     "Explore Women's Special tour packages across India and the world — thoughtfully planned group holidays designed around comfort, safety and shared travel experiences.",
-};
+  path: "/womens-special",
+});
 
 const womensSlugs = [
   "womens-special-delhi-agra",
@@ -193,6 +196,12 @@ const config = {
 export default function WomensSpecialPage() {
   return (
     <>
+      <JsonLd
+        schema={breadcrumbSchema([
+          { name: "Home", href: "/" },
+          { name: "Women's Special", href: "/womens-special" },
+        ])}
+      />
       <Header />
       <Navbar />
 

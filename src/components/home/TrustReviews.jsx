@@ -73,7 +73,7 @@ export default function TrustReviews() {
     `transition-all duration-700 ${delay} ${inView ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`;
 
   return (
-    <section className="px-3 sm:px-6 md:bg-[#0B3B63] md:py-12 lg:px-0">
+    <section className="px-3 sm:px-6 md:bg-[#0B3B63] md:py-8 lg:px-10">
       <div className="mx-auto w-full max-w-[1280px]">
 
         {/* ================= MOBILE-ONLY LAYOUT (<768px) ================= */}
@@ -82,7 +82,7 @@ export default function TrustReviews() {
           className="relative overflow-hidden rounded-[20px] bg-[#0B3B63] p-[18px] md:hidden"
         >
           <h2 className={`line-clamp-2 text-center text-[24px] font-bold leading-snug text-white ${fade()}`}>
-            Trusted by Travel World guests across the World
+            Trusted by Honor Tour & Travels guests across the World
           </h2>
 
           <div className={`mt-[18px] grid grid-cols-2 gap-5 ${fade("delay-100")}`}>
@@ -160,50 +160,50 @@ export default function TrustReviews() {
 
         {/* ================= DESKTOP LAYOUT (unchanged, >=768px) ================= */}
         <div className="hidden md:block">
-          <h2 className="text-center text-[28px] font-bold text-white lg:text-[32px]">
-            Trusted by Travel World guests across the World
+          <h2 className="text-center text-[22px] font-bold text-white lg:text-[26px]">
+            Trusted by Honor Tour & Travels guests across the World
           </h2>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {trustReviews.stats.map((stat) => {
               const Icon = stat.icon === "Users" ? Users : CheckCircle;
               return (
                 <div key={stat.label} className="text-center">
                   <div className="flex justify-center">
-                    <Icon className="h-8 w-8 text-[#5EEAD4]" />
+                    <Icon className="h-6 w-6 text-[#5EEAD4]" />
                   </div>
-                  <div className="mt-3 text-[32px] font-bold text-white">
+                  <div className="mt-2 text-[26px] font-bold text-white">
                     {stat.value}
                   </div>
-                  <div className="mt-1 text-[13px] text-[#CBD5E1]">{stat.label}</div>
+                  <div className="mt-0.5 text-[12px] text-[#CBD5E1]">{stat.label}</div>
                 </div>
               );
             })}
           </div>
 
-          <div className="mt-12 flex gap-6 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory lg:grid lg:overflow-visible lg:grid-cols-3">
+          <div className="mt-6 flex items-stretch gap-6 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory lg:grid lg:gap-8 lg:overflow-visible lg:grid-cols-3">
             {trustReviews.reviews.map((review, idx) => (
-              <div key={idx} className="min-w-[260px] flex-shrink-0 snap-start rounded-[14px] border border-[#E5E7EB]/20 bg-white p-6 lg:min-w-0">
+              <div key={idx} className="flex min-w-[260px] flex-shrink-0 snap-start flex-col rounded-[14px] bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.2)] lg:min-w-0">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-[#FFD400] text-[#FFD400]" />
+                    <Star key={i} className="h-3.5 w-3.5 fill-[#FFD400] text-[#FFD400]" />
                   ))}
                 </div>
-                <p className="mt-3 text-[12px] font-semibold uppercase text-[#475569]">
+                <p className="mt-2 text-[11px] font-semibold uppercase text-[#475569]">
                   {review.type}
                 </p>
                 <p className="mt-1 text-[12px] text-[#0F172A]">{review.destination}</p>
-                <p className="mt-3 text-[13px] leading-[1.5] text-[#475569]">
+                <p className="mt-2 line-clamp-3 flex-1 text-[13px] leading-[1.5] text-[#475569]">
                   {review.excerpt}
                 </p>
-                <p className="mt-4 text-[12px] font-semibold text-[#0F172A]">{review.guest}</p>
+                <p className="mt-3 text-[12px] font-semibold text-[#0F172A]">{review.guest}</p>
                 <p className="text-[11px] text-[#60646C]">{review.date}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-10 text-center">
-            <button className="inline-flex items-center gap-2 rounded-full bg-[#FF7A1A] px-6 py-3 text-[14px] font-bold text-white shadow-md shadow-orange-900/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#E56A0F] hover:shadow-lg">
+          <div className="mt-6 text-center">
+            <button className="inline-flex items-center gap-2 rounded-full bg-[#FF7A1A] px-6 py-2.5 text-[13px] font-bold text-white shadow-md shadow-orange-900/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#E56A0F] hover:shadow-lg">
               Read 15K+ Reviews
             </button>
           </div>

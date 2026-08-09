@@ -28,6 +28,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# env / database
+.env
+.env*.local
+/dev.db
+/dev.db-journal
+/src/generated
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
