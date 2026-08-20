@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import { adminModules } from "@/lib/adminModules";
 
 export default async function AdminDashboardPage() {
   const entries = Object.entries(adminModules);
-  const counts = await Promise.all(entries.map(([, config]) => prisma[config.model].count()));
+  const counts = await Promise.all(entries.map(([, config]) => db[config.model].count()));
 
   return (
     <div>

@@ -6,18 +6,18 @@ import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TransportResults from "@/components/transport/TransportResults";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
 export async function generateStaticParams() {
-  const routes = await prisma.transportRoute.findMany({ select: { slug: true } });
+  const routes = await db.transportRoute.findMany({ select: { slug: true } });
   return routes.map((route) => ({ route: route.slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { route: slug } = await params;
-  const route = await prisma.transportRoute.findUnique({ where: { slug } });
+  const route = await db.transportRoute.findUnique({ where: { slug } });
 
   if (!route) {
     return buildMetadata({
@@ -37,13 +37,13 @@ export async function generateMetadata({ params }) {
 
 export default async function TransportRoutePage({ params }) {
   const { route: slug } = await params;
-  const route = await prisma.transportRoute.findUnique({ where: { slug } });
+  const route = await db.transportRoute.findUnique({ where: { slug } });
 
   if (!route) {
     notFound();
   }
 
-  const options = await prisma.transportOption.findMany({ orderBy: { order: "asc" } });
+  const options = await db.transportOption.findMany({ orderBy: { order: "asc" } });
 
   return (
     <>

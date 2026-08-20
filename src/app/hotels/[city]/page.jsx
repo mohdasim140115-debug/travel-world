@@ -6,19 +6,19 @@ import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HotelCard from "@/components/hotels/HotelCard";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
 export async function generateStaticParams() {
-  const hotels = await prisma.hotel.findMany({ select: { citySlug: true } });
+  const hotels = await db.hotel.findMany({ select: { citySlug: true } });
   const unique = Array.from(new Set(hotels.map((h) => h.citySlug)));
   return unique.map((city) => ({ city }));
 }
 
 export async function generateMetadata({ params }) {
   const { city: citySlug } = await params;
-  const hotel = await prisma.hotel.findFirst({ where: { citySlug } });
+  const hotel = await db.hotel.findFirst({ where: { citySlug } });
 
   if (!hotel) {
     return buildMetadata({
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }) {
 
 export default async function HotelCityPage({ params }) {
   const { city: citySlug } = await params;
-  const hotels = await prisma.hotel.findMany({ where: { citySlug }, orderBy: { order: "asc" } });
+  const hotels = await db.hotel.findMany({ where: { citySlug }, orderBy: { order: "asc" } });
 
   if (hotels.length === 0) {
     notFound();

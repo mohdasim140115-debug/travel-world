@@ -4,7 +4,7 @@ import { getDestinationParams } from "@/data/destinations";
 import { getSpecialitySlugs } from "@/data/specialityTours";
 import { getDepartureCityParams } from "@/data/departureCities";
 import { getAllRouteSlugs } from "@/data/flightRoutes";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 
 function url(path, { changeFrequency = "weekly", priority = 0.6 } = {}) {
   return {
@@ -17,8 +17,8 @@ function url(path, { changeFrequency = "weekly", priority = 0.6 } = {}) {
 
 export default async function sitemap() {
   const [transportRoutes, hotels] = await Promise.all([
-    prisma.transportRoute.findMany({ select: { slug: true } }),
-    prisma.hotel.findMany({ select: { slug: true, citySlug: true } }),
+    db.transportRoute.findMany({ select: { slug: true } }),
+    db.hotel.findMany({ select: { slug: true, citySlug: true } }),
   ]);
 
   const staticPages = [

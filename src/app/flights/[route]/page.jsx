@@ -10,7 +10,7 @@ import FlightResults from "@/components/flights/FlightResults";
 import FlightRouteContent from "@/components/flights/FlightRouteContent";
 import FlightFAQ from "@/components/flights/FlightFAQ";
 import { getAllRouteSlugs, getRoute, getRouteFaqs } from "@/data/flightRoutes";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
@@ -51,7 +51,7 @@ export default async function FlightRoutePage({ params }) {
     .filter((item) => item && item.slug !== route.slug);
 
   const faqs = getRouteFaqs(route);
-  const airlines = await prisma.airline.findMany({ orderBy: { order: "asc" } });
+  const airlines = await db.airline.findMany({ orderBy: { order: "asc" } });
 
   return (
     <>

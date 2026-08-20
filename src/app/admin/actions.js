@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import { requireAdminSession } from "@/lib/auth";
 import { getModule } from "@/lib/adminModules";
 
@@ -52,7 +52,7 @@ export async function createRecord(moduleSlug, formData) {
   if (!moduleConfig) throw new Error("Unknown module");
 
   const data = buildData(moduleConfig, formData);
-  await prisma[moduleConfig.model].create({ data });
+  await db[moduleConfig.model].create({ data });
 
   revalidateModule(moduleConfig);
   redirect(`/admin/${moduleSlug}`);
@@ -64,7 +64,7 @@ export async function updateRecord(moduleSlug, id, formData) {
   if (!moduleConfig) throw new Error("Unknown module");
 
   const data = buildData(moduleConfig, formData);
-  await prisma[moduleConfig.model].update({ where: { id: Number(id) }, data });
+  await db[moduleConfig.model].update({ where: { id }, data });
 
   revalidateModule(moduleConfig);
   redirect(`/admin/${moduleSlug}`);
@@ -75,7 +75,7 @@ export async function deleteRecord(moduleSlug, id) {
   const moduleConfig = getModule(moduleSlug);
   if (!moduleConfig) throw new Error("Unknown module");
 
-  await prisma[moduleConfig.model].delete({ where: { id: Number(id) } });
+  await db[moduleConfig.model].delete({ where: { id } });
 
   revalidateModule(moduleConfig);
   revalidatePath(`/admin/${moduleSlug}`);

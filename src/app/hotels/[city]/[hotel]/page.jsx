@@ -15,18 +15,18 @@ import HotelRoomList from "@/components/hotels/HotelRoomList";
 import HotelLocation from "@/components/hotels/HotelLocation";
 import HotelReviews from "@/components/hotels/HotelReviews";
 import HotelPolicies from "@/components/hotels/HotelPolicies";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema, hotelSchema } from "@/lib/seo";
 
 export async function generateStaticParams() {
-  const hotels = await prisma.hotel.findMany({ select: { slug: true, citySlug: true } });
+  const hotels = await db.hotel.findMany({ select: { slug: true, citySlug: true } });
   return hotels.map((h) => ({ city: h.citySlug, hotel: h.slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { city: citySlug, hotel: slug } = await params;
-  const hotel = await prisma.hotel.findUnique({ where: { slug } });
+  const hotel = await db.hotel.findUnique({ where: { slug } });
 
   if (!hotel) {
     return buildMetadata({
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }) {
 
 export default async function HotelDetailPage({ params }) {
   const { city: citySlug, hotel: slug } = await params;
-  const hotel = await prisma.hotel.findUnique({ where: { slug } });
+  const hotel = await db.hotel.findUnique({ where: { slug } });
 
   if (!hotel || hotel.citySlug !== citySlug) {
     notFound();

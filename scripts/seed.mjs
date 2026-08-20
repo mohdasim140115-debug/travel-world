@@ -1,6 +1,6 @@
 import "dotenv/config";
-import { PrismaClient } from "@prisma/client";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { db } from "../src/lib/db.js";
+import { client, getDb } from "../src/lib/mongodb.js";
 
 import { packages } from "../src/data/packages.js";
 import { rawDestinations } from "../src/data/destinations.js";
@@ -8,9 +8,6 @@ import { rawCities } from "../src/data/departureCities.js";
 import { flightRoutes } from "../src/data/flightRoutes.js";
 import { airports } from "../src/data/airports.js";
 import { homeData } from "../src/data/homeData.js";
-
-const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL });
-const prisma = new PrismaClient({ adapter });
 
 /* =========================================================
    Data that lives inline inside components (not in src/data/)
@@ -155,14 +152,25 @@ async function seedInOrder(model, rows) {
   }
 }
 
+/** Empties every collection so a re-seed does not duplicate rows. */
+async function wipe() {
+  const database = await getDb();
+  const collections = await database.listCollections().toArray();
+  for (const { name } of collections) {
+    await database.collection(name).deleteMany({});
+  }
+  console.log(`Cleared ${collections.length} collections.`);
+}
+
 async function main() {
-  console.log("Seeding database from static data...");
+  console.log("Seeding MongoDB from static data...");
+  await wipe();
 
   // Core catalog
-  await seedInOrder(prisma.package, packages);
+  await seedInOrder(db.package, packages);
 
   await seedInOrder(
-    prisma.destination,
+    db.destination,
     rawDestinations.map((d) => ({
       slug: d.slug,
       parent: d.parent,
@@ -192,7 +200,7 @@ async function main() {
   );
 
   await seedInOrder(
-    prisma.departureCity,
+    db.departureCity,
     rawCities.map((c) => ({
       slug: c.slug,
       name: c.name,
@@ -208,7 +216,7 @@ async function main() {
   );
 
   await seedInOrder(
-    prisma.flightRoute,
+    db.flightRoute,
     flightRoutes.map((r) => ({
       slug: r.slug,
       from: r.from,
@@ -227,15 +235,15 @@ async function main() {
     }))
   );
 
-  await seedInOrder(prisma.airport, airports);
+  await seedInOrder(db.airport, airports);
 
   // India page (independently curated content)
-  await seedInOrder(prisma.indiaListingPackage, indiaListingPackages);
+  await seedInOrder(db.indiaListingPackage, indiaListingPackages);
 
   let zoneOrder = 0;
   for (const [region, tours] of Object.entries(indiaZoneData)) {
     for (const tour of tours) {
-      await prisma.indiaZoneCard.create({ data: { region, ...tour, order: zoneOrder++ } });
+      await db.indiaZoneCard.create({ data: { region, ...tour, order: zoneOrder++ } });
     }
   }
 
@@ -244,36 +252,36 @@ async function main() {
     for (const [group, tiles] of Object.entries(grouped)) {
       for (const tile of tiles) {
         const { style, ...rest } = tile;
-        await prisma.indiaExploreTile.create({ data: { group, ...rest, visual: style, order: exploreOrder++ } });
+        await db.indiaExploreTile.create({ data: { group, ...rest, visual: style, order: exploreOrder++ } });
       }
     }
   };
   await seedExploreTiles(cityData);
   await seedExploreTiles(seasonData);
 
-  await seedInOrder(prisma.indiaExploreInterest, interestTours);
-  await seedInOrder(prisma.indiaExploreDuration, durationPackages);
-  await seedInOrder(prisma.indiaBlog, blogs);
-  await seedInOrder(prisma.indiaReview, indiaReviews);
-  await seedInOrder(prisma.indiaFaq, indiaFaqs);
+  await seedInOrder(db.indiaExploreInterest, interestTours);
+  await seedInOrder(db.indiaExploreDuration, durationPackages);
+  await seedInOrder(db.indiaBlog, blogs);
+  await seedInOrder(db.indiaReview, indiaReviews);
+  await seedInOrder(db.indiaFaq, indiaFaqs);
 
   // Home page sections
-  await seedInOrder(prisma.heroCard, homeData.hero.cards);
-  await seedInOrder(prisma.homeDestination, homeData.destinations);
-  await seedInOrder(prisma.liveTourCard, homeData.liveTours.cards);
-  await seedInOrder(prisma.chinaPromoPackage, homeData.chinaPromo.packages);
-  await seedInOrder(prisma.mostLovedPromoDestination, homeData.mostLovedTours.promoDestinations);
-  await seedInOrder(prisma.mostLovedDestination, homeData.mostLovedTours.destinations);
-  await seedInOrder(prisma.trustStat, homeData.trustReviews.stats);
-  await seedInOrder(prisma.trustReview, homeData.trustReviews.reviews);
-  await seedInOrder(prisma.featuredTourSlide, homeData.featuredTour);
-  await seedInOrder(prisma.continueTravelTour, homeData.continueTravel.tours);
-  await seedInOrder(prisma.tourInclusionFeature, homeData.tourInclusions.features);
+  await seedInOrder(db.heroCard, homeData.hero.cards);
+  await seedInOrder(db.homeDestination, homeData.destinations);
+  await seedInOrder(db.liveTourCard, homeData.liveTours.cards);
+  await seedInOrder(db.chinaPromoPackage, homeData.chinaPromo.packages);
+  await seedInOrder(db.mostLovedPromoDestination, homeData.mostLovedTours.promoDestinations);
+  await seedInOrder(db.mostLovedDestination, homeData.mostLovedTours.destinations);
+  await seedInOrder(db.trustStat, homeData.trustReviews.stats);
+  await seedInOrder(db.trustReview, homeData.trustReviews.reviews);
+  await seedInOrder(db.featuredTourSlide, homeData.featuredTour);
+  await seedInOrder(db.continueTravelTour, homeData.continueTravel.tours);
+  await seedInOrder(db.tourInclusionFeature, homeData.tourInclusions.features);
   await seedInOrder(
-    prisma.faqItem,
+    db.faqItem,
     homeData.faq.questions.map((q, i) => ({ ...q, category: homeData.faq.categories[i] ?? null }))
   );
-  await seedInOrder(prisma.promoSlide, promoSlides);
+  await seedInOrder(db.promoSlide, promoSlides);
 
   console.log("Seed complete.");
 }
@@ -284,5 +292,5 @@ main()
     process.exitCode = 1;
   })
   .finally(async () => {
-    await prisma.$disconnect();
+    await client.close();
   });

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import { getModule } from "@/lib/adminModules";
 import { updateRecord } from "@/app/admin/actions";
 import AdminForm from "@/components/admin/AdminForm";
@@ -9,7 +9,7 @@ export default async function AdminModuleEditPage({ params }) {
   const moduleConfig = getModule(moduleSlug);
   if (!moduleConfig) notFound();
 
-  const record = await prisma[moduleConfig.model].findUnique({ where: { id: Number(id) } });
+  const record = await db[moduleConfig.model].findUnique({ where: { id } });
   if (!record) notFound();
 
   return (

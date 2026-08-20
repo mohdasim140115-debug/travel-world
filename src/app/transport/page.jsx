@@ -5,7 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FAQAccordion from "@/components/common/FAQAccordion";
 import PopularTransportRoutes from "@/components/transport/PopularTransportRoutes";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
@@ -63,7 +63,7 @@ const faqs = [
 ];
 
 export default async function TransportPage() {
-  const routes = await prisma.transportRoute.findMany({ orderBy: { order: "asc" } });
+  const routes = await db.transportRoute.findMany({ orderBy: { order: "asc" } });
 
   return (
     <>

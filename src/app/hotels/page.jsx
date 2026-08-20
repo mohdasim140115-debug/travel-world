@@ -5,7 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FAQAccordion from "@/components/common/FAQAccordion";
 import HotelCityCard from "@/components/hotels/HotelCityCard";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
@@ -58,7 +58,7 @@ const faqs = [
 ];
 
 export default async function HotelsPage() {
-  const hotels = await prisma.hotel.findMany({ orderBy: { order: "asc" } });
+  const hotels = await db.hotel.findMany({ orderBy: { order: "asc" } });
 
   const cityMap = new Map();
   for (const hotel of hotels) {

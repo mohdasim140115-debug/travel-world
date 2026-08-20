@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 
 export async function createBooking(prevState, formData) {
   const packageSlug = formData.get("packageSlug");
@@ -21,7 +21,7 @@ export async function createBooking(prevState, formData) {
     return { error: "Please enter a valid 10-digit phone number." };
   }
 
-  await prisma.booking.create({
+  await db.booking.create({
     data: {
       packageSlug,
       packageTitle,
