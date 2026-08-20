@@ -27,7 +27,8 @@ export function buildMetadata({
   description,
   path = "/",
   image,
-  noIndex = true,
+  // Pages opt *out* of indexing — the not-found branches pass noIndex: true.
+  noIndex = false,
   keywords = [],
   type = "website",
 }) {
