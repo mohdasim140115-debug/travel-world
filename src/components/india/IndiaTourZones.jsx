@@ -2,6 +2,8 @@
 
 "use client";
 
+import Image from "next/image";
+
 import { useState } from "react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -148,10 +150,12 @@ function ZoneCard({ item }) {
         className={`relative h-[230px] transform-gpu overflow-hidden rounded-[5px] border border-[#d6d6d6] bg-gradient-to-br shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-200 group-hover:-translate-y-[2px] group-hover:border-[#17BEBB] group-hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)] ${item.visual}`}
       >
         {item.image && (
-          <img
+          <Image
             src={item.image}
             alt={item.name}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
           />
         )}
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Users } from "lucide-react";
 import { getAmenityIcon } from "./amenityIcons";
 
@@ -7,7 +8,13 @@ export default function RoomCard({ room, hotelImage, onBookNow }) {
   return (
     <div className="flex flex-col overflow-hidden rounded-[14px] border border-[#E5E7EB] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#17BEBB] hover:shadow-[0_10px_24px_rgba(0,0,0,0.1)] sm:flex-row">
       <div className="relative h-[160px] w-full shrink-0 sm:h-auto sm:w-[220px]">
-        <img src={room.image || hotelImage} alt={room.type} className="absolute inset-0 h-full w-full object-cover" />
+        <Image
+          src={room.image || hotelImage}
+          alt={room.type}
+          className="object-cover"
+          fill
+          sizes="(max-width: 640px) 100vw, 220px"
+        />
       </div>
 
       <div className="flex min-w-0 flex-1 flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between sm:gap-5">

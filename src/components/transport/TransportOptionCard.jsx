@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { Bus, Car, Minus, Plus, Snowflake, Users } from "lucide-react";
 
@@ -21,7 +22,13 @@ export default function TransportOptionCard({ option, route, onBookNow }) {
       {/* VEHICLE PHOTO */}
       <div className="relative h-[130px] w-full shrink-0 overflow-hidden rounded-[12px] sm:h-[110px] sm:w-[200px]">
         {option.image ? (
-          <img src={option.image} alt={option.name} className="absolute inset-0 h-full w-full object-cover" />
+          <Image
+            src={option.image}
+            alt={option.name}
+            className="object-cover"
+            fill
+            sizes="(max-width: 640px) 100vw, 200px"
+          />
         ) : (
           <div
             className="flex h-full w-full items-center justify-center"

@@ -2,6 +2,8 @@
 
     "use client";
 
+import Image from "next/image";
+
     import Link from "next/link";
 
 import { useState } from "react";
@@ -86,7 +88,6 @@ const interestTours = [
     emi: "₹4,963",
   },
 ];
-
 
 const durationPackages = [
   {
@@ -177,10 +178,12 @@ function DestinationCard({ item }) {
       className={`group relative block h-[230px] overflow-hidden rounded-[5px] bg-gradient-to-br no-underline ${item.style}`}
     >
       {item.image ? (
-        <img
+        <Image
           src={item.image}
           alt={item.name}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
         />
       ) : (
         <div className="absolute -bottom-10 -left-8 h-28 w-40 rotate-12 rounded-full bg-black/10" />

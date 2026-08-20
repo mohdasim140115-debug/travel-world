@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { homeData } from "@/data/homeData";
@@ -63,10 +64,12 @@ export default function FeaturedTour() {
             }
           >
             {featuredTour.image && (
-              <img
+              <Image
                 src={featuredTour.image}
                 alt={featuredTour.title}
-                className="absolute inset-0 h-full w-full object-cover"
+                className="object-cover"
+                fill
+                sizes="100vw"
               />
             )}
 

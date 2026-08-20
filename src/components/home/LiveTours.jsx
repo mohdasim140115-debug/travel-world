@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CheckCircle } from "lucide-react";
 import { homeData } from "@/data/homeData";
@@ -32,10 +33,12 @@ export default function LiveTours() {
                 }
               >
                 {card.image && (
-                  <img
+                  <Image
                     src={card.image}
                     alt={card.destination}
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="object-cover"
+                    fill
+                    sizes="(max-width: 640px) 60vw, 300px"
                   />
                 )}
 

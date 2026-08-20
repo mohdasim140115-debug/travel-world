@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
 import { homeData } from "@/data/homeData";
@@ -32,10 +33,12 @@ export default function MostLovedTours() {
                 >
                   <div className="relative h-[150px] overflow-hidden bg-gradient-to-br from-[#6BA3D0] to-[#4A7BA7]">
                     {dest.image ? (
-                      <img
+                      <Image
                         src={dest.image}
                         alt={dest.name}
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        fill
+                        sizes="(max-width: 640px) 80vw, 280px"
                       />
                     ) : (
                       <div className="absolute inset-0 transition-transform duration-300 group-hover:scale-105" />

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { Award, CalendarDays, ChevronLeft, ChevronRight, ShieldCheck, ArrowRight } from "lucide-react";
@@ -85,10 +86,12 @@ export default function ChinaPromo() {
 
             {/* IMAGE — bleeds to the box edge */}
             <div className="relative order-1 h-[220px] w-full overflow-hidden rounded-[20px] lg:order-2 lg:h-[320px] lg:self-center">
-              <img
+              <Image
                 src={getDestinationImage("china")}
                 alt="China"
-                className="absolute inset-0 h-full w-full object-cover"
+                className="object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { getAirlineBadge } from "./airlineBadge";
 
@@ -9,11 +10,13 @@ function AirlineLogo({ airline, airlines }) {
 
   if (badge.logoUrl && !imgFailed) {
     return (
-      <div className="flex h-16 w-24 shrink-0 items-center justify-center overflow-hidden rounded-[12px] border border-[#E5E7EB] bg-white px-2 py-1.5 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-        <img
+      <div className="relative flex h-16 w-24 shrink-0 items-center justify-center overflow-hidden rounded-[12px] border border-[#E5E7EB] bg-white p-2 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+        <Image
           src={badge.logoUrl}
           alt={airline}
-          className="h-full w-full object-contain"
+          className="object-contain"
+          fill
+          sizes="96px"
           onError={() => setImgFailed(true)}
         />
       </div>

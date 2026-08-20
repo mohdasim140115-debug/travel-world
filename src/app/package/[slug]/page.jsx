@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 
 import { notFound } from "next/navigation";
@@ -260,10 +261,12 @@ export default async function PackageDetailPage({ params }) {
 
                   {/* MAIN IMAGE */}
                   <div className="relative overflow-hidden rounded-[14px]">
-                    <img
+                    <Image
                       src={heroImage}
                       alt={tour.title}
-                      className="absolute inset-0 h-full w-full object-cover"
+                      className="object-cover"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 60vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
 
@@ -278,14 +281,26 @@ export default async function PackageDetailPage({ params }) {
                   {/* SMALL IMAGES */}
                   <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-1 md:grid-rows-2">
                     <div className="relative overflow-hidden rounded-[12px]">
-                      <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                      <Image
+                        src={heroImage}
+                        alt=""
+                        className="object-cover"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 60vw"
+                      />
                       <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                         <MapPin size={26} className="text-white" />
                       </div>
                     </div>
 
                     <div className="relative overflow-hidden rounded-[12px]">
-                      <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                      <Image
+                        src={heroImage}
+                        alt=""
+                        className="object-cover"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 60vw"
+                      />
                       <div className="absolute inset-0 flex items-center justify-center bg-black/35">
                         <span className="rounded-full bg-white/90 px-3 py-1.5 text-center text-[10px] font-semibold shadow-md sm:px-4 sm:text-[12px]">
                           +45 guest photos

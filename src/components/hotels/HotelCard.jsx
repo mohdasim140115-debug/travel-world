@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Star } from "lucide-react";
 
@@ -6,7 +7,13 @@ export default function HotelCard({ hotel }) {
     <article className="grid grid-cols-1 gap-4 rounded-[16px] border border-[#E5E7EB] bg-white p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-0.5 hover:border-[#17BEBB] hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] sm:grid-cols-[220px_1fr_auto] sm:items-center sm:gap-5">
       {/* PHOTO */}
       <div className="relative h-[150px] w-full shrink-0 overflow-hidden rounded-[12px] sm:h-[130px] sm:w-[220px]">
-        <img src={hotel.image} alt={hotel.name} className="absolute inset-0 h-full w-full object-cover" />
+        <Image
+          src={hotel.image}
+          alt={hotel.name}
+          className="object-cover"
+          fill
+          sizes="(max-width: 640px) 100vw, 220px"
+        />
         <span className="absolute left-2 top-2 flex items-center gap-0.5 rounded-full bg-black/60 px-2 py-1 text-[11px] font-bold text-white">
           <Star className="h-3 w-3 fill-[#FFD400] text-[#FFD400]" />
           {hotel.starRating}

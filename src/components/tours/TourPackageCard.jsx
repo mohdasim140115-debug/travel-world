@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { CalendarDays, Clock3, Heart, MapPin, MessageCircle, Scale } from "lucide-react";
 import { getDestinationImage } from "@/data/destinationImages";
@@ -32,10 +33,12 @@ export default function TourPackageCard({ item }) {
     >
       {/* IMAGE */}
       <div className="relative h-[150px] w-full shrink-0 overflow-hidden sm:h-[170px]">
-        <img
+        <Image
           src={image}
           alt={item.title}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+          className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -8,10 +9,12 @@ export default function HotelCityCard({ city }) {
       className="group block overflow-hidden rounded-[16px] border border-[#E5E7EB] bg-white no-underline shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-[2px] hover:border-[#17BEBB] hover:shadow-[0_10px_24px_rgba(0,0,0,0.1)]"
     >
       <div className="relative h-[150px] w-full overflow-hidden">
-        <img
+        <Image
           src={city.image}
           alt={city.name}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
         <span className="absolute left-3 top-3 rounded-full bg-[#17BEBB] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">

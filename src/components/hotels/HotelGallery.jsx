@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { Camera, X } from "lucide-react";
 
@@ -21,10 +22,12 @@ export default function HotelGallery({ name, image }) {
           onClick={() => setOpen(true)}
           className="group relative overflow-hidden"
         >
-          <img
+          <Image
             src={image}
             alt={name}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+            className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+            fill
+            sizes="(max-width: 768px) 100vw, 60vw"
           />
         </button>
 
@@ -36,10 +39,12 @@ export default function HotelGallery({ name, image }) {
               onClick={() => setOpen(true)}
               className="group relative overflow-hidden"
             >
-              <img
+              <Image
                 src={image}
                 alt={tile.alt}
-                className={`absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 ${tile.className}`}
+                className={`object-cover transition-transform duration-500 ease-out group-hover:scale-105 ${tile.className}`}
+                fill
+                sizes="(max-width: 768px) 100vw, 60vw"
               />
               {index === tiles.length - 1 && (
                 <>
@@ -68,12 +73,18 @@ export default function HotelGallery({ name, image }) {
           >
             <X className="h-5 w-5" />
           </button>
-          <img
-            src={image}
-            alt={name}
-            className="max-h-full max-w-full rounded-[12px] object-contain"
+          <div
+            className="relative h-full w-full"
             onClick={(event) => event.stopPropagation()}
-          />
+          >
+            <Image
+              src={image}
+              alt={name}
+              className="rounded-[12px] object-contain"
+              fill
+              sizes="100vw"
+            />
+          </div>
         </div>
       )}
     </>

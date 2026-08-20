@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown, LogIn, Menu, Mic, Phone, Search, X } from "lucide-react";
@@ -142,9 +143,12 @@ export default function Header() {
           </button>
 
           <Link href="/" className="flex items-center no-underline">
-            <img
+            <Image
               src="/logo.jpeg"
               alt="Honor Tour & Travels"
+              width={320}
+              height={141}
+              priority
               className="h-10 w-auto rounded-[8px] object-contain sm:h-11"
             />
           </Link>

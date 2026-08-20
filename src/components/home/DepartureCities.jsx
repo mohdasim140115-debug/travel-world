@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { homeData } from "@/data/homeData";
 import { getDestinationImage } from "@/data/destinationImages";
@@ -26,10 +27,12 @@ export default function DepartureCities() {
                 className="group flex w-full min-w-full flex-shrink-0 snap-start transform-gpu cursor-pointer flex-col overflow-hidden rounded-[14px] border border-[#E5E7EB] bg-white no-underline shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-[3px] hover:border-[#17BEBB] hover:shadow-[0_10px_24px_rgba(0,0,0,0.1)] sm:w-auto sm:min-w-0"
               >
                 <div className="relative h-[110px] w-full overflow-hidden">
-                  <img
+                  <Image
                     src={image}
                     alt={city.name}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 640px) 100vw, 260px"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                   <div className="absolute inset-x-3.5 bottom-2.5">

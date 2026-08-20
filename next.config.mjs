@@ -1,6 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  images: {
+    // AVIF first, WebP for browsers without it; the original jpeg is the
+    // last resort. Ordered by preference — the first Accept match wins.
+    formats: ["image/avif", "image/webp"],
+
+    // Airline logos and vehicle photos are served from Wikimedia. The
+    // Special:FilePath URLs redirect to upload.wikimedia.org, so both
+    // hosts have to be allowed for the optimizer to fetch them.
+    remotePatterns: [
+      { protocol: "https", hostname: "commons.wikimedia.org", pathname: "/wiki/Special:FilePath/**" },
+      { protocol: "https", hostname: "upload.wikimedia.org", pathname: "/**" },
+    ],
+  },
 
   // Keeps the public URL as the single hyphenated segment
   // /tour-packages-from-mumbai while the actual route lives at
