@@ -1,5 +1,6 @@
 "use client";
 
+import CardRail from "@/components/common/CardRail";
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
@@ -61,17 +62,17 @@ export default function ChinaPromo() {
                 Discover all-inclusive China tours with Honor Tour & Travels
               </p>
 
-              <div className="mt-5 flex gap-3 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory sm:grid sm:grid-cols-4 sm:overflow-visible sm:pb-0 md:mt-6 lg:mt-4">
+              <CardRail className="mt-5 flex gap-3 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory sm:grid sm:grid-cols-4 sm:overflow-visible sm:pb-0 md:mt-6 lg:mt-4" label="packages">
                 {visible.map((pkg) => (
                   <Link
                     key={pkg.slug}
                     href={`/package/${pkg.slug}`}
-                    className="group flex min-w-[150px] max-w-[150px] flex-shrink-0 snap-start flex-col cursor-pointer rounded-[14px] border border-[#E5E7EB] bg-white p-3.5 no-underline shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-[2px] hover:border-[#17BEBB] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)] sm:min-w-0 sm:max-w-none lg:p-3"
+                    className="group flex min-w-[88%] max-w-[88%] flex-shrink-0 snap-start flex-col cursor-pointer rounded-[14px] border border-[#E5E7EB] bg-white p-3.5 no-underline shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all hover:-translate-y-[2px] hover:border-[#17BEBB] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)] sm:min-w-0 sm:max-w-none lg:p-3"
                   >
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#E6F7F5] text-[#17BEBB] lg:h-7 lg:w-7">
                       <CalendarDays className="h-4 w-4 lg:h-3.5 lg:w-3.5" />
                     </div>
-                    <div className="mt-3 truncate text-[13px] font-bold leading-tight text-[#0F172A] lg:mt-2 lg:text-[12px]">{pkg.name}</div>
+                    <div className="mt-3 text-[13px] font-bold leading-tight text-[#0F172A] lg:mt-2 lg:text-[12px]">{pkg.name}</div>
                     <div className="mt-1 text-[11px] text-[#94A3B8] lg:mt-0.5 lg:text-[10px]">{pkg.days}</div>
                     <div className="mt-2 text-[11px] text-[#475569] lg:mt-1.5 lg:text-[10px]">Starting from</div>
                     <div className="text-[15px] font-bold text-[#0F172A] lg:text-[13px]">{pkg.price}</div>
@@ -81,7 +82,7 @@ export default function ChinaPromo() {
                     </span>
                   </Link>
                 ))}
-              </div>
+              </CardRail>
             </div>
 
             {/* IMAGE — bleeds to the box edge */}

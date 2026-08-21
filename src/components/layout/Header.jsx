@@ -149,17 +149,8 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-700/70 bg-[#0B3B63] text-white lg:static">
-      <div className="mx-auto flex h-auto w-full max-w-[1280px] flex-wrap items-center gap-3 px-4 py-3 sm:h-[76px] sm:flex-nowrap sm:justify-between sm:py-0 lg:px-0">
+      <div className="mx-auto flex h-[64px] w-full max-w-[1280px] items-center justify-between gap-3 px-4 sm:h-[76px] lg:px-0">
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            onClick={() => setMobileOpen((open) => !open)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/40 bg-white/10 lg:hidden"
-          >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-
           <Link href="/" className="flex items-center no-underline">
             <Image
               src="/logo.jpeg"
@@ -187,9 +178,18 @@ export default function Header() {
         </div>
 
         <div className="ml-auto flex items-center gap-3 sm:gap-4">
+          <button
+            type="button"
+            aria-label="Open menu"
+            onClick={() => setMobileOpen(true)}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-400/40 bg-white/10 lg:hidden"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
+
           <a
             href="tel:18003135555"
-className="flex items-center gap-2 rounded-full border border-slate-400/40 bg-slate-800/50 p-1.5 no-underline sm:px-3 sm:py-2"
+className="hidden items-center gap-2 rounded-full border border-slate-400/40 bg-slate-800/50 no-underline lg:flex lg:px-3 lg:py-2"
           >
             <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#17BEBB] text-white">
               <Phone className="h-4 w-4" />
@@ -201,9 +201,9 @@ className="flex items-center gap-2 rounded-full border border-slate-400/40 bg-sl
             <ChevronDown className="hidden h-4 w-4 text-slate-300 sm:block" />
           </a>
 
-          <button className="flex items-center gap-2 rounded-full border border-slate-400/40 bg-white/10 px-3 py-2 text-sm font-medium text-white">
+          <button className="hidden items-center gap-2 rounded-full border border-slate-400/40 bg-white/10 px-3 py-2 text-sm font-medium text-white lg:flex">
             <LogIn className="h-4 w-4" />
-            <span className="hidden sm:inline">Login</span>
+            Login
           </button>
 
           <button className="hidden items-center gap-2 rounded-full border border-slate-400/40 bg-white px-3 py-2 text-sm font-medium text-[#0F172A] lg:flex">
@@ -213,20 +213,6 @@ className="flex items-center gap-2 rounded-full border border-slate-400/40 bg-sl
           </button>
         </div>
 
-        {/* MOBILE SEARCH BAR */}
-        <div className="order-last w-full lg:hidden">
-          <div className="flex w-full items-center rounded-full border border-transparent bg-white px-4 py-2 shadow-md transition-colors focus-within:border-[#17BEBB]">
-            <Search className="mr-3 h-4 w-4 flex-shrink-0 text-slate-500" />
-            <input
-              aria-label="Search tours"
-              className="w-full min-w-0 bg-transparent text-[14px] text-slate-700 outline-none placeholder:text-slate-400"
-              placeholder='Search "Gulmarg"'
-            />
-            <button className="ml-3 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#0B3B63] text-white">
-              <Mic className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
       </div>
 
       {/* MOBILE DRAWER — slides in over the page, with its own scroll */}
@@ -267,6 +253,24 @@ className="flex items-center gap-2 rounded-full border border-slate-400/40 bg-sl
             >
               <X className="h-5 w-5" />
             </button>
+          </div>
+
+          <div className="shrink-0 px-4 pt-3">
+            <div className="flex w-full items-center rounded-full bg-white px-3 py-2 shadow-md">
+              <Search className="mr-2 h-4 w-4 flex-shrink-0 text-slate-500" />
+              <input
+                aria-label="Search tours"
+                className="w-full min-w-0 bg-transparent text-[14px] text-slate-700 outline-none placeholder:text-slate-400"
+                placeholder='Search "Gulmarg"'
+              />
+              <button
+                type="button"
+                aria-label="Voice search"
+                className="ml-2 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-[#0B3B63] text-white"
+              >
+                <Mic className="h-3.5 w-3.5" />
+              </button>
+            </div>
           </div>
 
           <nav className="flex-1 overflow-y-auto overscroll-contain px-3 py-3">
