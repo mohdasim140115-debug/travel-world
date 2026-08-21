@@ -26,7 +26,7 @@ const nameAliases = {
 export default function DestinationStrip() {
   return (
     <section className="mt-11 w-full">
-      <CardRail className="grid grid-flow-col grid-rows-2 gap-x-4 gap-y-4 overflow-x-auto px-1 pb-3 no-scrollbar [grid-auto-columns:minmax(100px,auto)] sm:flex sm:[grid-auto-columns:auto]">
+      <CardRail className="flex gap-4 overflow-x-auto px-1 pb-3 no-scrollbar">
         {homeData.destinations.map((destination) => {
           const Icon = iconMap[destination.icon] || Compass;
           const href = getDestinationHref(nameAliases[destination.name] || destination.name);
