@@ -72,7 +72,7 @@ export default function CardRail({ className = "", children, label = "cards", ..
         type="button"
         aria-label={`Previous ${label}`}
         onClick={() => page(-1)}
-        className={`${arrow} -left-1 sm:-left-3 ${canScrollLeft ? "flex" : "hidden"}`}
+        className={`${arrow} left-1 ${canScrollLeft ? "flex" : "hidden"}`}
       >
         <ChevronLeft className="h-5 w-5" />
       </button>
@@ -81,7 +81,7 @@ export default function CardRail({ className = "", children, label = "cards", ..
         type="button"
         aria-label={`Next ${label}`}
         onClick={() => page(1)}
-        className={`${arrow} -right-1 sm:-right-3 ${canScrollRight ? "flex" : "hidden"}`}
+        className={`${arrow} right-1 ${canScrollRight ? "flex" : "hidden"}`}
       >
         <ChevronRight className="h-5 w-5" />
       </button>

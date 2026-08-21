@@ -31,7 +31,7 @@ export default function HeroSection() {
   return (
     <section className="mt-1.5 w-full">
       <div
-        className="relative overflow-hidden rounded-[12px] border border-[#F0A93A]/30 p-2.5 md:px-8 md:py-4 lg:px-10 lg:py-4"
+        className="relative overflow-hidden rounded-[16px] border border-[#F0A93A]/30 p-4 md:rounded-[12px] md:px-8 md:py-4 lg:px-10 lg:py-4"
         style={{
           background: "linear-gradient(135deg, #FFF3DC 0%, #FFEACB 55%, #FFF8EC 100%)",
         }}
@@ -46,7 +46,7 @@ export default function HeroSection() {
               Premium travel experiences
             </p>
 
-            <h1 className="max-md:animate-[heroFadeIn_0.6s_ease-out] max-md:text-[20px] max-md:font-bold text-[#0F172A] leading-[1.15] md:mt-2 md:whitespace-nowrap md:text-[28px] md:font-black">
+            <h1 className="max-md:animate-[heroFadeIn_0.6s_ease-out] max-md:text-[22px] max-md:font-bold text-[#0F172A] leading-[1.15] md:mt-2 md:whitespace-nowrap md:text-[28px] md:font-black">
               {homeData.hero.title
                 .split(" ")
                 .slice(0, 2)
@@ -54,7 +54,7 @@ export default function HeroSection() {
               <span className="text-[#0F172A]">Tours</span>
             </h1>
 
-            <p className="mt-0.5 max-md:animate-[heroFadeIn_0.8s_ease-out] text-[12px] italic text-[#3A2A0F] md:mt-2 md:text-[16px]">
+            <p className="mt-1 max-md:animate-[heroFadeIn_0.8s_ease-out] text-[13px] italic text-[#3A2A0F] md:mt-2 md:text-[16px]">
               {homeData.hero.tagline}
             </p>
           </div>
@@ -110,7 +110,7 @@ export default function HeroSection() {
             {/* SENIORS DAY BADGE */}
             <div className="absolute left-0 top-0 hidden flex-col items-center md:flex">
               <div className="h-3 w-px bg-[#3A2A0F]/50" />
-              <div className="flex h-[46px] w-[70px] flex-col items-center justify-center rounded-[14px] bg-[#0F172A] px-1.5 text-center shadow-lg">
+              <div className="flex w-[84px] flex-col items-center justify-center gap-0.5 rounded-[14px] bg-[#0F172A] px-2 py-1.5 text-center shadow-lg">
                 <span className="text-[8px] font-semibold uppercase tracking-[0.15em] text-[#FBB627]">
                   21st Aug
                 </span>
@@ -124,7 +124,7 @@ export default function HeroSection() {
             {/* ANTARCTICA BADGE */}
             <div className="absolute right-1 top-6 hidden flex-col items-center md:flex">
               <div className="h-3 w-px bg-[#3A2A0F]/50" />
-              <div className="flex h-[48px] w-[76px] flex-col items-center justify-center rounded-[14px] bg-[#0F172A] px-1.5 text-center shadow-lg">
+              <div className="flex w-[84px] flex-col items-center justify-center gap-0.5 rounded-[14px] bg-[#0F172A] px-2 py-1.5 text-center shadow-lg">
                 <span className="text-[8px] font-semibold uppercase tracking-[0.13em] text-white">
                   Visit the 7th
                 </span>
@@ -138,22 +138,22 @@ export default function HeroSection() {
         </div>
 
         {/* TOUR CARDS */}
-        <CardRail className="mt-2 flex gap-2 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory md:mt-4 md:grid md:overflow-visible md:grid-cols-2 lg:grid-cols-4">
+        <CardRail className="mt-4 flex gap-3 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory md:mt-4 md:grid md:overflow-visible md:grid-cols-2 lg:grid-cols-4">
           {cardData.map((card) => {
             const href = getTourLink(card.title);
 
             return (
               <div
                 key={card.title}
-                className="group min-w-[190px] max-w-[190px] flex-shrink-0 snap-start rounded-[14px] border border-[#E5E7EB] bg-white p-2 shadow-[0_2px_10px_rgba(15,23,42,0.08)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#17BEBB] hover:shadow-lg md:min-w-0 md:max-w-none md:rounded-[16px] md:px-4 md:py-3"
+                className="group flex min-w-[215px] max-w-[215px] flex-shrink-0 snap-start flex-col rounded-[14px] border border-[#E5E7EB] bg-white p-3.5 shadow-[0_2px_10px_rgba(15,23,42,0.08)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#17BEBB] hover:shadow-lg md:min-w-0 md:max-w-none md:rounded-[16px] md:px-4 md:py-3"
               >
                 {/* CARD TITLE */}
-                <h2 className="text-[14px] font-semibold leading-tight text-[#0F172A] md:text-[16px]">
+                <h2 className="text-[15px] font-bold leading-tight text-[#0F172A] md:text-[16px] md:font-semibold">
                   {card.title}
                 </h2>
 
                 {/* CARD SUBTITLE */}
-                <p className="mt-0.5 text-[11px] leading-snug text-[#475569] md:mt-1 md:text-[11px] md:leading-snug">
+                <p className="mt-1 flex-1 text-[12px] leading-snug text-[#475569] md:mt-1 md:text-[11px]">
                   {card.subtitle}
                 </p>
 
@@ -161,7 +161,7 @@ export default function HeroSection() {
                 {href !== "#" ? (
                   <Link
                     href={href}
-                    className="mt-2 flex h-[36px] w-full items-center justify-center gap-2 rounded-[10px] bg-[#FBB627] text-[12px] font-semibold text-[#0F172A] shadow-md shadow-amber-900/20 transition-all duration-200 hover:bg-[#F0A93A] hover:shadow-lg hover:-translate-y-0.5 active:scale-95 md:mt-4 md:h-[35px] md:text-[13px]"
+                    className="mt-3 flex h-[44px] w-full items-center justify-center gap-2 rounded-[10px] bg-[#FBB627] text-[13px] font-semibold text-[#0F172A] shadow-md shadow-amber-900/20 transition-all duration-200 hover:bg-[#F0A93A] hover:shadow-lg hover:-translate-y-0.5 active:scale-95 md:mt-4 md:h-[35px] md:text-[13px]"
                   >
                     View Tours
 
@@ -170,7 +170,7 @@ export default function HeroSection() {
                 ) : (
                   <button
                     type="button"
-                    className="mt-2 flex h-[36px] w-full cursor-pointer items-center justify-center gap-2 rounded-[10px] bg-[#FBB627] text-[12px] font-semibold text-[#0F172A] shadow-md shadow-amber-900/20 transition-all duration-200 hover:bg-[#F0A93A] hover:shadow-lg hover:-translate-y-0.5 active:scale-95 md:mt-4 md:h-[35px] md:text-[13px]"
+                    className="mt-3 flex h-[44px] w-full cursor-pointer items-center justify-center gap-2 rounded-[10px] bg-[#FBB627] text-[13px] font-semibold text-[#0F172A] shadow-md shadow-amber-900/20 transition-all duration-200 hover:bg-[#F0A93A] hover:shadow-lg hover:-translate-y-0.5 active:scale-95 md:mt-4 md:h-[35px] md:text-[13px]"
                   >
                     View Tours
 
