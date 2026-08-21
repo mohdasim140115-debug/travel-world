@@ -1,3 +1,4 @@
+import CardRail from "@/components/common/CardRail";
 import Link from "next/link";
 import { homeData } from "@/data/homeData";
 
@@ -9,7 +10,7 @@ export default function ContinueTravel() {
       <div className="mx-auto w-full max-w-[1280px]">
         <h2 className="text-[23px] font-bold text-[#0F172A] md:text-[26px]">{continueTravel.heading}</h2>
 
-        <div className="mt-4 flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:mt-6 md:gap-4 sm:grid sm:overflow-visible sm:grid-cols-2 lg:grid-cols-4">
+        <CardRail className="mt-4 flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:mt-6 md:gap-4 sm:grid sm:overflow-visible sm:grid-cols-2 lg:grid-cols-4">
           {continueTravel.tours.map((tour) => (
             <Link
               key={tour.name}
@@ -30,7 +31,7 @@ export default function ContinueTravel() {
               </div>
             </Link>
           ))}
-        </div>
+        </CardRail>
       </div>
     </section>
   );

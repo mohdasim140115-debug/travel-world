@@ -1,5 +1,6 @@
 "use client";
 
+import CardRail from "@/components/common/CardRail";
 import { useEffect, useRef, useState } from "react";
 import { Users, CheckCircle, Star } from "lucide-react";
 import { homeData } from "@/data/homeData";
@@ -102,7 +103,7 @@ export default function TrustReviews() {
             })}
           </div>
 
-          <div className={`mt-5 flex gap-4 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory ${fade("delay-200")}`}>
+          <CardRail className={`mt-5 flex gap-4 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory ${fade("delay-200")}`}>
             {trustReviews.reviews.map((review, idx) => (
               <div
                 key={idx}
@@ -140,7 +141,7 @@ export default function TrustReviews() {
                 </div>
               </div>
             ))}
-          </div>
+          </CardRail>
 
           <button
             className={`mt-[18px] flex h-[46px] w-full items-center justify-center rounded-full bg-[#FF7A1A] text-[15px] font-bold text-white shadow-md shadow-orange-900/20 transition-all duration-200 active:scale-95 ${fade("delay-300")}`}
@@ -181,7 +182,7 @@ export default function TrustReviews() {
             })}
           </div>
 
-          <div className="mt-6 flex items-stretch gap-6 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory lg:grid lg:gap-8 lg:overflow-visible lg:grid-cols-3">
+          <CardRail className="mt-6 flex items-stretch gap-6 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory lg:grid lg:gap-8 lg:overflow-visible lg:grid-cols-3">
             {trustReviews.reviews.map((review, idx) => (
               <div key={idx} className="flex min-w-[260px] flex-shrink-0 snap-start flex-col rounded-[14px] bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.2)] lg:min-w-0">
                 <div className="flex gap-1">
@@ -200,7 +201,7 @@ export default function TrustReviews() {
                 <p className="text-[11px] text-[#60646C]">{review.date}</p>
               </div>
             ))}
-          </div>
+          </CardRail>
 
           <div className="mt-6 text-center">
             <button className="inline-flex items-center gap-2 rounded-full bg-[#FF7A1A] px-6 py-2.5 text-[13px] font-bold text-white shadow-md shadow-orange-900/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#E56A0F] hover:shadow-lg">

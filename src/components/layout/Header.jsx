@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, LogIn, Menu, Mic, Phone, Search, X } from "lucide-react";
 import { SPECIALTY_FEATURED, SPECIALTY_MORE } from "@/data/specialityTours";
@@ -129,6 +129,24 @@ export default function Header() {
     setOpenAccordion(null);
   }
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    function onKeyDown(event) {
+      if (event.key === "Escape") closeMobileMenu();
+    }
+
+    // The drawer scrolls on its own; the page behind it must not.
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [mobileOpen]);
+
   return (
     <header className="sticky top-0 z-50 border-b border-slate-700/70 bg-[#0B3B63] text-white lg:static">
       <div className="mx-auto flex h-auto w-full max-w-[1280px] flex-wrap items-center gap-3 px-4 py-3 sm:h-[76px] sm:flex-nowrap sm:justify-between sm:py-0 lg:px-0">
@@ -171,7 +189,7 @@ export default function Header() {
         <div className="ml-auto flex items-center gap-3 sm:gap-4">
           <a
             href="tel:18003135555"
-            className="flex items-center gap-2 rounded-full border border-slate-400/40 bg-slate-800/50 px-3 py-2 no-underline"
+className="flex items-center gap-2 rounded-full border border-slate-400/40 bg-slate-800/50 p-1.5 no-underline sm:px-3 sm:py-2"
           >
             <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#17BEBB] text-white">
               <Phone className="h-4 w-4" />
@@ -180,7 +198,6 @@ export default function Header() {
               <div className="text-[11px] uppercase tracking-[0.2em] text-slate-300">Call us</div>
               <div className="text-[13px] font-semibold text-white">1800 313 5555</div>
             </div>
-            <span className="text-[13px] font-semibold text-white sm:hidden">1800 313 5555</span>
             <ChevronDown className="hidden h-4 w-4 text-slate-300 sm:block" />
           </a>
 
@@ -212,23 +229,79 @@ export default function Header() {
         </div>
       </div>
 
-      {/* MOBILE SLIDE-DOWN MENU */}
-      {mobileOpen ? (
-        <div className="max-h-[75vh] overflow-y-auto border-t border-slate-700/60 bg-[#0B3B63] px-4 py-3 lg:hidden">
-          <div className="flex flex-col gap-1">
-            {mobileMenuLinks.map((link, index) => (
-              <MobileAccordionItem
-                key={link.label}
-                link={link}
-                index={index}
-                openIndex={openAccordion}
-                onToggle={(idx) => setOpenAccordion((current) => (current === idx ? null : idx))}
-                onNavigate={closeMobileMenu}
+      {/* MOBILE DRAWER — slides in over the page, with its own scroll */}
+      <div
+        className={`fixed inset-0 z-[60] lg:hidden ${mobileOpen ? "" : "pointer-events-none"}`}
+        aria-hidden={!mobileOpen}
+      >
+        <button
+          type="button"
+          aria-label="Close menu"
+          tabIndex={mobileOpen ? 0 : -1}
+          onClick={closeMobileMenu}
+          className={`absolute inset-0 h-full w-full cursor-default bg-black/60 transition-opacity duration-300 ${
+            mobileOpen ? "opacity-100" : "opacity-0"
+          }`}
+        />
+
+        <aside
+          className={`absolute inset-y-0 left-0 flex w-[86%] max-w-[340px] flex-col bg-[#0B3B63] shadow-[0_0_40px_rgba(0,0,0,0.5)] transition-transform duration-300 ease-out ${
+            mobileOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          <div className="flex shrink-0 items-center justify-between border-b border-white/10 px-4 py-3">
+            <Link href="/" onClick={closeMobileMenu} className="flex items-center no-underline">
+              <Image
+                src="/logo.jpeg"
+                alt="Honor Tour & Travels"
+                width={320}
+                height={141}
+                className="h-9 w-auto rounded-[8px] object-contain"
               />
-            ))}
+            </Link>
+            <button
+              type="button"
+              aria-label="Close menu"
+              onClick={closeMobileMenu}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white"
+            >
+              <X className="h-5 w-5" />
+            </button>
           </div>
-        </div>
-      ) : null}
+
+          <nav className="flex-1 overflow-y-auto overscroll-contain px-3 py-3">
+            <div className="flex flex-col gap-1">
+              {mobileMenuLinks.map((link, index) => (
+                <MobileAccordionItem
+                  key={link.label}
+                  link={link}
+                  index={index}
+                  openIndex={openAccordion}
+                  onToggle={(idx) => setOpenAccordion((current) => (current === idx ? null : idx))}
+                  onNavigate={closeMobileMenu}
+                />
+              ))}
+            </div>
+          </nav>
+
+          <div className="shrink-0 space-y-2 border-t border-white/10 px-4 py-3">
+            <a
+              href="tel:18003135555"
+              className="flex items-center justify-center gap-2 rounded-full bg-[#17BEBB] px-4 py-2.5 text-[14px] font-semibold text-white no-underline"
+            >
+              <Phone className="h-4 w-4" />
+              1800 313 5555
+            </a>
+            <button
+              type="button"
+              className="flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-4 py-2.5 text-[14px] font-medium text-white"
+            >
+              <LogIn className="h-4 w-4" />
+              Login
+            </button>
+          </div>
+        </aside>
+      </div>
     </header>
   );
 }

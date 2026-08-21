@@ -1,3 +1,4 @@
+import CardRail from "@/components/common/CardRail";
 import Image from "next/image";
 import Link from "next/link";
 import { homeData } from "@/data/homeData";
@@ -17,7 +18,7 @@ export default function DepartureCities() {
           From flights and stays to sightseeing and meals — every Honor Tour & Travels tour begins conveniently from your doorstep. Pick your departure city below.
         </p>
 
-        <div className="mt-6 flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:mt-8 md:gap-4 sm:grid sm:overflow-visible sm:grid-cols-2 lg:grid-cols-4">
+        <CardRail className="mt-6 flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:mt-8 md:gap-4 sm:grid sm:overflow-visible sm:grid-cols-2 lg:grid-cols-4">
           {departureCities.cities.map((city) => {
             const image = getDestinationImage(city.name);
             return (
@@ -50,7 +51,7 @@ export default function DepartureCities() {
               </Link>
             );
           })}
-        </div>
+        </CardRail>
 
         <div className="mt-6 rounded-[14px] border border-[#0F4C81]/20 bg-[#F7FAFC] p-4 md:mt-8 sm:p-8">
           <div className="grid gap-5 sm:grid-cols-2 md:gap-6">

@@ -1,3 +1,4 @@
+import CardRail from "@/components/common/CardRail";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
@@ -24,7 +25,7 @@ export default function MostLovedTours() {
               <h3 className="text-[23px] font-bold text-[#0F172A] sm:text-[25px]">Most Loved by Our Guests</h3>
             </div>
 
-            <div className="mt-4 flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory sm:grid sm:grid-cols-2 sm:gap-3 sm:overflow-visible lg:grid-cols-4">
+            <CardRail className="mt-4 flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory sm:grid sm:grid-cols-2 sm:gap-3 sm:overflow-visible lg:grid-cols-4">
               {mostLovedTours.destinations.map((dest) => (
                 <Link
                   key={dest.name}
@@ -57,7 +58,7 @@ export default function MostLovedTours() {
                   </div>
                 </Link>
               ))}
-            </div>
+            </CardRail>
           </div>
         </div>
       </div>

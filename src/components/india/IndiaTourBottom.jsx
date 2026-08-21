@@ -2,6 +2,8 @@
 
 "use client";
 
+import CardRail from "@/components/common/CardRail";
+
 import { useState } from "react";
 
 import {
@@ -162,13 +164,13 @@ export default function IndiaTourBottom() {
             </p>
           </div>
 
-          <div className="relative z-10 mx-auto mt-7 flex max-w-[1180px] gap-4 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:grid md:overflow-visible md:grid-cols-3">
+          <CardRail className="relative z-10 mx-auto mt-7 flex max-w-[1180px] gap-4 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:grid md:overflow-visible md:grid-cols-3">
             {reviews.map((review) => (
               <div key={`${review.name}-${review.tour}`} className="min-w-[260px] max-w-[260px] flex-shrink-0 snap-start md:min-w-0 md:max-w-none">
                 <ReviewCard review={review} />
               </div>
             ))}
-          </div>
+          </CardRail>
 
           <div className="relative z-10 mt-7 flex justify-center">
             <button

@@ -1,3 +1,4 @@
+import CardRail from "@/components/common/CardRail";
 
 
 import Link from "next/link";
@@ -137,7 +138,7 @@ export default function HeroSection() {
         </div>
 
         {/* TOUR CARDS */}
-        <div className="mt-2 flex gap-2 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory md:mt-4 md:grid md:overflow-visible md:grid-cols-2 lg:grid-cols-4">
+        <CardRail className="mt-2 flex gap-2 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory md:mt-4 md:grid md:overflow-visible md:grid-cols-2 lg:grid-cols-4">
           {cardData.map((card) => {
             const href = getTourLink(card.title);
 
@@ -179,7 +180,7 @@ export default function HeroSection() {
               </div>
             );
           })}
-        </div>
+        </CardRail>
       </div>
     </section>
   );
