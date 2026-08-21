@@ -65,15 +65,24 @@ export default function FlightFilters({
   priceBounds,
   onPriceChange,
   onReset,
+  showHeader = true,
 }) {
   return (
-    <aside className="self-start overflow-hidden rounded-[14px] border border-[#E5E7EB] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
-      <div className="flex items-center justify-between border-b border-[#E5E7EB] bg-[#F7FAFC] px-4 py-3.5">
-        <h3 className="text-[14px] font-semibold text-[#0F172A]">Filter your Flight</h3>
-        <button type="button" onClick={onReset} className="text-[12px] font-semibold text-[#0F4C81] underline">
-          Reset
-        </button>
-      </div>
+    <aside
+      className={
+        showHeader
+          ? "self-start overflow-hidden rounded-[14px] border border-[#E5E7EB] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.05)]"
+          : "self-start bg-white"
+      }
+    >
+      {showHeader && (
+        <div className="flex items-center justify-between border-b border-[#E5E7EB] bg-[#F7FAFC] px-4 py-3.5">
+          <h3 className="text-[14px] font-semibold text-[#0F172A]">Filter your Flight</h3>
+          <button type="button" onClick={onReset} className="text-[12px] font-semibold text-[#0F4C81] underline">
+            Reset
+          </button>
+        </div>
+      )}
 
       <FilterGroup title="Stops">
         <div className="space-y-2">
