@@ -95,7 +95,7 @@ export default function ChinaPromo() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
-              <div className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-[11px] font-semibold text-white backdrop-blur-sm lg:bottom-auto lg:top-3">
+              <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-[11px] font-semibold text-white backdrop-blur-sm">
                 <ShieldCheck className="h-3.5 w-3.5" />
                 Trusted by 50,000+ Travelers
               </div>
@@ -105,7 +105,7 @@ export default function ChinaPromo() {
           {/* FLOATING BOOK ONLINE CARD */}
           <Link
             href={`/package/${packages[0].slug}`}
-            className="absolute right-3 top-3 w-[220px] rounded-[14px] bg-white p-3 no-underline shadow-[0_8px_24px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5 sm:right-6 lg:bottom-4 lg:right-6 lg:top-auto lg:w-[200px]"
+            className="absolute hidden w-[200px] rounded-[14px] bg-white p-3 no-underline shadow-[0_8px_24px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5 lg:bottom-4 lg:right-6 lg:block"
           >
             <div className="flex items-center gap-2.5">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E6F7F5] text-[#0F4C81]">
