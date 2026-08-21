@@ -105,7 +105,7 @@ export default function TransportOptionCard({ option, route, onBookNow }) {
 
       {/* PRICE / CTA */}
       <div className="flex items-center justify-between gap-3 border-t border-[#F0F0F0] pt-3 sm:flex-col sm:items-end sm:gap-2 sm:border-t-0 sm:border-l sm:border-[#F0F0F0] sm:pt-0 sm:pl-5">
-        <div className="sm:text-right">
+        <div className="shrink-0 sm:text-right">
           <p className="text-[19px] font-bold leading-tight text-[#0F172A]">
             ₹{totalPrice.toLocaleString("en-IN")}
           </p>
@@ -121,7 +121,7 @@ export default function TransportOptionCard({ option, route, onBookNow }) {
         <button
           type="button"
           onClick={() => onBookNow(route ? { ...option, perDay, totalPrice, days, route } : option)}
-          className="h-[42px] w-full shrink-0 rounded-[10px] bg-[#FF7A1A] px-5 text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition hover:-translate-y-0.5 hover:bg-[#E56A0F] sm:w-auto"
+          className="h-[44px] flex-1 rounded-[10px] bg-[#FF7A1A] px-5 text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition hover:-translate-y-0.5 hover:bg-[#E56A0F] sm:w-auto sm:flex-none sm:shrink-0"
         >
           Book Now
         </button>
