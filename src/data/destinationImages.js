@@ -58,6 +58,10 @@ const KEYWORD_IMAGES = [
 
   // World — USA / Americas
   { keywords: ["usa", "america", "new york", "manhattan"], image: "/mike-chavarri-kZokA2VTKn4-unsplash.jpg" },
+  // World — South East Asia / Oceania / Africa
+  { keywords: ["south east asia", "southeast asia"], image: "/evan-krause-BU6lABNbTpA-unsplash.jpg" },
+  { keywords: ["australia", "new zealand", "oceania"], image: "/ricardo-gomez-angel-58uZCE8zrdk-unsplash.jpg" },
+  { keywords: ["africa", "kenya", "mauritius", "zanzibar", "egypt"], image: "/alexey-turenkov-bWJiSZjIgTM-unsplash.jpg" },
 ];
 
 const FALLBACK_IMAGE = "/mark-olsen-K5j1KgecVC8-unsplash.jpg";

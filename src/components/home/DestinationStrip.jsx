@@ -1,69 +1,42 @@
-import CardRail from "@/components/common/CardRail";
-import Link from "next/link";
-import { Compass, MapPin, Plane, TentTree, Trees, Waves, MountainSnow, Landmark, ShipWheel, Sun, Sparkles } from "lucide-react";
 import { homeData } from "@/data/homeData";
 import { getDestinationHref } from "@/data/destinations";
+import { getDestinationImage } from "@/data/destinationImages";
+import PopularDestinations from "./PopularDestinations";
 
-const iconMap = {
-  Compass,
-  MapPin,
-  Plane,
-  TentTree,
-  Trees,
-  Waves,
-  MountainSnow,
-  Landmark,
-  ShipWheel,
-  Sun,
-  Sparkles,
-};
+/* =========================================================
+   Resolves each destination's link, photo and region, then
+   hands the list to the client component that renders the
+   category rail and the cards.
+========================================================= */
 
 // Homepage copy for Kashmir differs slightly from the destination page name
 const nameAliases = {
   "Jammu and Kashmir": "Jammu Kashmir",
 };
 
+// "/india/kerala-tour-packages" -> "India"
+function regionFor(href) {
+  if (href?.startsWith("/world")) return "World";
+  return "India";
+}
+
 export default function DestinationStrip({ destinations }) {
-  const items = destinations?.length ? destinations : homeData.destinations;
+  const source = destinations?.length ? destinations : homeData.destinations;
 
-  return (
-    <section className="mt-11 w-full">
-      <CardRail className="flex gap-4 overflow-x-auto px-1 pb-3 no-scrollbar">
-        {items.map((destination) => {
-          const Icon = iconMap[destination.icon] || Compass;
-          const href = getDestinationHref(nameAliases[destination.name] || destination.name);
+  const items = source.map((destination) => {
+    const href = getDestinationHref(nameAliases[destination.name] || destination.name) || "/india";
 
-          const content = (
-            <>
-              <div className="flex h-[72px] w-[72px] items-center justify-center rounded-full bg-[#E6F7F5] text-[#17BEBB] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0F4C81] group-hover:text-white">
-                <Icon className="h-8 w-8" />
-              </div>
-              <div className="mt-3 flex min-h-[34px] max-w-[100px] items-start justify-center text-[13px] font-semibold leading-tight text-[#111827]">
-                {destination.name}
-              </div>
-              <div className="mt-1 text-[12px] text-[#4B5563]">{destination.tourCount}</div>
-            </>
-          );
+    return {
+      name: destination.name,
+      tourCount: destination.tourCount || "Explore tours",
+      href,
+      image: getDestinationImage(destination.name),
+      region: regionFor(href),
+    };
+  });
 
-          if (href) {
-            return (
-              <Link
-                key={destination.name}
-                href={href}
-                className="group flex min-w-[118px] cursor-pointer flex-col items-center text-center no-underline"
-              >
-                {content}
-              </Link>
-            );
-          }
+  // "All" first, then only the regions actually present
+  const groups = ["All", ...new Set(items.map((item) => item.region))];
 
-          return (
-            <div key={destination.name} className="flex min-w-[118px] flex-col items-center text-center">
-              {content}
-            </div>
-          );
-        })}
-      </CardRail>
-    </section>
-  );
+  return <PopularDestinations items={items} groups={groups} />;
 }

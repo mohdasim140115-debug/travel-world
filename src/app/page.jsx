@@ -37,9 +37,8 @@ export default async function Home() {
       <Navbar />
       <main className="mx-auto flex w-full max-w-[1280px] flex-col px-3 pb-16 sm:px-6 lg:px-0">
         <QuickLinksBar />
-        <HeroSection cards={content.heroCards} />
+        <HeroSection cards={content.heroCards} destinations={content.destinations} />
         <DestinationStrip destinations={content.destinations} />
-        <div className="mt-12" />
         <LiveTours cards={content.liveTourCards} trustReviews={content.trustReviews} />
         <div className="mt-12" />
         <ChinaPromo promoPackages={content.chinaPromoPackages} />

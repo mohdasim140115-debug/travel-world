@@ -62,8 +62,10 @@ export default function CardRail({ className = "", children, label = "cards", ..
     "border border-[#E5E7EB] bg-white text-[#0F4C81] shadow-[0_2px_10px_rgba(15,23,42,0.18)] " +
     "transition hover:border-[#17BEBB] hover:text-[#17BEBB] active:scale-95";
 
+  // `min-w-0` matters: inside a grid or flex parent the default `min-width: auto`
+  // lets this box grow to its content, and then the rail never scrolls.
   return (
-    <div className="relative">
+    <div className="relative min-w-0">
       <div ref={scroller} className={className} {...rest}>
         {children}
       </div>

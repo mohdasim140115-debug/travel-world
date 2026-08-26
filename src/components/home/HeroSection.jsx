@@ -1,186 +1,106 @@
-import CardRail from "@/components/common/CardRail";
-
-
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { homeData } from "@/data/homeData";
+import { getDestinationHref } from "@/data/destinations";
+import HeroSearchPanel from "./HeroSearchPanel";
 
-export default function HeroSection({ cards }) {
+/* =========================================================
+   HERO
+   A single rounded image, the headline over it, the four
+   category links as glass chips along its lower edge, and
+   the search panel floating across its bottom border.
+
+   The chips keep the same four destinations and hrefs the
+   old card row had — they are the site's main entry points.
+========================================================= */
+
+const HERO_IMAGE = "/arif-khan-CyR76QxjJhc-unsplash.jpg";
+
+// Where each hero card points; unchanged from the previous layout.
+const CARD_LINKS = {
+  "India Tours": "/india",
+  "World Tours": "/world",
+  "Women's Special Tours": "/womens-special",
+  "Seniors' Special Tours": "/seniors-special",
+};
+
+// "264 Tours • 666 Departures" -> "264 Tours"
+const shortSubtitle = (subtitle = "") => subtitle.split("•")[0].trim();
+
+export default function HeroSection({ cards, destinations }) {
   const cardData = cards?.length ? cards : homeData.hero.cards;
 
-  // Card ke title ke according page URL
-  const getTourLink = (title) => {
-    switch (title) {
-      case "India Tours":
-        return "/india";
-
-      case "World Tours":
-        return "/world";
-
-      case "Women's Special Tours":
-        return "/womens-special";
-
-      case "Seniors' Special Tours":
-        return "/seniors-special";
-
-      default:
-        return "#";
-    }
-  };
+  const searchDestinations = (destinations?.length ? destinations : homeData.destinations)
+    .map((item) => ({ name: item.name, href: getDestinationHref(item.name) }))
+    .filter((item) => item.href);
 
   return (
-    <section className="mt-1.5 w-full">
-      <div
-        className="relative overflow-hidden rounded-[16px] border border-[#F0A93A]/30 p-4 md:rounded-[12px] md:px-8 md:py-4 lg:px-10 lg:py-4"
-        style={{
-          background: "linear-gradient(135deg, #FFF3DC 0%, #FFEACB 55%, #FFF8EC 100%)",
-        }}
-      >
-
-        {/* TOP CONTENT */}
-        <div className="relative z-10 flex items-start justify-between gap-1.5 md:flex-col md:gap-5 lg:flex-row lg:items-start lg:justify-between">
-
-          {/* LEFT CONTENT */}
-          <div className="max-w-[64%] md:max-w-140">
-            <p className="hidden text-[14px] font-semibold uppercase tracking-[0.28em] text-[#0F172A] md:block">
-              Premium travel experiences
-            </p>
-
-            <h1 className="max-md:animate-[heroFadeIn_0.6s_ease-out] max-md:text-[22px] max-md:font-bold text-[#0F172A] leading-[1.15] md:mt-2 md:whitespace-nowrap md:text-[28px] md:font-black">
-              {homeData.hero.title
-                .split(" ")
-                .slice(0, 2)
-                .join(" ")}{" "}
-              <span className="text-[#0F172A]">Tours</span>
-            </h1>
-
-            <p className="mt-1 max-md:animate-[heroFadeIn_0.8s_ease-out] text-[13px] italic text-[#3A2A0F] md:mt-2 md:text-[16px]">
-              {homeData.hero.tagline}
-            </p>
-          </div>
-
-          {/* RIGHT DECORATION */}
-          <div className="relative h-[42px] w-[42px] flex-shrink-0 md:h-[110px] md:w-full md:max-w-[320px] md:flex-shrink md:self-end lg:self-auto">
-
-            {/* HOT AIR BALLOON */}
-            <svg
-              viewBox="0 0 200 260"
-              className="absolute right-0 top-0 h-[42px] w-[34px] max-md:animate-[heroFloat_3s_ease-in-out_infinite] md:right-2 md:h-[100px] md:w-[80px] lg:h-[115px] lg:w-[92px]"
-            >
-              <defs>
-                <clipPath id="balloonClip">
-                  <ellipse cx="100" cy="95" rx="68" ry="82" />
-                </clipPath>
-              </defs>
-
-              <g clipPath="url(#balloonClip)">
-                <rect x="10" y="10" width="20" height="170" fill="#D62839" />
-                <rect x="30" y="10" width="20" height="170" fill="#FBB627" />
-                <rect x="50" y="10" width="20" height="170" fill="#17BEBB" />
-                <rect x="70" y="10" width="20" height="170" fill="#0F4C81" />
-                <rect x="90" y="10" width="20" height="170" fill="#4DA8DA" />
-                <rect x="110" y="10" width="20" height="170" fill="#17BEBB" />
-                <rect x="130" y="10" width="20" height="170" fill="#FBB627" />
-                <rect x="150" y="10" width="20" height="170" fill="#D62839" />
-              </g>
-
-              <ellipse
-                cx="100"
-                cy="95"
-                rx="68"
-                ry="82"
-                fill="none"
-                stroke="#0F172A"
-                strokeOpacity="0.15"
-                strokeWidth="2"
-              />
-
-              <path d="M62 168 L38 210" stroke="#3A2A0F" strokeWidth="2" fill="none" />
-              <path d="M138 168 L162 210" stroke="#3A2A0F" strokeWidth="2" fill="none" />
-              <path d="M80 172 L48 210" stroke="#3A2A0F" strokeWidth="2" fill="none" />
-              <path d="M120 172 L152 210" stroke="#3A2A0F" strokeWidth="2" fill="none" />
-
-              <rect x="42" y="208" width="116" height="34" rx="6" fill="#7A5230" />
-              <line x1="42" y1="220" x2="158" y2="220" stroke="#5C3E24" strokeWidth="1.5" />
-              <line x1="42" y1="230" x2="158" y2="230" stroke="#5C3E24" strokeWidth="1.5" />
-              <line x1="75" y1="208" x2="75" y2="242" stroke="#5C3E24" strokeWidth="1.5" />
-              <line x1="125" y1="208" x2="125" y2="242" stroke="#5C3E24" strokeWidth="1.5" />
-            </svg>
-
-            {/* SENIORS DAY BADGE */}
-            <div className="absolute left-0 top-0 hidden flex-col items-center md:flex">
-              <div className="h-3 w-px bg-[#3A2A0F]/50" />
-              <div className="flex w-[84px] flex-col items-center justify-center gap-0.5 rounded-[14px] bg-[#0F172A] px-2 py-1.5 text-center shadow-lg">
-                <span className="text-[8px] font-semibold uppercase tracking-[0.15em] text-[#FBB627]">
-                  21st Aug
-                </span>
-
-                <span className="text-[8px] font-semibold leading-[1.1] text-white">
-                  Celebrate Seniors&apos; Day!
-                </span>
-              </div>
-            </div>
-
-            {/* ANTARCTICA BADGE */}
-            <div className="absolute right-1 top-6 hidden flex-col items-center md:flex">
-              <div className="h-3 w-px bg-[#3A2A0F]/50" />
-              <div className="flex w-[84px] flex-col items-center justify-center gap-0.5 rounded-[14px] bg-[#0F172A] px-2 py-1.5 text-center shadow-lg">
-                <span className="text-[8px] font-semibold uppercase tracking-[0.13em] text-white">
-                  Visit the 7th
-                </span>
-
-                <span className="text-[8px] font-semibold leading-[1.1] text-[#FBB627]">
-                  continent Antarctica
-                </span>
-              </div>
-            </div>
-          </div>
+    <section className="w-full pt-2 sm:pt-3">
+      {/* IMAGE + HEADLINE */}
+      <div className="relative overflow-hidden rounded-[20px] sm:rounded-[28px]">
+        <div className="relative h-[300px] w-full sm:h-[360px] lg:h-[420px]">
+          <Image
+            src={HERO_IMAGE}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/15 to-black/65" />
         </div>
 
-        {/* TOUR CARDS */}
-        <CardRail className="mt-4 flex gap-3 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory md:mt-4 md:grid md:overflow-visible md:grid-cols-2 lg:grid-cols-4">
-          {cardData.map((card) => {
-            const href = getTourLink(card.title);
+        <div className="absolute inset-0 flex flex-col justify-between p-5 sm:p-8 lg:p-10">
+          <div className="max-w-[620px]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/70">
+              {homeData.hero.title}
+              <span className="hidden sm:inline">
+                <span className="mx-1.5 text-white/35">/</span> {homeData.hero.tagline}
+              </span>
+            </p>
+            <h1 className="mt-3 text-[30px] font-bold leading-[1.12] text-white sm:text-[40px] lg:text-[46px]">
+              Discover your next <span className="text-[#5EEAD4]">escape</span>
+            </h1>
+            <p className="mt-3 max-w-[440px] text-[14px] font-light leading-relaxed text-white/85 sm:text-[15px]">
+              Handpicked group departures across India and the world — flights, stays, sightseeing
+              and a tour manager, all in one price.
+            </p>
+          </div>
 
-            return (
-              <div
-                key={card.title}
-                className="group flex min-w-[215px] max-w-[215px] flex-shrink-0 snap-start flex-col rounded-[14px] border border-[#E5E7EB] bg-white p-3.5 shadow-[0_2px_10px_rgba(15,23,42,0.08)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#17BEBB] hover:shadow-lg md:min-w-0 md:max-w-none md:rounded-[16px] md:px-4 md:py-3"
-              >
-                {/* CARD TITLE */}
-                <h2 className="text-[15px] font-bold leading-tight text-[#0F172A] md:text-[16px] md:font-semibold">
-                  {card.title}
-                </h2>
+          {/* CATEGORY CHIPS — the old hero cards, kept as links */}
+          <div className="flex items-stretch gap-2 overflow-x-auto pb-1 no-scrollbar sm:gap-3 lg:pb-16">
+            {cardData.map((card) => {
+              const href = CARD_LINKS[card.title] ?? "/india";
 
-                {/* CARD SUBTITLE */}
-                <p className="mt-1 flex-1 text-[12px] leading-snug text-[#475569] md:mt-1 md:text-[11px]">
-                  {card.subtitle}
-                </p>
+              return (
+                <Link
+                  key={card.title}
+                  href={href}
+                  className="group flex w-[215px] shrink-0 items-center justify-between gap-3 rounded-[14px] bg-white/95 px-4 py-3 no-underline shadow-[0_8px_22px_rgba(15,23,42,0.22)] transition hover:-translate-y-0.5 hover:bg-white sm:w-[240px]"
+                >
+                  <span className="min-w-0">
+                    <span className="block text-[14px] font-semibold leading-tight text-[#0F172A]">
+                      {card.title}
+                    </span>
+                    <span className="mt-1 block text-[12px] font-light text-[#6B7280]">
+                      {shortSubtitle(card.subtitle)}
+                    </span>
+                  </span>
 
-                {/* VIEW TOURS BUTTON */}
-                {href !== "#" ? (
-                  <Link
-                    href={href}
-                    className="mt-3 flex h-[44px] w-full items-center justify-center gap-2 rounded-[10px] bg-[#FBB627] text-[13px] font-semibold text-[#0F172A] shadow-md shadow-amber-900/20 transition-all duration-200 hover:bg-[#F0A93A] hover:shadow-lg hover:-translate-y-0.5 active:scale-95 md:mt-4 md:h-[35px] md:text-[13px]"
-                  >
-                    View Tours
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E6F7F5] text-[#0F4C81] transition-colors group-hover:bg-[#17BEBB] group-hover:text-white">
+                    <ArrowRight className="h-4 w-4" />
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </div>
 
-                    <ArrowRight className="h-3.5 w-3.5 md:h-3.5 md:w-3.5" />
-                  </Link>
-                ) : (
-                  <button
-                    type="button"
-                    className="mt-3 flex h-[44px] w-full cursor-pointer items-center justify-center gap-2 rounded-[10px] bg-[#FBB627] text-[13px] font-semibold text-[#0F172A] shadow-md shadow-amber-900/20 transition-all duration-200 hover:bg-[#F0A93A] hover:shadow-lg hover:-translate-y-0.5 active:scale-95 md:mt-4 md:h-[35px] md:text-[13px]"
-                  >
-                    View Tours
-
-                    <ArrowRight className="h-3.5 w-3.5 md:h-3.5 md:w-3.5" />
-                  </button>
-                )}
-              </div>
-            );
-          })}
-        </CardRail>
+      {/* SEARCH — overlaps the image on desktop, sits under it on phones */}
+      <div className="relative z-10 mx-auto -mt-3 w-full px-1 sm:-mt-10 sm:px-6 lg:-mt-12 lg:max-w-[1080px] lg:px-0">
+        <HeroSearchPanel destinations={searchDestinations} />
       </div>
     </section>
   );
