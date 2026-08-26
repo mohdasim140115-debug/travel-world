@@ -182,7 +182,7 @@ export const adminModules = {
 
   transport: {
     label: "Transport Options",
-    group: "Flights",
+    group: "Transport",
     model: "transportOption",
     titleField: "name",
     revalidate: ["/transport"],
@@ -202,7 +202,7 @@ export const adminModules = {
 
   "transport-routes": {
     label: "Transport Routes",
-    group: "Flights",
+    group: "Transport",
     model: "transportRoute",
     titleField: "slug",
     revalidate: ["/transport"],
@@ -577,7 +577,7 @@ export const adminModules = {
   },
 };
 
-export const adminModuleGroups = ["Bookings", "Catalog", "Home Page", "India Page", "Flights", "Hotels"];
+export const adminModuleGroups = ["Bookings", "Catalog", "Home Page", "India Page", "Flights", "Transport", "Hotels"];
 
 export function getModule(slug) {
   return adminModules[slug] ?? null;

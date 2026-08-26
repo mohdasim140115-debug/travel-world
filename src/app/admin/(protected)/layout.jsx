@@ -1,21 +1,26 @@
 import Link from "next/link";
-import { LayoutDashboard, LogOut, Plane } from "lucide-react";
+import { LogOut, Plane } from "lucide-react";
 import { adminModules, adminModuleGroups } from "@/lib/adminModules";
 import { logoutAction } from "../login/actions";
+import AdminSidebar from "@/components/admin/AdminSidebar";
 
 export const metadata = {
   title: "Honor Tour & Travels — Admin",
   robots: { index: false, follow: false },
 };
 
+/** [{ group, modules: [{ slug, label }] }] in the order adminModuleGroups lists. */
 function groupedModules() {
-  const groups = {};
-  for (const group of adminModuleGroups) groups[group] = [];
+  const groups = new Map(adminModuleGroups.map((group) => [group, []]));
+
   for (const [slug, config] of Object.entries(adminModules)) {
-    groups[config.group] = groups[config.group] || [];
-    groups[config.group].push({ slug, ...config });
+    if (!groups.has(config.group)) groups.set(config.group, []);
+    groups.get(config.group).push({ slug, label: config.label });
   }
-  return groups;
+
+  return [...groups]
+    .filter(([, modules]) => modules.length > 0)
+    .map(([group, modules]) => ({ group, modules }));
 }
 
 export default function AdminLayout({ children }) {
@@ -31,32 +36,8 @@ export default function AdminLayout({ children }) {
           <span className="text-[15px] font-bold">Honor Tour & Travels Admin</span>
         </Link>
 
-        <nav className="flex-1 overflow-y-auto px-3 py-4">
-          <Link
-            href="/admin"
-            className="mb-3 flex items-center gap-2 rounded-[8px] px-3 py-2 text-[13px] font-semibold text-white/90 hover:bg-white/10"
-          >
-            <LayoutDashboard className="h-4 w-4" />
-            Dashboard
-          </Link>
+        <AdminSidebar groups={groups} />
 
-          {Object.entries(groups).map(([group, modules]) => (
-            <div key={group} className="mb-4">
-              <p className="px-3 text-[11px] font-semibold uppercase tracking-wide text-white/40">{group}</p>
-              <div className="mt-1 flex flex-col gap-0.5">
-                {modules.map((m) => (
-                  <Link
-                    key={m.slug}
-                    href={`/admin/${m.slug}`}
-                    className="rounded-[8px] px-3 py-1.5 text-[13px] text-white/85 hover:bg-white/10"
-                  >
-                    {m.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ))}
-        </nav>
 
         <form action={logoutAction} className="border-t border-white/10 p-3">
           <button
