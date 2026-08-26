@@ -23,8 +23,8 @@ function parseDays(days) {
   return Number(String(days).match(/\d+/)?.[0]) || 1;
 }
 
-export default function FeaturedTour() {
-  const tours = homeData.featuredTour;
+export default function FeaturedTour({ slides }) {
+  const tours = slides?.length ? slides : homeData.featuredTour;
   const [index, setIndex] = useState(0);
   const [bookingOpen, setBookingOpen] = useState(false);
 

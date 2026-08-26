@@ -3,8 +3,8 @@
 import { homeData } from "@/data/homeData";
 import FAQAccordion from "@/components/common/FAQAccordion";
 
-export default function FAQ() {
-  const { faq } = homeData;
+export default function FAQ({ content }) {
+  const faq = { ...homeData.faq, ...(content ?? {}) };
 
   return (
     <section className="px-3 py-12 sm:px-6 lg:px-0">

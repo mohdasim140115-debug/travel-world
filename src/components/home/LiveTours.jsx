@@ -8,8 +8,9 @@ import { homeData } from "@/data/homeData";
 
 const AUTO_SLIDE_MS = 3000;
 
-export default function LiveTours() {
-  const { reviews } = homeData.trustReviews;
+export default function LiveTours({ cards, trustReviews }) {
+  const reviews = trustReviews?.length ? trustReviews : homeData.trustReviews.reviews;
+  const liveCards = cards?.length ? cards : homeData.liveTours.cards;
   const [reviewIndex, setReviewIndex] = useState(0);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ export default function LiveTours() {
     <section className="bg-[#F7FAFC] px-3 py-8 sm:px-6 md:py-12 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
         <CardRail className="flex gap-4 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory sm:grid sm:gap-5 sm:overflow-visible sm:grid-cols-2 lg:grid-cols-4">
-          {homeData.liveTours.cards.map((card) => (
+          {liveCards.map((card) => (
             <div key={card.destination} className="relative min-w-[190px] flex-shrink-0 snap-start overflow-hidden rounded-[14px] sm:min-w-0">
               <div
                 className="relative h-[170px] w-full bg-gradient-to-br from-[#4A7BA7] via-[#6BA3D0] to-[#90C8E8] sm:h-[240px]"

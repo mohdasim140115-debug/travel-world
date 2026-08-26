@@ -23,11 +23,13 @@ const nameAliases = {
   "Jammu and Kashmir": "Jammu Kashmir",
 };
 
-export default function DestinationStrip() {
+export default function DestinationStrip({ destinations }) {
+  const items = destinations?.length ? destinations : homeData.destinations;
+
   return (
     <section className="mt-11 w-full">
       <CardRail className="flex gap-4 overflow-x-auto px-1 pb-3 no-scrollbar">
-        {homeData.destinations.map((destination) => {
+        {items.map((destination) => {
           const Icon = iconMap[destination.icon] || Compass;
           const href = getDestinationHref(nameAliases[destination.name] || destination.name);
 

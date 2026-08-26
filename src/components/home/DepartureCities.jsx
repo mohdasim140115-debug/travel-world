@@ -4,8 +4,11 @@ import Link from "next/link";
 import { homeData } from "@/data/homeData";
 import { getDestinationImage } from "@/data/destinationImages";
 
-export default function DepartureCities() {
-  const { departureCities } = homeData;
+export default function DepartureCities({ cities }) {
+  const departureCities = {
+    ...homeData.departureCities,
+    cities: cities?.length ? cities : homeData.departureCities.cities,
+  };
 
   return (
     <section className="px-3 py-8 sm:px-6 md:py-12 lg:px-0">

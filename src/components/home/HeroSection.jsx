@@ -5,9 +5,9 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { homeData } from "@/data/homeData";
 
-const cardData = homeData.hero.cards;
+export default function HeroSection({ cards }) {
+  const cardData = cards?.length ? cards : homeData.hero.cards;
 
-export default function HeroSection() {
   // Card ke title ke according page URL
   const getTourLink = (title) => {
     switch (title) {

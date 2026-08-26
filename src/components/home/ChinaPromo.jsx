@@ -8,8 +8,11 @@ import { Award, CalendarDays, ChevronLeft, ChevronRight, ShieldCheck, ArrowRight
 import { homeData } from "@/data/homeData";
 import { getDestinationImage } from "@/data/destinationImages";
 
-export default function ChinaPromo() {
-  const { chinaPromo } = homeData;
+export default function ChinaPromo({ promoPackages }) {
+  const chinaPromo = {
+    ...homeData.chinaPromo,
+    packages: promoPackages?.length ? promoPackages : homeData.chinaPromo.packages,
+  };
   const packages = chinaPromo.packages;
   const [start, setStart] = useState(0);
 

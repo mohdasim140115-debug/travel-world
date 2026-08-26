@@ -2,8 +2,11 @@ import CardRail from "@/components/common/CardRail";
 import Link from "next/link";
 import { homeData } from "@/data/homeData";
 
-export default function ContinueTravel() {
-  const { continueTravel } = homeData;
+export default function ContinueTravel({ tours }) {
+  const continueTravel = {
+    ...homeData.continueTravel,
+    tours: tours?.length ? tours : homeData.continueTravel.tours,
+  };
 
   return (
     <section className="bg-[#F7FAFC] px-3 py-8 sm:px-6 md:py-12 lg:px-0">

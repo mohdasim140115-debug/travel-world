@@ -5,8 +5,14 @@ import { Heart } from "lucide-react";
 import { homeData } from "@/data/homeData";
 import PromoCarousel from "./PromoCarousel";
 
-export default function MostLovedTours() {
-  const { mostLovedTours } = homeData;
+export default function MostLovedTours({ promoDestinations, destinations }) {
+  const mostLovedTours = {
+    ...homeData.mostLovedTours,
+    promoDestinations: promoDestinations?.length
+      ? promoDestinations
+      : homeData.mostLovedTours.promoDestinations,
+    destinations: destinations?.length ? destinations : homeData.mostLovedTours.destinations,
+  };
 
   return (
     <section className="px-3 py-8 sm:px-6 md:py-12 lg:px-0">

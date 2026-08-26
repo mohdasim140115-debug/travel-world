@@ -66,8 +66,12 @@ function CounterStat({ value, inView }) {
   return <>{display}</>;
 }
 
-export default function TrustReviews() {
-  const { trustReviews } = homeData;
+export default function TrustReviews({ stats, reviews }) {
+  const trustReviews = {
+    ...homeData.trustReviews,
+    stats: stats?.length ? stats : homeData.trustReviews.stats,
+    reviews: reviews?.length ? reviews : homeData.trustReviews.reviews,
+  };
   const [sectionRef, inView] = useInView();
 
   const fade = (delay = "") =>

@@ -18,6 +18,7 @@ import Footer from "@/components/layout/Footer";
 import FloatingActions from "@/components/layout/FloatingActions";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, organizationSchema, websiteSchema } from "@/lib/seo";
+import { getHomeContent } from "@/lib/homeContent";
 
 export const metadata = buildMetadata({
   title: "Honor Tour & Travels | India & International Tour Packages, Flights, Hotels",
@@ -26,7 +27,9 @@ export const metadata = buildMetadata({
   path: "/",
 });
 
-export default function Home() {
+export default async function Home() {
+  const content = await getHomeContent();
+
   return (
     <div className="min-h-screen bg-[#ffffff] text-[#0F172A]">
       <JsonLd schema={[organizationSchema(), websiteSchema()]} />
@@ -34,30 +37,33 @@ export default function Home() {
       <Navbar />
       <main className="mx-auto flex w-full max-w-[1280px] flex-col px-3 pb-16 sm:px-6 lg:px-0">
         <QuickLinksBar />
-        <HeroSection />
-        <DestinationStrip />
+        <HeroSection cards={content.heroCards} />
+        <DestinationStrip destinations={content.destinations} />
         <div className="mt-12" />
-        <LiveTours />
+        <LiveTours cards={content.liveTourCards} trustReviews={content.trustReviews} />
         <div className="mt-12" />
-        <ChinaPromo />
+        <ChinaPromo promoPackages={content.chinaPromoPackages} />
         <div className="mt-12" />
-        <MostLovedTours />
+        <MostLovedTours
+          promoDestinations={content.mostLovedPromoDestinations}
+          destinations={content.mostLovedDestinations}
+        />
         <div className="mt-12" />
-        <TrustReviews />
+        <TrustReviews stats={content.trustStats} reviews={content.trustReviews} />
         <div className="mt-12" />
-        <FeaturedTour />
+        <FeaturedTour slides={content.featuredTours} />
         <div className="mt-12" />
-        <ContinueTravel />
+        <ContinueTravel tours={content.continueTravelTours} />
         <div className="mt-12" />
-        <DepartureCities />
+        <DepartureCities cities={content.departureCities} />
         <div className="mt-12" />
         <PartnerBanner />
         <div className="mt-12" />
-        <TourInclusions />
+        <TourInclusions features={content.tourInclusionFeatures} />
         <div className="mt-12" />
         <SeoContent />
         <div className="mt-12" />
-        <FAQ />
+        <FAQ content={content.faq} />
       </main>
       <Footer />
       <FloatingActions />

@@ -10,8 +10,11 @@ const iconMap = {
   Plane,
 };
 
-export default function TourInclusions() {
-  const { tourInclusions } = homeData;
+export default function TourInclusions({ features }) {
+  const tourInclusions = {
+    ...homeData.tourInclusions,
+    features: features?.length ? features : homeData.tourInclusions.features,
+  };
 
   return (
     <section className="px-3 py-12 sm:px-6 lg:px-0">
