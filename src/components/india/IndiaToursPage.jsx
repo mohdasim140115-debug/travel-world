@@ -11,7 +11,7 @@ import IndiaTourZones from "./IndiaTourZones";
 import IndiaTourExplore from "./IndiaTourExplore";
 import IndiaTourBottom from "./IndiaTourBottom";
 
-export default function IndiaToursPage() {
+export default function IndiaToursPage({ catalog = [] }) {
   const [showMore, setShowMore] = useState(false);
 
   return (
@@ -227,7 +227,7 @@ export default function IndiaToursPage() {
           {/* =========================
               FILTER + TOUR CARDS
           ========================== */}
-          <IndiaTourListing />
+          <IndiaTourListing catalog={catalog} />
 
 
 

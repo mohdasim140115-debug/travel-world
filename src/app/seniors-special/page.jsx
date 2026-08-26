@@ -2,7 +2,7 @@ import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
-import { packages } from "@/data/packages";
+import { getAllPackages } from "@/lib/packages";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
@@ -25,10 +25,6 @@ const seniorsSlugs = [
   "seniors-special-europe",
   "seniors-special-japan",
 ];
-
-const seniorsPackages = seniorsSlugs
-  .map((slug) => packages.find((item) => item.slug === slug))
-  .filter(Boolean);
 
 const config = {
   slug: "seniors-special",
@@ -95,7 +91,6 @@ const config = {
     packageTypes: ["Group Tour (30)"],
     specialityTours: ["Seniors' Special (30)", "Family (12)", "Short Trips (6)"],
   },
-  packages: seniorsPackages,
   regions: {
     title: "Seniors' Tours By Destination",
     items: [
@@ -118,7 +113,6 @@ const config = {
   durations: {
     title: "Seniors' Tours By Duration",
     items: ["Less than 5 days", "6 to 8 days", "9 to 14 days", "More than 14 days"],
-    packages: seniorsPackages.slice(0, 4),
   },
   blogs: [
     "Travel tips for senior citizens",
@@ -192,7 +186,16 @@ const config = {
   },
 };
 
-export default function SeniorsSpecialPage() {
+export default async function SeniorsSpecialPage() {
+  const catalog = await getAllPackages();
+  const seniorsPackages = seniorsSlugs.map((slug) => catalog.find((item) => item.slug === slug)).filter(Boolean);
+
+  const pageConfig = {
+    ...config,
+    packages: seniorsPackages,
+    durations: { ...config.durations, packages: seniorsPackages.slice(0, 4) },
+  };
+
   return (
     <>
       <JsonLd
@@ -205,7 +208,7 @@ export default function SeniorsSpecialPage() {
       <Navbar />
 
       <main>
-        <TourCategoryPage config={config} />
+        <TourCategoryPage config={pageConfig} />
       </main>
 
       <Footer />

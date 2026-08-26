@@ -2,7 +2,7 @@ import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
-import { packages } from "@/data/packages";
+import { getAllPackages } from "@/lib/packages";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
@@ -25,10 +25,6 @@ const worldSlugs = [
   "australia-highlights",
   "swiss-paris-delight",
 ];
-
-const worldPackages = worldSlugs
-  .map((slug) => packages.find((item) => item.slug === slug))
-  .filter(Boolean);
 
 const config = {
   slug: "world",
@@ -114,7 +110,6 @@ const config = {
       "Short Trips (14)",
     ],
   },
-  packages: worldPackages,
   regions: {
     title: "World Tour Packages By Region",
     items: [
@@ -137,7 +132,6 @@ const config = {
   durations: {
     title: "Explore World Packages By Duration",
     items: ["Less than 5 days", "6 to 8 days", "9 to 14 days", "More than 14 days"],
-    packages: worldPackages.slice(0, 4),
   },
   blogs: [
     "Best places to visit in Europe",
@@ -211,7 +205,16 @@ const config = {
   },
 };
 
-export default function WorldPage() {
+export default async function WorldPage() {
+  const catalog = await getAllPackages();
+  const worldPackages = worldSlugs.map((slug) => catalog.find((item) => item.slug === slug)).filter(Boolean);
+
+  const pageConfig = {
+    ...config,
+    packages: worldPackages,
+    durations: { ...config.durations, packages: worldPackages.slice(0, 4) },
+  };
+
   return (
     <>
       <JsonLd
@@ -224,7 +227,7 @@ export default function WorldPage() {
       <Navbar />
 
       <main>
-        <TourCategoryPage config={config} />
+        <TourCategoryPage config={pageConfig} />
       </main>
 
       <Footer />

@@ -1,4 +1,3 @@
-import { packages } from "@/data/packages";
 
 /* =========================================================
    SPECIALTY TOURS
@@ -53,7 +52,7 @@ const FLAGSHIP_SLUGS = [
   "jaipur-udaipur-tour-package", "best-of-kashmir", "highlights-of-kerala", "best-of-thailand",
 ];
 
-function matchPackages({ category, keywords }) {
+function matchPackages({ category, keywords }, packages) {
   if (category) {
     const byCategory = packages.filter((pkg) => pkg.category === category);
     if (byCategory.length > 0) return byCategory;
@@ -72,12 +71,12 @@ export function getSpecialitySlugs() {
   return Object.keys(SPECIALITY_DEFINITIONS);
 }
 
-export function getSpecialityConfig(slug) {
+export function getSpecialityConfig(slug, packages = []) {
   const definition = SPECIALITY_DEFINITIONS[slug];
   if (!definition) return null;
 
   const { name } = definition;
-  const matches = matchPackages(definition);
+  const matches = matchPackages(definition, packages);
   const packageSlugs = matches.slice(0, 12).map((pkg) => pkg.slug);
   const resolvedPackages = matches.slice(0, 12);
 

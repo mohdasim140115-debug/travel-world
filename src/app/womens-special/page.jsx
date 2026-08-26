@@ -2,7 +2,7 @@ import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
-import { packages } from "@/data/packages";
+import { getAllPackages } from "@/lib/packages";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
@@ -25,10 +25,6 @@ const womensSlugs = [
   "womens-special-japan",
   "womens-special-europe",
 ];
-
-const womensPackages = womensSlugs
-  .map((slug) => packages.find((item) => item.slug === slug))
-  .filter(Boolean);
 
 const config = {
   slug: "womens-special",
@@ -96,7 +92,6 @@ const config = {
     packageTypes: ["Group Tour (47)"],
     specialityTours: ["Women's Special (47)", "Family (18)", "Short Trips (9)"],
   },
-  packages: womensPackages,
   regions: {
     title: "Women's Tours By Destination",
     items: [
@@ -119,7 +114,6 @@ const config = {
   durations: {
     title: "Women's Tours By Duration",
     items: ["Less than 5 days", "6 to 8 days", "9 to 14 days", "More than 14 days"],
-    packages: womensPackages.slice(0, 4),
   },
   blogs: [
     "Safe travel tips for women's group tours",
@@ -193,7 +187,16 @@ const config = {
   },
 };
 
-export default function WomensSpecialPage() {
+export default async function WomensSpecialPage() {
+  const catalog = await getAllPackages();
+  const womensPackages = womensSlugs.map((slug) => catalog.find((item) => item.slug === slug)).filter(Boolean);
+
+  const pageConfig = {
+    ...config,
+    packages: womensPackages,
+    durations: { ...config.durations, packages: womensPackages.slice(0, 4) },
+  };
+
   return (
     <>
       <JsonLd
@@ -206,7 +209,7 @@ export default function WomensSpecialPage() {
       <Navbar />
 
       <main>
-        <TourCategoryPage config={config} />
+        <TourCategoryPage config={pageConfig} />
       </main>
 
       <Footer />

@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
 import { getSpecialityConfig, getSpecialitySlugs } from "@/data/specialityTours";
+import { getAllPackages } from "@/lib/packages";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
@@ -13,7 +14,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { category } = await params;
-  const config = getSpecialityConfig(category);
+  const config = getSpecialityConfig(category, await getAllPackages());
   if (!config) {
     return buildMetadata({
       title: "Speciality Tour Not Found",
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }) {
 
 export default async function SpecialityCategoryPage({ params }) {
   const { category } = await params;
-  const config = getSpecialityConfig(category);
+  const config = getSpecialityConfig(category, await getAllPackages());
 
   if (!config) {
     notFound();

@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import IndiaToursPage from "@/components/india/IndiaToursPage";
+import { getAllPackages } from "@/lib/packages";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
@@ -14,7 +15,9 @@ export const metadata = buildMetadata({
   path: "/india",
 });
 
-export default function IndiaPage() {
+export default async function IndiaPage() {
+  const catalog = await getAllPackages();
+
   return (
     <>
       <JsonLd
@@ -27,7 +30,7 @@ export default function IndiaPage() {
       <Navbar />
 
       <main>
-        <IndiaToursPage />
+        <IndiaToursPage catalog={catalog} />
       </main>
 
       <Footer />

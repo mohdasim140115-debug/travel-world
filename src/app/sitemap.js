@@ -1,5 +1,5 @@
 import { SITE_URL } from "@/lib/seo";
-import { packages } from "@/data/packages";
+import { getPackageSlugs } from "@/lib/packages";
 import { getDestinationParams } from "@/data/destinations";
 import { getSpecialitySlugs } from "@/data/specialityTours";
 import { getDepartureCityParams } from "@/data/departureCities";
@@ -34,7 +34,7 @@ export default async function sitemap() {
     url("/seniors-special", { priority: 0.6 }),
   ];
 
-  const packagePages = packages.map((pkg) =>
+  const packagePages = (await getPackageSlugs()).map((pkg) =>
     url(`/package/${pkg.slug}`, { priority: 0.7 })
   );
 

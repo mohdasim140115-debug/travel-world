@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import { packages } from "@/data/packages";
 import TourListing from "@/components/tours/TourListing";
 
 /* =========================================================
@@ -69,8 +68,8 @@ function toLabelList(counts, { limit } = {}) {
   return sliced.map(([label, count]) => `${label} (${count})`);
 }
 
-export default function IndiaTourListing() {
-  const indiaPackages = useMemo(() => packages.filter(isIndiaPackage), []);
+export default function IndiaTourListing({ catalog = [] }) {
+  const indiaPackages = useMemo(() => catalog.filter(isIndiaPackage), [catalog]);
 
   const filters = useMemo(() => {
     const departureCounts = countBy(

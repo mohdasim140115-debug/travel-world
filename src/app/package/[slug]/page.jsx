@@ -25,7 +25,7 @@ import {
   X,
 } from "lucide-react";
 
-import { getPackageBySlug, packages } from "@/data/packages";
+import { getAllPackages, getPackageBySlug, getPackageSlugs } from "@/lib/packages";
 import { getDestinationImage } from "@/data/destinationImages";
 import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
@@ -99,10 +99,9 @@ function formatPrice(price) {
    STATIC PARAMS
 ========================================================= */
 
-export function generateStaticParams() {
-  return packages.map((item) => ({
-    slug: item.slug,
-  }));
+export async function generateStaticParams() {
+  const slugs = await getPackageSlugs();
+  return slugs.map((item) => ({ slug: item.slug }));
 }
 
 /* =========================================================
@@ -111,7 +110,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const tour = getPackageBySlug(slug);
+  const tour = await getPackageBySlug(slug);
 
   if (!tour) {
     return buildMetadata({
@@ -137,7 +136,7 @@ export async function generateMetadata({ params }) {
 export default async function PackageDetailPage({ params }) {
   const { slug } = await params;
 
-  const tour = getPackageBySlug(slug);
+  const tour = await getPackageBySlug(slug);
 
   if (!tour) {
     notFound();
@@ -168,12 +167,14 @@ export default async function PackageDetailPage({ params }) {
       }
     : null;
 
+  const catalog = await getAllPackages();
+
   const relatedTours = (
     tour.relatedGroup
-      ? packages.filter((item) => item.relatedGroup === tour.relatedGroup && item.slug !== tour.slug)
+      ? catalog.filter((item) => item.relatedGroup === tour.relatedGroup && item.slug !== tour.slug)
       : tour.country
-      ? packages.filter((item) => item.country === tour.country && item.slug !== tour.slug)
-      : packages.filter((item) => item.category === tour.category && item.slug !== tour.slug)
+      ? catalog.filter((item) => item.country === tour.country && item.slug !== tour.slug)
+      : catalog.filter((item) => item.category === tour.category && item.slug !== tour.slug)
   ).slice(0, 4);
 
   const breadcrumbItems = [
