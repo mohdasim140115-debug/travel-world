@@ -148,8 +148,8 @@ export default function Header() {
   }, [mobileOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-700/70 bg-[#0B3B63] text-white lg:static">
-      <div className="mx-auto flex h-[64px] w-full max-w-[1280px] items-center justify-between gap-3 px-4 sm:h-[76px] lg:px-0">
+    <header className="sticky top-0 z-50 bg-[#0B3B63] text-white lg:static">
+      <div className="mx-auto flex h-[64px] w-full max-w-[1280px] items-center justify-between gap-3 px-4 sm:h-[72px] lg:gap-6 lg:px-0">
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center no-underline">
             <Image
@@ -164,14 +164,18 @@ export default function Header() {
         </div>
 
         <div className="hidden flex-1 justify-center lg:flex">
-          <div className="flex w-[570px] items-center rounded-full border border-transparent bg-white px-4 py-2 shadow-md transition-colors focus-within:border-[#17BEBB]">
-            <Search className="mr-3 h-4 w-4 text-slate-500" />
+          <div className="flex h-[42px] w-full max-w-[520px] items-center rounded-full bg-white pl-4 pr-1.5 ring-1 ring-transparent transition focus-within:ring-2 focus-within:ring-[#17BEBB]">
+            <Search className="mr-2.5 h-4 w-4 shrink-0 text-slate-400" />
             <input
               aria-label="Search tours"
               className="w-full bg-transparent text-[14px] text-slate-700 outline-none placeholder:text-slate-400"
               placeholder='Search "Rann of Kutch"'
             />
-            <button className="ml-3 flex h-8 w-8 items-center justify-center rounded-full bg-[#0B3B63] text-white">
+            <button
+              type="button"
+              aria-label="Voice search"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#17BEBB] text-white transition hover:bg-[#0F9C99]"
+            >
               <Mic className="h-4 w-4" />
             </button>
           </div>
@@ -189,27 +193,26 @@ export default function Header() {
 
           <a
             href="tel:18003135555"
-className="hidden items-center gap-2 rounded-full border border-slate-400/40 bg-slate-800/50 no-underline lg:flex lg:px-3 lg:py-2"
+className="hidden h-[42px] items-center gap-2.5 rounded-full px-2.5 no-underline transition hover:bg-white/10 lg:flex"
           >
             <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#17BEBB] text-white">
               <Phone className="h-4 w-4" />
             </div>
-            <div className="hidden sm:block">
-              <div className="text-[11px] uppercase tracking-[0.2em] text-slate-300">Call us</div>
-              <div className="text-[13px] font-semibold text-white">1800 313 5555</div>
+            <div className="hidden leading-tight sm:block">
+              <div className="text-[10px] uppercase tracking-[0.18em] text-slate-300">Call us</div>
+              <div className="text-[14px] font-bold text-white">1800 313 5555</div>
             </div>
-            <ChevronDown className="hidden h-4 w-4 text-slate-300 sm:block" />
           </a>
 
-          <button className="hidden items-center gap-2 rounded-full border border-slate-400/40 bg-white/10 px-3 py-2 text-sm font-medium text-white lg:flex">
+          <button className="hidden h-[42px] items-center gap-2 rounded-full bg-[#17BEBB] px-5 text-[14px] font-bold text-white shadow-[0_4px_12px_rgba(23,190,187,0.3)] transition hover:bg-[#0F9C99] lg:flex">
             <LogIn className="h-4 w-4" />
             Login
           </button>
 
-          <button className="hidden items-center gap-2 rounded-full border border-slate-400/40 bg-white px-3 py-2 text-sm font-medium text-[#0F172A] lg:flex">
-            <span className="text-base">🇮🇳</span>
-            <span className="hidden sm:inline">India</span>
-            <ChevronDown className="h-4 w-4" />
+          <button className="hidden h-[42px] items-center gap-1.5 rounded-full border border-white/20 px-3 text-[14px] font-medium text-white transition hover:bg-white/10 lg:flex">
+            <span className="text-base leading-none">🇮🇳</span>
+            India
+            <ChevronDown className="h-4 w-4 text-slate-300" />
           </button>
         </div>
 
