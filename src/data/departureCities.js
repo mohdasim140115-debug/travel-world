@@ -384,8 +384,10 @@ export function getDepartureCities() {
   return rawCities;
 }
 
-export function getDepartureCity(slug) {
-  const raw = rawCities.find((item) => item.slug === slug);
+export function getDepartureCity(slug, records) {
+  // `records` comes from the departureCity collection; this file is the fallback.
+  const source = records?.length ? records : rawCities;
+  const raw = source.find((item) => item.slug === slug);
   if (!raw) return null;
   return { raw, config: buildCityConfig(raw) };
 }

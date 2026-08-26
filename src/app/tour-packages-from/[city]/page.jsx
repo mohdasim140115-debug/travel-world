@@ -5,16 +5,18 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
 import { getDepartureCity, getDepartureCityParams } from "@/data/departureCities";
+import { getDepartureCityRecords, getDepartureCityParamsFromDb } from "@/lib/departureCities";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
-export function generateStaticParams() {
-  return getDepartureCityParams();
+export async function generateStaticParams() {
+  const fromDb = await getDepartureCityParamsFromDb();
+  return fromDb.length ? fromDb : getDepartureCityParams();
 }
 
 export async function generateMetadata({ params }) {
   const { city } = await params;
-  const result = getDepartureCity(city);
+  const result = getDepartureCity(city, await getDepartureCityRecords());
 
   if (!result) {
     return buildMetadata({
@@ -34,7 +36,7 @@ export async function generateMetadata({ params }) {
 
 export default async function DepartureCityPage({ params }) {
   const { city } = await params;
-  const result = getDepartureCity(city);
+  const result = getDepartureCity(city, await getDepartureCityRecords());
 
   if (!result) {
     notFound();

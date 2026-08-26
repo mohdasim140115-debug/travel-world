@@ -5,16 +5,18 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
 import { getDestination, getDestinationParams } from "@/data/destinations";
+import { getDestinationParamsFromDb, getDestinationRecords } from "@/lib/destinations";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
-export function generateStaticParams() {
-  return getDestinationParams("india");
+export async function generateStaticParams() {
+  const fromDb = await getDestinationParamsFromDb("india");
+  return fromDb.length ? fromDb : getDestinationParams("india");
 }
 
 export async function generateMetadata({ params }) {
   const { destination } = await params;
-  const result = getDestination("india", destination);
+  const result = getDestination("india", destination, await getDestinationRecords());
 
   if (!result) {
     return buildMetadata({
@@ -34,7 +36,7 @@ export async function generateMetadata({ params }) {
 
 export default async function IndiaDestinationPage({ params }) {
   const { destination } = await params;
-  const result = getDestination("india", destination);
+  const result = getDestination("india", destination, await getDestinationRecords());
 
   if (!result) {
     notFound();

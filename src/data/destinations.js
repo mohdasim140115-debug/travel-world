@@ -1077,8 +1077,11 @@ function synthesizeDestination(parent, slug) {
   return { raw, config: buildDestinationConfig(raw) };
 }
 
-export function getDestination(parent, slug) {
-  const raw = rawDestinations.find((item) => item.parent === parent && item.slug === slug);
+export function getDestination(parent, slug, records) {
+  // `records` comes from the destination collection; this file's own list is
+  // the fallback, and anything in neither is synthesized as before.
+  const source = records?.length ? records : rawDestinations;
+  const raw = source.find((item) => item.parent === parent && item.slug === slug);
   if (raw) return { raw, config: buildDestinationConfig(raw) };
   return synthesizeDestination(parent, slug);
 }

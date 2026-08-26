@@ -18,7 +18,7 @@ import {
    DATA
 ===================================================== */
 
-const cityData = {
+const staticCityData = {
   city: [
     { name: "Jaipur", tours: "31 tours", style: "from-orange-300 via-rose-500 to-orange-900" },
     { name: "Munnar", tours: "15 tours", style: "from-green-300 via-green-600 to-emerald-900", image: "/vivek-kumar-JS_ohjocm00-unsplash.jpg" },
@@ -38,7 +38,7 @@ const cityData = {
   ],
 };
 
-const seasonData = {
+const staticSeasonData = {
   "March to June": [
     { name: "Srinagar", tours: "4 tours", style: "from-blue-300 via-emerald-500 to-green-900", image: "/anuj-yadav-1KehhzFg_Q0-unsplash.jpg" },
     { name: "Dharamshala", tours: "8 tours", style: "from-slate-300 via-stone-500 to-slate-900" },
@@ -67,7 +67,7 @@ const seasonData = {
   ],
 };
 
-const interestTours = [
+const staticInterestTours = [
   {
     title: "Women's Special Delhi Agra",
     slug: "womens-special-delhi-agra",
@@ -89,7 +89,7 @@ const interestTours = [
   },
 ];
 
-const durationPackages = [
+const staticDurationPackages = [
   {
     title: "Women's Special Delhi Agra",
     slug: "womens-special-delhi-agra",
@@ -124,7 +124,7 @@ const durationPackages = [
   },
 ];
 
-const blogs = [
+const staticBlogs = [
   {
     title: "Best places to visit in India",
     style: "from-blue-200 via-green-500 to-slate-800",
@@ -264,7 +264,13 @@ function SmallTourCard({ item }) {
    MAIN COMPONENT
 ===================================================== */
 
-export default function IndiaTourExplore() {
+export default function IndiaTourExplore({ cityTiles, seasonTiles, interests, durations, blogs }) {
+  const cityData = Object.keys(cityTiles ?? {}).length ? cityTiles : staticCityData;
+  const seasonData = Object.keys(seasonTiles ?? {}).length ? seasonTiles : staticSeasonData;
+  const interestTours = interests?.length ? interests : staticInterestTours;
+  const durationPackages = durations?.length ? durations : staticDurationPackages;
+  const blogList = blogs?.length ? blogs : staticBlogs;
+
   const [cityTab, setCityTab] = useState("city");
   const [season, setSeason] = useState("March to June");
   const [interest, setInterest] = useState("Honeymoon Special");
@@ -547,7 +553,7 @@ export default function IndiaTourExplore() {
 
           <div className="mx-auto mt-8 flex max-w-[1180px] gap-4 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory sm:grid sm:overflow-visible sm:grid-cols-3 md:grid-cols-5">
 
-            {blogs.map((blog) => (
+            {blogList.map((blog) => (
               <article
                 key={blog.title}
                 className="group min-w-[150px] shrink-0 snap-start cursor-pointer sm:min-w-0"

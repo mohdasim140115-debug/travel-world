@@ -11,7 +11,7 @@ import IndiaTourZones from "./IndiaTourZones";
 import IndiaTourExplore from "./IndiaTourExplore";
 import IndiaTourBottom from "./IndiaTourBottom";
 
-export default function IndiaToursPage({ catalog = [] }) {
+export default function IndiaToursPage({ catalog = [], content = {} }) {
   const [showMore, setShowMore] = useState(false);
 
   return (
@@ -234,11 +234,17 @@ export default function IndiaToursPage({ catalog = [] }) {
         </div>
       </section>
 
-       <IndiaTourZones />
+       <IndiaTourZones zones={content.zones} />
 
-       <IndiaTourExplore />
+       <IndiaTourExplore
+         cityTiles={content.cityTiles}
+         seasonTiles={content.seasonTiles}
+         interests={content.interests}
+         durations={content.durations}
+         blogs={content.blogs}
+       />
 
-       <IndiaTourBottom />
+       <IndiaTourBottom reviews={content.reviews} faqs={content.faqs} />
     </div>
   );
 }

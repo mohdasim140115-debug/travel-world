@@ -16,7 +16,7 @@ function slugifyZoneName(name) {
     .replace(/(^-+|-+$)/g, "");
 }
 
-const zoneData = {
+const staticZoneData = {
   North: [
     {
       name: "Himachal Pradesh Tour Packages",
@@ -181,7 +181,9 @@ function ZoneCard({ item }) {
   );
 }
 
-export default function IndiaTourZones() {
+export default function IndiaTourZones({ zones }) {
+  const zoneData = Object.keys(zones ?? {}).length ? zones : staticZoneData;
+
   const [activeZone, setActiveZone] = useState("North");
   const [page, setPage] = useState(1);
 

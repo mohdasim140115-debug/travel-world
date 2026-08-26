@@ -17,7 +17,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 
-const reviews = [
+const staticReviews = [
   {
     name: "Anil",
     tour: "Dalhousie Dharamshala Amritsar",
@@ -44,7 +44,7 @@ const reviews = [
   },
 ];
 
-const faqs = [
+const staticFaqs = [
   {
     question: "What India tour packages does Honor Tour & Travels offer?",
     answer:
@@ -127,7 +127,10 @@ function ReviewCard({ review }) {
   );
 }
 
-export default function IndiaTourBottom() {
+export default function IndiaTourBottom({ reviews, faqs }) {
+  const reviewList = reviews?.length ? reviews : staticReviews;
+  const faqList = faqs?.length ? faqs : staticFaqs;
+
   const [openFaq, setOpenFaq] = useState(0);
   const [showMore, setShowMore] = useState(false);
 
@@ -165,7 +168,7 @@ export default function IndiaTourBottom() {
           </div>
 
           <CardRail className="relative z-10 mx-auto mt-7 flex max-w-[1180px] gap-4 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:grid md:overflow-visible md:grid-cols-3">
-            {reviews.map((review) => (
+            {reviewList.map((review) => (
               <div key={`${review.name}-${review.tour}`} className="min-w-[260px] max-w-[260px] flex-shrink-0 snap-start md:min-w-0 md:max-w-none">
                 <ReviewCard review={review} />
               </div>
@@ -202,7 +205,7 @@ export default function IndiaTourBottom() {
           </div>
 
           <div className="mx-auto mt-7 max-w-[820px] space-y-2">
-            {faqs.map((faq, index) => {
+            {faqList.map((faq, index) => {
               const isOpen = openFaq === index;
 
               return (
