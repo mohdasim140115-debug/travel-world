@@ -1,17 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
 import { X } from "lucide-react";
+import { createHotelBooking } from "@/app/booking-actions";
 
 export default function HotelBookingModal({ booking, onClose }) {
-  const [submitted, setSubmitted] = useState(false);
+  const [state, formAction, isPending] = useActionState(createHotelBooking, null);
 
   if (!booking) return null;
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    setSubmitted(true);
-  }
+  const submitted = state?.success;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 px-4 backdrop-blur-sm">
@@ -56,15 +54,21 @@ export default function HotelBookingModal({ booking, onClose }) {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="mt-4 space-y-2.5">
+            <form action={formAction} className="mt-4 space-y-2.5">
+              <input type="hidden" name="hotelName" value={booking.hotelName} />
+              <input type="hidden" name="roomType" value={booking.room.type} />
+              <input type="hidden" name="pricePerNight" value={booking.room.price} />
+              <input type="hidden" name="guests" value={booking.room.capacity} />
               <input
                 type="text"
+                name="customerName"
                 required
                 placeholder="Full Name"
                 className="h-[44px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none transition-colors focus:border-[#17BEBB]"
               />
               <input
                 type="tel"
+                name="customerPhone"
                 required
                 placeholder="Mobile Number"
                 className="h-[44px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none transition-colors focus:border-[#17BEBB]"
@@ -74,6 +78,7 @@ export default function HotelBookingModal({ booking, onClose }) {
                   <label className="mb-1 block text-[11px] font-semibold text-[#475569]">Check-in</label>
                   <input
                     type="date"
+                    name="checkIn"
                     required
                     className="h-[44px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none transition-colors focus:border-[#17BEBB]"
                   />
@@ -82,17 +87,25 @@ export default function HotelBookingModal({ booking, onClose }) {
                   <label className="mb-1 block text-[11px] font-semibold text-[#475569]">Check-out</label>
                   <input
                     type="date"
+                    name="checkOut"
                     required
                     className="h-[44px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none transition-colors focus:border-[#17BEBB]"
                   />
                 </div>
               </div>
 
+              {state?.error && (
+                <p className="rounded-[8px] bg-red-50 px-3 py-2 text-[12px] font-medium text-red-700">
+                  {state.error}
+                </p>
+              )}
+
               <button
                 type="submit"
-                className="mt-2 h-[44px] w-full rounded-[10px] bg-[#FF7A1A] text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition hover:-translate-y-0.5 hover:bg-[#E56A0F]"
+                disabled={isPending}
+                className="mt-2 h-[44px] w-full rounded-[10px] bg-[#FF7A1A] text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition hover:-translate-y-0.5 hover:bg-[#E56A0F] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Continue Booking
+                {isPending ? "Sending…" : "Continue Booking"}
               </button>
             </form>
           </>

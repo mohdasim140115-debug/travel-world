@@ -17,10 +17,13 @@ import { getCollection } from "./mongodb.js";
 // Schema defaults that a caller may legitimately omit on create.
 const MODEL_DEFAULTS = {
   booking: { status: "New" },
+  hotelBooking: { status: "New" },
+  flightBooking: { status: "New" },
+  transportBooking: { status: "New" },
 };
 
 // Models whose schema carries these fields (kept in sync with the old Prisma schema).
-const HAS_CREATED_AT = new Set(["package", "destination", "departureCity", "flightRoute", "booking"]);
+const HAS_CREATED_AT = new Set(["package", "destination", "departureCity", "flightRoute", "booking", "hotelBooking", "flightBooking", "transportBooking"]);
 const HAS_UPDATED_AT = new Set(["package", "destination", "departureCity", "flightRoute"]);
 
 function toObjectId(value) {

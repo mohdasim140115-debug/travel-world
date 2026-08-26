@@ -1,17 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
 import { X } from "lucide-react";
+import { createTransportBooking } from "@/app/booking-actions";
 
 export default function TransportBookingModal({ option, onClose }) {
-  const [submitted, setSubmitted] = useState(false);
+  const [state, formAction, isPending] = useActionState(createTransportBooking, null);
 
   if (!option) return null;
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    setSubmitted(true);
-  }
+  const submitted = state?.success;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 px-4 backdrop-blur-sm">
@@ -74,15 +72,21 @@ export default function TransportBookingModal({ option, onClose }) {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="mt-4 space-y-2.5">
+            <form action={formAction} className="mt-4 space-y-2.5">
+              <input type="hidden" name="vehicleName" value={option.name} />
+              <input type="hidden" name="vehicleType" value={option.type} />
+              <input type="hidden" name="days" value={option.days ?? 1} />
+              <input type="hidden" name="totalPrice" value={option.totalPrice ?? option.basePrice ?? 0} />
               <input
                 type="text"
+                name="customerName"
                 required
                 placeholder="Full Name"
                 className="h-[44px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none transition-colors focus:border-[#17BEBB]"
               />
               <input
                 type="tel"
+                name="customerPhone"
                 required
                 placeholder="Mobile Number"
                 className="h-[44px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none transition-colors focus:border-[#17BEBB]"
@@ -90,23 +94,34 @@ export default function TransportBookingModal({ option, onClose }) {
               <div className="grid grid-cols-2 gap-2.5">
                 <input
                   type="text"
+                  name="pickupCity"
                   required
                   placeholder="Pickup City"
+                  defaultValue={option.route?.from ?? ""}
                   className="h-[44px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none transition-colors focus:border-[#17BEBB]"
                 />
                 <input
                   type="text"
+                  name="dropCity"
                   required
                   placeholder="Drop City"
+                  defaultValue={option.route?.to ?? ""}
                   className="h-[44px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none transition-colors focus:border-[#17BEBB]"
                 />
               </div>
 
+              {state?.error && (
+                <p className="rounded-[8px] bg-red-50 px-3 py-2 text-[12px] font-medium text-red-700">
+                  {state.error}
+                </p>
+              )}
+
               <button
                 type="submit"
-                className="mt-2 h-[44px] w-full rounded-[10px] bg-[#FF7A1A] text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition hover:-translate-y-0.5 hover:bg-[#E56A0F]"
+                disabled={isPending}
+                className="mt-2 h-[44px] w-full rounded-[10px] bg-[#FF7A1A] text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition hover:-translate-y-0.5 hover:bg-[#E56A0F] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Continue Booking
+                {isPending ? "Sending…" : "Continue Booking"}
               </button>
             </form>
           </>

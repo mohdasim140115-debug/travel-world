@@ -1,17 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
 import { X } from "lucide-react";
+import { createFlightBooking } from "@/app/booking-actions";
 
 export default function FlightBookingModal({ flight, from, to, onClose }) {
-  const [submitted, setSubmitted] = useState(false);
+  const [state, formAction, isPending] = useActionState(createFlightBooking, null);
 
   if (!flight) return null;
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    setSubmitted(true);
-  }
+  const submitted = state?.success;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 px-4 backdrop-blur-sm">
@@ -72,31 +70,48 @@ export default function FlightBookingModal({ flight, from, to, onClose }) {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="mt-4 space-y-2">
+            <form action={formAction} className="mt-4 space-y-2">
+              <input type="hidden" name="airline" value={flight.airline} />
+              <input type="hidden" name="flightNumber" value={flight.flightNumber} />
+              <input type="hidden" name="from" value={from} />
+              <input type="hidden" name="to" value={to} />
+              <input type="hidden" name="departureTime" value={flight.departureTime} />
+              <input type="hidden" name="arrivalTime" value={flight.arrivalTime} />
+              <input type="hidden" name="price" value={flight.price} />
               <input
                 type="text"
+                name="customerName"
                 required
                 placeholder="Full Name"
                 className="h-[38px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none focus:border-[#17BEBB]"
               />
               <input
                 type="email"
+                name="customerEmail"
                 required
                 placeholder="Email"
                 className="h-[38px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none focus:border-[#17BEBB]"
               />
               <input
                 type="tel"
+                name="customerPhone"
                 required
                 placeholder="Mobile Number"
                 className="h-[38px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none focus:border-[#17BEBB]"
               />
 
+              {state?.error && (
+                <p className="rounded-[8px] bg-red-50 px-3 py-2 text-[12px] font-medium text-red-700">
+                  {state.error}
+                </p>
+              )}
+
               <button
                 type="submit"
-                className="mt-2 h-[44px] w-full rounded-[10px] bg-[#FF7A1A] text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition hover:bg-[#E56A0F]"
+                disabled={isPending}
+                className="mt-2 h-[44px] w-full rounded-[10px] bg-[#FF7A1A] text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition hover:bg-[#E56A0F] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Continue Booking
+                {isPending ? "Sending…" : "Continue Booking"}
               </button>
             </form>
           </>
