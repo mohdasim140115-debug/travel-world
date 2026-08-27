@@ -2,6 +2,11 @@
 
 import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
+import {
+  notifyFlightBooking,
+  notifyHotelBooking,
+  notifyTransportBooking,
+} from "@/lib/bookingEmails";
 
 /* =========================================================
    BOOKING REQUESTS — hotels, flights and transport
@@ -27,7 +32,7 @@ export async function createHotelBooking(prevState, formData) {
   const error = checkContact(customerName, customerPhone);
   if (error) return { error };
 
-  await db.hotelBooking.create({
+  const booking = await db.hotelBooking.create({
     data: {
       hotelName: text(formData, "hotelName"),
       roomType: text(formData, "roomType"),
@@ -37,8 +42,11 @@ export async function createHotelBooking(prevState, formData) {
       guests: Number(formData.get("guests")) || 1,
       customerName,
       customerPhone,
+      customerEmail: text(formData, "customerEmail") || null,
     },
   });
+
+  await notifyHotelBooking(booking);
 
   revalidatePath("/admin/hotel-bookings");
   return { success: true };
@@ -51,7 +59,7 @@ export async function createFlightBooking(prevState, formData) {
   const error = checkContact(customerName, customerPhone);
   if (error) return { error };
 
-  await db.flightBooking.create({
+  const booking = await db.flightBooking.create({
     data: {
       airline: text(formData, "airline"),
       flightNumber: text(formData, "flightNumber"),
@@ -66,6 +74,8 @@ export async function createFlightBooking(prevState, formData) {
     },
   });
 
+  await notifyFlightBooking(booking);
+
   revalidatePath("/admin/flight-bookings");
   return { success: true };
 }
@@ -77,7 +87,7 @@ export async function createTransportBooking(prevState, formData) {
   const error = checkContact(customerName, customerPhone);
   if (error) return { error };
 
-  await db.transportBooking.create({
+  const booking = await db.transportBooking.create({
     data: {
       vehicleName: text(formData, "vehicleName"),
       vehicleType: text(formData, "vehicleType"),
@@ -87,8 +97,11 @@ export async function createTransportBooking(prevState, formData) {
       totalPrice: Number(formData.get("totalPrice")) || 0,
       customerName,
       customerPhone,
+      customerEmail: text(formData, "customerEmail") || null,
     },
   });
+
+  await notifyTransportBooking(booking);
 
   revalidatePath("/admin/transport-bookings");
   return { success: true };

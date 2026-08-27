@@ -78,15 +78,15 @@ export default function TrustReviews({ stats, reviews }) {
     `transition-all duration-700 ${delay} ${inView ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`;
 
   return (
-    <section className="px-3 sm:px-6 md:bg-[#0B3B63] md:py-8 lg:px-10">
+    <section className="sm:px-6 md:bg-[#0B3B63] md:py-8 lg:px-10">
       <div className="mx-auto w-full max-w-[1280px]">
 
         {/* ================= MOBILE-ONLY LAYOUT (<768px) ================= */}
         <div
           ref={sectionRef}
-          className="relative overflow-hidden rounded-[20px] bg-[#0B3B63] p-[18px] md:hidden"
+          className="relative overflow-hidden bg-[#0B3B63] p-[18px] sm:rounded-[20px] md:hidden"
         >
-          <h2 className={`line-clamp-2 text-center text-[24px] font-bold leading-snug text-white ${fade()}`}>
+          <h2 className={`line-clamp-2 text-center text-[24px] font-bold leading-tight text-white sm:text-[30px] ${fade()}`}>
             Trusted by Honor Tour & Travels guests across the World
           </h2>
 
@@ -165,7 +165,7 @@ export default function TrustReviews({ stats, reviews }) {
 
         {/* ================= DESKTOP LAYOUT (unchanged, >=768px) ================= */}
         <div className="hidden md:block">
-          <h2 className="text-center text-[22px] font-bold text-white lg:text-[26px]">
+          <h2 className="text-center text-[24px] font-bold leading-tight text-white sm:text-[30px]">
             Trusted by Honor Tour & Travels guests across the World
           </h2>
 

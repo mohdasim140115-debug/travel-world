@@ -10,7 +10,7 @@ const quickLinks = [
 
 export default function QuickLinksBar() {
   return (
-    <section className="w-full lg:hidden">
+    <section className="w-full px-3 sm:px-6 lg:hidden">
       <div className="grid grid-cols-4 gap-2 py-3">
         {quickLinks.map((link) => {
           const Icon = link.icon;

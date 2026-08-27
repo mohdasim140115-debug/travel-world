@@ -31,8 +31,8 @@ export default function LiveTours({ cards, trustReviews }) {
   const review = reviews[reviewIndex];
 
   return (
-    <section className="w-full px-3 py-8 sm:px-6 md:py-12 lg:px-0">
-      <div className="mx-auto w-full max-w-[1280px] overflow-hidden rounded-[22px] bg-[#0B3B63] sm:rounded-[26px]">
+    <section className="w-full py-12 sm:px-6 sm:py-16 lg:px-0">
+      <div className="mx-auto w-full max-w-[1280px] overflow-hidden bg-[#0B3B63] sm:rounded-[26px]">
         <div className="grid gap-7 p-5 sm:p-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.25fr)] lg:items-center lg:gap-10 lg:p-10">
           {/* COPY */}
           <div>
@@ -44,7 +44,7 @@ export default function LiveTours({ cards, trustReviews }) {
               Live right now
             </span>
 
-            <h2 className="mt-4 text-[24px] font-bold leading-[1.2] text-white sm:text-[28px]">
+            <h2 className="mt-4 text-[24px] font-bold leading-tight text-white sm:text-[30px]">
               27+ tours are on the road with Honor Tour &amp; Travels
             </h2>
 

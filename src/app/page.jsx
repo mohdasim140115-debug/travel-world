@@ -10,7 +10,6 @@ import TrustReviews from "@/components/home/TrustReviews";
 import FeaturedTour from "@/components/home/FeaturedTour";
 import ContinueTravel from "@/components/home/ContinueTravel";
 import DepartureCities from "@/components/home/DepartureCities";
-import PartnerBanner from "@/components/home/PartnerBanner";
 import TourInclusions from "@/components/home/TourInclusions";
 import SeoContent from "@/components/home/SeoContent";
 import FAQ from "@/components/home/FAQ";
@@ -35,33 +34,23 @@ export default async function Home() {
       <JsonLd schema={[organizationSchema(), websiteSchema()]} />
       <Header />
       <Navbar />
-      <main className="mx-auto flex w-full max-w-[1280px] flex-col px-3 pb-16 sm:px-6 lg:px-0">
-        <QuickLinksBar />
-        <HeroSection cards={content.heroCards} destinations={content.destinations} />
+      <QuickLinksBar />
+      <HeroSection cards={content.heroCards} destinations={content.destinations} />
+
+      <main className="mx-auto flex w-full max-w-[1280px] flex-col pb-16">
         <DestinationStrip destinations={content.destinations} />
         <LiveTours cards={content.liveTourCards} trustReviews={content.trustReviews} />
-        <div className="mt-12" />
         <ChinaPromo promoPackages={content.chinaPromoPackages} />
-        <div className="mt-12" />
         <MostLovedTours
           promoDestinations={content.mostLovedPromoDestinations}
           destinations={content.mostLovedDestinations}
         />
-        <div className="mt-12" />
         <TrustReviews stats={content.trustStats} reviews={content.trustReviews} />
-        <div className="mt-12" />
         <FeaturedTour slides={content.featuredTours} />
-        <div className="mt-12" />
         <ContinueTravel tours={content.continueTravelTours} />
-        <div className="mt-12" />
         <DepartureCities cities={content.departureCities} />
-        <div className="mt-12" />
-        <PartnerBanner />
-        <div className="mt-12" />
         <TourInclusions features={content.tourInclusionFeatures} />
-        <div className="mt-12" />
         <SeoContent />
-        <div className="mt-12" />
         <FAQ content={content.faq} />
       </main>
       <Footer />

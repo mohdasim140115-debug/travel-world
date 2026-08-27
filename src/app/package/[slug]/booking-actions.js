@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
+import { notifyPackageBooking } from "@/lib/bookingEmails";
 
 export async function createBooking(prevState, formData) {
   const packageSlug = formData.get("packageSlug");
@@ -21,7 +22,7 @@ export async function createBooking(prevState, formData) {
     return { error: "Please enter a valid 10-digit phone number." };
   }
 
-  await db.booking.create({
+  const booking = await db.booking.create({
     data: {
       packageSlug,
       packageTitle,
@@ -34,6 +35,8 @@ export async function createBooking(prevState, formData) {
       customerEmail: customerEmail || null,
     },
   });
+
+  await notifyPackageBooking(booking);
 
   revalidatePath("/admin/bookings");
 

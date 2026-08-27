@@ -20,10 +20,10 @@ export default function PopularDestinations({ items = [], groups = [] }) {
   const visible = active === "All" ? items : items.filter((item) => item.region === active);
 
   return (
-    <section className="mt-12 w-full sm:mt-14">
+    <section className="w-full px-3 py-12 sm:px-6 sm:py-16 lg:px-0">
       <div className="flex items-end justify-between gap-4">
         <div>
-          <h2 className="text-[22px] font-bold leading-tight text-[#0F172A] sm:text-[26px]">
+          <h2 className="text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">
             Popular destinations
           </h2>
           <p className="mt-1.5 text-[14px] font-light text-[#60646C]">

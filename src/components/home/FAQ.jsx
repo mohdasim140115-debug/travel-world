@@ -7,10 +7,10 @@ export default function FAQ({ content }) {
   const faq = { ...homeData.faq, ...(content ?? {}) };
 
   return (
-    <section className="px-3 py-12 sm:px-6 lg:px-0">
+    <section className="px-3 py-12 sm:px-6 sm:py-16 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="text-center">
-          <h2 className="text-[28px] font-bold text-[#0F172A] sm:text-[32px]">
+          <h2 className="text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">
             Frequently Asked Questions
           </h2>
           <p className="mt-2 text-[13px] text-[#60646C]">
@@ -37,7 +37,7 @@ export default function FAQ({ content }) {
             ))}
           </div>
           <p className="mt-4 text-[13px] text-[#4B5563]">
-            We've got you covered.
+            We&apos;ve got you covered.
           </p>
           <button className="mt-4 rounded-full bg-[#FF7A1A] shadow-md shadow-orange-900/20 transition-all duration-200 hover:bg-[#E56A0F] hover:shadow-lg hover:-translate-y-0.5 px-6 py-2 text-[13px] font-bold text-white">
             View all FAQs

@@ -91,6 +91,12 @@ export default function TransportBookingModal({ option, onClose }) {
                 placeholder="Mobile Number"
                 className="h-[44px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none transition-colors focus:border-[#17BEBB]"
               />
+              <input
+                type="email"
+                name="customerEmail"
+                placeholder="Email (optional)"
+                className="h-[44px] w-full rounded-[10px] border border-[#D1D5DB] px-3 text-[13px] outline-none transition-colors focus:border-[#17BEBB]"
+              />
               <div className="grid grid-cols-2 gap-2.5">
                 <input
                   type="text"

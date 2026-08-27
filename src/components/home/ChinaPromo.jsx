@@ -22,10 +22,10 @@ export default function ChinaPromo({ promoPackages }) {
   const goNext = () => setStart((value) => (value + 1) % packages.length);
 
   return (
-    <section className="px-3 py-8 sm:px-6 md:py-14 lg:px-0">
+    <section className="py-12 sm:px-6 sm:py-16 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="relative">
-          <div className="grid overflow-hidden rounded-[20px] border border-[#E5E7EB] bg-gradient-to-br from-white to-[#EAF3FB] shadow-[0_4px_24px_rgba(15,23,42,0.05)] lg:grid-cols-[55%_45%] lg:max-h-[380px]">
+          <div className="grid overflow-hidden border-y border-[#E5E7EB] bg-gradient-to-br from-white to-[#EAF3FB] shadow-[0_4px_24px_rgba(15,23,42,0.05)] sm:rounded-[20px] sm:border lg:grid-cols-[55%_45%] lg:max-h-[380px]">
             {/* TEXT + CARDS */}
             <div className="order-2 min-w-0 p-4 sm:p-6 md:p-8 lg:order-1 lg:flex lg:flex-col lg:justify-center lg:p-7">
               <div className="flex items-start justify-between gap-3">

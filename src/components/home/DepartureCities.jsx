@@ -11,9 +11,9 @@ export default function DepartureCities({ cities }) {
   };
 
   return (
-    <section className="px-3 py-8 sm:px-6 md:py-12 lg:px-0">
+    <section className="px-3 py-12 sm:px-6 sm:py-16 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
-        <h2 className="text-center text-[23px] font-bold text-[#0F172A] md:text-[28px] lg:text-[32px]">
+        <h2 className="text-center text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">
           All-Inclusive Tour Packages, Starting From{" "}
           <span className="text-[#0F4C81]">Your City</span>
         </h2>
@@ -78,7 +78,7 @@ export default function DepartureCities({ cities }) {
                 Leave the group at the last destination
               </p>
               <button className="mt-3 text-[13px] font-bold text-[#0F4C81] md:mt-4 md:text-[12px]">
-                What's included in J/L option? View Inclusions →
+                What&apos;s included in J/L option? View Inclusions →
               </button>
             </div>
           </div>

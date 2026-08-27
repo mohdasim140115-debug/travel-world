@@ -15,7 +15,7 @@ export default function MostLovedTours({ promoDestinations, destinations }) {
   };
 
   return (
-    <section className="px-3 py-8 sm:px-6 md:py-12 lg:px-0">
+    <section className="py-12 sm:px-6 sm:py-16 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="grid gap-5 md:gap-6 lg:grid-cols-[32%_1fr]">
 
@@ -28,7 +28,7 @@ export default function MostLovedTours({ promoDestinations, destinations }) {
               <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-white shadow-sm">
                 <Heart className="h-4 w-4 fill-[#FF6B6B] text-[#FF6B6B]" />
               </div>
-              <h3 className="text-[23px] font-bold text-[#0F172A] sm:text-[25px]">Most Loved by Our Guests</h3>
+              <h3 className="text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">Most Loved by Our Guests</h3>
             </div>
 
             <CardRail className="mt-4 flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory sm:grid sm:grid-cols-2 sm:gap-3 sm:overflow-visible lg:grid-cols-4">

@@ -62,6 +62,12 @@ const KEYWORD_IMAGES = [
   { keywords: ["south east asia", "southeast asia"], image: "/evan-krause-BU6lABNbTpA-unsplash.jpg" },
   { keywords: ["australia", "new zealand", "oceania"], image: "/ricardo-gomez-angel-58uZCE8zrdk-unsplash.jpg" },
   { keywords: ["africa", "kenya", "mauritius", "zanzibar", "egypt"], image: "/alexey-turenkov-bWJiSZjIgTM-unsplash.jpg" },
+  // India — departure cities that had no photo of their own
+  { keywords: ["pune"], image: "/mithil-doshi-pQZBbuPgyW8-unsplash.jpg" },
+  { keywords: ["ahmedabad"], image: "/gaurav-sharma-lj3r0SZK7rQ-unsplash.jpg" },
+  { keywords: ["bangalore", "bengaluru"], image: "/hardik-joshi-niUei6OnuiA-unsplash.jpg" },
+  { keywords: ["hyderabad"], image: "/andreas-brucker-g5Uh7nP60FA-unsplash.jpg" },
+  { keywords: ["indore", "madhya pradesh"], image: "/shikhar-bhatnagar-wQJ1DfRB2io-unsplash.jpg" },
 ];
 
 const FALLBACK_IMAGE = "/mark-olsen-K5j1KgecVC8-unsplash.jpg";

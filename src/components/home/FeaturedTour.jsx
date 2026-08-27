@@ -52,7 +52,7 @@ export default function FeaturedTour({ slides }) {
   };
 
   return (
-    <section className="px-3 py-12 sm:px-6 lg:px-0">
+    <section className="px-3 py-12 sm:px-6 sm:py-16 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="relative overflow-hidden rounded-[14px]">
           <div
@@ -76,7 +76,7 @@ export default function FeaturedTour({ slides }) {
             <div
               className="absolute inset-0"
               style={{
-                backgroundImage: `linear-gradient(90deg, rgba(15,76,129,0.75) 0%, rgba(15,76,129,0.4) 50%, transparent 100%)`,
+                backgroundImage: `linear-gradient(90deg, rgba(11,59,99,0.88) 0%, rgba(11,59,99,0.55) 45%, rgba(11,59,99,0.05) 100%)`,
               }}
             />
 
@@ -128,22 +128,24 @@ export default function FeaturedTour({ slides }) {
             ))}
           </div>
 
-          <button
-            type="button"
-            aria-label="Previous tour"
-            onClick={goPrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/20 p-2 text-white backdrop-blur-sm transition hover:bg-white/30 active:scale-90"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            aria-label="Next tour"
-            onClick={goNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/20 p-2 text-white backdrop-blur-sm transition hover:bg-white/30 active:scale-90"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
+          <div className="absolute bottom-5 right-5 flex gap-2 sm:bottom-6 sm:right-6">
+            <button
+              type="button"
+              aria-label="Previous tour"
+              onClick={goPrev}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/15 text-white backdrop-blur-sm transition hover:bg-white/30 active:scale-90"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next tour"
+              onClick={goNext}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/15 text-white backdrop-blur-sm transition hover:bg-white/30 active:scale-90"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
         </div>
       </div>
 

@@ -36,10 +36,10 @@ export default function HeroSection({ cards, destinations }) {
     .filter((item) => item.href);
 
   return (
-    <section className="w-full pt-2 sm:pt-3">
+    <section className="w-full">
       {/* IMAGE + HEADLINE */}
-      <div className="relative overflow-hidden rounded-[20px] sm:rounded-[28px]">
-        <div className="relative h-[300px] w-full sm:h-[360px] lg:h-[420px]">
+      <div className="relative overflow-hidden">
+        <div className="relative h-[366px] w-full sm:h-[390px] lg:h-[430px]">
           <Image
             src={HERO_IMAGE}
             alt=""
@@ -51,7 +51,7 @@ export default function HeroSection({ cards, destinations }) {
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/15 to-black/65" />
         </div>
 
-        <div className="absolute inset-0 flex flex-col justify-between p-5 sm:p-8 lg:p-10">
+        <div className="absolute inset-0 mx-auto flex w-full max-w-[1280px] flex-col justify-between px-4 py-6 sm:px-6 sm:py-8 lg:px-0 lg:py-10">
           <div className="max-w-[620px]">
             <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/70">
               {homeData.hero.title}
@@ -69,7 +69,7 @@ export default function HeroSection({ cards, destinations }) {
           </div>
 
           {/* CATEGORY CHIPS — the old hero cards, kept as links */}
-          <div className="flex items-stretch gap-2 overflow-x-auto pb-1 no-scrollbar sm:gap-3 lg:pb-16">
+          <div className="flex items-stretch gap-2 overflow-x-auto pb-4 no-scrollbar sm:gap-3 sm:pb-6 lg:pb-16">
             {cardData.map((card) => {
               const href = CARD_LINKS[card.title] ?? "/india";
 
@@ -77,9 +77,10 @@ export default function HeroSection({ cards, destinations }) {
                 <Link
                   key={card.title}
                   href={href}
-                  className="group flex w-[215px] shrink-0 items-center justify-between gap-3 rounded-[14px] bg-white/95 px-4 py-3 no-underline shadow-[0_8px_22px_rgba(15,23,42,0.22)] transition hover:-translate-y-0.5 hover:bg-white sm:w-[240px]"
+                  className="group flex w-[190px] shrink-0 flex-col rounded-[14px] bg-white/95 p-3.5 no-underline shadow-[0_8px_22px_rgba(15,23,42,0.22)] transition hover:-translate-y-0.5 hover:bg-white sm:w-[215px]"
                 >
-                  <span className="min-w-0">
+                  {/* flex-1 keeps every button on the same line when a title wraps */}
+                  <span className="block flex-1">
                     <span className="block text-[14px] font-semibold leading-tight text-[#0F172A]">
                       {card.title}
                     </span>
@@ -88,8 +89,9 @@ export default function HeroSection({ cards, destinations }) {
                     </span>
                   </span>
 
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E6F7F5] text-[#0F4C81] transition-colors group-hover:bg-[#17BEBB] group-hover:text-white">
-                    <ArrowRight className="h-4 w-4" />
+                  <span className="mt-3 flex h-9 w-full items-center justify-center gap-1.5 rounded-[10px] bg-[#0B3B63] text-[12px] font-bold text-white transition group-hover:bg-[#17BEBB]">
+                    View details
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </span>
                 </Link>
               );
@@ -99,7 +101,7 @@ export default function HeroSection({ cards, destinations }) {
       </div>
 
       {/* SEARCH — overlaps the image on desktop, sits under it on phones */}
-      <div className="relative z-10 mx-auto -mt-3 w-full px-1 sm:-mt-10 sm:px-6 lg:-mt-12 lg:max-w-[1080px] lg:px-0">
+      <div className="relative z-10 mx-auto -mt-6 w-full max-w-[1280px] px-3 sm:-mt-10 sm:px-6 lg:-mt-12 lg:px-0">
         <HeroSearchPanel destinations={searchDestinations} />
       </div>
     </section>

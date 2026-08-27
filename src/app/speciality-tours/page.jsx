@@ -56,7 +56,7 @@ export default function SpecialityToursIndexPage() {
           <div className="relative mx-auto w-full max-w-[1280px] text-center text-white">
             <h1 className="text-[30px] font-bold sm:text-[38px]">Speciality Tours</h1>
             <p className="mx-auto mt-2 max-w-[560px] text-[15px] text-white/80">
-              Holidays curated around your travel style — from Women's Special and Honeymoon
+              Holidays curated around your travel style — from Women&apos;s Special and Honeymoon
               tours to Adventure treks and Weekend getaways.
             </p>
           </div>

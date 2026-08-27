@@ -381,7 +381,7 @@ export default function IndiaTourExplore({ cityTiles, seasonTiles, interests, du
             <div className="flex w-[270px] shrink-0 snap-start flex-col items-center justify-center rounded-xl border border-[#17BEBB] bg-[#F7FAFC] p-5 text-center">
 
               <p className="text-[11px] font-medium text-[#0F4C81]">
-                Journey doesn't stop at this point
+                Journey doesn&apos;t stop at this point
               </p>
 
               <Globe2

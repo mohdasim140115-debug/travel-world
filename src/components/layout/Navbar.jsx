@@ -23,6 +23,7 @@ const links = [
 
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState(null);
+  const [hidden, setHidden] = useState(false);
   const closeTimer = useRef(null);
 
   function openNow(key) {
@@ -51,6 +52,31 @@ export default function Navbar() {
     setOpenMenu((current) => (current === key ? null : key));
   }
 
+  // Scrolling down tucks this row up behind the header; scrolling up brings it
+  // back. Near the top of the page it is always shown.
+  useEffect(() => {
+    let lastY = window.scrollY;
+
+    function onScroll() {
+      const y = window.scrollY;
+      const delta = y - lastY;
+
+      if (y < 120) {
+        setHidden(false);
+      } else if (delta > 6) {
+        setHidden(true);
+        setOpenMenu(null); // a menu left open would hang over the tucked-away row
+      } else if (delta < -6) {
+        setHidden(false);
+      }
+
+      lastY = y;
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   useEffect(() => {
     function handleKeyDown(event) {
       if (event.key === "Escape") {
@@ -66,7 +92,11 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-50 hidden border-y border-white/10 bg-[#0A3559] text-white shadow-[0_2px_10px_rgba(0,0,0,0.15)] lg:block">
+    <nav
+      className={`sticky top-[72px] z-40 hidden border-y border-white/10 bg-[#0A3559] text-white shadow-[0_2px_10px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-out lg:block ${
+        hidden ? "-translate-y-full" : "translate-y-0"
+      }`}
+    >
       <div className="mx-auto hidden h-[46px] max-w-[1280px] items-center overflow-x-auto px-3 sm:px-6 lg:flex lg:px-0">
         <div className="flex items-center gap-0.5 whitespace-nowrap text-[13.5px] font-medium">
           {links.map((link) => {

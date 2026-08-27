@@ -148,7 +148,7 @@ export default function Header() {
   }, [mobileOpen]);
 
   return (
-    <header className="sticky top-0 z-50 bg-[#0B3B63] text-white lg:static">
+    <header className="sticky top-0 z-50 bg-[#0B3B63] text-white">
       <div className="mx-auto flex h-[64px] w-full max-w-[1280px] items-center justify-between gap-3 px-4 sm:h-[72px] lg:gap-6 lg:px-0">
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center no-underline">

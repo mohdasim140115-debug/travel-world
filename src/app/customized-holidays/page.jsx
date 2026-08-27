@@ -113,7 +113,7 @@ export default function CustomizedHolidaysPage() {
         <section className="bg-[#F7F9FC] px-3 py-12 sm:px-6 lg:px-0">
           <div className="mx-auto w-full max-w-[1280px]">
             <h2 className="text-center text-[24px] font-bold text-[#0F172A] sm:text-[28px]">
-              What's Included in Holiday Services
+              What&apos;s Included in Holiday Services
             </h2>
 
             <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

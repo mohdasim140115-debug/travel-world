@@ -1,6 +1,9 @@
 import CardRail from "@/components/common/CardRail";
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { homeData } from "@/data/homeData";
+import { getDestinationImage } from "@/data/destinationImages";
 
 export default function ContinueTravel({ tours }) {
   const continueTravel = {
@@ -9,26 +12,43 @@ export default function ContinueTravel({ tours }) {
   };
 
   return (
-    <section className="bg-[#F7FAFC] px-3 py-8 sm:px-6 md:py-12 lg:px-0">
+    <section className="bg-[#F7FAFC] px-3 py-12 sm:px-6 sm:py-16 lg:px-0">
       <div className="mx-auto w-full max-w-[1280px]">
-        <h2 className="text-[23px] font-bold text-[#0F172A] md:text-[26px]">{continueTravel.heading}</h2>
+        <h2 className="text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">
+          {continueTravel.heading}
+        </h2>
+        <p className="mt-1.5 text-[14px] font-light text-[#60646C]">
+          Pick up where you left off — these tours are still open for your dates.
+        </p>
 
-        <CardRail className="mt-4 flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:mt-6 md:gap-4 sm:grid sm:overflow-visible sm:grid-cols-2 lg:grid-cols-4">
+        <CardRail className="mt-6 flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:mt-6 md:gap-4 sm:grid sm:overflow-visible sm:grid-cols-2 lg:grid-cols-4">
           {continueTravel.tours.map((tour) => (
             <Link
               key={tour.name}
               href={`/package/${tour.slug}`}
-              className="w-full min-w-full flex-shrink-0 snap-start transform-gpu cursor-pointer overflow-hidden rounded-[14px] border border-[#E5E7EB] bg-white no-underline transition hover:-translate-y-[1px] hover:border-[#4A7BA7] hover:shadow-lg sm:w-auto sm:min-w-0"
+              className="group w-full min-w-full flex-shrink-0 snap-start transform-gpu overflow-hidden rounded-[16px] bg-white no-underline shadow-[0_2px_12px_rgba(15,23,42,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(15,23,42,0.13)] sm:w-auto sm:min-w-0"
             >
               <div className="flex flex-col">
-                <div className="h-[90px] w-full bg-gradient-to-br from-[#90C8E8] to-[#4A7BA7]" />
-                <div className="p-3">
-                  <h4 className="text-[16px] font-bold leading-tight text-[#0F172A] md:text-[13px]">{tour.name}</h4>
-                  <p className="mt-1 text-[13px] text-[#60646C] md:text-[12px]">{tour.duration}</p>
-                  <p className="mt-1 text-[14px] font-bold text-[#0F172A] md:text-[13px]">{tour.price}</p>
-                  <p className="text-[12px] text-[#60646C] md:text-[11px]">twin sharing</p>
-                  <span className="mt-2 block text-[13px] font-semibold text-[#0F4C81] md:mt-3 md:text-[12px]">
-                    {tour.cta} &gt;
+                <div className="relative h-[120px] w-full overflow-hidden">
+                  <Image
+                    src={getDestinationImage(tour.name)}
+                    alt={tour.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 300px"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+
+                <div className="p-3.5">
+                  <h4 className="text-[14px] font-semibold leading-tight text-[#0F172A]">{tour.name}</h4>
+                  <p className="mt-1 text-[12px] font-light text-[#6B7280]">{tour.duration}</p>
+
+                  <p className="mt-2 text-[15px] font-bold text-[#0F172A]">{tour.price}</p>
+                  <p className="text-[11px] font-light text-[#6B7280]">twin sharing</p>
+
+                  <span className="mt-3 flex items-center gap-1.5 text-[12px] font-bold text-[#0F4C81] transition-colors group-hover:text-[#17BEBB]">
+                    {tour.cta}
+                    <ArrowRight className="h-3.5 w-3.5" />
                   </span>
                 </div>
               </div>
