@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { LogOut, Plane } from "lucide-react";
+import Image from "next/image";
+import { LogOut } from "lucide-react";
 import { adminModules, adminModuleGroups } from "@/lib/adminModules";
 import { logoutAction } from "../login/actions";
 import AdminSidebar from "@/components/admin/AdminSidebar";
@@ -29,11 +30,17 @@ export default function AdminLayout({ children }) {
   return (
     <div className="flex min-h-screen bg-[#F7FAFC]">
       <aside className="flex w-[240px] shrink-0 flex-col bg-[#0B3B63] text-white">
-        <Link href="/admin" className="flex items-center gap-2 border-b border-white/10 px-5 py-5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FF7A1A]">
-            <Plane className="h-4 w-4 text-white" />
-          </div>
-          <span className="text-[15px] font-bold">Honor Tour & Travels Admin</span>
+        <Link href="/admin" className="flex flex-col gap-2 border-b border-white/10 px-5 py-5 no-underline">
+          <Image
+            src="/logo3.png"
+            alt="Honor Tour &amp; Travels"
+            width={900}
+            height={326}
+            className="h-9 w-auto object-contain"
+          />
+          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/50">
+            Admin panel
+          </span>
         </Link>
 
         <AdminSidebar groups={groups} />

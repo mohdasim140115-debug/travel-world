@@ -2,6 +2,8 @@
 
 "use client";
 
+import { CONTACT } from "@/lib/contact";
+
 import CardRail from "@/components/common/CardRail";
 
 import { useState } from "react";
@@ -367,10 +369,10 @@ export default function IndiaTourBottom({ reviews, faqs }) {
                 </p>
 
                 <a
-                  href="tel:18003135555"
+                  href={CONTACT.phoneHref}
                   className="text-[10px] font-semibold underline"
                 >
-                  1800 313 5555
+                  {CONTACT.phone}
                 </a>
               </div>
             </div>
@@ -387,7 +389,7 @@ export default function IndiaTourBottom({ reviews, faqs }) {
                 </p>
 
                 <span className="text-[9px] font-semibold">
-                  feedback@honortourtravels.com
+                  {CONTACT.email}
                 </span>
               </div>
             </div>
@@ -401,7 +403,7 @@ export default function IndiaTourBottom({ reviews, faqs }) {
                 </p>
 
                 <span className="text-[9px] font-semibold">
-                  travel@honortourtravels.com
+                  {CONTACT.email}
                 </span>
               </div>
             </div>

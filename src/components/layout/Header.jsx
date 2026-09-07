@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, LogIn, Menu, Mic, Phone, Search, X } from "lucide-react";
+import { CONTACT } from "@/lib/contact";
 import { SPECIALTY_FEATURED, SPECIALTY_MORE } from "@/data/specialityTours";
 import { CUSTOMIZED_HOLIDAYS_MENU, PLAN_MY_HOLIDAY_HREF } from "@/data/customizedHolidays";
 
@@ -153,12 +154,12 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center no-underline">
             <Image
-              src="/logo.jpeg"
+              src="/logo3.png"
               alt="Honor Tour & Travels"
-              width={320}
-              height={141}
+              width={900}
+              height={326}
               priority
-              className="h-10 w-auto rounded-[8px] object-contain sm:h-11"
+              className="h-10 w-auto object-contain sm:h-12"
             />
           </Link>
         </div>
@@ -192,7 +193,7 @@ export default function Header() {
           </button>
 
           <a
-            href="tel:18003135555"
+            href={CONTACT.phoneHref}
 className="hidden h-[42px] items-center gap-2.5 rounded-full px-2.5 no-underline transition hover:bg-white/10 lg:flex"
           >
             <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#17BEBB] text-white">
@@ -200,7 +201,7 @@ className="hidden h-[42px] items-center gap-2.5 rounded-full px-2.5 no-underline
             </div>
             <div className="hidden leading-tight sm:block">
               <div className="text-[10px] uppercase tracking-[0.18em] text-slate-300">Call us</div>
-              <div className="text-[14px] font-bold text-white">1800 313 5555</div>
+              <div className="text-[14px] font-bold text-white">{CONTACT.phone}</div>
             </div>
           </a>
 
@@ -241,11 +242,11 @@ className="hidden h-[42px] items-center gap-2.5 rounded-full px-2.5 no-underline
           <div className="flex shrink-0 items-center justify-between border-b border-white/10 px-4 py-3">
             <Link href="/" onClick={closeMobileMenu} className="flex items-center no-underline">
               <Image
-                src="/logo.jpeg"
+                src="/logo3.png"
                 alt="Honor Tour & Travels"
-                width={320}
-                height={141}
-                className="h-9 w-auto rounded-[8px] object-contain"
+                width={900}
+                height={326}
+                className="h-10 w-auto object-contain"
               />
             </Link>
             <button
@@ -293,11 +294,11 @@ className="hidden h-[42px] items-center gap-2.5 rounded-full px-2.5 no-underline
 
           <div className="shrink-0 space-y-2 border-t border-white/10 px-4 py-3">
             <a
-              href="tel:18003135555"
+              href={CONTACT.phoneHref}
               className="flex items-center justify-center gap-2 rounded-full bg-[#17BEBB] px-4 py-2.5 text-[14px] font-semibold text-white no-underline"
             >
               <Phone className="h-4 w-4" />
-              1800 313 5555
+              {CONTACT.phone}
             </a>
             <button
               type="button"

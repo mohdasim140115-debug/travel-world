@@ -17,7 +17,7 @@ function resolveSiteUrl() {
   const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
   if (vercel) return `https://${vercel.replace(/^https?:\/\//, "").replace(/\/+$/, "")}`;
 
-  return "https://www.honortourtravels.com";
+  return "https://www.honortourandtravels.com";
 }
 
 export const SITE_URL = resolveSiteUrl();

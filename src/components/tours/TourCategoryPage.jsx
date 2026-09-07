@@ -1,5 +1,7 @@
 "use client";
 
+import { CONTACT } from "@/lib/contact";
+
 import { useState } from "react";
 import Link from "next/link";
 import {
@@ -631,8 +633,8 @@ export default function TourCategoryPage({ config }) {
 
               <div>
                 <p className="text-[12px] text-[#777]">Request a Quote</p>
-                <a href="tel:18003135555" className="text-[13px] font-semibold underline">
-                  1800 313 5555
+                <a href={CONTACT.phoneHref} className="text-[13px] font-semibold underline">
+                  {CONTACT.phone}
                 </a>
               </div>
             </div>
@@ -642,7 +644,7 @@ export default function TourCategoryPage({ config }) {
 
               <div>
                 <p className="text-[12px] text-[#777]">For Feedback</p>
-                <span className="text-[13px] font-semibold">feedback@honortourtravels.com</span>
+                <span className="text-[13px] font-semibold">{CONTACT.email}</span>
               </div>
             </div>
 
@@ -651,7 +653,7 @@ export default function TourCategoryPage({ config }) {
 
               <div>
                 <p className="text-[12px] text-[#777]">For Enquiries</p>
-                <span className="text-[13px] font-semibold">travel@honortourtravels.com</span>
+                <span className="text-[13px] font-semibold">{CONTACT.email}</span>
               </div>
             </div>
           </div>

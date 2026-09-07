@@ -1,4 +1,8 @@
-import { Share2, Heart, Play, Users, MapPin, MessageSquare, MessageCircle, HelpCircle } from "lucide-react";
+import { Share2, Heart, Play, Users, MapPin, MessageSquare, MessageCircle, HelpCircle, Phone, Mail } from "lucide-react";
+
+import Image from "next/image";
+
+import { BUILT_BY, CONTACT } from "@/lib/contact";
 
 export default function Footer() {
   return (
@@ -58,7 +62,13 @@ export default function Footer() {
             </div>
 
             <div>
-              <p className="text-[14px] font-bold">HONOR TOUR & TRAVELS</p>
+              <Image
+                src="/logo3.png"
+                alt="Honor Tour &amp; Travels"
+                width={900}
+                height={326}
+                className="h-11 w-auto object-contain"
+              />
               <p className="mt-2 text-[12px] text-[#94A3B8]">
                 Explore the beautiful World with trusted travel experiences.
               </p>
@@ -104,11 +114,43 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* CONTACT — the same number and address the header and drawer use */}
+      <div className="border-b border-slate-700/50 px-3 py-6 sm:px-6 lg:px-0">
+        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[#94A3B8]">
+            Talk to us
+          </p>
+
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+            <a
+              href={CONTACT.phoneHref}
+              className="flex items-center gap-2.5 text-[15px] font-bold text-white no-underline transition hover:text-[#5EEAD4]"
+            >
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#17BEBB] text-white">
+                <Phone className="h-4 w-4" />
+              </span>
+              {CONTACT.phone}
+            </a>
+
+            <a
+              href={CONTACT.emailHref}
+              className="flex items-center gap-2.5 text-[14px] font-medium text-[#CBD5E1] no-underline transition hover:text-[#5EEAD4]"
+            >
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-[#5EEAD4]">
+                <Mail className="h-4 w-4" />
+              </span>
+              {CONTACT.email}
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div className="px-3 py-8 sm:px-6 lg:px-0">
         <div className="mx-auto w-full max-w-[1280px]">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <div className="text-[12px] text-[#94A3B8]/70">
-              © 2026 Honor Tour & Travels. All rights reserved. | Privacy Policy | Terms & Conditions
+            <div className="text-center text-[12px] text-[#94A3B8]/70 sm:text-left">
+              <p>© 2026 Honor Tour &amp; Travels. All rights reserved. | Privacy Policy | Terms &amp; Conditions</p>
+              <p className="mt-1.5 text-[#94A3B8]">{BUILT_BY.label}</p>
             </div>
             <div className="flex gap-4">
               <a href="#" className="rounded-full bg-slate-800 p-2 text-[#94A3B8] transition hover:bg-[#A9D8F0] hover:text-[#082C4B]">
