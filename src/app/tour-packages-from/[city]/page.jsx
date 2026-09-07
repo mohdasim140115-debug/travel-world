@@ -22,7 +22,7 @@ export async function generateMetadata({ params }) {
     return buildMetadata({
       title: "Tour Packages Not Found",
       description: "The departure city you are looking for is not available.",
-      path: `/tour-packages-from/${city}`,
+      path: `/tour-packages-from-${city}`,
       noIndex: true,
     });
   }
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }) {
   return buildMetadata({
     title: `Tour Packages From ${result.raw.name} | Honor Tour & Travels`,
     description: `Explore all-inclusive tour packages from ${result.raw.name} with domestic and international holidays, guided tours, sightseeing, stays and convenient departures with Honor Tour & Travels.`,
-    path: `/tour-packages-from/${city}`,
+    path: `/tour-packages-from-${city}`,
   });
 }
 

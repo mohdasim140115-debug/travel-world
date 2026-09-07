@@ -3,9 +3,13 @@ import { findAirportBySlugToken, slugifyCity } from "./airports.js";
 /* =========================================================
    DEMO / STATIC FLIGHT DATA GENERATOR
 
-   Everything below is deterministic dummy data used purely
-   for UI demonstration. There is no live fare or schedule
-   API involved.
+   Deterministic sample data for the marketing route pages.
+   There is no live fare or schedule API here.
+
+   NOT BOOKABLE. Every flight it produces carries isDemo:true,
+   and the booking flow requires a supplier fareKey that this
+   file cannot produce. Live results come from
+   POST /api/flights/search via the configured provider.
 ========================================================= */
 
 const AIRLINES = [
@@ -64,6 +68,8 @@ function generateFlights({ slug, fromCode, toCode, baseDuration, minPrice, maxPr
     const status = rand() > 0.78 ? "Few Seats Left" : "Available";
 
     flights.push({
+      // Sample data for the marketing pages — never bookable. See src/lib/travel/demoGuard.js
+      isDemo: true,
       id: `${slug}-${i}`,
       airline: airline.name,
       flightNumber,

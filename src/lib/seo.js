@@ -1,4 +1,26 @@
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.honortourtravels.com";
+/* =========================================================
+   SITE URL
+   Every canonical tag, the sitemap and robots.txt are built
+   from this, so a wrong value points search engines at a
+   domain that may not exist.
+
+   Order: an explicit env var wins; otherwise fall back to the
+   Vercel deployment we are actually running on, which is
+   always reachable. The hard-coded domain is the last resort
+   for when the custom domain is finally live.
+========================================================= */
+function resolveSiteUrl() {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_APP_URL;
+  if (explicit) return explicit.replace(/\/+$/, "");
+
+  // Vercel injects these on the server at build and run time.
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+  if (vercel) return `https://${vercel.replace(/^https?:\/\//, "").replace(/\/+$/, "")}`;
+
+  return "https://www.honortourtravels.com";
+}
+
+export const SITE_URL = resolveSiteUrl();
 export const SITE_NAME = "Honor Tour & Travels";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.jpg`;
 export const DEFAULT_KEYWORDS = [

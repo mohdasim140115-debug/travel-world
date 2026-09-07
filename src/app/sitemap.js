@@ -1,25 +1,56 @@
 import { SITE_URL } from "@/lib/seo";
 import { getPackageSlugs } from "@/lib/packages";
+import { getDestinationParamsFromDb } from "@/lib/destinations";
+import { getDepartureCityParamsFromDb } from "@/lib/departureCities";
 import { getDestinationParams } from "@/data/destinations";
 import { getSpecialitySlugs } from "@/data/specialityTours";
 import { getDepartureCityParams } from "@/data/departureCities";
 import { getAllRouteSlugs } from "@/data/flightRoutes";
 import { db } from "@/lib/db";
 
-function url(path, { changeFrequency = "weekly", priority = 0.6 } = {}) {
+/* =========================================================
+   SITEMAP
+   Lists every page a search engine should see, on the same
+   URLs the pages declare as canonical — a sitemap that
+   disagrees with the canonical tag splits a page's ranking
+   between two addresses.
+
+   Destinations and departure cities come from the database
+   first (that is what the admin panel edits and what the
+   pages build from) and fall back to the checked-in lists
+   when a collection is empty, matching the pages exactly.
+
+   /admin is deliberately absent; robots.txt disallows it.
+========================================================= */
+
+function url(path, { changeFrequency = "weekly", priority = 0.6, lastModified } = {}) {
   return {
     url: `${SITE_URL}${path}`,
-    lastModified: new Date(),
+    lastModified: lastModified ? new Date(lastModified) : new Date(),
     changeFrequency,
     priority,
   };
 }
 
+/** DB slugs first, then any checked-in slug the collection does not cover. */
+const merge = (fromDb, fromFile, key) => {
+  const seen = new Set(fromDb.map((item) => item[key]));
+  return [...fromDb, ...fromFile.filter((item) => !seen.has(item[key]))];
+};
+
 export default async function sitemap() {
-  const [transportRoutes, hotels] = await Promise.all([
+  const [packages, transportRoutes, hotels, indiaFromDb, worldFromDb, citiesFromDb] = await Promise.all([
+    getPackageSlugs(),
     db.transportRoute.findMany({ select: { slug: true } }),
     db.hotel.findMany({ select: { slug: true, citySlug: true } }),
+    getDestinationParamsFromDb("india"),
+    getDestinationParamsFromDb("world"),
+    getDepartureCityParamsFromDb(),
   ]);
+
+  const indiaDestinations = merge(indiaFromDb, getDestinationParams("india"), "destination");
+  const worldDestinations = merge(worldFromDb, getDestinationParams("world"), "destination");
+  const departureCities = merge(citiesFromDb, getDepartureCityParams(), "city");
 
   const staticPages = [
     url("/", { changeFrequency: "daily", priority: 1 }),
@@ -34,52 +65,26 @@ export default async function sitemap() {
     url("/seniors-special", { priority: 0.6 }),
   ];
 
-  const packagePages = (await getPackageSlugs()).map((pkg) =>
-    url(`/package/${pkg.slug}`, { priority: 0.7 })
-  );
-
-  const indiaDestinationPages = getDestinationParams("india").map(({ destination }) =>
-    url(`/india/${destination}`, { priority: 0.7 })
-  );
-
-  const worldDestinationPages = getDestinationParams("world").map(({ destination }) =>
-    url(`/world/${destination}`, { priority: 0.7 })
-  );
-
-  const specialityPages = getSpecialitySlugs().map((category) =>
-    url(`/speciality-tours/${category}`, { priority: 0.6 })
-  );
-
-  const departureCityPages = getDepartureCityParams().map(({ city }) =>
-    url(`/tour-packages-from/${city}`, { priority: 0.6 })
-  );
-
-  const flightRoutePages = getAllRouteSlugs().map(({ route }) =>
-    url(`/flights/${route}`, { priority: 0.6 })
-  );
-
-  const transportRoutePages = transportRoutes.map((route) =>
-    url(`/transport/${route.slug}`, { priority: 0.6 })
-  );
-
-  const hotelCityPages = Array.from(new Set(hotels.map((h) => h.citySlug))).map((citySlug) =>
-    url(`/hotels/${citySlug}`, { priority: 0.6 })
-  );
-
-  const hotelDetailPages = hotels.map((hotel) =>
-    url(`/hotels/${hotel.citySlug}/${hotel.slug}`, { priority: 0.6 })
-  );
-
   return [
     ...staticPages,
-    ...packagePages,
-    ...indiaDestinationPages,
-    ...worldDestinationPages,
-    ...specialityPages,
-    ...departureCityPages,
-    ...flightRoutePages,
-    ...transportRoutePages,
-    ...hotelCityPages,
-    ...hotelDetailPages,
+
+    ...packages.map((pkg) => url(`/package/${pkg.slug}`, { priority: 0.7 })),
+
+    ...indiaDestinations.map(({ destination }) => url(`/india/${destination}`, { priority: 0.7 })),
+    ...worldDestinations.map(({ destination }) => url(`/world/${destination}`, { priority: 0.7 })),
+
+    ...getSpecialitySlugs().map((category) => url(`/speciality-tours/${category}`, { priority: 0.6 })),
+
+    // The hyphenated form is the public URL; next.config rewrites it to the
+    // dynamic route. Listing the internal path here would fight the canonical.
+    ...departureCities.map(({ city }) => url(`/tour-packages-from-${city}`, { priority: 0.6 })),
+
+    ...getAllRouteSlugs().map(({ route }) => url(`/flights/${route}`, { priority: 0.6 })),
+    ...transportRoutes.map((route) => url(`/transport/${route.slug}`, { priority: 0.6 })),
+
+    ...Array.from(new Set(hotels.map((hotel) => hotel.citySlug))).map((citySlug) =>
+      url(`/hotels/${citySlug}`, { priority: 0.6 })
+    ),
+    ...hotels.map((hotel) => url(`/hotels/${hotel.citySlug}/${hotel.slug}`, { priority: 0.6 })),
   ];
 }
