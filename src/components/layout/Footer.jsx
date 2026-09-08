@@ -63,10 +63,10 @@ export default function Footer() {
 
             <div>
               <Image
-                src="/logo3.png"
+                src="/logo.png"
                 alt="Honor Tour &amp; Travels"
-                width={900}
-                height={326}
+                width={929}
+                height={269}
                 className="h-11 w-auto object-contain"
               />
               <p className="mt-2 text-[12px] text-[#94A3B8]">
