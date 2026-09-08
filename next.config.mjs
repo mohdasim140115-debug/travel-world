@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // A stray package-lock.json in the user's home folder made Next pick that
+  // directory as the workspace root, so Tailwind scanned the wrong tree and
+  // dev builds silently dropped newly added utility classes. Pin the root.
+  turbopack: {
+    root: import.meta.dirname,
+  },
+
   images: {
     // AVIF first, WebP for browsers without it; the original jpeg is the
     // last resort. Ordered by preference — the first Accept match wins.

@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { homeData } from "@/data/homeData";
 import { getDestinationHref } from "@/data/destinations";
+import HeroCardRail from "./HeroCardRail";
 import HeroSearchPanel from "./HeroSearchPanel";
 
 /* =========================================================
@@ -178,7 +179,7 @@ export default function HeroSection({ cards, destinations }) {
           </div>
 
           {/* CATEGORY CARDS */}
-          <div className="no-scrollbar -mx-4 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 pl-4 pr-8 sm:mx-0 sm:mt-9 sm:grid sm:grid-cols-2 sm:gap-3.5 sm:overflow-visible sm:pb-0 sm:pl-0 sm:pr-0 lg:grid-cols-4 lg:gap-5">
+          <HeroCardRail count={cardData.length}>
             {cardData.map((card) => {
               const href = CARD_LINKS[card.title] ?? "/india";
               const style = CARD_STYLES[card.title] ?? CARD_STYLES["India Tours"];
@@ -188,7 +189,7 @@ export default function HeroSection({ cards, destinations }) {
                 <Link
                   key={card.title}
                   href={href}
-                  className="group relative flex w-[74%] shrink-0 snap-start flex-col justify-between gap-4 rounded-2xl border border-white/20 bg-white/95 p-5 no-underline shadow-lg transition duration-200 hover:-translate-y-1 hover:bg-white sm:w-auto sm:shrink sm:flex-row sm:items-center sm:gap-3.5 sm:p-4"
+                  className="group relative flex w-[78%] shrink-0 snap-start flex-col justify-between gap-3.5 rounded-2xl border border-white/20 bg-white/95 p-4 no-underline shadow-lg transition duration-200 hover:-translate-y-1 hover:bg-white sm:w-auto sm:shrink sm:flex-row sm:items-center sm:gap-3.5 sm:p-4"
                 >
                   <span
                     className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${style.chip} ${style.text} sm:h-auto sm:w-auto sm:rounded-none sm:bg-transparent`}
@@ -205,15 +206,21 @@ export default function HeroSection({ cards, destinations }) {
                     </span>
                   </span>
 
+                  {/* Gradient lifted from the logo: magenta through to orange */}
+                  <span className="flex h-11 w-full items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[#C8489C] via-[#F0762B] to-[#FF9018] text-[13.5px] font-bold text-white shadow-[0_4px_12px_rgba(240,118,43,0.28)] transition duration-200 group-hover:brightness-105 sm:hidden">
+                    View Tours
+                    <ChevronRight className="h-4 w-4" strokeWidth={2.5} />
+                  </span>
+
                   <span
-                    className={`absolute right-5 top-5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${style.chip} ${style.text} transition-transform duration-200 group-hover:translate-x-0.5 sm:static`}
+                    className={`absolute right-5 top-5 hidden h-8 w-8 shrink-0 items-center justify-center rounded-full ${style.chip} ${style.text} transition-transform duration-200 group-hover:translate-x-0.5 sm:static sm:flex`}
                   >
                     <ChevronRight className="h-4 w-4" strokeWidth={2.5} />
                   </span>
                 </Link>
               );
             })}
-          </div>
+          </HeroCardRail>
         </div>
       </div>
 

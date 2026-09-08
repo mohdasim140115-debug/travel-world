@@ -1,5 +1,4 @@
 import Navbar from "@/components/layout/Navbar";
-import QuickLinksBar from "@/components/layout/QuickLinksBar";
 import HeroSection from "@/components/home/HeroSection";
 import DestinationStrip from "@/components/home/DestinationStrip";
 import LiveTours from "@/components/home/LiveTours";
@@ -32,7 +31,6 @@ export default async function Home() {
     <div className="min-h-screen bg-[#ffffff] text-[#0F172A]">
       <JsonLd schema={[organizationSchema(), websiteSchema()]} />
       <Navbar />
-      <QuickLinksBar />
       <HeroSection cards={content.heroCards} destinations={content.destinations} />
 
       <main className="mx-auto flex w-full max-w-[1280px] flex-col pb-16">
