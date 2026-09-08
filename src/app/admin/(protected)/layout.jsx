@@ -32,7 +32,7 @@ export default function AdminLayout({ children }) {
       <aside className="flex w-[240px] shrink-0 flex-col bg-[#0B3B63] text-white">
         <Link href="/admin" className="flex flex-col gap-2 border-b border-white/10 px-5 py-5 no-underline">
           <Image
-            src="/logo.png"
+            src="/uploads/brand/logo.png"
             alt="Honor Tour &amp; Travels"
             width={929}
             height={269}

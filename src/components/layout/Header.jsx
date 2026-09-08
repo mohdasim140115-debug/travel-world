@@ -154,7 +154,7 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center no-underline">
             <Image
-              src="/logo.png"
+              src="/uploads/brand/logo.png"
               alt="Honor Tour & Travels"
               width={929}
               height={269}
@@ -242,7 +242,7 @@ className="hidden h-[42px] items-center gap-2.5 rounded-full px-2.5 no-underline
           <div className="flex shrink-0 items-center justify-between border-b border-white/10 px-4 py-3">
             <Link href="/" onClick={closeMobileMenu} className="flex items-center no-underline">
               <Image
-                src="/logo.png"
+                src="/uploads/brand/logo.png"
                 alt="Honor Tour & Travels"
                 width={929}
                 height={269}

@@ -15,7 +15,7 @@ import HeroSearchPanel from "./HeroSearchPanel";
    old card row had — they are the site's main entry points.
 ========================================================= */
 
-const HERO_IMAGE = "/arif-khan-CyR76QxjJhc-unsplash.jpg";
+const HERO_IMAGE = "/uploads/destinations/arif-khan-CyR76QxjJhc-unsplash.jpg";
 
 // Where each hero card points; unchanged from the previous layout.
 const CARD_LINKS = {

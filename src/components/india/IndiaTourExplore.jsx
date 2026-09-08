@@ -21,7 +21,7 @@ import {
 const staticCityData = {
   city: [
     { name: "Jaipur", tours: "31 tours", style: "from-orange-300 via-rose-500 to-orange-900" },
-    { name: "Munnar", tours: "15 tours", style: "from-green-300 via-green-600 to-emerald-900", image: "/vivek-kumar-JS_ohjocm00-unsplash.jpg" },
+    { name: "Munnar", tours: "15 tours", style: "from-green-300 via-green-600 to-emerald-900", image: "/uploads/destinations/vivek-kumar-JS_ohjocm00-unsplash.jpg" },
     { name: "Shimla", tours: "15 tours", style: "from-slate-300 via-slate-500 to-slate-900" },
     { name: "Darjeeling", tours: "11 tours", style: "from-lime-300 via-green-500 to-green-900" },
     { name: "Varanasi", tours: "16 tours", style: "from-orange-300 via-orange-600 to-stone-900" },
@@ -30,7 +30,7 @@ const staticCityData = {
 
   state: [
     { name: "Rajasthan", tours: "32 tours", style: "from-orange-300 via-rose-500 to-blue-900" },
-    { name: "Kerala", tours: "17 tours", style: "from-green-300 via-emerald-600 to-green-900", image: "/gaurav-kumar-lJgUTYYrCy4-unsplash.jpg" },
+    { name: "Kerala", tours: "17 tours", style: "from-green-300 via-emerald-600 to-green-900", image: "/uploads/destinations/gaurav-kumar-lJgUTYYrCy4-unsplash.jpg" },
     { name: "Himachal Pradesh", tours: "11 tours", style: "from-blue-200 via-slate-500 to-blue-900" },
     { name: "Gujarat", tours: "17 tours", style: "from-teal-300 via-orange-500 to-blue-900" },
     { name: "Uttar Pradesh", tours: "24 tours", style: "from-orange-200 via-stone-500 to-slate-900" },
@@ -40,7 +40,7 @@ const staticCityData = {
 
 const staticSeasonData = {
   "March to June": [
-    { name: "Srinagar", tours: "4 tours", style: "from-blue-300 via-emerald-500 to-green-900", image: "/anuj-yadav-1KehhzFg_Q0-unsplash.jpg" },
+    { name: "Srinagar", tours: "4 tours", style: "from-blue-300 via-emerald-500 to-green-900", image: "/uploads/destinations/anuj-yadav-1KehhzFg_Q0-unsplash.jpg" },
     { name: "Dharamshala", tours: "8 tours", style: "from-slate-300 via-stone-500 to-slate-900" },
     { name: "Sikkim Darjeeling", tours: "14 tours", style: "from-blue-200 via-slate-500 to-blue-900" },
     { name: "Gangtok", tours: "10 tours", style: "from-orange-200 via-green-500 to-slate-900" },
@@ -49,12 +49,12 @@ const staticSeasonData = {
   ],
 
   "July to October": [
-    { name: "Ladakh", tours: "14 tours", style: "from-blue-300 via-indigo-400 to-stone-900", image: "/darshan-chudasama-uWitPuPAzPA-unsplash.jpg" },
+    { name: "Ladakh", tours: "14 tours", style: "from-blue-300 via-indigo-400 to-stone-900", image: "/uploads/destinations/darshan-chudasama-uWitPuPAzPA-unsplash.jpg" },
     { name: "Kerala", tours: "17 tours", style: "from-green-300 via-emerald-500 to-green-900" },
     { name: "Udaipur", tours: "22 tours", style: "from-blue-200 via-orange-400 to-slate-900" },
     { name: "Coorg", tours: "9 tours", style: "from-green-200 via-green-600 to-slate-900" },
     { name: "Meghalaya", tours: "12 tours", style: "from-cyan-200 via-green-500 to-slate-900" },
-    { name: "Goa", tours: "10 tours", style: "from-sky-200 via-cyan-500 to-blue-900", image: "/sarang-pande-IijeyJbmrec-unsplash.jpg" },
+    { name: "Goa", tours: "10 tours", style: "from-sky-200 via-cyan-500 to-blue-900", image: "/uploads/destinations/sarang-pande-IijeyJbmrec-unsplash.jpg" },
   ],
 
   "November to February": [

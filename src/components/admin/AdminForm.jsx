@@ -71,7 +71,7 @@ function Field({ field, initialValue }) {
           name={field.name}
           defaultValue={initialValue ?? ""}
           required={field.required}
-          placeholder="/example-photo.jpg"
+          placeholder="/uploads/destinations/photo.jpg"
           className={commonClasses}
         />
         {initialValue && (

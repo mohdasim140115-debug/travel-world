@@ -27,13 +27,13 @@ const staticZoneData = {
       name: "Jammu And Kashmir Tour Packages",
       tours: "16 tours",
       visual: "from-blue-300 via-cyan-100 to-emerald-600",
-      image: "/yasser-mir-Ctd--w6W-bw-unsplash.jpg",
+      image: "/uploads/destinations/yasser-mir-Ctd--w6W-bw-unsplash.jpg",
     },
     {
       name: "Leh Ladakh Tour Packages",
       tours: "14 tours",
       visual: "from-cyan-300 via-blue-100 to-cyan-300",
-      image: "/darshan-chudasama-s5x1zFAuAbs-unsplash.jpg",
+      image: "/uploads/destinations/darshan-chudasama-s5x1zFAuAbs-unsplash.jpg",
     },
     {
       name: "Amritsar Tour Packages",
@@ -49,7 +49,7 @@ const staticZoneData = {
       name: "Delhi Tour Packages",
       tours: "35 tours",
       visual: "from-orange-300 via-indigo-200 to-slate-700",
-      image: "/junaid-ahmad-ansari-9WP-NVh2d6U-unsplash.jpg",
+      image: "/uploads/destinations/junaid-ahmad-ansari-9WP-NVh2d6U-unsplash.jpg",
     },
     {
       name: "Nainital Mussoorie Corbett Tour Packages",
@@ -63,13 +63,13 @@ const staticZoneData = {
       name: "Kerala Tour Packages",
       tours: "20 tours",
       visual: "from-emerald-400 via-green-200 to-cyan-500",
-      image: "/philip-liju-srvtMQSWDhE-unsplash.jpg",
+      image: "/uploads/destinations/philip-liju-srvtMQSWDhE-unsplash.jpg",
     },
     {
       name: "Tamil Nadu Tour Packages",
       tours: "15 tours",
       visual: "from-orange-300 via-indigo-100 to-stone-500",
-      image: "/sreehari-devadas-Jf6swM8lR-I-unsplash.jpg",
+      image: "/uploads/destinations/sreehari-devadas-Jf6swM8lR-I-unsplash.jpg",
     },
     {
       name: "Karnataka Tour Packages",
@@ -85,7 +85,7 @@ const staticZoneData = {
       name: "Andaman Tour Packages",
       tours: "9 tours",
       visual: "from-cyan-300 via-blue-400 to-emerald-300",
-      image: "/dileesh-kumar-KbirwZJIq7g-unsplash.jpg",
+      image: "/uploads/destinations/dileesh-kumar-KbirwZJIq7g-unsplash.jpg",
     },
   ],
 
@@ -94,7 +94,7 @@ const staticZoneData = {
       name: "Rajasthan Tour Packages",
       tours: "36 tours",
       visual: "from-orange-300 via-teal-200 to-teal-500",
-      image: "/aditya-siva-6rDbvXzIVpQ-unsplash.jpg",
+      image: "/uploads/destinations/aditya-siva-6rDbvXzIVpQ-unsplash.jpg",
     },
     {
       name: "Gujarat Tour Packages",
@@ -105,7 +105,7 @@ const staticZoneData = {
       name: "Maharashtra Tour Packages",
       tours: "28 tours",
       visual: "from-green-400 via-slate-300 to-blue-500",
-      image: "/mithil-doshi-pQZBbuPgyW8-unsplash.jpg",
+      image: "/uploads/destinations/mithil-doshi-pQZBbuPgyW8-unsplash.jpg",
     },
     {
       name: "Madhya Pradesh Tour Packages",

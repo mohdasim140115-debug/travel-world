@@ -25,10 +25,10 @@ export const homeData = {
   ],
   liveTours: {
     cards: [
-      { destination: "Europe", liveTourCount: "9", color1: "#4A7BA7", color2: "#6BA3D0", color3: "#90C8E8", image: "/anthony-delanoix-Q0-fOL2nqZc-unsplash.jpg" },
-      { destination: "South East Asia", liveTourCount: "4", color1: "#5A8FB5", color2: "#7BB3D8", color3: "#A0D8F0", image: "/aleksandra-b-wVtwlktxQE0-unsplash.jpg" },
-      { destination: "Jammu and Kashmir", liveTourCount: "3", color1: "#6A9FC3", color2: "#8BC3E0", color3: "#B0E8F8", image: "/arif-khan-4hr8MStXT7s-unsplash.jpg" },
-      { destination: "Leh Ladakh", liveTourCount: "3", color1: "#7AAFCB", color2: "#9BCDE8", color3: "#C0F0FF", image: "/ravi-sangar-GQX6LEHmNWI-unsplash.jpg" },
+      { destination: "Europe", liveTourCount: "9", color1: "#4A7BA7", color2: "#6BA3D0", color3: "#90C8E8", image: "/uploads/destinations/anthony-delanoix-Q0-fOL2nqZc-unsplash.jpg" },
+      { destination: "South East Asia", liveTourCount: "4", color1: "#5A8FB5", color2: "#7BB3D8", color3: "#A0D8F0", image: "/uploads/destinations/aleksandra-b-wVtwlktxQE0-unsplash.jpg" },
+      { destination: "Jammu and Kashmir", liveTourCount: "3", color1: "#6A9FC3", color2: "#8BC3E0", color3: "#B0E8F8", image: "/uploads/destinations/arif-khan-4hr8MStXT7s-unsplash.jpg" },
+      { destination: "Leh Ladakh", liveTourCount: "3", color1: "#7AAFCB", color2: "#9BCDE8", color3: "#C0F0FF", image: "/uploads/destinations/ravi-sangar-GQX6LEHmNWI-unsplash.jpg" },
     ],
   },
   chinaPromo: {
@@ -47,14 +47,14 @@ export const homeData = {
       { name: "Europe", days: "6 Days", price: "₹1,69,000" },
     ],
     destinations: [
-      { name: "Best of Kashmir", price: "₹50,000", guests: "18.2k", slug: "best-of-kashmir-tour-package", image: "/anuj-yadav-1KehhzFg_Q0-unsplash.jpg" },
-      { name: "Highlights of Kerala", price: "₹35,000", guests: "11.1k", slug: "highlights-of-kerala-tour-package", image: "/abhishek-prasad-N3VzleBhOvk-unsplash.jpg" },
-      { name: "Best of Andaman", price: "₹75,000", guests: "8.2k", slug: "best-of-andaman-tour-package", image: "/abhishek-chakraborty-WVkU-8J-_8Y-unsplash.jpg" },
-      { name: "Highlights of Rajasthan", price: "₹35,000", guests: "8k", slug: "highlights-of-rajasthan-tour-package", image: "/gaurav-sharma-lj3r0SZK7rQ-unsplash.jpg" },
-      { name: "Singapore Thailand Malaysia", price: "₹1,88,000", guests: "29.2k", slug: "singapore-thailand-malaysia-tour-package", image: "/kirill-petropavlov-vmGwPt9gpV0-unsplash.jpg" },
-      { name: "Best of Thailand", price: "₹85,000", guests: "24.6k", slug: "best-of-thailand-tour-package", image: "/evan-krause-BU6lABNbTpA-unsplash.jpg" },
-      { name: "European Jewels", price: "₹4,20,000", guests: "12.2k", slug: "european-jewels-tour-package", image: "/alexander-kagan-t9Td0zfDTwI-unsplash.jpg" },
-      { name: "Singapore Malaysia", price: "₹1,62,000", guests: "15k", slug: "singapore-malaysia-tour-package", image: "/hu-nh-ch-ng-xdFOrbFpjO0-unsplash.jpg" },
+      { name: "Best of Kashmir", price: "₹50,000", guests: "18.2k", slug: "best-of-kashmir-tour-package", image: "/uploads/destinations/anuj-yadav-1KehhzFg_Q0-unsplash.jpg" },
+      { name: "Highlights of Kerala", price: "₹35,000", guests: "11.1k", slug: "highlights-of-kerala-tour-package", image: "/uploads/destinations/abhishek-prasad-N3VzleBhOvk-unsplash.jpg" },
+      { name: "Best of Andaman", price: "₹75,000", guests: "8.2k", slug: "best-of-andaman-tour-package", image: "/uploads/destinations/abhishek-chakraborty-WVkU-8J-_8Y-unsplash.jpg" },
+      { name: "Highlights of Rajasthan", price: "₹35,000", guests: "8k", slug: "highlights-of-rajasthan-tour-package", image: "/uploads/destinations/gaurav-sharma-lj3r0SZK7rQ-unsplash.jpg" },
+      { name: "Singapore Thailand Malaysia", price: "₹1,88,000", guests: "29.2k", slug: "singapore-thailand-malaysia-tour-package", image: "/uploads/destinations/kirill-petropavlov-vmGwPt9gpV0-unsplash.jpg" },
+      { name: "Best of Thailand", price: "₹85,000", guests: "24.6k", slug: "best-of-thailand-tour-package", image: "/uploads/destinations/evan-krause-BU6lABNbTpA-unsplash.jpg" },
+      { name: "European Jewels", price: "₹4,20,000", guests: "12.2k", slug: "european-jewels-tour-package", image: "/uploads/destinations/alexander-kagan-t9Td0zfDTwI-unsplash.jpg" },
+      { name: "Singapore Malaysia", price: "₹1,62,000", guests: "15k", slug: "singapore-malaysia-tour-package", image: "/uploads/destinations/hu-nh-ch-ng-xdFOrbFpjO0-unsplash.jpg" },
     ],
   },
   trustReviews: {
@@ -97,7 +97,7 @@ export const homeData = {
       date: "01 Aug",
       departure: "Ex-Mumbai",
       price: "₹1,41,000",
-      image: "/nopparuj-lamaikul-5rRWneZHerU-unsplash.jpg",
+      image: "/uploads/destinations/nopparuj-lamaikul-5rRWneZHerU-unsplash.jpg",
     },
     {
       region: "Europe",
@@ -107,7 +107,7 @@ export const homeData = {
       date: "05 Aug",
       departure: "Ex-Delhi",
       price: "₹2,45,000",
-      image: "/henrique-ferreira-6p-I-X-sPUY-unsplash.jpg",
+      image: "/uploads/destinations/henrique-ferreira-6p-I-X-sPUY-unsplash.jpg",
     },
     {
       region: "Middle East",
@@ -126,7 +126,7 @@ export const homeData = {
       date: "12 Aug",
       departure: "Ex-Delhi",
       price: "₹65,000",
-      image: "/shubhojit-chatterjee-fYv_2DY_LFc-unsplash.jpg",
+      image: "/uploads/destinations/shubhojit-chatterjee-fYv_2DY_LFc-unsplash.jpg",
     },
     {
       region: "Africa",

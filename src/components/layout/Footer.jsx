@@ -63,7 +63,7 @@ export default function Footer() {
 
             <div>
               <Image
-                src="/logo.png"
+                src="/uploads/brand/logo.png"
                 alt="Honor Tour &amp; Travels"
                 width={929}
                 height={269}
