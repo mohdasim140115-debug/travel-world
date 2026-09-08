@@ -84,7 +84,7 @@ export default function HeroSection({ cards, destinations }) {
           </svg>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[1280px] px-4 pb-12 pt-7 sm:px-6 sm:pb-16 sm:pt-9 lg:px-0 lg:pb-20 lg:pt-10">
+        <div className="relative mx-auto w-full max-w-[1280px] px-4 pb-7 pt-7 sm:px-6 sm:pb-16 sm:pt-9 lg:px-0 lg:pb-20 lg:pt-10">
 
           <div className="grid gap-6 lg:grid-cols-[1fr_1.08fr] lg:gap-10">
 
@@ -112,7 +112,7 @@ export default function HeroSection({ cards, destinations }) {
             </div>
 
             {/* RIGHT — FLIGHT PATH, SCRIPT NOTE, TRUST STRIP */}
-            <div className="flex flex-col justify-between gap-5">
+            <div className="hidden flex-col justify-between gap-5 sm:flex">
 
               <div aria-hidden className="relative hidden h-[168px] lg:block">
                 <svg
@@ -178,7 +178,7 @@ export default function HeroSection({ cards, destinations }) {
           </div>
 
           {/* CATEGORY CARDS */}
-          <div className="mt-7 grid gap-3.5 sm:mt-9 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+          <div className="no-scrollbar -mx-4 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 pl-4 pr-8 sm:mx-0 sm:mt-9 sm:grid sm:grid-cols-2 sm:gap-3.5 sm:overflow-visible sm:pb-0 sm:pl-0 sm:pr-0 lg:grid-cols-4 lg:gap-5">
             {cardData.map((card) => {
               const href = CARD_LINKS[card.title] ?? "/india";
               const style = CARD_STYLES[card.title] ?? CARD_STYLES["India Tours"];
@@ -188,21 +188,25 @@ export default function HeroSection({ cards, destinations }) {
                 <Link
                   key={card.title}
                   href={href}
-                  className="group flex items-center gap-3.5 rounded-2xl border border-white/20 bg-white/95 px-4 py-4 no-underline shadow-lg transition duration-200 hover:-translate-y-1 hover:bg-white"
+                  className="group relative flex w-[74%] shrink-0 snap-start flex-col justify-between gap-4 rounded-2xl border border-white/20 bg-white/95 p-5 no-underline shadow-lg transition duration-200 hover:-translate-y-1 hover:bg-white sm:w-auto sm:shrink sm:flex-row sm:items-center sm:gap-3.5 sm:p-4"
                 >
-                  <Icon className={`h-9 w-9 shrink-0 ${style.text}`} strokeWidth={1.4} />
+                  <span
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${style.chip} ${style.text} sm:h-auto sm:w-auto sm:rounded-none sm:bg-transparent`}
+                  >
+                    <Icon className="h-6 w-6 sm:h-9 sm:w-9" strokeWidth={1.5} />
+                  </span>
 
                   <span className="min-w-0 flex-1">
-                    <span className="block text-[14px] font-bold leading-tight text-[#0F172A]">
+                    <span className="block text-[16px] font-bold leading-snug text-[#0F172A] sm:text-[14px] sm:leading-tight">
                       {card.title}
                     </span>
-                    <span className="mt-1 block text-[12.5px] text-[#6B7280]">
+                    <span className="mt-1 block text-[13.5px] text-[#6B7280] sm:text-[12.5px]">
                       {shortSubtitle(card.subtitle)}
                     </span>
                   </span>
 
                   <span
-                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${style.chip} ${style.text} transition-transform duration-200 group-hover:translate-x-0.5`}
+                    className={`absolute right-5 top-5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${style.chip} ${style.text} transition-transform duration-200 group-hover:translate-x-0.5 sm:static`}
                   >
                     <ChevronRight className="h-4 w-4" strokeWidth={2.5} />
                   </span>
