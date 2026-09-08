@@ -35,19 +35,19 @@ export default function HeroSearchPanel({ destinations = [] }) {
     router.push(query ? `${target}?${query}` : target);
   }
 
-  const fieldLabel = "mb-1 block text-[11px] font-semibold uppercase tracking-[0.12em] text-[#94A3B8]";
+  const fieldLabel = "mb-1 block text-[11px] font-semibold uppercase tracking-[0.16em] text-[#94A3B8]";
   const fieldInput =
-    "w-full bg-transparent text-[14px] font-medium text-[#0F172A] outline-none placeholder:text-[#94A3B8]";
+    "w-full bg-transparent text-[15px] font-semibold text-[#0F172A] outline-none placeholder:text-[#94A3B8]";
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-[20px] bg-white p-3 shadow-[0_18px_45px_rgba(15,23,42,0.16)] sm:p-2.5"
+      className="rounded-2xl bg-white p-3 shadow-[0_20px_50px_rgba(10,32,80,0.18)] sm:rounded-[26px] sm:p-2.5"
     >
       <div className="grid grid-cols-2 gap-1.5 sm:flex sm:items-stretch sm:gap-0">
         {/* LOCATION */}
-        <label className="col-span-2 flex items-center gap-3 rounded-[14px] px-4 py-2.5 transition hover:bg-[#F7FAFC] sm:flex-1 sm:rounded-[16px] sm:py-3">
-          <MapPin className="h-4 w-4 shrink-0 text-[#17BEBB]" />
+        <label className="col-span-2 flex items-center gap-3 rounded-xl px-4 py-2.5 transition hover:bg-[#F7FAFC] sm:flex-1 sm:rounded-2xl sm:py-3.5">
+          <MapPin className="h-[18px] w-[18px] shrink-0 text-[#F0762B]" />
           <span className="min-w-0 flex-1">
             <span className={fieldLabel}>Where to</span>
             <select
@@ -65,11 +65,11 @@ export default function HeroSearchPanel({ destinations = [] }) {
           </span>
         </label>
 
-        <span className="hidden w-px shrink-0 self-center bg-[#E5E7EB] sm:block sm:h-9" />
+        <span className="hidden w-px shrink-0 self-center bg-[#E5E7EB] sm:block sm:h-10" />
 
         {/* DATE */}
-        <label className="flex items-center gap-3 rounded-[14px] px-3 py-2.5 transition hover:bg-[#F7FAFC] sm:flex-1 sm:px-4 sm:rounded-[16px] sm:py-3">
-          <CalendarDays className="h-4 w-4 shrink-0 text-[#17BEBB]" />
+        <label className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-[#F7FAFC] sm:flex-1 sm:rounded-2xl sm:px-5 sm:py-3.5">
+          <CalendarDays className="h-[18px] w-[18px] shrink-0 text-[#F0762B]" />
           <span className="min-w-0 flex-1">
             <span className={fieldLabel}>When</span>
             <input
@@ -81,11 +81,11 @@ export default function HeroSearchPanel({ destinations = [] }) {
           </span>
         </label>
 
-        <span className="hidden w-px shrink-0 self-center bg-[#E5E7EB] sm:block sm:h-9" />
+        <span className="hidden w-px shrink-0 self-center bg-[#E5E7EB] sm:block sm:h-10" />
 
         {/* GUESTS */}
-        <label className="flex items-center gap-3 rounded-[14px] px-3 py-2.5 transition hover:bg-[#F7FAFC] sm:w-[150px] sm:px-4 sm:rounded-[16px] sm:py-3">
-          <Users className="h-4 w-4 shrink-0 text-[#17BEBB]" />
+        <label className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-[#F7FAFC] sm:w-[168px] sm:rounded-2xl sm:px-5 sm:py-3.5">
+          <Users className="h-[18px] w-[18px] shrink-0 text-[#F0762B]" />
           <span className="min-w-0 flex-1">
             <span className={fieldLabel}>Guests</span>
             <select
@@ -104,9 +104,9 @@ export default function HeroSearchPanel({ destinations = [] }) {
 
         <button
           type="submit"
-          className="col-span-2 flex h-[48px] shrink-0 items-center justify-center gap-2 rounded-[14px] bg-[#FF7A1A] px-6 text-[14px] font-bold text-white shadow-[0_6px_16px_rgba(255,122,26,0.32)] transition hover:bg-[#E56A0F] sm:my-1 sm:mr-1 sm:h-auto sm:rounded-[16px]"
+          className="col-span-2 flex h-[50px] shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FF8A2B] to-[#F0621F] px-8 text-[15px] font-bold text-white shadow-lg shadow-[#FF7A1A]/30 transition duration-200 hover:-translate-y-0.5 hover:brightness-105 sm:my-1 sm:mr-1 sm:h-auto sm:rounded-2xl"
         >
-          <Search className="h-4 w-4" />
+          <Search className="h-[18px] w-[18px]" />
           Search
         </button>
       </div>

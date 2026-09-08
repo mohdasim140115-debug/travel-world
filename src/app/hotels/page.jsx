@@ -1,6 +1,5 @@
 import { Hotel as HotelIcon, ShieldCheck, Wallet, Clock3 } from "lucide-react";
 
-import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FAQAccordion from "@/components/common/FAQAccordion";
@@ -77,7 +76,6 @@ export default async function HotelsPage() {
           { name: "Hotels", href: "/hotels" },
         ])}
       />
-      <Header />
       <Navbar />
 
       <main className="bg-white">

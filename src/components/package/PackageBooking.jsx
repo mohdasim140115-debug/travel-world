@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CalendarDays, Info, Minus, Phone, Plus } from "lucide-react";
 import BookingModal from "./BookingModal";
+import EnquiryTrigger from "@/components/common/EnquiryTrigger";
 
 function formatPrice(price) {
   return new Intl.NumberFormat("en-IN").format(price);
@@ -206,9 +207,12 @@ export default function PackageBooking({ tour }) {
               Book Online
             </button>
 
-            <button className="mt-2.5 h-[44px] w-full rounded-[10px] border border-[#0F4C81] text-[14px] font-semibold text-[#0F4C81] transition hover:bg-[#F7FAFC]">
+            <EnquiryTrigger
+              subject={tour?.title || "Package enquiry"}
+              className="mt-2.5 h-[44px] w-full rounded-[10px] border border-[#0F4C81] text-[14px] font-semibold text-[#0F4C81] transition hover:bg-[#F7FAFC]"
+            >
               Enquire Now
-            </button>
+            </EnquiryTrigger>
           </aside>
         </div>
 

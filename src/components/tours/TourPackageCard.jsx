@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+
+import EnquiryTrigger from "@/components/common/EnquiryTrigger";
 import { CalendarDays, Clock3, Heart, MapPin, MessageCircle, Scale } from "lucide-react";
 import { getDestinationImage } from "@/data/destinationImages";
 
@@ -127,14 +129,14 @@ export default function TourPackageCard({ item }) {
             Compare
           </button>
 
-          <button
-            type="button"
-            onClick={stopPropagation}
+          <EnquiryTrigger
+            subject={item.title}
+            stopPropagation
             className="flex items-center gap-1.5 transition-colors hover:text-[#0F4C81]"
           >
             <MessageCircle size={13} />
             Enquire Now
-          </button>
+          </EnquiryTrigger>
         </div>
       </div>
     </Link>

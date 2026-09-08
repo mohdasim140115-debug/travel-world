@@ -1,21 +1,31 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { Caveat } from "next/font/google";
+import {
+  ChevronRight,
+  Globe,
+  IndianRupee,
+  Landmark,
+  PersonStanding,
+  Plane,
+  ShieldCheck,
+  UsersRound,
+  Venus,
+} from "lucide-react";
 import { homeData } from "@/data/homeData";
 import { getDestinationHref } from "@/data/destinations";
 import HeroSearchPanel from "./HeroSearchPanel";
 
 /* =========================================================
    HERO
-   A single rounded image, the headline over it, the four
-   category links as glass chips along its lower edge, and
-   the search panel floating across its bottom border.
-
-   The chips keep the same four destinations and hrefs the
-   old card row had — they are the site's main entry points.
+   No photograph anywhere — the backdrop is a Tailwind
+   gradient plus blurred colour blobs and two SVG waves, so
+   the hero downloads nothing. Headline on the left, a
+   CSS/SVG flight composition and the trust strip on the
+   right, the four category cards below, and the search
+   panel floating across the bottom edge.
 ========================================================= */
 
-const HERO_IMAGE = "/uploads/destinations/arif-khan-CyR76QxjJhc-unsplash.jpg";
+const script = Caveat({ subsets: ["latin"], weight: ["600"], display: "swap" });
 
 // Where each hero card points; unchanged from the previous layout.
 const CARD_LINKS = {
@@ -24,6 +34,19 @@ const CARD_LINKS = {
   "Women's Special Tours": "/womens-special",
   "Seniors' Special Tours": "/seniors-special",
 };
+
+const CARD_STYLES = {
+  "India Tours": { icon: Landmark, text: "text-[#F0762B]", chip: "bg-[#FFF1E6]" },
+  "World Tours": { icon: Globe, text: "text-[#2E7BE8]", chip: "bg-[#E8F1FE]" },
+  "Women's Special Tours": { icon: Venus, text: "text-[#E1467C]", chip: "bg-[#FDECF3]" },
+  "Seniors' Special Tours": { icon: PersonStanding, text: "text-[#16A34A]", chip: "bg-[#E7F7ED]" },
+};
+
+const TRUST = [
+  { icon: ShieldCheck, title: "Trusted & Safe", note: "Your Journey, Our Priority" },
+  { icon: UsersRound, title: "Expert Tour Managers", note: "With You Always" },
+  { icon: IndianRupee, title: "Best Price Guaranteed", note: "More Value, More Memories" },
+];
 
 // "264 Tours • 666 Departures" -> "264 Tours"
 const shortSubtitle = (subtitle = "") => subtitle.split("•")[0].trim();
@@ -37,61 +60,151 @@ export default function HeroSection({ cards, destinations }) {
 
   return (
     <section className="w-full">
-      {/* IMAGE + HEADLINE */}
-      <div className="relative overflow-hidden">
-        <div className="relative h-[366px] w-full sm:h-[390px] lg:h-[430px]">
-          <Image
-            src={HERO_IMAGE}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/15 to-black/65" />
+      <div className="relative overflow-hidden bg-[linear-gradient(105deg,#0A2050_0%,#13275C_26%,#3D2A63_52%,#8C3A48_76%,#DC5F2E_100%)]">
+
+        {/* DECORATIVE GLOW + WAVES — gradients only, no assets */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -right-24 -top-32 h-[460px] w-[460px] rounded-full bg-[#FF8A3D]/30 blur-[110px]" />
+          <div className="absolute -bottom-40 right-1/4 h-[420px] w-[420px] rounded-full bg-[#F0762B]/25 blur-[120px]" />
+          <div className="absolute -left-32 top-1/4 h-[380px] w-[380px] rounded-full bg-[#1E4FA3]/40 blur-[110px]" />
+
+          <svg
+            viewBox="0 0 1440 620"
+            preserveAspectRatio="none"
+            className="absolute inset-x-0 bottom-0 h-full w-full"
+            fill="none"
+          >
+            <path
+              d="M0 300 C 260 250, 470 420, 700 560 C 900 680, 1150 700, 1440 660 L1440 620 L0 620 Z"
+              fill="#0A2050"
+              fillOpacity="0.45"
+            />
+            <path d="M760 620 C 900 470, 1120 430, 1440 420 L1440 620 Z" fill="#FFFFFF" fillOpacity="0.07" />
+            <path d="M0 250 C 300 210, 520 400, 780 540" stroke="#FFFFFF" strokeOpacity="0.08" strokeWidth="1.5" />
+          </svg>
         </div>
 
-        <div className="absolute inset-0 mx-auto flex w-full max-w-[1280px] flex-col justify-between px-4 py-6 sm:px-6 sm:py-8 lg:px-0 lg:py-10">
-          <div className="max-w-[620px]">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/70">
-              {homeData.hero.title}
-              <span className="hidden sm:inline">
-                <span className="mx-1.5 text-white/35">/</span> {homeData.hero.tagline}
-              </span>
-            </p>
-            <h1 className="mt-3 text-[30px] font-bold leading-[1.12] text-white sm:text-[40px] lg:text-[46px]">
-              Discover your next <span className="text-[#5EEAD4]">escape</span>
-            </h1>
-            <p className="mt-3 max-w-[440px] text-[14px] font-light leading-relaxed text-white/85 sm:text-[15px]">
-              Handpicked group departures across India and the world — flights, stays, sightseeing
-              and a tour manager, all in one price.
-            </p>
+        <div className="relative mx-auto w-full max-w-[1280px] px-4 pb-12 pt-7 sm:px-6 sm:pb-16 sm:pt-9 lg:px-0 lg:pb-20 lg:pt-10">
+
+          <div className="grid gap-6 lg:grid-cols-[1fr_1.08fr] lg:gap-10">
+
+            {/* LEFT — HEADLINE */}
+            <div>
+              <p className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-white/65 sm:text-[12px]">
+                {homeData.hero.title}
+                <span className="hidden sm:inline">
+                  <span className="mx-1.5 text-white/35">/</span> {homeData.hero.tagline}
+                </span>
+              </p>
+
+              <h1 className="mt-2.5 text-[32px] font-extrabold leading-[1.05] tracking-tight text-white sm:text-[44px] lg:text-[52px]">
+                Discover your next
+                <span className="mt-0.5 block bg-gradient-to-r from-[#FF7A1A] via-[#FB923C] to-[#FBBF24] bg-clip-text text-transparent">
+                  escape
+                </span>
+              </h1>
+
+              <p className="mt-3.5 max-w-[520px] text-[14px] leading-relaxed text-white/80 sm:text-[15.5px]">
+                <span className="mr-2 inline-block h-px w-6 bg-[#FF7A1A] align-middle" />
+                Handpicked group departures across India and the world — flights, stays,
+                sightseeing and a tour manager, all in one price.
+              </p>
+            </div>
+
+            {/* RIGHT — FLIGHT PATH, SCRIPT NOTE, TRUST STRIP */}
+            <div className="flex flex-col justify-between gap-5">
+
+              <div aria-hidden className="relative hidden h-[168px] lg:block">
+                <svg
+                  viewBox="0 0 560 168"
+                  className="absolute inset-0 h-full w-full"
+                  fill="none"
+                  preserveAspectRatio="xMidYMid meet"
+                >
+                  <path
+                    d="M8 164 C 90 154, 96 84, 176 80 C 250 76, 258 34, 336 26"
+                    stroke="rgba(255,255,255,0.55)"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeDasharray="1 9"
+                  />
+                </svg>
+
+                <Plane
+                  className="absolute left-[58%] top-1 h-11 w-11 rotate-[42deg] fill-white text-white"
+                  strokeWidth={1}
+                />
+
+                <div className="absolute right-0 top-0 text-right">
+                  <p className={`${script.className} -rotate-3 text-[32px] leading-[1.05] text-white`}>
+                    Travel
+                    <br />
+                    More
+                    <br />
+                    Live Better
+                  </p>
+                  <svg viewBox="0 0 180 16" className="ml-auto mt-1 h-4 w-[150px]" fill="none">
+                    <path d="M6 9 C 52 2, 128 2, 174 6" stroke="#FF9B4D" strokeWidth="2.5" strokeLinecap="round" />
+                    <path
+                      d="M18 14 C 60 9, 120 9, 162 12"
+                      stroke="#FF9B4D"
+                      strokeOpacity="0.6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              {/* TRUST STRIP */}
+              <div className="grid gap-4 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-white/20">
+                {TRUST.map((item) => (
+                  <div key={item.title} className="flex items-center gap-2.5 sm:px-3.5">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full ring-1 ring-white/35">
+                      <item.icon className="h-[18px] w-[18px] text-white" strokeWidth={1.6} />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-[12px] font-semibold leading-tight text-white sm:whitespace-nowrap">
+                        {item.title}
+                      </span>
+                      <span className="mt-0.5 block text-[10.5px] leading-snug text-white/60 sm:whitespace-nowrap">
+                        {item.note}
+                      </span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* CATEGORY CHIPS — the old hero cards, kept as links */}
-          <div className="flex items-stretch gap-2 overflow-x-auto pb-4 no-scrollbar sm:gap-3 sm:pb-6 lg:pb-16">
+          {/* CATEGORY CARDS */}
+          <div className="mt-7 grid gap-3.5 sm:mt-9 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
             {cardData.map((card) => {
               const href = CARD_LINKS[card.title] ?? "/india";
+              const style = CARD_STYLES[card.title] ?? CARD_STYLES["India Tours"];
+              const Icon = style.icon;
 
               return (
                 <Link
                   key={card.title}
                   href={href}
-                  className="group flex w-[190px] shrink-0 flex-col rounded-[14px] bg-white/95 p-3.5 no-underline shadow-[0_8px_22px_rgba(15,23,42,0.22)] transition hover:-translate-y-0.5 hover:bg-white sm:w-[215px]"
+                  className="group flex items-center gap-3.5 rounded-2xl border border-white/20 bg-white/95 px-4 py-4 no-underline shadow-lg transition duration-200 hover:-translate-y-1 hover:bg-white"
                 >
-                  {/* flex-1 keeps every button on the same line when a title wraps */}
-                  <span className="block flex-1">
-                    <span className="block text-[14px] font-semibold leading-tight text-[#0F172A]">
+                  <Icon className={`h-9 w-9 shrink-0 ${style.text}`} strokeWidth={1.4} />
+
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[14px] font-bold leading-tight text-[#0F172A]">
                       {card.title}
                     </span>
-                    <span className="mt-1 block text-[12px] font-light text-[#6B7280]">
+                    <span className="mt-1 block text-[12.5px] text-[#6B7280]">
                       {shortSubtitle(card.subtitle)}
                     </span>
                   </span>
 
-                  <span className="mt-3 flex h-9 w-full items-center justify-center gap-1.5 rounded-[10px] bg-[#0B3B63] text-[12px] font-bold text-white transition group-hover:bg-[#17BEBB]">
-                    View details
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                  <span
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${style.chip} ${style.text} transition-transform duration-200 group-hover:translate-x-0.5`}
+                  >
+                    <ChevronRight className="h-4 w-4" strokeWidth={2.5} />
                   </span>
                 </Link>
               );
@@ -100,10 +213,11 @@ export default function HeroSection({ cards, destinations }) {
         </div>
       </div>
 
-      {/* SEARCH — overlaps the image on desktop, sits under it on phones */}
-      <div className="relative z-10 mx-auto -mt-6 w-full max-w-[1280px] px-3 sm:-mt-10 sm:px-6 lg:-mt-12 lg:px-0">
+      {/* SEARCH — desktop only; phones get the hero and cards without it */}
+      <div className="relative z-10 mx-auto hidden w-full max-w-[1280px] px-3 sm:-mt-10 sm:block sm:px-6 lg:-mt-12 lg:px-0">
         <HeroSearchPanel destinations={searchDestinations} />
       </div>
+
     </section>
   );
 }

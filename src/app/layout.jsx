@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import EnquiryModal from "@/components/common/EnquiryModal";
 import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, DEFAULT_KEYWORDS } from "@/lib/seo";
 
 const geistSans = Geist({
@@ -50,8 +51,11 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+     data-scroll-behavior="smooth">
+      <body className="min-h-full flex flex-col">
+        {children}
+        <EnquiryModal />
+      </body>
     </html>
   );
 }

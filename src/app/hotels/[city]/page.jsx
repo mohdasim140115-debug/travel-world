@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronRight, Hotel as HotelIcon } from "lucide-react";
 
-import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HotelCard from "@/components/hotels/HotelCard";
@@ -55,7 +54,6 @@ export default async function HotelCityPage({ params }) {
           { name: cityName, href: `/hotels/${citySlug}` },
         ])}
       />
-      <Header />
       <Navbar />
 
       <main className="bg-white">

@@ -1,6 +1,5 @@
 
 
-import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import IndiaToursPage from "@/components/india/IndiaToursPage";
@@ -27,7 +26,6 @@ export default async function IndiaPage() {
           { name: "India", href: "/india" },
         ])}
       />
-      <Header />
       <Navbar />
 
       <main>

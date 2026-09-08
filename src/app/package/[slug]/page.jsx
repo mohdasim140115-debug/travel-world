@@ -1,5 +1,8 @@
 import Image from "next/image";
 
+import EnquiryTrigger from "@/components/common/EnquiryTrigger";
+import PackageGallery from "@/components/package/PackageGallery";
+
 
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -26,8 +29,7 @@ import {
 } from "lucide-react";
 
 import { getAllPackages, getPackageBySlug, getPackageSlugs } from "@/lib/packages";
-import { getDestinationImage } from "@/data/destinationImages";
-import Header from "@/components/layout/Header";
+import { getDestinationImage, getDestinationImages } from "@/data/destinationImages";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PackageItinerary from "@/components/package/PackageItinerary";
@@ -143,6 +145,9 @@ export default async function PackageDetailPage({ params }) {
   }
 
   const heroImage = tour.image || getDestinationImage(`${tour.title} ${tour.location}`);
+  const galleryImages = [heroImage, ...getDestinationImages(`${tour.title} ${tour.location}`, 6)].filter(
+    (image, index, all) => all.indexOf(image) === index,
+  );
 
   const parentCrumb = tour.country
     ? { label: "World", href: "/world" }
@@ -207,7 +212,6 @@ export default async function PackageDetailPage({ params }) {
           WEBSITE HEADER
       ===================================================== */}
 
-      <Header />
       <Navbar />
 
       <main className="bg-white text-[#0F172A]">
@@ -258,58 +262,7 @@ export default async function PackageDetailPage({ params }) {
               <div>
 
                 {/* IMAGE GALLERY */}
-                <div className="grid h-[230px] gap-2 overflow-hidden rounded-[14px] sm:h-[340px] sm:gap-3 md:grid-cols-[1.8fr_1fr]">
-
-                  {/* MAIN IMAGE */}
-                  <div className="relative overflow-hidden rounded-[14px]">
-                    <Image
-                      src={heroImage}
-                      alt={tour.title}
-                      className="object-cover"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 60vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
-
-                    <div className="absolute inset-x-0 bottom-0 z-10 p-4 text-white sm:p-5">
-                      <p className="flex items-center gap-1 text-[11px] font-medium sm:text-[12px]">
-                        <MapPin size={12} />
-                        {tour.location}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* SMALL IMAGES */}
-                  <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-1 md:grid-rows-2">
-                    <div className="relative overflow-hidden rounded-[12px]">
-                      <Image
-                        src={heroImage}
-                        alt=""
-                        className="object-cover"
-                        fill
-                        sizes="(max-width: 768px) 100vw, 60vw"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                        <MapPin size={26} className="text-white" />
-                      </div>
-                    </div>
-
-                    <div className="relative overflow-hidden rounded-[12px]">
-                      <Image
-                        src={heroImage}
-                        alt=""
-                        className="object-cover"
-                        fill
-                        sizes="(max-width: 768px) 100vw, 60vw"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/35">
-                        <span className="rounded-full bg-white/90 px-3 py-1.5 text-center text-[10px] font-semibold shadow-md sm:px-4 sm:text-[12px]">
-                          +45 guest photos
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <PackageGallery title={tour.title} location={tour.location} images={galleryImages} />
 
                 {/* PACKAGE INFO */}
                 <div className="pt-5 sm:pt-6">
@@ -402,10 +355,13 @@ export default async function PackageDetailPage({ params }) {
                   </div>
                 </div>
 
-                <button className="mt-4 flex h-[44px] w-full items-center justify-center gap-2 rounded-[10px] border border-[#0F4C81] bg-white text-[13px] font-semibold text-[#0F4C81] transition hover:bg-[#EEF3FF]">
+                <EnquiryTrigger
+                  subject={tour.title}
+                  className="mt-4 flex h-[44px] w-full items-center justify-center gap-2 rounded-[10px] border border-[#0F4C81] bg-white text-[13px] font-semibold text-[#0F4C81] transition hover:bg-[#EEF3FF]"
+                >
                   <Phone size={14} />
                   Enquire Now
-                </button>
+                </EnquiryTrigger>
               </aside>
             </div>
           </div>

@@ -178,3 +178,25 @@ export function notifyTransportBooking(b) {
     confirmGuest({ ...shared, guestName: b.customerName, guestEmail: b.customerEmail }),
   ]);
 }
+
+/* ---------- enquiry form ---------- */
+
+export function notifyEnquiry(enquiry) {
+  const pairs = [
+    ["About", enquiry.subject],
+    ["Message", enquiry.message],
+    ["Page", enquiry.source],
+  ];
+
+  const shared = { kind: "enquiry", headline: enquiry.subject, pairs };
+
+  return Promise.all([
+    alertOffice({
+      ...shared,
+      guestName: enquiry.name,
+      guestPhone: enquiry.phone,
+      guestEmail: enquiry.email,
+    }),
+    confirmGuest({ ...shared, guestName: enquiry.name, guestEmail: enquiry.email }),
+  ]);
+}

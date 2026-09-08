@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
 
-import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { SPECIALTY_FEATURED, SPECIALTY_MORE } from "@/data/specialityTours";
@@ -44,7 +43,6 @@ export default function SpecialityToursIndexPage() {
           { name: "Speciality Tours", href: "/speciality-tours" },
         ])}
       />
-      <Header />
       <Navbar />
 
       <main className="bg-white">

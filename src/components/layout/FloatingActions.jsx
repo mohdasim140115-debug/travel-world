@@ -1,4 +1,8 @@
+"use client";
+
 import { PenTool } from "lucide-react";
+
+import { openEnquiry } from "@/components/common/EnquiryTrigger";
 
 export default function FloatingActions() {
   return (
@@ -13,6 +17,7 @@ export default function FloatingActions() {
       <button
         type="button"
         aria-label="Quick Enquiry"
+        onClick={() => openEnquiry("Quick enquiry")}
         className="flex h-12 w-12 items-center justify-center gap-2 rounded-full bg-[#FF7A1A] text-[12px] font-bold text-white shadow-lg shadow-orange-900/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#E56A0F] hover:shadow-xl sm:h-auto sm:w-auto sm:px-4 sm:py-2.5"
       >
         <PenTool className="h-5 w-5 sm:h-3.5 sm:w-3.5" />

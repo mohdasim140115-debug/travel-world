@@ -1,6 +1,5 @@
 import { Plane } from "lucide-react";
 
-import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FlightSearchForm from "@/components/flights/FlightSearchForm";
@@ -63,7 +62,6 @@ export default function FlightsPage() {
           { name: "Flights", href: "/flights" },
         ])}
       />
-      <Header />
       <Navbar />
 
       <main className="bg-white">

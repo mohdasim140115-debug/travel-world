@@ -31,6 +31,24 @@ export const adminModules = {
     ],
   },
 
+  enquiries: {
+    label: "Enquiries",
+    group: "Bookings",
+    model: "enquiry",
+    titleField: "name",
+    revalidate: [],
+    listColumns: ["name", "phone", "email", "subject", "source", "status"],
+    fields: [
+      { name: "name", label: "Name", type: "text", required: true },
+      { name: "phone", label: "Phone", type: "text", required: true },
+      { name: "email", label: "Email", type: "text" },
+      { name: "subject", label: "Enquiry about", type: "text" },
+      { name: "message", label: "Message", type: "textarea" },
+      { name: "source", label: "Page", type: "text" },
+      { name: "status", label: "Status", type: "select", options: ["New", "Contacted", "Confirmed", "Cancelled"], required: true },
+    ],
+  },
+
   "hotel-bookings": {
     label: "Hotel Bookings",
     group: "Bookings",

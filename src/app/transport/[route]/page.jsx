@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronRight, MapPinned } from "lucide-react";
 
-import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TransportResults from "@/components/transport/TransportResults";
@@ -54,7 +53,6 @@ export default async function TransportRoutePage({ params }) {
           { name: `${route.from} to ${route.to}`, href: `/transport/${route.slug}` },
         ])}
       />
-      <Header />
       <Navbar />
 
       <main className="bg-white">

@@ -1,4 +1,3 @@
-import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import QuickLinksBar from "@/components/layout/QuickLinksBar";
 import HeroSection from "@/components/home/HeroSection";
@@ -32,7 +31,6 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-[#ffffff] text-[#0F172A]">
       <JsonLd schema={[organizationSchema(), websiteSchema()]} />
-      <Header />
       <Navbar />
       <QuickLinksBar />
       <HeroSection cards={content.heroCards} destinations={content.destinations} />

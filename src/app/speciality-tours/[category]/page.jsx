@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
@@ -48,7 +47,6 @@ export default async function SpecialityCategoryPage({ params }) {
           { name: config.heading, href: `/speciality-tours/${category}` },
         ])}
       />
-      <Header />
       <Navbar />
 
       <main>

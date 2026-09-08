@@ -3,7 +3,6 @@ import {
   Compass, MapPinned, Ticket, ShieldCheck, Phone,
 } from "lucide-react";
 
-import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { CUSTOMIZED_HOLIDAYS_MENU } from "@/data/customizedHolidays";
@@ -72,7 +71,6 @@ export default function CustomizedHolidaysPage() {
           { name: "Customized Holidays", href: "/customized-holidays" },
         ])}
       />
-      <Header />
       <Navbar />
 
       <main className="bg-white">

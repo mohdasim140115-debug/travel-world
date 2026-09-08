@@ -60,6 +60,8 @@ export default async function sitemap() {
     url("/customized-holidays", { priority: 0.7 }),
     url("/flights", { changeFrequency: "daily", priority: 0.8 }),
     url("/transport", { priority: 0.7 }),
+    url("/gift-cards", { priority: 0.6 }),
+    url("/contact", { priority: 0.6 }),
     url("/hotels", { changeFrequency: "daily", priority: 0.8 }),
     url("/womens-special", { priority: 0.6 }),
     url("/seniors-special", { priority: 0.6 }),

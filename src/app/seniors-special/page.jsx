@@ -1,4 +1,3 @@
-import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
@@ -204,7 +203,6 @@ export default async function SeniorsSpecialPage() {
           { name: "Seniors' Special", href: "/seniors-special" },
         ])}
       />
-      <Header />
       <Navbar />
 
       <main>

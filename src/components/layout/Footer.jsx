@@ -39,7 +39,7 @@ export default function Footer() {
             <div>
               <h4 className="font-bold text-white">SUPPORT</h4>
               <ul className="mt-3 space-y-2 text-[12px] text-[#94A3B8]">
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Contact us</a></li>
+                <li><a href="/contact" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Contact us</a></li>
                 <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Leave your Feedback</a></li>
                 <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">How to Book</a></li>
                 <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">FAQ</a></li>

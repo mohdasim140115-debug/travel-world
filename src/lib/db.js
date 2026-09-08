@@ -20,10 +20,11 @@ const MODEL_DEFAULTS = {
   hotelBooking: { status: "New" },
   flightBooking: { status: "New" },
   transportBooking: { status: "New" },
+  enquiry: { status: "New" },
 };
 
 // Models whose schema carries these fields (kept in sync with the old Prisma schema).
-const HAS_CREATED_AT = new Set(["package", "destination", "departureCity", "flightRoute", "booking", "hotelBooking", "flightBooking", "transportBooking"]);
+const HAS_CREATED_AT = new Set(["package", "destination", "departureCity", "flightRoute", "booking", "hotelBooking", "flightBooking", "transportBooking", "enquiry"]);
 const HAS_UPDATED_AT = new Set(["package", "destination", "departureCity", "flightRoute"]);
 
 function toObjectId(value) {

@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 
-import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
@@ -50,7 +49,6 @@ export default async function DepartureCityPage({ params }) {
           { name: `Tour Packages From ${result.raw.name}`, href: `/tour-packages-from/${city}` },
         ])}
       />
-      <Header />
       <Navbar />
 
       <main>

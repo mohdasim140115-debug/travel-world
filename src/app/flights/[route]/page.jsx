@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ChevronRight, Plane } from "lucide-react";
 
-import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FlightSearchForm from "@/components/flights/FlightSearchForm";
@@ -62,7 +61,6 @@ export default async function FlightRoutePage({ params }) {
           { name: `${route.from} to ${route.to}`, href: `/flights/${route.slug}` },
         ])}
       />
-      <Header />
       <Navbar />
 
       <main className="bg-white">

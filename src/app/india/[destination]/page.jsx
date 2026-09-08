@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 
-import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
@@ -51,7 +50,6 @@ export default async function IndiaDestinationPage({ params }) {
           { name: result.raw.name, href: `/india/${destination}` },
         ])}
       />
-      <Header />
       <Navbar />
 
       <main>

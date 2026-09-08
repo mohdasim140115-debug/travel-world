@@ -85,3 +85,22 @@ export function getDestinationImage(text) {
 
   return FALLBACK_IMAGE;
 }
+
+// Every package carries a single photo, so the gallery is padded with other
+// photos from the same pool — deterministically, so a package always shows the
+// same set — rather than repeating one image six times.
+export function getDestinationImages(text, count = 6) {
+  const first = getDestinationImage(text);
+  const pool = KEYWORD_IMAGES.map((entry) => entry.image).filter(
+    (image, index, all) => image !== first && all.indexOf(image) === index,
+  );
+
+  let seed = 0;
+  for (const char of String(text || "")) seed = (seed * 31 + char.charCodeAt(0)) % 100000;
+
+  const picked = [first];
+  for (let i = 0; picked.length < count && i < pool.length; i += 1) {
+    picked.push(pool[(seed + i * 7) % pool.length]);
+  }
+  return picked.filter((image, index, all) => all.indexOf(image) === index);
+}

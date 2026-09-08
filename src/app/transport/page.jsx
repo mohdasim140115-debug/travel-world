@@ -1,6 +1,5 @@
 import { Car, ShieldCheck, Clock3, Wallet } from "lucide-react";
 
-import Header from "@/components/layout/Header";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FAQAccordion from "@/components/common/FAQAccordion";
@@ -73,7 +72,6 @@ export default async function TransportPage() {
           { name: "Transport", href: "/transport" },
         ])}
       />
-      <Header />
       <Navbar />
 
       <main className="bg-white">
