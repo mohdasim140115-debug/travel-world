@@ -69,7 +69,7 @@ export default function FlightsPage() {
             HERO
         ===================================================== */}
         <section
-          className="relative overflow-hidden px-3 py-14 sm:px-6 lg:px-0"
+          className="relative overflow-hidden px-3 py-14 sm:px-6 lg:px-8"
           style={{ background: "linear-gradient(135deg, #0B3B63, #4DA8DA)" }}
         >
           <Plane className="pointer-events-none absolute right-6 top-8 h-24 w-24 rotate-45 text-white/10 sm:h-32 sm:w-32" />
@@ -93,7 +93,7 @@ export default function FlightsPage() {
         {/* =====================================================
             INTRO BOX
         ===================================================== */}
-        <section className="px-3 py-10 sm:px-6 lg:px-0">
+        <section className="px-3 py-10 sm:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-[1280px]">
             <div className="rounded-[14px] border border-[#E5E7EB] bg-[#F7FAFC] p-5">
               <h2 className="text-[16px] font-bold text-[#0F172A]">

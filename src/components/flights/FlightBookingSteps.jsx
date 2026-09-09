@@ -25,7 +25,7 @@ const steps = [
 
 export default function FlightBookingSteps() {
   return (
-    <section className="px-3 py-12 sm:px-6 lg:px-0">
+    <section className="px-3 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
         <h2 className="text-center text-[26px] font-bold text-[#0F172A] sm:text-[30px]">
           How flight booking works on Honor Tour & Travels group tours

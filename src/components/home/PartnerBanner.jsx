@@ -2,7 +2,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function PartnerBanner() {
   return (
-    <section className="px-3 py-12 sm:px-6 lg:px-0">
+    <section className="px-3 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
         <div
           className="relative overflow-hidden rounded-[14px] p-8 sm:p-12"

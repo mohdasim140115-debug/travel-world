@@ -47,7 +47,7 @@ export default function SpecialityToursIndexPage() {
 
       <main className="bg-white">
         <section
-          className="relative overflow-hidden px-3 py-14 sm:px-6 lg:px-0"
+          className="relative overflow-hidden px-3 py-14 sm:px-6 lg:px-8"
           style={{ background: "linear-gradient(135deg, #0B3B63, #4DA8DA)" }}
         >
           <Sparkles className="pointer-events-none absolute right-6 top-8 h-24 w-24 text-white/10 sm:h-32 sm:w-32" />
@@ -60,7 +60,7 @@ export default function SpecialityToursIndexPage() {
           </div>
         </section>
 
-        <section className="px-3 py-12 sm:px-6 lg:px-0">
+        <section className="px-3 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-[1280px]">
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
               {allCategories.map((category, index) => (

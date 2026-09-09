@@ -7,7 +7,7 @@ import { BUILT_BY, CONTACT } from "@/lib/contact";
 export default function Footer() {
   return (
     <footer className="bg-[#082C4B] text-white">
-      <div className="border-b border-slate-700/50 px-3 py-6 sm:px-6 lg:px-0">
+      <div className="border-b border-slate-700/50 px-3 py-6 sm:px-6 lg:px-8">
         <div className="mx-auto flex w-full max-w-[1280px] flex-wrap gap-3">
           {["Explore Honor Tour & Travels", "India Tour Packages", "World Tour Packages", "FIT Tourism", "Specialty Tours"].map((pill) => (
             <button
@@ -20,7 +20,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-b border-slate-700/50 px-3 py-10 sm:px-6 lg:px-0">
+      <div className="border-b border-slate-700/50 px-3 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto w-full max-w-[1280px]">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <div>
@@ -93,7 +93,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-b border-slate-700/50 px-3 py-6 sm:px-6 lg:px-0">
+      <div className="border-b border-slate-700/50 px-3 py-6 sm:px-6 lg:px-8">
         <div className="mx-auto flex w-full max-w-[1280px] flex-wrap justify-center gap-6 text-[12px] text-[#94A3B8]">
           <a href="#" className="flex items-center gap-2 text-[#CBD5E1] hover:text-[#A9D8F0]">
             <MapPin className="h-4 w-4" />
@@ -115,7 +115,7 @@ export default function Footer() {
       </div>
 
       {/* CONTACT — the same number and address the header and drawer use */}
-      <div className="border-b border-slate-700/50 px-3 py-6 sm:px-6 lg:px-0">
+      <div className="border-b border-slate-700/50 px-3 py-6 sm:px-6 lg:px-8">
         <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[#94A3B8]">
             Talk to us
@@ -145,7 +145,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="px-3 py-8 sm:px-6 lg:px-0">
+      <div className="px-3 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto w-full max-w-[1280px]">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="text-center text-[12px] text-[#94A3B8]/70 sm:text-left">

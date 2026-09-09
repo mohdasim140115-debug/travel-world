@@ -18,7 +18,7 @@ export default function TourInclusions({ features }) {
   };
 
   return (
-    <section className="bg-[#F7FAFC] px-3 py-12 sm:px-6 sm:py-16 lg:px-0">
+    <section className="bg-[#F7FAFC] px-3 py-12 sm:px-6 sm:py-16 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="mx-auto max-w-[620px] text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-[#E6F7F5] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0F4C81]">

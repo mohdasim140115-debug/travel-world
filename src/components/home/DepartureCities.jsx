@@ -11,7 +11,7 @@ export default function DepartureCities({ cities }) {
   };
 
   return (
-    <section className="px-3 py-12 sm:px-6 sm:py-16 lg:px-0">
+    <section className="px-3 py-12 sm:px-6 sm:py-16 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
         <h2 className="text-center text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">
           All-Inclusive Tour Packages, Starting From{" "}

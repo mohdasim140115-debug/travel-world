@@ -49,7 +49,7 @@ export default function ContactPage() {
 
         {/* HERO */}
         <section className="bg-[#0B3B63] text-white">
-          <div className="mx-auto max-w-[1280px] px-4 py-10 sm:px-6 sm:py-12 lg:px-0">
+          <div className="mx-auto max-w-[1280px] px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#5EEAD4]">
               <MessageCircle className="h-3.5 w-3.5" />
               Contact Us
@@ -67,7 +67,7 @@ export default function ContactPage() {
         </section>
 
         {/* CONTACT + FORM */}
-        <section className="mx-auto max-w-[1280px] px-4 py-10 sm:px-6 sm:py-12 lg:px-0">
+        <section className="mx-auto max-w-[1280px] px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-[1fr_1.15fr] lg:gap-8">
 
             {/* DETAILS */}

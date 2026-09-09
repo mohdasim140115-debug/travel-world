@@ -84,7 +84,7 @@ export default function GiftCardsPage() {
 
         {/* HERO */}
         <section className="bg-[#0B3B63] text-white">
-          <div className="mx-auto max-w-[1280px] px-4 py-10 sm:px-6 sm:py-14 lg:px-0">
+          <div className="mx-auto max-w-[1280px] px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
             <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_1fr]">
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#5EEAD4]">
@@ -146,7 +146,7 @@ export default function GiftCardsPage() {
         </section>
 
         {/* AMOUNTS */}
-        <section className="mx-auto max-w-[1280px] px-4 py-10 sm:px-6 sm:py-12 lg:px-0">
+        <section className="mx-auto max-w-[1280px] px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
           <h2 className="text-[20px] font-bold text-[#0F172A] sm:text-[24px]">Choose an amount</h2>
           <p className="mt-1.5 text-[13.5px] text-[#475569]">
             Pick one of these, or tell us any figure that suits you.
@@ -173,7 +173,7 @@ export default function GiftCardsPage() {
 
         {/* HIGHLIGHTS */}
         <section className="bg-white">
-          <div className="mx-auto max-w-[1280px] px-4 py-10 sm:px-6 sm:py-12 lg:px-0">
+          <div className="mx-auto max-w-[1280px] px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
             <div className="grid gap-4 sm:grid-cols-3">
               {highlights.map((item) => (
                 <div key={item.title} className="rounded-[14px] border border-[#E2E8F0] bg-[#F7FAFC] p-5">
@@ -189,7 +189,7 @@ export default function GiftCardsPage() {
         </section>
 
         {/* HOW IT WORKS */}
-        <section className="mx-auto max-w-[1280px] px-4 py-10 sm:px-6 sm:py-12 lg:px-0">
+        <section className="mx-auto max-w-[1280px] px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
           <h2 className="text-[20px] font-bold text-[#0F172A] sm:text-[24px]">How it works</h2>
 
           <ol className="mt-5 grid gap-4 sm:grid-cols-3">

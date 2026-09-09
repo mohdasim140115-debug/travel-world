@@ -31,7 +31,7 @@ export default function LiveTours({ cards, trustReviews }) {
   const review = reviews[reviewIndex];
 
   return (
-    <section className="w-full py-12 sm:px-6 sm:py-16 lg:px-0">
+    <section className="w-full py-12 sm:px-6 sm:py-16 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px] overflow-hidden bg-[#0B3B63] sm:rounded-[26px]">
         <div className="grid gap-7 p-5 sm:p-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.25fr)] lg:items-center lg:gap-10 lg:p-10">
           {/* COPY */}

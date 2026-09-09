@@ -103,7 +103,7 @@ export default function FlightResults({ route, airlines: airlineLogos = [] }) {
   );
 
   return (
-    <section className="px-3 py-8 sm:px-6 lg:px-0">
+    <section className="px-3 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="flex flex-col gap-2 pb-4 sm:flex-row sm:items-center sm:justify-between">
           <div>

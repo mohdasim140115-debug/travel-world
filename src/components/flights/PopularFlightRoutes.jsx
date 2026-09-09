@@ -10,7 +10,7 @@ const gradients = [
 
 export default function PopularFlightRoutes({ routes }) {
   return (
-    <section className="px-3 py-12 sm:px-6 lg:px-0">
+    <section className="px-3 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="text-center">
           <h2 className="text-[26px] font-bold text-[#0F172A] sm:text-[30px]">

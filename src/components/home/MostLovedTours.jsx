@@ -15,7 +15,7 @@ export default function MostLovedTours({ promoDestinations, destinations }) {
   };
 
   return (
-    <section className="py-12 sm:px-6 sm:py-16 lg:px-0">
+    <section className="py-12 sm:px-6 sm:py-16 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="grid gap-5 md:gap-6 lg:grid-cols-[32%_1fr]">
 

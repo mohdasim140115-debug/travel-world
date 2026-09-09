@@ -61,7 +61,7 @@ export default async function HotelCityPage({ params }) {
             HERO
         ===================================================== */}
         <section
-          className="relative overflow-hidden px-3 pb-8 pt-6 sm:px-6 lg:px-0"
+          className="relative overflow-hidden px-3 pb-8 pt-6 sm:px-6 lg:px-8"
           style={{ background: "linear-gradient(135deg, #0B3B63, #4DA8DA)" }}
         >
           <HotelIcon className="pointer-events-none absolute right-6 top-6 h-20 w-20 text-white/10" />
@@ -87,7 +87,7 @@ export default async function HotelCityPage({ params }) {
         {/* =====================================================
             HOTEL LIST
         ===================================================== */}
-        <section className="px-3 py-10 sm:px-6 lg:px-0">
+        <section className="px-3 py-10 sm:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-[1280px] space-y-4">
             {hotels.map((hotel) => (
               <HotelCard key={hotel.id} hotel={hotel} />

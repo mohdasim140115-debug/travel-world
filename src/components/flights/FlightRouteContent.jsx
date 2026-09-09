@@ -7,7 +7,7 @@ export default function FlightRouteContent({ route }) {
   const maxDuration = Math.max(...route.flights.map((flight) => flight.durationMinutes));
 
   return (
-    <section className="px-3 py-10 sm:px-6 lg:px-0">
+    <section className="px-3 py-10 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <div className="rounded-[14px] border border-[#E5E7EB] bg-white p-4 shadow-[0_1px_3px_rgba(0,0,0,0.05)]">

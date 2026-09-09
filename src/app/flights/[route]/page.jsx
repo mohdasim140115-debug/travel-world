@@ -68,7 +68,7 @@ export default async function FlightRoutePage({ params }) {
             ROUTE HERO
         ===================================================== */}
         <section
-          className="relative overflow-hidden px-3 pb-8 pt-6 sm:px-6 lg:px-0"
+          className="relative overflow-hidden px-3 pb-8 pt-6 sm:px-6 lg:px-8"
           style={{ background: "linear-gradient(135deg, #0B3B63, #4DA8DA)" }}
         >
           <Plane className="pointer-events-none absolute right-6 top-6 h-20 w-20 rotate-45 text-white/10" />

@@ -203,7 +203,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-[#0B3B63] text-white shadow-[0_1px_0_rgba(255,255,255,0.08),0_4px_16px_rgba(11,59,99,0.25)]">
-      <div className="mx-auto flex h-[62px] w-full max-w-[1280px] items-center gap-4 px-4 sm:px-6 lg:h-[68px] lg:px-6 xl:px-0">
+      <div className="mx-auto flex h-[62px] w-full max-w-[1280px] items-center gap-4 px-4 sm:px-6 lg:h-[68px] lg:px-8">
 
         <Link href="/" className="flex shrink-0 items-center no-underline">
           <Image
@@ -218,14 +218,14 @@ export default function Navbar() {
 
         {/* DESKTOP NAV */}
         <nav className="ml-auto hidden items-center lg:flex">
-          <div className="flex items-center whitespace-nowrap text-[12.5px] font-medium xl:text-[13.5px]">
+          <div className="flex items-center whitespace-nowrap text-[12.5px] font-medium">
             {links.map((link) => {
               const isMega = Boolean(link.megaMenu);
               const isActive = isMega && openMenu === link.megaMenu;
 
               const inner = (
                 <div
-                  className={`relative flex h-[68px] items-center gap-1.5 transition-colors after:absolute after:inset-x-2 after:bottom-0 after:h-[2px] after:rounded-full after:transition-colors xl:px-3.5 px-2 ${
+                  className={`relative flex h-[68px] items-center gap-1.5 transition-colors after:absolute after:inset-x-2 after:bottom-0 after:h-[2px] after:rounded-full after:transition-colors px-2 ${
                     isActive
                       ? "text-white after:bg-[#17BEBB]"
                       : "text-white/80 after:bg-transparent hover:text-white hover:after:bg-white/30"
@@ -287,7 +287,7 @@ export default function Navbar() {
         {/* CALL PILL — widest screens only, where the links leave room */}
         <a
           href={CONTACT.phoneHref}
-          className="ml-5 hidden shrink-0 items-center gap-2 rounded-full border border-white/30 px-4 py-2 text-[13px] font-semibold text-white no-underline transition hover:bg-white/10 xl:flex"
+          className="ml-4 hidden shrink-0 items-center gap-1.5 rounded-full border border-white/30 px-3.5 py-1.5 text-[12.5px] font-semibold text-white no-underline transition hover:bg-white/10 xl:flex"
         >
           <Phone className="h-4 w-4" />
           {CONTACT.phone}

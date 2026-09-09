@@ -85,7 +85,7 @@ export default function HeroSection({ cards, destinations }) {
           </svg>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[1280px] px-4 pb-7 pt-7 sm:px-6 sm:pb-16 sm:pt-9 lg:px-0 lg:pb-20 lg:pt-10">
+        <div className="relative mx-auto w-full max-w-[1280px] px-4 pb-7 pt-7 sm:px-6 sm:pb-16 sm:pt-9 lg:px-8 lg:pb-20 lg:pt-10">
 
           <div className="grid gap-6 lg:grid-cols-[1fr_1.08fr] lg:gap-10">
 
@@ -225,7 +225,7 @@ export default function HeroSection({ cards, destinations }) {
       </div>
 
       {/* SEARCH — desktop only; phones get the hero and cards without it */}
-      <div className="relative z-10 mx-auto hidden w-full max-w-[1280px] px-3 sm:-mt-10 sm:block sm:px-6 lg:-mt-12 lg:px-0">
+      <div className="relative z-10 mx-auto hidden w-full max-w-[1280px] px-3 sm:-mt-10 sm:block sm:px-6 lg:-mt-12 lg:px-8">
         <HeroSearchPanel destinations={searchDestinations} />
       </div>
 

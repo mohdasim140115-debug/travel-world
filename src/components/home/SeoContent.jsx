@@ -2,7 +2,7 @@ import { ChevronDown } from "lucide-react";
 
 export default function SeoContent() {
   return (
-    <section className="px-3 py-12 sm:px-6 sm:py-16 lg:px-0">
+    <section className="px-3 py-12 sm:px-6 sm:py-16 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
         <h2 className="text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">
           Find the best travel packages at Honor Tour & Travels

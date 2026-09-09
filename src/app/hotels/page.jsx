@@ -83,7 +83,7 @@ export default async function HotelsPage() {
             HERO
         ===================================================== */}
         <section
-          className="relative overflow-hidden px-3 py-14 sm:px-6 lg:px-0"
+          className="relative overflow-hidden px-3 py-14 sm:px-6 lg:px-8"
           style={{ background: "linear-gradient(135deg, #0B3B63, #4DA8DA)" }}
         >
           <HotelIcon className="pointer-events-none absolute right-6 top-8 h-24 w-24 text-white/10 sm:h-32 sm:w-32" />
@@ -100,7 +100,7 @@ export default async function HotelsPage() {
         {/* =====================================================
             DESTINATIONS
         ===================================================== */}
-        <section className="px-3 py-12 sm:px-6 lg:px-0">
+        <section className="px-3 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-[1280px]">
             <div className="text-center">
               <h2 className="text-[24px] font-bold text-[#0F172A] sm:text-[28px]">
@@ -122,7 +122,7 @@ export default async function HotelsPage() {
         {/* =====================================================
             BENEFITS
         ===================================================== */}
-        <section className="bg-[#F7F9FC] px-3 py-12 sm:px-6 lg:px-0">
+        <section className="bg-[#F7F9FC] px-3 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-[1280px]">
             <h2 className="text-center text-[24px] font-bold text-[#0F172A] sm:text-[28px]">
               Why book hotels with Honor Tour & Travels?
@@ -148,7 +148,7 @@ export default async function HotelsPage() {
         {/* =====================================================
             FAQ
         ===================================================== */}
-        <section className="px-3 py-12 sm:px-6 lg:px-0">
+        <section className="px-3 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-[1280px]">
             <div className="text-center">
               <h2 className="text-[24px] font-bold text-[#0F172A] sm:text-[28px]">

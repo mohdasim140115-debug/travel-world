@@ -78,7 +78,7 @@ export default function CustomizedHolidaysPage() {
             HERO
         ===================================================== */}
         <section
-          className="relative overflow-hidden px-3 py-14 sm:px-6 lg:px-0"
+          className="relative overflow-hidden px-3 py-14 sm:px-6 lg:px-8"
           style={{ background: "linear-gradient(135deg, #0B3B63, #4DA8DA)" }}
         >
           <Compass className="pointer-events-none absolute right-6 top-8 h-24 w-24 text-white/10 sm:h-32 sm:w-32" />
@@ -94,7 +94,7 @@ export default function CustomizedHolidaysPage() {
         {/* =====================================================
             BROWSE BY DESTINATION / STYLE / SERVICE
         ===================================================== */}
-        <section className="px-3 py-12 sm:px-6 lg:px-0">
+        <section className="px-3 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-[1280px]">
             <div className="grid grid-cols-2 gap-8 rounded-[16px] border border-[#E5E7EB] bg-[#F7FAFC] p-6 sm:p-8 lg:grid-cols-4">
               <ColumnList heading={indiaHolidays.heading} items={indiaHolidays.items} />
@@ -108,7 +108,7 @@ export default function CustomizedHolidaysPage() {
         {/* =====================================================
             SERVICES
         ===================================================== */}
-        <section className="bg-[#F7F9FC] px-3 py-12 sm:px-6 lg:px-0">
+        <section className="bg-[#F7F9FC] px-3 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-[1280px]">
             <h2 className="text-center text-[24px] font-bold text-[#0F172A] sm:text-[28px]">
               What&apos;s Included in Holiday Services
@@ -135,7 +135,7 @@ export default function CustomizedHolidaysPage() {
         {/* =====================================================
             PLAN MY HOLIDAY — CALLBACK
         ===================================================== */}
-        <section className="px-3 py-12 sm:px-6 lg:px-0">
+        <section className="px-3 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-[640px] rounded-[16px] border border-[#E5E7EB] bg-[#F7FAFC] p-6 text-center sm:p-8">
             <h2 className="text-[22px] font-bold text-[#0F172A] sm:text-[26px]">Plan My Holiday</h2>
             <p className="mt-2 text-[14px] text-[#64748B]">

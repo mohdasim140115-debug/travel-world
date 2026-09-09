@@ -60,7 +60,7 @@ export default async function TransportRoutePage({ params }) {
             ROUTE HERO
         ===================================================== */}
         <section
-          className="relative overflow-hidden px-3 pb-8 pt-6 sm:px-6 lg:px-0"
+          className="relative overflow-hidden px-3 pb-8 pt-6 sm:px-6 lg:px-8"
           style={{ background: "linear-gradient(135deg, #0B3B63, #4DA8DA)" }}
         >
           <MapPinned className="pointer-events-none absolute right-6 top-6 h-20 w-20 text-white/10" />
@@ -93,7 +93,7 @@ export default async function TransportRoutePage({ params }) {
         {/* =====================================================
             VEHICLES FOR THIS ROUTE
         ===================================================== */}
-        <section className="px-3 py-10 sm:px-6 lg:px-0">
+        <section className="px-3 py-10 sm:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-[1280px]">
             <h2 className="text-[18px] font-bold text-[#0F172A] sm:text-[20px]">
               {options.length} Vehicle Options for {route.from} → {route.to}

@@ -52,7 +52,7 @@ export default function FeaturedTour({ slides }) {
   };
 
   return (
-    <section className="px-3 py-12 sm:px-6 sm:py-16 lg:px-0">
+    <section className="px-3 py-12 sm:px-6 sm:py-16 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="relative overflow-hidden rounded-[14px]">
           <div

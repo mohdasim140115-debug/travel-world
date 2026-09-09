@@ -25,7 +25,7 @@ const benefits = [
 
 export default function FlightBenefits() {
   return (
-    <section className="bg-[#F7F9FC] px-3 py-12 sm:px-6 lg:px-0">
+    <section className="bg-[#F7F9FC] px-3 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
         <h2 className="text-center text-[26px] font-bold text-[#0F172A] sm:text-[30px]">
           Why book your flights with Honor Tour & Travels?

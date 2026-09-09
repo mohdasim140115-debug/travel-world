@@ -22,7 +22,7 @@ export default function ChinaPromo({ promoPackages }) {
   const goNext = () => setStart((value) => (value + 1) % packages.length);
 
   return (
-    <section className="py-12 sm:px-6 sm:py-16 lg:px-0">
+    <section className="py-12 sm:px-6 sm:py-16 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="relative">
           <div className="grid overflow-hidden border-y border-[#E5E7EB] bg-gradient-to-br from-white to-[#EAF3FB] shadow-[0_4px_24px_rgba(15,23,42,0.05)] sm:rounded-[20px] sm:border lg:grid-cols-[55%_45%] lg:max-h-[380px]">
