@@ -19,4 +19,5 @@ export const CONTACT = {
 export const BUILT_BY = {
   name: "DEENX Consultancy",
   label: "Created by DEENX Consultancy",
+  url: "https://deenxconsultancy.com/",
 };

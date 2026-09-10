@@ -61,8 +61,8 @@ export const homeData = {
     stats: [
       { value: "9.8L+", label: "Happy guests", icon: "Users" },
       { value: "76.8K+", label: "Tours completed", icon: "CheckCircle" },
-      { value: "325+", label: "Tour Experts", icon: "Users" },
-      { value: "2.5K+", label: "Tour destinations", icon: "CheckCircle" },
+      { value: "325+", label: "Tour Experts", icon: "UserCheck" },
+      { value: "2.5K+", label: "Tour destinations", icon: "Globe" },
     ],
     reviews: [
       {

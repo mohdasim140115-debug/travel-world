@@ -2,7 +2,22 @@
 
 import CardRail from "@/components/common/CardRail";
 import { useEffect, useRef, useState } from "react";
-import { Users, CheckCircle, Star } from "lucide-react";
+import {
+  Award,
+  Briefcase,
+  CheckCircle,
+  Globe,
+  Headphones,
+  Heart,
+  MapPin,
+  MessageCircle,
+  Plane,
+  ShieldCheck,
+  Star,
+  UserCheck,
+  Users,
+} from "lucide-react";
+import EnquiryTrigger from "@/components/common/EnquiryTrigger";
 import { homeData } from "@/data/homeData";
 
 function useInView(threshold = 0.15) {
@@ -28,6 +43,28 @@ function useInView(threshold = 0.15) {
   }, [threshold]);
 
   return [ref, inView];
+}
+
+// Stats carry an icon name; anything unrecognised falls back by position
+// so a new stat never renders without an icon.
+const STAT_ICONS = {
+  Users,
+  UserCheck,
+  CheckCircle,
+  Globe,
+  MapPin,
+  Award,
+  Plane,
+  Star,
+  Headphones,
+  ShieldCheck,
+  Heart,
+  Briefcase,
+};
+const STAT_ICON_ORDER = [Users, CheckCircle, UserCheck, Globe];
+
+function statIcon(stat, index) {
+  return STAT_ICONS[stat.icon] ?? STAT_ICON_ORDER[index % STAT_ICON_ORDER.length];
 }
 
 function parseStatValue(value) {
@@ -79,20 +116,17 @@ export default function TrustReviews({ stats, reviews }) {
 
   return (
     <section className="sm:px-6 md:bg-[#0B3B63] md:py-8 lg:px-10">
-      <div className="mx-auto w-full max-w-[1280px]">
+      <div ref={sectionRef} className="mx-auto w-full max-w-[1280px]">
 
         {/* ================= MOBILE-ONLY LAYOUT (<768px) ================= */}
-        <div
-          ref={sectionRef}
-          className="relative overflow-hidden bg-[#0B3B63] p-[18px] sm:rounded-[20px] md:hidden"
-        >
+        <div className="relative overflow-hidden bg-[#0B3B63] p-[18px] sm:rounded-[20px] md:hidden">
           <h2 className={`line-clamp-2 text-center text-[24px] font-bold leading-tight text-white sm:text-[30px] ${fade()}`}>
             Trusted by Honor Tour & Travels guests across the World
           </h2>
 
           <div className={`mt-[18px] grid grid-cols-2 gap-5 ${fade("delay-100")}`}>
-            {trustReviews.stats.map((stat) => {
-              const Icon = stat.icon === "Users" ? Users : CheckCircle;
+            {trustReviews.stats.map((stat, index) => {
+              const Icon = statIcon(stat, index);
               return (
                 <div key={stat.label} className="text-center">
                   <div className="flex justify-center">
@@ -147,20 +181,13 @@ export default function TrustReviews({ stats, reviews }) {
             ))}
           </CardRail>
 
-          <button
-            className={`mt-[18px] flex h-[46px] w-full items-center justify-center rounded-full bg-[#FF7A1A] text-[15px] font-bold text-white shadow-md shadow-orange-900/20 transition-all duration-200 active:scale-95 ${fade("delay-300")}`}
+          <EnquiryTrigger
+            subject="Talk to a tour expert"
+            className={`mt-[18px] flex h-[46px] w-full items-center justify-center gap-2 rounded-full bg-[#FF7A1A] text-[15px] font-bold text-white shadow-md shadow-orange-900/20 transition-all duration-200 active:scale-95 ${fade("delay-300")}`}
           >
-            Read 15K+ Reviews
-          </button>
-
-          {/* FLOATING CIRCULAR ACTION BUTTON */}
-          <button
-            type="button"
-            aria-label="Reviews"
-            className="absolute -bottom-4 -right-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#FF7A1A] shadow-lg shadow-orange-900/30 transition-transform duration-200 active:scale-90"
-          >
-            <Star className="h-6 w-6 fill-white text-white" />
-          </button>
+            <MessageCircle className="h-4 w-4" />
+            Talk to a Tour Expert
+          </EnquiryTrigger>
         </div>
 
         {/* ================= DESKTOP LAYOUT (unchanged, >=768px) ================= */}
@@ -170,15 +197,15 @@ export default function TrustReviews({ stats, reviews }) {
           </h2>
 
           <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {trustReviews.stats.map((stat) => {
-              const Icon = stat.icon === "Users" ? Users : CheckCircle;
+            {trustReviews.stats.map((stat, index) => {
+              const Icon = statIcon(stat, index);
               return (
                 <div key={stat.label} className="text-center">
                   <div className="flex justify-center">
                     <Icon className="h-6 w-6 text-[#5EEAD4]" />
                   </div>
                   <div className="mt-2 text-[26px] font-bold text-white">
-                    {stat.value}
+                    <CounterStat value={stat.value} inView={inView} />
                   </div>
                   <div className="mt-0.5 text-[12px] text-[#CBD5E1]">{stat.label}</div>
                 </div>
@@ -188,29 +215,51 @@ export default function TrustReviews({ stats, reviews }) {
 
           <CardRail className="mt-6 flex items-stretch gap-6 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory lg:grid lg:gap-8 lg:overflow-visible lg:grid-cols-3">
             {trustReviews.reviews.map((review, idx) => (
-              <div key={idx} className="flex min-w-[260px] flex-shrink-0 snap-start flex-col rounded-[14px] bg-white p-5 shadow-[0_8px_24px_rgba(0,0,0,0.2)] lg:min-w-0">
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-3.5 w-3.5 fill-[#FFD400] text-[#FFD400]" />
-                  ))}
+              <div
+                key={idx}
+                className="flex min-w-[280px] flex-shrink-0 snap-start flex-col rounded-[16px] bg-white p-5 shadow-[0_10px_28px_rgba(0,0,0,0.22)] transition duration-200 hover:-translate-y-1 lg:min-w-0"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <span className="inline-block rounded-full bg-[#F1F5F9] px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-[#475569]">
+                      {review.type}
+                    </span>
+                    <div className="mt-2 flex gap-0.5">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-3.5 w-3.5 fill-[#FFD400] text-[#FFD400]" />
+                      ))}
+                    </div>
+                  </div>
+
+                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#E6F7F5] text-[15px] font-bold text-[#0F4C81]">
+                    {review.guest.charAt(0)}
+                  </span>
                 </div>
-                <p className="mt-2 text-[11px] font-semibold uppercase text-[#475569]">
-                  {review.type}
-                </p>
-                <p className="mt-1 text-[12px] text-[#0F172A]">{review.destination}</p>
-                <p className="mt-2 line-clamp-3 flex-1 text-[13px] leading-[1.5] text-[#475569]">
+
+                <h3 className="mt-2.5 text-[15px] font-bold leading-snug text-[#0F172A]">
+                  {review.destination}
+                </h3>
+
+                <p className="mt-2 line-clamp-3 flex-1 text-[13.5px] leading-relaxed text-[#475569]">
                   {review.excerpt}
                 </p>
-                <p className="mt-3 text-[12px] font-semibold text-[#0F172A]">{review.guest}</p>
-                <p className="text-[11px] text-[#60646C]">{review.date}</p>
+
+                <div className="mt-4 flex items-center justify-between border-t border-[#F1F5F9] pt-3">
+                  <p className="text-[13px] font-semibold text-[#0F172A]">{review.guest}</p>
+                  <p className="text-[11.5px] text-[#60646C]">{review.date}</p>
+                </div>
               </div>
             ))}
           </CardRail>
 
           <div className="mt-6 text-center">
-            <button className="inline-flex items-center gap-2 rounded-full bg-[#FF7A1A] px-6 py-2.5 text-[13px] font-bold text-white shadow-md shadow-orange-900/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#E56A0F] hover:shadow-lg">
-              Read 15K+ Reviews
-            </button>
+            <EnquiryTrigger
+              subject="Talk to a tour expert"
+              className="inline-flex items-center gap-2 rounded-full bg-[#FF7A1A] px-6 py-2.5 text-[13px] font-bold text-white shadow-md shadow-orange-900/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#E56A0F] hover:shadow-lg"
+            >
+              <MessageCircle className="h-4 w-4" />
+              Talk to a Tour Expert
+            </EnquiryTrigger>
           </div>
         </div>
       </div>

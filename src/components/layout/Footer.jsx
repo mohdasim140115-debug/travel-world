@@ -1,172 +1,136 @@
-import { Share2, Heart, Play, Users, MapPin, MessageSquare, MessageCircle, HelpCircle, Phone, Mail } from "lucide-react";
-
 import Image from "next/image";
+import Link from "next/link";
+import { Mail, Phone } from "lucide-react";
 
 import { BUILT_BY, CONTACT } from "@/lib/contact";
+
+/* =========================================================
+   FOOTER
+   Three compact bands: brand + contact, three columns of
+   links, then the legal bar with the build credit centred
+   under it. Every link here points at a page that exists —
+   the old footer was mostly href="#".
+========================================================= */
+
+const COLUMNS = [
+  {
+    heading: "Tours",
+    links: [
+      { label: "India Tours", href: "/india" },
+      { label: "World Tours", href: "/world" },
+      { label: "Speciality Tours", href: "/speciality-tours" },
+      { label: "Customized Holidays", href: "/customized-holidays" },
+    ],
+  },
+  {
+    heading: "Book",
+    links: [
+      { label: "Flights", href: "/flights" },
+      { label: "Hotels", href: "/hotels" },
+      { label: "Transport", href: "/transport" },
+      { label: "Gift Cards", href: "/gift-cards" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { label: "Contact Us", href: "/contact" },
+      { label: "Women's Special", href: "/womens-special" },
+      { label: "Seniors' Special", href: "/seniors-special" },
+    ],
+  },
+];
 
 export default function Footer() {
   return (
     <footer className="bg-[#082C4B] text-white">
-      <div className="border-b border-slate-700/50 px-3 py-6 sm:px-6 lg:px-8">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-wrap gap-3">
-          {["Explore Honor Tour & Travels", "India Tour Packages", "World Tour Packages", "FIT Tourism", "Specialty Tours"].map((pill) => (
-            <button
-              key={pill}
-              className="rounded-full border border-slate-500/30 px-4 py-2 text-[12px] font-semibold text-[#CBD5E1] transition hover:border-[#A9D8F0] hover:text-[#A9D8F0]"
-            >
-              {pill}
-            </button>
-          ))}
-        </div>
-      </div>
 
-      <div className="border-b border-slate-700/50 px-3 py-10 sm:px-6 lg:px-8">
-        <div className="mx-auto w-full max-w-[1280px]">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <h4 className="font-bold text-white">DISCOVER US</h4>
-              <ul className="mt-3 space-y-2 text-[12px] text-[#94A3B8]">
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">About Honor Tour & Travels</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">About us</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Our Team</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Tour Managers</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Sales Partners</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Corporate Travel</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Careers</a></li>
-              </ul>
-            </div>
+      {/* BRAND + LINKS */}
+      <div className="mx-auto w-full max-w-[1280px] px-4 py-9 sm:px-6 lg:px-8">
+        <div className="grid gap-8 md:grid-cols-[1.3fr_2fr] md:gap-10">
 
-            <div>
-              <h4 className="font-bold text-white">SUPPORT</h4>
-              <ul className="mt-3 space-y-2 text-[12px] text-[#94A3B8]">
-                <li><a href="/contact" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Contact us</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Leave your Feedback</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">How to Book</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">FAQ</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Pay Online</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Travel Updates</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Request Visa</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-white">RESOURCES</h4>
-              <ul className="mt-3 space-y-2 text-[12px] text-[#94A3B8]">
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Tour Status</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Blog</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Podcasts</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Video Blogs</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Articles</a></li>
-                <li><a href="#" className="text-[#CBD5E1] hover:text-[#A9D8F0]">Travel Planner</a></li>
-              </ul>
-            </div>
-
-            <div>
+          <div>
+            <Link href="/" className="inline-flex no-underline">
               <Image
                 src="/uploads/brand/logo.png"
                 alt="Honor Tour &amp; Travels"
                 width={929}
                 height={269}
-                className="h-11 w-auto object-contain"
+                className="h-10 w-auto object-contain"
               />
-              <p className="mt-2 text-[12px] text-[#94A3B8]">
-                Explore the beautiful World with trusted travel experiences.
-              </p>
-              <div className="mt-4">
-                <p className="text-[12px] font-semibold text-[#94A3B8]/70">Newsletter</p>
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  className="mt-2 w-full rounded-[10px] border border-slate-600 bg-slate-800/50 px-3 py-2.5 text-[13px] text-white outline-none transition-colors placeholder:text-slate-500 focus:border-[#17BEBB]"
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="mt-2 w-full rounded-[10px] border border-slate-600 bg-slate-800/50 px-3 py-2.5 text-[13px] text-white outline-none transition-colors placeholder:text-slate-500 focus:border-[#17BEBB]"
-                />
-                <button className="mt-3 flex h-[42px] w-full items-center justify-center rounded-[10px] bg-[#FF7A1A] text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition hover:-translate-y-0.5 hover:bg-[#E56A0F]">
-                  Subscribe
-                </button>
-              </div>
+            </Link>
+
+            <p className="mt-3 max-w-[320px] text-[13px] leading-relaxed text-[#94A3B8]">
+              Handpicked group departures across India and the world — flights, stays,
+              sightseeing and a tour manager, all in one price.
+            </p>
+
+            <div className="mt-4 flex flex-col gap-2.5">
+              <a
+                href={CONTACT.phoneHref}
+                className="flex items-center gap-2.5 text-[14.5px] font-bold text-white no-underline transition hover:text-[#5EEAD4]"
+              >
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#17BEBB]">
+                  <Phone className="h-4 w-4" />
+                </span>
+                {CONTACT.phone}
+              </a>
+
+              <a
+                href={CONTACT.emailHref}
+                className="flex items-center gap-2.5 text-[13.5px] font-medium text-[#CBD5E1] no-underline transition hover:text-[#5EEAD4]"
+              >
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-[#5EEAD4]">
+                  <Mail className="h-4 w-4" />
+                </span>
+                <span className="break-all">{CONTACT.email}</span>
+              </a>
             </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
+            {COLUMNS.map((column) => (
+              <div key={column.heading}>
+                <h4 className="text-[12px] font-bold uppercase tracking-[0.16em] text-white">
+                  {column.heading}
+                </h4>
+                <ul className="mt-3 space-y-2">
+                  {column.links.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-[13px] text-[#CBD5E1] no-underline transition hover:text-[#5EEAD4]"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      <div className="border-b border-slate-700/50 px-3 py-6 sm:px-6 lg:px-8">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-wrap justify-center gap-6 text-[12px] text-[#94A3B8]">
-          <a href="#" className="flex items-center gap-2 text-[#CBD5E1] hover:text-[#A9D8F0]">
-            <MapPin className="h-4 w-4" />
-            Locate Us
-          </a>
-          <a href="#" className="flex items-center gap-2 text-[#CBD5E1] hover:text-[#A9D8F0]">
-            <MessageSquare className="h-4 w-4" />
-            Request a Quote
-          </a>
-          <a href="#" className="flex items-center gap-2 text-[#CBD5E1] hover:text-[#A9D8F0]">
-            <MessageCircle className="h-4 w-4" />
-            For Feedback
-          </a>
-          <a href="#" className="flex items-center gap-2 text-[#CBD5E1] hover:text-[#A9D8F0]">
-            <HelpCircle className="h-4 w-4" />
-            For Enquiries
-          </a>
-        </div>
-      </div>
-
-      {/* CONTACT — the same number and address the header and drawer use */}
-      <div className="border-b border-slate-700/50 px-3 py-6 sm:px-6 lg:px-8">
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[#94A3B8]">
-            Talk to us
+      {/* LEGAL + BUILD CREDIT */}
+      <div className="border-t border-white/10">
+        <div className="mx-auto w-full max-w-[1280px] px-4 py-5 sm:px-6 lg:px-8">
+          <p className="text-center text-[12px] text-[#94A3B8]/80">
+            © {new Date().getFullYear()}{" "}
+            Honor Tour &amp; Travels. All rights reserved.
           </p>
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+          <p className="mt-2.5 text-center text-[14px] text-[#94A3B8]">
+            Created by{" "}
             <a
-              href={CONTACT.phoneHref}
-              className="flex items-center gap-2.5 text-[15px] font-bold text-white no-underline transition hover:text-[#5EEAD4]"
+              href={BUILT_BY.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-[#5EEAD4] no-underline underline-offset-4 transition hover:text-white hover:underline"
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#17BEBB] text-white">
-                <Phone className="h-4 w-4" />
-              </span>
-              {CONTACT.phone}
+              {BUILT_BY.name}
             </a>
-
-            <a
-              href={CONTACT.emailHref}
-              className="flex items-center gap-2.5 text-[14px] font-medium text-[#CBD5E1] no-underline transition hover:text-[#5EEAD4]"
-            >
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-[#5EEAD4]">
-                <Mail className="h-4 w-4" />
-              </span>
-              {CONTACT.email}
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div className="px-3 py-8 sm:px-6 lg:px-8">
-        <div className="mx-auto w-full max-w-[1280px]">
-          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <div className="text-center text-[12px] text-[#94A3B8]/70 sm:text-left">
-              <p>© 2026 Honor Tour &amp; Travels. All rights reserved. | Privacy Policy | Terms &amp; Conditions</p>
-              <p className="mt-1.5 text-[#94A3B8]">{BUILT_BY.label}</p>
-            </div>
-            <div className="flex gap-4">
-              <a href="#" className="rounded-full bg-slate-800 p-2 text-[#94A3B8] transition hover:bg-[#A9D8F0] hover:text-[#082C4B]">
-                <Share2 className="h-4 w-4" />
-              </a>
-              <a href="#" className="rounded-full bg-slate-800 p-2 text-[#94A3B8] transition hover:bg-[#A9D8F0] hover:text-[#082C4B]">
-                <Heart className="h-4 w-4" />
-              </a>
-              <a href="#" className="rounded-full bg-slate-800 p-2 text-[#94A3B8] transition hover:bg-[#A9D8F0] hover:text-[#082C4B]">
-                <Play className="h-4 w-4" />
-              </a>
-              <a href="#" className="rounded-full bg-slate-800 p-2 text-[#94A3B8] transition hover:bg-[#A9D8F0] hover:text-[#082C4B]">
-                <Users className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
+          </p>
         </div>
       </div>
     </footer>
