@@ -26,12 +26,14 @@ export default function EnquiryModal() {
   const [open, setOpen] = useState(false);
   const [subject, setSubject] = useState("General enquiry");
   const [source, setSource] = useState("");
+  const [openedAt, setOpenedAt] = useState(0);
   const [state, formAction, isPending] = useActionState(createEnquiry, null);
 
   useEffect(() => {
     function onOpen(event) {
       setSubject(event.detail?.subject || "General enquiry");
       setSource(typeof window === "undefined" ? "" : window.location.pathname);
+      setOpenedAt(Date.now());
       setOpen(true);
     }
 
@@ -110,6 +112,16 @@ export default function EnquiryModal() {
           <form action={formAction} className="mt-4 space-y-2.5">
             <input type="hidden" name="subject" value={subject} />
             <input type="hidden" name="source" value={source} />
+            {/* Anti-spam: hidden from people, irresistible to bots. */}
+            <input
+              type="text"
+              name="company"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute left-[-9999px] h-0 w-0 opacity-0"
+            />
+            <input type="hidden" name="startedAt" value={openedAt} />
 
             <input type="text" name="name" required placeholder="Full Name" className={field} />
             <input type="tel" name="phone" required placeholder="Mobile Number" className={field} />

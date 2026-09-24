@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { CheckCircle2, Send } from "lucide-react";
 
 import { createEnquiry } from "@/app/enquiry-actions";
@@ -16,6 +16,7 @@ const subjects = [
 
 export default function ContactForm() {
   const [state, formAction, isPending] = useActionState(createEnquiry, null);
+  const [openedAt] = useState(() => Date.now());
 
   if (state?.success) {
     return (
@@ -32,6 +33,16 @@ export default function ContactForm() {
   return (
     <form action={formAction} className="rounded-[16px] border border-[#E2E8F0] bg-white p-5 sm:p-6">
       <input type="hidden" name="source" value="/contact" />
+      {/* Anti-spam: hidden from people, irresistible to bots. */}
+      <input
+        type="text"
+        name="company"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+      />
+      <input type="hidden" name="startedAt" value={openedAt} />
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">

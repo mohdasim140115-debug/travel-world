@@ -21,8 +21,30 @@ function text(formData, field) {
 
 function checkContact(name, phone) {
   if (!name || !phone) return "Please enter your name and phone number.";
-  if (!/^\d{10}$/.test(phone)) return "Please enter a valid 10-digit phone number.";
+  if (!/^[6-9]d{9}$/.test(phone)) return "Please enter a valid 10-digit Indian mobile number.";
   return null;
+}
+
+/**
+ * True when the submission should be dropped without a word — same reasoning
+ * as the enquiry form: a bot must not learn which rule stopped it. These
+ * forms also email whatever address the visitor types.
+ */
+async function shouldDrop(formData, { name, phone, email }) {
+  const startedAt = Number(text(formData, "startedAt"));
+
+  const reason = enquirySpamReason({
+    name,
+    phone,
+    email,
+    message: text(formData, "message"),
+    honeypot: text(formData, "company"),
+    elapsedMs: Number.isFinite(startedAt) && startedAt > 0 ? Date.now() - startedAt : null,
+  });
+  if (reason) return true;
+
+  const headerList = await headers();
+  return rateLimited(clientIp(headerList));
 }
 
 export async function createHotelBooking(prevState, formData) {
@@ -31,6 +53,11 @@ export async function createHotelBooking(prevState, formData) {
 
   const error = checkContact(customerName, customerPhone);
   if (error) return { error };
+
+  const customerEmail = text(formData, "customerEmail");
+  if (await shouldDrop(formData, { name: customerName, phone: customerPhone, email: customerEmail })) {
+    return { success: true };
+  }
 
   const booking = await db.hotelBooking.create({
     data: {
@@ -42,7 +69,7 @@ export async function createHotelBooking(prevState, formData) {
       guests: Number(formData.get("guests")) || 1,
       customerName,
       customerPhone,
-      customerEmail: text(formData, "customerEmail") || null,
+      customerEmail: customerEmail || null,
     },
   });
 
@@ -59,6 +86,11 @@ export async function createFlightBooking(prevState, formData) {
   const error = checkContact(customerName, customerPhone);
   if (error) return { error };
 
+  const customerEmail = text(formData, "customerEmail");
+  if (await shouldDrop(formData, { name: customerName, phone: customerPhone, email: customerEmail })) {
+    return { success: true };
+  }
+
   const booking = await db.flightBooking.create({
     data: {
       airline: text(formData, "airline"),
@@ -70,7 +102,7 @@ export async function createFlightBooking(prevState, formData) {
       price: Number(formData.get("price")) || 0,
       customerName,
       customerPhone,
-      customerEmail: text(formData, "customerEmail") || null,
+      customerEmail: customerEmail || null,
     },
   });
 
@@ -87,6 +119,11 @@ export async function createTransportBooking(prevState, formData) {
   const error = checkContact(customerName, customerPhone);
   if (error) return { error };
 
+  const customerEmail = text(formData, "customerEmail");
+  if (await shouldDrop(formData, { name: customerName, phone: customerPhone, email: customerEmail })) {
+    return { success: true };
+  }
+
   const booking = await db.transportBooking.create({
     data: {
       vehicleName: text(formData, "vehicleName"),
@@ -97,7 +134,7 @@ export async function createTransportBooking(prevState, formData) {
       totalPrice: Number(formData.get("totalPrice")) || 0,
       customerName,
       customerPhone,
-      customerEmail: text(formData, "customerEmail") || null,
+      customerEmail: customerEmail || null,
     },
   });
 
