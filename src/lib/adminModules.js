@@ -45,7 +45,7 @@ export const adminModules = {
       { name: "subject", label: "Enquiry about", type: "text" },
       { name: "message", label: "Message", type: "textarea" },
       { name: "source", label: "Page", type: "text" },
-      { name: "status", label: "Status", type: "select", options: ["New", "Contacted", "Confirmed", "Cancelled"], required: true },
+      { name: "status", label: "Status", type: "select", options: ["New", "Review", "Contacted", "Confirmed", "Cancelled"], required: true },
     ],
   },
 

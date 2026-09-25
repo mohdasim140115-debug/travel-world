@@ -1,5 +1,6 @@
 "use server";
 
+import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import {
@@ -7,6 +8,7 @@ import {
   notifyHotelBooking,
   notifyTransportBooking,
 } from "@/lib/bookingEmails";
+import { checkVisitor, clientIp, enquirySpamReason } from "@/lib/spamGuard";
 
 /* =========================================================
    BOOKING REQUESTS — hotels, flights and transport
@@ -26,11 +28,15 @@ function checkContact(name, phone) {
 }
 
 /**
- * True when the submission should be dropped without a word — same reasoning
- * as the enquiry form: a bot must not learn which rule stopped it. These
- * forms also email whatever address the visitor types.
+ * Screens a submission. Spam content is dropped without a word — a bot must
+ * not learn which rule stopped it. Clean content from a blocked or
+ * rate-limited address is still stored, just not emailed, so a real customer
+ * behind a shared connection never loses their request.
+ *
+ * @returns {Promise<{ drop: boolean, notify: boolean }>}
  */
-async function shouldDrop(formData, { name, phone, email }) {
+async function screen(formData, { name, phone, email }) {
+  const headerList = await headers();
   const startedAt = Number(text(formData, "startedAt"));
 
   const reason = enquirySpamReason({
@@ -40,11 +46,11 @@ async function shouldDrop(formData, { name, phone, email }) {
     message: text(formData, "message"),
     honeypot: text(formData, "company"),
     elapsedMs: Number.isFinite(startedAt) && startedAt > 0 ? Date.now() - startedAt : null,
+    userAgent: headerList.get("user-agent"),
   });
-  if (reason) return true;
 
-  const headerList = await headers();
-  return rateLimited(clientIp(headerList));
+  const visitor = await checkVisitor(clientIp(headerList), { spam: Boolean(reason) });
+  return { drop: Boolean(reason), notify: visitor.allowed };
 }
 
 export async function createHotelBooking(prevState, formData) {
@@ -55,9 +61,8 @@ export async function createHotelBooking(prevState, formData) {
   if (error) return { error };
 
   const customerEmail = text(formData, "customerEmail");
-  if (await shouldDrop(formData, { name: customerName, phone: customerPhone, email: customerEmail })) {
-    return { success: true };
-  }
+  const screened = await screen(formData, { name: customerName, phone: customerPhone, email: customerEmail });
+  if (screened.drop) return { success: true };
 
   const booking = await db.hotelBooking.create({
     data: {
@@ -73,7 +78,7 @@ export async function createHotelBooking(prevState, formData) {
     },
   });
 
-  await notifyHotelBooking(booking);
+  if (screened.notify) await notifyHotelBooking(booking);
 
   revalidatePath("/admin/hotel-bookings");
   return { success: true };
@@ -87,9 +92,8 @@ export async function createFlightBooking(prevState, formData) {
   if (error) return { error };
 
   const customerEmail = text(formData, "customerEmail");
-  if (await shouldDrop(formData, { name: customerName, phone: customerPhone, email: customerEmail })) {
-    return { success: true };
-  }
+  const screened = await screen(formData, { name: customerName, phone: customerPhone, email: customerEmail });
+  if (screened.drop) return { success: true };
 
   const booking = await db.flightBooking.create({
     data: {
@@ -106,7 +110,7 @@ export async function createFlightBooking(prevState, formData) {
     },
   });
 
-  await notifyFlightBooking(booking);
+  if (screened.notify) await notifyFlightBooking(booking);
 
   revalidatePath("/admin/flight-bookings");
   return { success: true };
@@ -120,9 +124,8 @@ export async function createTransportBooking(prevState, formData) {
   if (error) return { error };
 
   const customerEmail = text(formData, "customerEmail");
-  if (await shouldDrop(formData, { name: customerName, phone: customerPhone, email: customerEmail })) {
-    return { success: true };
-  }
+  const screened = await screen(formData, { name: customerName, phone: customerPhone, email: customerEmail });
+  if (screened.drop) return { success: true };
 
   const booking = await db.transportBooking.create({
     data: {
@@ -138,7 +141,7 @@ export async function createTransportBooking(prevState, formData) {
     },
   });
 
-  await notifyTransportBooking(booking);
+  if (screened.notify) await notifyTransportBooking(booking);
 
   revalidatePath("/admin/transport-bookings");
   return { success: true };

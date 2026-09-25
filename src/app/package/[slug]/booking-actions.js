@@ -1,8 +1,10 @@
 "use server";
 
+import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { notifyPackageBooking } from "@/lib/bookingEmails";
+import { checkVisitor, clientIp, enquirySpamReason } from "@/lib/spamGuard";
 
 export async function createBooking(prevState, formData) {
   const packageSlug = formData.get("packageSlug");
@@ -24,18 +26,20 @@ export async function createBooking(prevState, formData) {
 
   // This form emails the address the visitor types, so it runs through the
   // same guard as the enquiry form; a bot gets the ordinary success reply.
+  const headerList = await headers();
   const startedAt = Number(formData.get("startedAt"));
+
   const spam = enquirySpamReason({
     name: customerName,
     phone: customerPhone,
     email: customerEmail || "",
     honeypot: formData.get("company")?.toString() ?? "",
     elapsedMs: Number.isFinite(startedAt) && startedAt > 0 ? Date.now() - startedAt : null,
+    userAgent: headerList.get("user-agent"),
   });
-  if (spam) return { success: true };
 
-  const headerList = await headers();
-  if (rateLimited(clientIp(headerList))) return { success: true };
+  const visitor = await checkVisitor(clientIp(headerList), { spam: Boolean(spam) });
+  if (spam) return { success: true };
 
   const booking = await db.booking.create({
     data: {
@@ -51,7 +55,7 @@ export async function createBooking(prevState, formData) {
     },
   });
 
-  await notifyPackageBooking(booking);
+  if (visitor.allowed) await notifyPackageBooking(booking);
 
   revalidatePath("/admin/bookings");
 

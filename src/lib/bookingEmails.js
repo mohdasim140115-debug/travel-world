@@ -1,4 +1,5 @@
 import { alertRecipient, sendMail } from "./mailer.js";
+import { underAttack } from "./spamGuard.js";
 
 /* =========================================================
    BOOKING EMAILS
@@ -84,23 +85,59 @@ async function alertOffice({ kind, headline, pairs, guestEmail, guestName, guest
   });
 }
 
-/** Short confirmation to the guest, only when they gave an email. */
-async function confirmGuest({ guestEmail, guestName, kind, headline, pairs }) {
-  if (!guestEmail) return { sent: false, reason: "guest left no email" };
+/* ---------- guest confirmation ----------
+   This is the one message the site sends to an address a
+   stranger typed, so it is the one a spammer can abuse to
+   make our Gmail mail the world. It is therefore the most
+   tightly held thing here:
 
-  const body = rows(pairs);
+     • it repeats none of the visitor's own words
+     • the name is stripped to plain letters
+     • there is an hourly ceiling on how many can go out
+     • it stops entirely while the site is being flooded
+     • GUEST_CONFIRMATION=off turns it off for good
+*/
+
+const GUEST_EMAIL_LIMIT_PER_HOUR = 20;
+let guestSends = [];
+
+function guestQuotaLeft() {
+  const now = Date.now();
+  guestSends = guestSends.filter((t) => now - t < 60 * 60 * 1000);
+  return guestSends.length < GUEST_EMAIL_LIMIT_PER_HOUR;
+}
+
+/** Letters, spaces and dots only — never the visitor's raw text. */
+function safeName(value) {
+  const cleaned = String(value ?? "")
+    .replace(/[^p{L}s.'-]/gu, "")
+    .trim()
+    .slice(0, 30);
+  return cleaned || "traveller";
+}
+
+/** Short confirmation to the guest, only when they gave an email. */
+async function confirmGuest({ guestEmail, guestName }) {
+  if (!guestEmail) return { sent: false, reason: "guest left no email" };
+  if (process.env.GUEST_CONFIRMATION === "off") return { sent: false, reason: "disabled" };
+  if (!guestQuotaLeft()) return { sent: false, reason: "hourly guest-mail cap reached" };
+  if (await underAttack()) return { sent: false, reason: "traffic surge — guest mail paused" };
+
+  guestSends.push(Date.now());
+
   const footer = `
-    <p style="margin:18px 0 0;color:#475569;font-size:13px;line-height:1.6;">
+    <p style="margin:0;color:#475569;font-size:13px;line-height:1.6;">
       Our team will call you shortly to confirm the details. No payment has been taken yet.
     </p>`;
 
+  // Deliberately no table: nothing the visitor typed is echoed back.
   return sendMail({
     to: guestEmail,
-    subject: `We have your ${kind} request — ${headline}`,
+    subject: "We have your request — Honor Tour & Travels",
     html: shell(
-      `Thanks, ${guestName || "traveller"}!`,
-      `We have received your ${kind} request.`,
-      body,
+      `Thanks, ${safeName(guestName)}!`,
+      "We have received your request.",
+      "",
       footer
     ),
   });

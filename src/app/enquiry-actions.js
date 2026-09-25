@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { notifyEnquiry } from "@/lib/bookingEmails";
-import { clientIp, enquirySpamReason, rateLimited } from "@/lib/spamGuard";
+import { checkVisitor, clientIp, enquirySpamReason } from "@/lib/spamGuard";
 
 /* =========================================================
    ENQUIRY FORM
@@ -36,7 +36,9 @@ export async function createEnquiry(prevState, formData) {
 
   // A bot is told the same thing a person is, so it cannot tune its payload
   // against our rules — but nothing is stored and no mail goes out.
+  const headerList = await headers();
   const startedAt = Number(text(formData, "startedAt"));
+
   const reason = enquirySpamReason({
     name,
     phone,
@@ -44,12 +46,19 @@ export async function createEnquiry(prevState, formData) {
     message,
     honeypot: text(formData, "company"),
     elapsedMs: Number.isFinite(startedAt) && startedAt > 0 ? Date.now() - startedAt : null,
+    userAgent: headerList.get("user-agent"),
   });
 
-  if (reason) return { success: true };
+  // Recorded either way: a repeat offender earns a block whether or not this
+  // particular attempt tripped a content rule.
+  const visitor = await checkVisitor(clientIp(headerList), { spam: Boolean(reason) });
 
-  const headerList = await headers();
-  if (rateLimited(clientIp(headerList))) return { success: true };
+  // Spam content is dropped outright. Clean content from a blocked or
+  // rate-limited address is still saved — a real customer behind a shared
+  // connection must never lose their enquiry — but no mail goes out for it,
+  // so a flood can never reach the mailbox. It waits in the admin panel
+  // under "Review" instead.
+  if (reason) return { success: true };
 
   const enquiry = await db.enquiry.create({
     data: {
@@ -59,10 +68,11 @@ export async function createEnquiry(prevState, formData) {
       subject: text(formData, "subject").slice(0, 160) || "General enquiry",
       message: message.slice(0, 1000) || null,
       source: text(formData, "source").slice(0, 200) || null,
+      status: visitor.allowed ? "New" : "Review",
     },
   });
 
-  await notifyEnquiry(enquiry);
+  if (visitor.allowed) await notifyEnquiry(enquiry);
 
   revalidatePath("/admin/enquiries");
   return { success: true };
