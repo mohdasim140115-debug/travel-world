@@ -21,6 +21,17 @@ function parseFieldValue(field, rawValue) {
     return items.length ? items : field.required ? [] : null;
   }
 
+  // Row lists post the same JSON the old textarea did.
+  if (field.type === "rows") {
+    const rows = JSON.parse(rawValue || "[]");
+    return rows.length ? rows : field.required ? [] : null;
+  }
+
+  if (field.type === "object") {
+    if (!rawValue || !rawValue.trim()) return null;
+    return JSON.parse(rawValue);
+  }
+
   if (field.type === "json") {
     if (!rawValue || !rawValue.trim()) return field.required ? null : null;
     return JSON.parse(rawValue);

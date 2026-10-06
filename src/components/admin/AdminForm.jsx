@@ -3,6 +3,8 @@
 import { useActionState } from "react";
 import Link from "next/link";
 import JsonListField from "./JsonListField";
+import ObjectField from "./ObjectField";
+import RowListField from "./RowListField";
 
 function Field({ field, initialValue }) {
   const commonClasses =
@@ -48,6 +50,30 @@ function Field({ field, initialValue }) {
 
   if (field.type === "string-list") {
     return <JsonListField name={field.name} initialItems={Array.isArray(initialValue) ? initialValue : []} />;
+  }
+
+  // A list of records — itinerary days, departures, FAQs — edited as
+  // labelled boxes instead of hand-written JSON.
+  if (field.type === "rows") {
+    return (
+      <RowListField
+        name={field.name}
+        columns={field.columns}
+        initialRows={Array.isArray(initialValue) ? initialValue : []}
+        addLabel={field.addLabel}
+      />
+    );
+  }
+
+  // A stored object with known keys — labelled boxes, not braces.
+  if (field.type === "object") {
+    return (
+      <ObjectField
+        name={field.name}
+        columns={field.columns}
+        initialValue={initialValue && typeof initialValue === "object" ? initialValue : {}}
+      />
+    );
   }
 
   if (field.type === "json") {

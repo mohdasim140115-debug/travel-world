@@ -1,3 +1,4 @@
+import dns from "node:dns";
 import { MongoClient } from "mongodb";
 
 /* =========================================================
@@ -13,6 +14,14 @@ if (!uri) {
     "MONGODB_URI is not set. Add your Atlas connection string to .env, e.g.\n" +
       'MONGODB_URI="mongodb+srv://user:pass@cluster0.xxxxx.mongodb.net/travel2?retryWrites=true&w=majority"'
   );
+}
+
+/* This machine's DNS server has been unreliable — it is set to 127.0.0.1
+   and sometimes refuses connections, which makes every Atlas hostname fail
+   with ENOTFOUND even though the cluster is healthy. Setting DNS_SERVERS in
+   .env points Node at a resolver that works, without touching Windows. */
+if (process.env.DNS_SERVERS) {
+  dns.setServers(process.env.DNS_SERVERS.split(",").map((s) => s.trim()).filter(Boolean));
 }
 
 const globalForMongo = globalThis;
