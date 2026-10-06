@@ -95,6 +95,9 @@ export default function PopularDestinations({ items = [], groups = [] }) {
                 <p className="truncate text-[14px] font-semibold leading-tight text-[#0F172A]">
                   {item.name}
                 </p>
+                {item.tagline ? (
+                  <p className="truncate text-[11px] font-medium text-[#0F4C81]">{item.tagline}</p>
+                ) : null}
                 <p className="mt-0.5 text-[11px] font-light text-[#6B7280]">{item.tourCount}</p>
 
                 <span className="mt-2 flex h-8 w-full items-center justify-center rounded-[9px] bg-[#FF7A1A] text-[11.5px] font-bold text-white transition group-hover:bg-[#E56A0F]">

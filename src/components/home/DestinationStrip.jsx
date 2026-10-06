@@ -29,6 +29,9 @@ export default function DestinationStrip({ destinations }) {
     return {
       name: destination.name,
       tourCount: destination.tourCount || "Explore tours",
+      // Optional one-liner from the admin ("Heaven on Earth"); it sits under
+      // the name when it is set.
+      tagline: destination.tagline || null,
       href,
       image: getDestinationImage(destination.name),
       region: regionFor(href),

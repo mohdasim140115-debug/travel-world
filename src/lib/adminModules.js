@@ -602,6 +602,7 @@ export const adminModules = {
     fields: [
       { name: "name", label: "Name", type: "text", required: true },
       { name: "tourCount", label: "Tour count label", type: "text", required: true },
+      { name: "tagline", label: "Tagline (shown under the hero city cards)", type: "text" },
       { name: "icon", label: "Icon (lucide-react name)", type: "text", required: true },
     ],
   },
