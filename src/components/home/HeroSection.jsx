@@ -21,7 +21,8 @@ import HeroSearchPanel from "./HeroSearchPanel";
    further down the page — they were duplicated here.
 ========================================================= */
 
-const script = Caveat({ subsets: ["latin"], weight: ["600", "700"], display: "swap" });
+// Only the 600 weight is used; the second file was dead weight.
+const script = Caveat({ subsets: ["latin"], weight: ["600"], display: "swap" });
 
 const BANNER = "/uploads/destinations/banner2.png";
 
@@ -68,6 +69,7 @@ export default function HeroSection({ cards, destinations }) {
           fill
           priority
           sizes="100vw"
+          quality={60}
           className="-z-10 object-cover object-center"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#06203F]/70 via-[#06203F]/25 to-[#06203F]/55 lg:bg-gradient-to-r lg:from-[#06203F]/90 lg:via-[#06203F]/55 lg:to-transparent" />

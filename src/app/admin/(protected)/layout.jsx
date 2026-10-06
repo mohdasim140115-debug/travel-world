@@ -36,6 +36,7 @@ export default function AdminLayout({ children }) {
             alt="Honor Tour &amp; Travels"
             width={929}
             height={269}
+            sizes="125px"
             className="h-9 w-auto object-contain"
           />
           <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/50">

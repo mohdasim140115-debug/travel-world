@@ -243,6 +243,7 @@ export default function Navbar() {
             width={929}
             height={269}
             priority
+            sizes="130px"
             className="h-8 w-auto object-contain sm:h-9"
           />
         </Link>
@@ -383,6 +384,7 @@ export default function Navbar() {
                 alt=""
                 width={256}
                 height={256}
+                sizes="40px"
                 className="h-10 w-10 object-contain"
               />
               <span className="leading-none">

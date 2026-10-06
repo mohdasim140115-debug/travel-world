@@ -12,6 +12,15 @@ const nextConfig = {
     // last resort. Ordered by preference — the first Accept match wins.
     formats: ["image/avif", "image/webp"],
 
+    // Cards render around 230-300px wide, so the default jump from 384 to 640
+    // made the browser fetch roughly a third more than it needed. 512 lands
+    // between them.
+    imageSizes: [32, 48, 64, 96, 128, 256, 384, 512],
+
+    // 75 stays the default; 60 is for the full-bleed hero photo, which sits
+    // behind a dark scrim where the difference is invisible but worth ~90 KB.
+    qualities: [60, 75],
+
     // Airline logos and vehicle photos are served from Wikimedia. The
     // Special:FilePath URLs redirect to upload.wikimedia.org, so both
     // hosts have to be allowed for the optimizer to fetch them.

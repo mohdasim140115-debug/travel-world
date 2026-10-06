@@ -56,6 +56,7 @@ export default function Footer() {
                 alt="Honor Tour &amp; Travels"
                 width={929}
                 height={269}
+                sizes="140px"
                 className="h-10 w-auto object-contain"
               />
             </Link>
