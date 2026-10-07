@@ -17,14 +17,12 @@ function parseFieldValue(field, rawValue) {
   }
 
   if (field.type === "string-list") {
-    const items = JSON.parse(rawValue || "[]");
-    return items.length ? items : field.required ? [] : null;
+    return JSON.parse(rawValue || "[]");
   }
 
   // Row lists post the same JSON the old textarea did.
   if (field.type === "rows") {
-    const rows = JSON.parse(rawValue || "[]");
-    return rows.length ? rows : field.required ? [] : null;
+    return JSON.parse(rawValue || "[]");
   }
 
   if (field.type === "object") {
@@ -51,9 +49,18 @@ function buildData(moduleConfig, formData) {
 }
 
 function revalidateModule(moduleConfig) {
+  // Every detail page lives on a dynamic route — /package/[slug],
+  // /india/[destination], /hotels/[city]/[hotel] and so on. A literal path
+  // like "/package" never matches those, so an edit saved to the database
+  // but the public page kept serving its cached copy. Invalidating the root
+  // layout clears every page beneath it, which is what an admin expects
+  // after pressing Save.
+  revalidatePath("/", "layout");
+
   for (const path of moduleConfig.revalidate ?? []) {
     revalidatePath(path);
   }
+
   revalidatePath("/admin", "layout");
 }
 

@@ -139,7 +139,7 @@ export default function TourFilterSidebar({
         </FilterGroup>
       )}
 
-      {countries.length > 0 && (
+      {(countries ?? []).length > 0 && (
         <SearchableCheckboxGroup
           title="Countries"
           options={countries}
