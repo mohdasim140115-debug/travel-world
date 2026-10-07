@@ -25,6 +25,16 @@ export const SITE_NAME = "Honor Tour & Travels";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.jpg`;
 export const DEFAULT_KEYWORDS = [
   "Honor Tour & Travels",
+  // Kashmir leads: it is the bulk of what the company sells.
+  "Kashmir tour packages",
+  "Srinagar tour package",
+  "Gulmarg tour package",
+  "Pahalgam tour package",
+  "Sonmarg tour package",
+  "Kashmir family tour",
+  "Kashmir honeymoon package",
+  "Jammu Kashmir tour",
+  "Leh Ladakh tour packages",
   "tour packages",
   "India tour packages",
   "world tour packages",

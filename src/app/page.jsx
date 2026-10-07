@@ -18,9 +18,9 @@ import { buildMetadata, organizationSchema, websiteSchema } from "@/lib/seo";
 import { getHomeContent } from "@/lib/homeContent";
 
 export const metadata = buildMetadata({
-  title: "Honor Tour & Travels | India & International Tour Packages, Flights, Hotels",
+  title: "Kashmir Tour Packages | Srinagar, Gulmarg, Pahalgam — Honor Tour & Travels",
   description:
-    "Book handpicked India and world tour packages, flights, hotels and transport with Honor Tour & Travels — transparent pricing, curated itineraries and 24x7 support.",
+    "Kashmir tour packages from Honor Tour & Travels — Srinagar houseboats, Gulmarg gondola, Pahalgam and Sonmarg, with stays, transport and sightseeing in one price. Ladakh, Himachal and world tours too.",
   path: "/",
 });
 

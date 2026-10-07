@@ -50,3 +50,6 @@ next-env.d.ts
 
 # local spam backup from the enquiry-table cleanup
 enquiry-spam-backup.json
+
+# local snapshot taken before the Kashmir-first homepage rewrite
+homepage-content-backup.json

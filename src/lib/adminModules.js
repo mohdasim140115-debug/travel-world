@@ -603,6 +603,7 @@ export const adminModules = {
       { name: "name", label: "Name", type: "text", required: true },
       { name: "tourCount", label: "Tour count label", type: "text", required: true },
       { name: "tagline", label: "Tagline (shown under the hero city cards)", type: "text" },
+      { name: "href", label: "Custom link (optional — e.g. /package/best-of-kashmir)", type: "text" },
       { name: "icon", label: "Icon (lucide-react name)", type: "text", required: true },
     ],
   },
@@ -625,7 +626,7 @@ export const adminModules = {
   },
 
   "home-china-promo": {
-    label: "China Promo Packages",
+    label: "Kashmir Promo Band",
     group: "Home Page",
     model: "chinaPromoPackage",
     titleField: "name",

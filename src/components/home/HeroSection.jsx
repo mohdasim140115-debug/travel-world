@@ -85,14 +85,14 @@ export default function HeroSection({ cards, destinations }) {
               </p>
 
               <h1 className="mt-3 text-[30px] font-extrabold leading-[1.08] tracking-tight text-white sm:text-[46px] lg:text-[62px]">
-                Your Next{" "}
-                <span className={`${script.className} text-[#FFA629]`}>Journey</span>
+                Your{" "}
+                <span className={`${script.className} text-[#FFA629]`}>Kashmir</span>
                 <span className="block">Starts Here</span>
               </h1>
 
               <p className="mt-2.5 max-w-[520px] text-[13.5px] leading-relaxed text-white/85 sm:text-[15px] lg:text-[16px]">
-                Handpicked tour packages, flights, hotels and unique experiences to make every
-                trip unforgettable.
+                Srinagar, Gulmarg, Pahalgam and Sonmarg — planned by a team that lives
+                here. Stays, transport and sightseeing in one price.
               </p>
 
               {/* TRUST BADGES */}

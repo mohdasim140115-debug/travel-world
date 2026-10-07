@@ -57,12 +57,12 @@ export default function ChinaPromo({ promoPackages }) {
               </div>
 
               <h2 className="mt-3 text-[26px] font-black italic leading-[1.15] text-[#0F172A] sm:text-[32px] lg:mt-2 lg:text-[34px] lg:leading-[1.15]">
-                <span className="text-[#17BEBB]">5,000</span> Years Ancient.{" "}
-                <span className="text-[#0F4C81]">50</span> Years Ahead.
+                <span className="text-[#17BEBB]">Paradise</span> on Earth.{" "}
+                <span className="text-[#0F4C81]">Planned</span> to the detail.
               </h2>
 
               <p className="mt-3 text-[14px] font-semibold italic text-[#17BEBB] sm:text-[15px] lg:mt-1.5 lg:text-[14px]">
-                Discover all-inclusive China tours with Honor Tour & Travels
+                All-inclusive Kashmir tours, run by our own team in the valley
               </p>
 
               <CardRail className="mt-5 flex gap-3 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory sm:grid sm:grid-cols-4 sm:overflow-visible sm:pb-0 md:mt-6 lg:mt-4" label="packages">
@@ -91,8 +91,8 @@ export default function ChinaPromo({ promoPackages }) {
             {/* IMAGE — bleeds to the box edge */}
             <div className="relative order-1 h-[220px] w-full overflow-hidden rounded-[20px] lg:order-2 lg:h-[320px] lg:self-center">
               <Image
-                src={getDestinationImage("china")}
-                alt="China"
+                src={getDestinationImage("kashmir")}
+                alt="Kashmir"
                 className="object-cover"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"

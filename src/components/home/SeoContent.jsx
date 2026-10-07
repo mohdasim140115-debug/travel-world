@@ -5,18 +5,30 @@ export default function SeoContent() {
     <section className="px-3 py-12 sm:px-6 sm:py-16 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
         <h2 className="text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">
-          Find the best travel packages at Honor Tour & Travels
+          Kashmir tour packages with Honor Tour &amp; Travels
         </h2>
 
         <div className="mt-6 space-y-4 text-[13px] leading-[1.8] text-[#4B5563]">
           <p>
-            Discover premium India tour packages and international tour packages that cater to every traveler&apos;s needs. Whether you&apos;re looking for family tour packages, honeymoon packages, or group tours, Honor Tour & Travels offers carefully curated itineraries that ensure unforgettable memories. Our travel packages from India span across stunning destinations including Europe tours, Kashmir tours, Kerala tours, and Rajasthan tours, all designed with your comfort and convenience in mind.
+            Kashmir is what we do best. Our Kashmir tour packages cover Srinagar and its
+            houseboats on Dal Lake, the meadows of Gulmarg, the pine valleys of Pahalgam and
+            the glacier road to Sonmarg — with shikara rides, gondola tickets and local
+            sightseeing already built into the price. Whether you want a short five-day
+            Kashmir trip, a seven-day family itinerary or a longer Jammu Kashmir tour that
+            starts at Katra, every departure is run by our own team on the ground.
           </p>
           <p>
-            With years of experience in the travel industry, we specialize in customized holidays that match your preferences and budget. From Asia&apos;s tropical escapes to Europe&apos;s historic landmarks, our international tour packages provide seamless experiences with expert tour managers, comfortable accommodations, and inclusive amenities. Choose from our extensive portfolio of tour packages that combine adventure, culture, relaxation, and authentic experiences.
+            Beyond the valley we also run Leh Ladakh tours over Nubra Valley, Pangong Lake and
+            Kargil, plus Kashmir departures made for specific groups — women&apos;s special
+            tours with women tour managers, and seniors&apos; special tours at an easier pace
+            with fewer transfers. Honeymoon couples, families with young children and large
+            group bookings are all handled as customised Kashmir itineraries.
           </p>
           <p>
-            At Honor Tour & Travels, we believe every traveler deserves a journey tailored to their dreams. Our commitment to excellence, competitive pricing, and personalized service has made us a trusted choice for thousands of families and groups planning their next adventure. Explore our complete range of tour packages and start your journey with us today.
+            We continue to run selected India and international holidays — Himachal, Kerala,
+            Rajasthan, Andaman, Europe, Dubai and South East Asia — for travellers who book
+            with us year after year. But Kashmir remains our home ground, and it is where our
+            pricing, our transport and our local contacts are strongest.
           </p>
         </div>
 

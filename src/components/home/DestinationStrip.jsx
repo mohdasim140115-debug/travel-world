@@ -24,7 +24,12 @@ export default function DestinationStrip({ destinations }) {
   const source = destinations?.length ? destinations : homeData.destinations;
 
   const items = source.map((destination) => {
-    const href = getDestinationHref(nameAliases[destination.name] || destination.name) || "/india";
+    // A row may carry its own link — Kashmir's valleys are sold as packages
+    // rather than as separate destination pages.
+    const href =
+      destination.href ||
+      getDestinationHref(nameAliases[destination.name] || destination.name) ||
+      "/india";
 
     return {
       name: destination.name,

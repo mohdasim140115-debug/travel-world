@@ -24,10 +24,10 @@ export default function PopularDestinations({ items = [], groups = [] }) {
       <div className="flex items-end justify-between gap-4">
         <div>
           <h2 className="text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">
-            Popular destinations
+            Kashmir &amp; beyond
           </h2>
           <p className="mt-1.5 text-[14px] font-light text-[#60646C]">
-            The places our travellers book the most, all year round.
+            Srinagar, Gulmarg, Pahalgam and Sonmarg — plus the India and world tours we still run.
           </p>
         </div>
       </div>

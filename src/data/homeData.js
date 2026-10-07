@@ -1,7 +1,7 @@
 export const homeData = {
   hero: {
-    title: "PAISA VASOOL Tours",
-    tagline: "Chalo, Bag Bharo, Nikal Pado!",
+    title: "Kashmir Specialists",
+    tagline: "Srinagar · Gulmarg · Pahalgam · Sonmarg",
     cards: [
       { title: "India Tours", subtitle: "264 Tours • 666 Departures" },
       { title: "World Tours", subtitle: "329 Tours • 569 Departures" },
