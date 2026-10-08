@@ -233,7 +233,11 @@ export const adminModules = {
       { name: "tabs", label: "Tabs", type: "string-list" },
       { name: "countries", label: "Countries", type: "string-list" },
       { name: "cities", label: "Cities", type: "string-list" },
-      { name: "packageSlugs", label: "Package slugs", type: "string-list", required: true },
+      {
+        name: "packageSlugs",
+        label: "Package slugs (leave empty to list this destination's own tours automatically)",
+        type: "string-list",
+      },
       { name: "joiningLeavingCities", label: "Joining/leaving cities", type: "string-list" },
       {
         name: "related",
@@ -294,7 +298,11 @@ export const adminModules = {
       { name: "reviewsLabel", label: "Reviews label", type: "text" },
       { name: "intro", label: "Intro", type: "textarea", required: true },
       { name: "introExtra", label: "Intro (extra)", type: "textarea" },
-      { name: "packageSlugs", label: "Package slugs", type: "string-list", required: true },
+      {
+        name: "packageSlugs",
+        label: "Package slugs (leave empty to list this destination's own tours automatically)",
+        type: "string-list",
+      },
       {
         name: "linkCloudTargets",
         label: "Link cloud targets",

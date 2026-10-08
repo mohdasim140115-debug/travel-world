@@ -1,5 +1,5 @@
 import { packages } from "./packages.js";
-import { getSiblingCityNames, getSiblingRegionNames } from "./navigationData.js";
+import { getParentNamesFor, getSiblingCityNames, getSiblingRegionNames } from "./navigationData.js";
 
 /* =========================================================
    RAW DESTINATION DATA
@@ -796,10 +796,19 @@ function toSlug(name) {
     .replace(/(^-+|-+$)/g, "");
 }
 
-function buildDestinationConfig(raw) {
-  const resolvedPackages = raw.packageSlugs
-    .map((slug) => packages.find((item) => item.slug === slug))
+function buildDestinationConfig(raw, catalogue = packages) {
+  // A stored list is treated as a deliberate pin; otherwise the tours are
+  // matched live, so catalogue edits flow through to every destination page.
+  const pinned = (raw.packageSlugs || [])
+    .map((slug) => catalogue.find((item) => item.slug === slug))
     .filter(Boolean);
+
+  const resolvedPackages = pinned.length
+    ? pinned
+    : packagesForDestination(raw.parent, raw.name, catalogue);
+
+  const packageCount = resolvedPackages.length;
+  const liveTourCount = Math.max(1, Math.min(raw.liveTourCount || 3, packageCount || 1));
 
   // "By Region/City" tiles link out to their own destination page
   // (curated if one exists, otherwise the generic fallback resolver
@@ -819,12 +828,15 @@ function buildDestinationConfig(raw) {
     intro: raw.intro,
     introExtra: raw.introExtra,
     reviewsLabel: raw.reviewsLabel,
-    tabs: raw.tabs,
+    // Counts follow the tours actually listed, never a stale stored number.
+    tabs: (raw.tabs || []).map((tab, index) =>
+      index === 0 ? `All ${raw.name} (${packageCount})` : tab,
+    ),
     listing: {
-      countLine1: `${raw.packageCount} ${raw.name}`,
+      countLine1: `${packageCount} ${raw.name}`,
       countLine2: "Holiday Packages",
-      showingLabel: `Showing 1-10 packages from ${raw.packageCount} packages`,
-      liveBadgeLabel: `${raw.liveTourCount} Tours Ongoing in ${raw.name} right now!`,
+      showingLabel: `Showing 1-${Math.min(10, packageCount)} packages from ${packageCount} packages`,
+      liveBadgeLabel: `${liveTourCount} Tours Ongoing in ${raw.name} right now!`,
     },
     filters: {
       departureCities: [
@@ -989,26 +1001,52 @@ function deriveNameFromSlug(slug) {
     .join(" ");
 }
 
-function matchPackagesByName(name) {
-  const key = name.toLowerCase();
-  const keywords = Array.from(new Set([key, ...(ALIAS_KEYWORDS[key] || [])]));
+// Words that would match half the catalogue if used on their own.
+const WEAK_TOKENS = new Set([
+  "north", "south", "east", "west", "central", "india", "indian", "tour",
+  "tours", "package", "packages", "and", "the", "new", "city", "valley",
+]);
 
-  return packages.filter((pkg) => {
-    const haystack = `${pkg.title} ${pkg.location} ${pkg.category}`.toLowerCase();
+function matchPackagesByName(name, catalogue = packages) {
+  const key = name.toLowerCase();
+
+  // "Leh-Ladakh" has no package of that exact name, but "All of Ladakh" is
+  // plainly the right tour — so each strong word in the name counts too.
+  const tokens = key
+    .split(/[^a-z]+/)
+    .filter((token) => token.length >= 4 && !WEAK_TOKENS.has(token));
+
+  const keywords = Array.from(new Set([key, ...(ALIAS_KEYWORDS[key] || []), ...tokens]));
+
+  return catalogue.filter((pkg) => {
+    const haystack = `${pkg.title} ${pkg.location} ${pkg.category} ${(pkg.highlights || []).join(" ")}`.toLowerCase();
     return keywords.some((keyword) => haystack.includes(keyword));
   });
 }
 
-function synthesizeDestination(parent, slug) {
+/**
+ * The tours a destination shows. Matched live against the catalogue so a
+ * package added or renamed in the admin appears on its destination pages
+ * straight away — a stored list would freeze them at seed time.
+ */
+export function packagesForDestination(parent, name, catalogue = packages) {
+  let matches = matchPackagesByName(name, catalogue);
+  if (matches.length) return matches;
+
+  // No tours of its own: show the region's instead (Gulmarg -> Kashmir).
+  for (const sibling of getParentNamesFor(parent, name)) {
+    matches = matchPackagesByName(sibling, catalogue);
+    if (matches.length) return matches;
+  }
+
+  return [];
+}
+
+function synthesizeDestination(parent, slug, catalogue = packages) {
   const name = deriveNameFromSlug(slug);
   if (!name) return null;
 
-  let matches = matchPackagesByName(name);
-
-  if (matches.length === 0) {
-    const flagshipSlugs = parent === "india" ? INDIA_FLAGSHIP_SLUGS : WORLD_FLAGSHIP_SLUGS;
-    matches = flagshipSlugs.map((s) => packages.find((pkg) => pkg.slug === s)).filter(Boolean);
-  }
+  const matches = packagesForDestination(parent, name, catalogue);
 
   const packageSlugs = matches.slice(0, 8).map((pkg) => pkg.slug);
   const parentLabel = parent === "india" ? "India" : "World";
@@ -1077,7 +1115,7 @@ function synthesizeDestination(parent, slug) {
   return { raw, config: buildDestinationConfig(raw) };
 }
 
-export function getDestination(parent, slug, records) {
+export function getDestination(parent, slug, records, catalogue) {
   // `records` comes from the destination collection; this file's own list is
   // the fallback, and anything in neither is synthesized as before.
   // Stored records win, and this file fills any gap — otherwise a slug that
@@ -1087,8 +1125,8 @@ export function getDestination(parent, slug, records) {
     ? [...records, ...rawDestinations.filter((item) => !records.some((r) => r.parent === item.parent && r.slug === item.slug))]
     : rawDestinations;
   const raw = source.find((item) => item.parent === parent && item.slug === slug);
-  if (raw) return { raw, config: buildDestinationConfig(raw) };
-  return synthesizeDestination(parent, slug);
+  if (raw) return { raw, config: buildDestinationConfig(raw, catalogue) };
+  return synthesizeDestination(parent, slug, catalogue);
 }
 
 export function getDestinationParams(parent) {

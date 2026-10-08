@@ -269,3 +269,19 @@ export function getSiblingRegionNames(navigationParent, name) {
   if (!match) return [];
   return match.region.columns.map((col) => col.heading.name);
 }
+
+/**
+ * The column heading a place sits under, then its region — so a page for a
+ * valley with no tours of its own can fall back to its state's tours
+ * (Gulmarg -> Kashmir -> North India) rather than to an unrelated flagship.
+ */
+export function getParentNamesFor(navigationParent, name) {
+  const nav = navigationParent === "india" ? indiaNavigation : worldNavigation;
+  const match = findColumnFor(nav, name);
+  if (!match) return [];
+
+  const heading = match.col.heading.name;
+  const region = match.region.name || match.region.label || "";
+
+  return [heading, region].filter((item) => item && item.toLowerCase() !== name.toLowerCase());
+}

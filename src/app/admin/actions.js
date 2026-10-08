@@ -70,10 +70,13 @@ export async function createRecord(moduleSlug, formData) {
   if (!moduleConfig) throw new Error("Unknown module");
 
   const data = buildData(moduleConfig, formData);
-  await db[moduleConfig.model].create({ data });
+  const created = await db[moduleConfig.model].create({ data });
 
   revalidateModule(moduleConfig);
-  redirect(`/admin/${moduleSlug}`);
+
+  // Land on the new record rather than the list, so the next edit continues
+  // where the admin already is.
+  redirect(`/admin/${moduleSlug}/${created.id}/edit`);
 }
 
 export async function updateRecord(moduleSlug, id, formData) {
@@ -85,7 +88,9 @@ export async function updateRecord(moduleSlug, id, formData) {
   await db[moduleConfig.model].update({ where: { id }, data });
 
   revalidateModule(moduleConfig);
-  redirect(`/admin/${moduleSlug}`);
+
+  // No redirect: saving should leave the admin on the page they were editing.
+  return { saved: true };
 }
 
 export async function deleteRecord(moduleSlug, id) {

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { SlidersHorizontal, X } from "lucide-react";
 import TourFilterSidebar from "./TourFilterSidebar";
 import TourPackageCard from "./TourPackageCard";
+import EnquiryTrigger from "@/components/common/EnquiryTrigger";
 import { toCardItem, filterPackages } from "./tourUtils";
 
 /* =========================================================
@@ -199,14 +200,35 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {filteredPackages.length === 0 && (
           <div className="col-span-full rounded-[14px] border border-dashed border-[#D1D5DB] bg-white p-8 text-center text-[13px] text-[#667085]">
-            <p>No packages match the selected filters.</p>
-            <button
-              type="button"
-              onClick={handleReset}
-              className="mt-3 rounded-full border border-[#0F4C81] px-4 py-2 text-[12px] font-semibold text-[#0F4C81] transition hover:bg-[#0F4C81] hover:text-white"
-            >
-              Clear Filters
-            </button>
+            {packages.length === 0 ? (
+              <>
+                {/* The destination itself has no tours yet — a filter reset
+                    would change nothing, so offer a planner instead. */}
+                <p className="text-[15px] font-semibold text-[#0F172A]">
+                  We are still putting tours together for this destination.
+                </p>
+                <p className="mt-1.5">
+                  Tell us your dates and we will plan a custom itinerary for you.
+                </p>
+                <EnquiryTrigger
+                  subject="Custom itinerary request"
+                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#FF7A1A] px-5 py-2.5 text-[13px] font-bold text-white transition hover:bg-[#E56A0F]"
+                >
+                  Plan My Trip
+                </EnquiryTrigger>
+              </>
+            ) : (
+              <>
+                <p>No packages match the selected filters.</p>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="mt-3 rounded-full border border-[#0F4C81] px-4 py-2 text-[12px] font-semibold text-[#0F4C81] transition hover:bg-[#0F4C81] hover:text-white"
+                >
+                  Clear Filters
+                </button>
+              </>
+            )}
           </div>
         )}
 

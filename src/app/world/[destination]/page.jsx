@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
 import { getDestination, getDestinationParams } from "@/data/destinations";
 import { getDestinationParamsFromDb, getDestinationRecords } from "@/lib/destinations";
+import { getAllPackages } from "@/lib/packages";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
@@ -15,7 +16,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { destination } = await params;
-  const result = getDestination("world", destination, await getDestinationRecords());
+  const result = getDestination("world", destination, await getDestinationRecords(), await getAllPackages());
 
   if (!result) {
     return buildMetadata({
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }) {
 
 export default async function WorldDestinationPage({ params }) {
   const { destination } = await params;
-  const result = getDestination("world", destination, await getDestinationRecords());
+  const result = getDestination("world", destination, await getDestinationRecords(), await getAllPackages());
 
   if (!result) {
     notFound();

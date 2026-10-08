@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import Link from "next/link";
+import { Check } from "lucide-react";
 import JsonListField from "./JsonListField";
 import ObjectField from "./ObjectField";
 import RowListField from "./RowListField";
@@ -128,7 +129,8 @@ export default function AdminForm({ moduleSlug, moduleConfig, action, initialVal
   const [state, formAction, isPending] = useActionState(async (_prev, formData) => {
     try {
       await action(formData);
-      return null;
+      // Editing returns instead of redirecting, so confirm in place.
+      return { saved: true, at: Date.now() };
     } catch (error) {
       if (error?.digest?.startsWith("NEXT_REDIRECT")) throw error;
       return { error: error?.message || "Something went wrong." };
@@ -151,6 +153,13 @@ export default function AdminForm({ moduleSlug, moduleConfig, action, initialVal
         <p className="rounded-[8px] bg-red-50 px-3 py-2 text-[12px] font-medium text-red-600">{state.error}</p>
       )}
 
+      {state?.saved && !isPending && (
+        <p className="flex items-center gap-2 rounded-[8px] bg-[#ECFDF5] px-3 py-2 text-[12.5px] font-semibold text-[#047857]">
+          <Check className="h-4 w-4" />
+          Saved — the change is live on the site.
+        </p>
+      )}
+
       <div className="flex items-center gap-3 border-t border-[#E5E7EB] pt-4">
         <button
           type="submit"
@@ -163,7 +172,7 @@ export default function AdminForm({ moduleSlug, moduleConfig, action, initialVal
           href={cancelHref}
           className="flex h-[42px] items-center justify-center rounded-[8px] border border-[#D1D5DB] px-6 text-[14px] font-semibold text-[#475569] hover:border-[#94A3B8]"
         >
-          Cancel
+          Back to list
         </Link>
       </div>
     </form>
