@@ -8,18 +8,19 @@ import FlightSearchForm from "@/components/flights/FlightSearchForm";
 import FlightResults from "@/components/flights/FlightResults";
 import FlightRouteContent from "@/components/flights/FlightRouteContent";
 import FlightFAQ from "@/components/flights/FlightFAQ";
-import { getAllRouteSlugs, getRoute, getRouteFaqs } from "@/data/flightRoutes";
+import { getRouteFaqs } from "@/data/flightRoutes";
+import { getAirports, getFlightRoute, getFlightRouteSlugs } from "@/lib/flights";
 import { db } from "@/lib/db";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
-export function generateStaticParams() {
-  return getAllRouteSlugs();
+export async function generateStaticParams() {
+  return getFlightRouteSlugs();
 }
 
 export async function generateMetadata({ params }) {
   const { route: slug } = await params;
-  const route = getRoute(slug);
+  const route = await getFlightRoute(slug);
 
   if (!route) {
     return buildMetadata({
@@ -39,18 +40,21 @@ export async function generateMetadata({ params }) {
 
 export default async function FlightRoutePage({ params }) {
   const { route: slug } = await params;
-  const route = getRoute(slug);
+  const route = await getFlightRoute(slug);
 
   if (!route) {
     notFound();
   }
 
-  const otherRouteObjects = (route.otherRoutes || [])
-    .map((otherSlug) => getRoute(otherSlug))
-    .filter((item) => item && item.slug !== route.slug);
+  const otherRouteObjects = (
+    await Promise.all((route.otherRoutes || []).map((otherSlug) => getFlightRoute(otherSlug)))
+  ).filter((item) => item && item.slug !== route.slug);
 
   const faqs = getRouteFaqs(route);
-  const airlines = await db.airline.findMany({ orderBy: { order: "asc" } });
+  const [airlines, airports] = await Promise.all([
+    db.airline.findMany({ orderBy: { order: "asc" } }),
+    getAirports(),
+  ]);
 
   return (
     <>
@@ -97,7 +101,7 @@ export default async function FlightRoutePage({ params }) {
             </p>
 
             <div className="mt-5">
-              <FlightSearchForm initialFrom={route.from} initialTo={route.to} compact />
+              <FlightSearchForm initialFrom={route.from} initialTo={route.to} airports={airports} compact />
             </div>
           </div>
         </section>

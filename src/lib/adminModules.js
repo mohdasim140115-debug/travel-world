@@ -464,27 +464,6 @@ export const adminModules = {
     ],
   },
 
-  "india-listing": {
-    label: "Listing Packages",
-    group: "India Page",
-    model: "indiaListingPackage",
-    titleField: "title",
-    revalidate: ["/india"],
-    listColumns: ["title", "slug", "price"],
-    fields: [
-      { name: "slug", label: "Slug", type: "text", required: true },
-      { name: "title", label: "Title", type: "text", required: true },
-      { name: "image", label: "Image", type: "image", required: true },
-      { name: "tags", label: "Tags", type: "string-list" },
-      { name: "days", label: "Days label", type: "text", required: true },
-      { name: "cities", label: "Cities label", type: "text", required: true },
-      { name: "dates", label: "Dates label", type: "text", required: true },
-      { name: "price", label: "Price label", type: "text", required: true },
-      { name: "emi", label: "EMI label", type: "text", required: true },
-      { name: "highlights", label: "Highlights", type: "text", required: true },
-    ],
-  },
-
   "india-explore-tiles": {
     label: "Explore Tiles",
     group: "India Page",

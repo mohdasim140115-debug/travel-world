@@ -7,7 +7,7 @@ import PopularFlightRoutes from "@/components/flights/PopularFlightRoutes";
 import FlightBenefits from "@/components/flights/FlightBenefits";
 import FlightBookingSteps from "@/components/flights/FlightBookingSteps";
 import FlightFAQ from "@/components/flights/FlightFAQ";
-import { getPopularRoutes } from "@/data/flightRoutes";
+import { getAirports, getFlightRoutes } from "@/lib/flights";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
@@ -51,8 +51,8 @@ const faqs = [
   },
 ];
 
-export default function FlightsPage() {
-  const routes = getPopularRoutes();
+export default async function FlightsPage() {
+  const [routes, airports] = await Promise.all([getFlightRoutes(), getAirports()]);
 
   return (
     <>
@@ -85,7 +85,7 @@ export default function FlightsPage() {
             </div>
 
             <div className="mt-6">
-              <FlightSearchForm initialFrom="Mumbai" initialTo="Delhi" />
+              <FlightSearchForm initialFrom="Mumbai" initialTo="Delhi" airports={airports} />
             </div>
           </div>
         </section>

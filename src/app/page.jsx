@@ -38,6 +38,7 @@ export default async function Home() {
         <LiveTours cards={content.liveTourCards} trustReviews={content.trustReviews} />
         <ChinaPromo promoPackages={content.chinaPromoPackages} />
         <MostLovedTours
+          promoSlides={content.promoSlides}
           promoDestinations={content.mostLovedPromoDestinations}
           destinations={content.mostLovedDestinations}
         />

@@ -5,7 +5,7 @@ import { getDepartureCityParamsFromDb } from "@/lib/departureCities";
 import { getDestinationParams } from "@/data/destinations";
 import { getSpecialitySlugs } from "@/data/specialityTours";
 import { getDepartureCityParams } from "@/data/departureCities";
-import { getAllRouteSlugs } from "@/data/flightRoutes";
+import { getFlightRouteSlugs } from "@/lib/flights";
 import { db } from "@/lib/db";
 
 /* =========================================================
@@ -39,6 +39,7 @@ const merge = (fromDb, fromFile, key) => {
 };
 
 export default async function sitemap() {
+  const flightRouteSlugs = await getFlightRouteSlugs();
   const [packages, transportRoutes, hotels, indiaFromDb, worldFromDb, citiesFromDb] = await Promise.all([
     getPackageSlugs(),
     db.transportRoute.findMany({ select: { slug: true } }),
@@ -81,7 +82,7 @@ export default async function sitemap() {
     // dynamic route. Listing the internal path here would fight the canonical.
     ...departureCities.map(({ city }) => url(`/tour-packages-from-${city}`, { priority: 0.6 })),
 
-    ...getAllRouteSlugs().map(({ route }) => url(`/flights/${route}`, { priority: 0.6 })),
+    ...flightRouteSlugs.map(({ route }) => url(`/flights/${route}`, { priority: 0.6 })),
     ...transportRoutes.map((route) => url(`/transport/${route.slug}`, { priority: 0.6 })),
 
     ...Array.from(new Set(hotels.map((hotel) => hotel.citySlug))).map((citySlug) =>

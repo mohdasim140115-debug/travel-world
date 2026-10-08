@@ -278,20 +278,25 @@ const rawRoutes = [
   },
 ];
 
-export const flightRoutes = rawRoutes.map((route) => ({
-  ...route,
-  title: `${route.from} to ${route.to} Flights`,
-  flights: generateFlights({
-    slug: route.slug,
-    fromCode: route.fromCode,
-    toCode: route.toCode,
-    baseDuration: route.baseDuration,
-    minPrice: route.minPrice,
-    maxPrice: route.maxPrice,
-    count: route.count,
-    allowStops: route.allowStops,
-  }),
-}));
+/** Turns a stored or static route row into the shape the pages render. */
+export function buildRoute(route) {
+  return {
+    ...route,
+    title: `${route.from} to ${route.to} Flights`,
+    flights: generateFlights({
+      slug: route.slug,
+      fromCode: route.fromCode,
+      toCode: route.toCode,
+      baseDuration: route.baseDuration,
+      minPrice: route.minPrice,
+      maxPrice: route.maxPrice,
+      count: route.count,
+      allowStops: route.allowStops,
+    }),
+  };
+}
+
+export const flightRoutes = rawRoutes.map(buildRoute);
 
 /* =========================================================
    ACCESSORS

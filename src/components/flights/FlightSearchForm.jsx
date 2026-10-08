@@ -4,7 +4,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeftRight, CalendarDays, MapPin, Search, Users } from "lucide-react";
 
-import { airports, buildRouteSlug, searchAirports } from "@/data/airports";
+// The airport list is admin-managed and arrives as a prop; the helpers
+// stay in the data file because they are pure string work.
+import { airports as fallbackAirports, buildRouteSlug } from "@/data/airports";
 
 /* =========================================================
    SHARED FLIGHT SEARCH FORM
@@ -12,11 +14,22 @@ import { airports, buildRouteSlug, searchAirports } from "@/data/airports";
    Client-side only: navigates to /flights/from-to-to.
 ========================================================= */
 
-function CityField({ label, value, onChange, placeholder }) {
+function matchAirports(list, query) {
+  const q = query.trim().toLowerCase();
+  if (!q) return list.slice(0, 8);
+  return list.filter(
+    (airport) =>
+      airport.city.toLowerCase().includes(q) ||
+      airport.code.toLowerCase().includes(q) ||
+      (airport.country || "").toLowerCase().includes(q),
+  );
+}
+
+function CityField({ label, value, onChange, placeholder, options }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState(value);
 
-  const suggestions = searchAirports(query).slice(0, 6);
+  const suggestions = matchAirports(options, query).slice(0, 6);
 
   return (
     <div className="relative min-w-0 flex-1">
@@ -65,7 +78,12 @@ function CityField({ label, value, onChange, placeholder }) {
   );
 }
 
-export default function FlightSearchForm({ initialFrom = "Mumbai", initialTo = "Delhi", compact = false }) {
+export default function FlightSearchForm({
+  initialFrom = "Mumbai",
+  initialTo = "Delhi",
+  airports = fallbackAirports,
+  compact = false,
+}) {
   const router = useRouter();
   const [tripType, setTripType] = useState("oneway");
   const [from, setFrom] = useState(initialFrom);
@@ -120,7 +138,7 @@ export default function FlightSearchForm({ initialFrom = "Mumbai", initialTo = "
 
       <div className="mt-3 grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr_0.8fr_0.8fr_1fr_auto]">
         <div className="relative">
-          <CityField label="From" value={from} onChange={setFrom} placeholder="Mumbai" />
+          <CityField label="From" value={from} onChange={setFrom} placeholder="Mumbai" options={airports} />
 
           <button
             type="button"
@@ -141,7 +159,7 @@ export default function FlightSearchForm({ initialFrom = "Mumbai", initialTo = "
           <ArrowLeftRight size={14} />
         </button>
 
-        <CityField label="To" value={to} onChange={setTo} placeholder="Delhi" />
+        <CityField label="To" value={to} onChange={setTo} placeholder="Delhi" options={airports} />
 
         <div>
           <label className="block text-[11px] font-semibold uppercase tracking-wide text-[#6B7280]">

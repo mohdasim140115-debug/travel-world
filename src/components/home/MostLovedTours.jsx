@@ -5,7 +5,7 @@ import { Heart } from "lucide-react";
 import { homeData } from "@/data/homeData";
 import PromoCarousel from "./PromoCarousel";
 
-export default function MostLovedTours({ promoDestinations, destinations }) {
+export default function MostLovedTours({ promoDestinations, destinations, promoSlides }) {
   const mostLovedTours = {
     ...homeData.mostLovedTours,
     promoDestinations: promoDestinations?.length
@@ -20,7 +20,7 @@ export default function MostLovedTours({ promoDestinations, destinations }) {
         <div className="grid gap-5 md:gap-6 lg:grid-cols-[32%_1fr]">
 
           {/* ================= LEFT: PROMOTIONAL BANNER CAROUSEL ================= */}
-          <PromoCarousel />
+          <PromoCarousel slides={promoSlides} />
 
           {/* ================= RIGHT: MOST LOVED GRID ================= */}
           <div className="min-w-0 overflow-hidden rounded-[16px] border border-[#E5E7EB] bg-[#F7FAFC] p-4 sm:p-5">

@@ -145,7 +145,7 @@ export default async function PackageDetailPage({ params }) {
   }
 
   const heroImage = tour.image || getDestinationImage(`${tour.title} ${tour.location}`);
-  const galleryImages = [heroImage, ...getDestinationImages(`${tour.title} ${tour.location}`, 6)].filter(
+  const galleryImages = [heroImage, ...getDestinationImages(`${tour.title} ${tour.location}`)].filter(
     (image, index, all) => all.indexOf(image) === index,
   );
 

@@ -1080,7 +1080,12 @@ function synthesizeDestination(parent, slug) {
 export function getDestination(parent, slug, records) {
   // `records` comes from the destination collection; this file's own list is
   // the fallback, and anything in neither is synthesized as before.
-  const source = records?.length ? records : rawDestinations;
+  // Stored records win, and this file fills any gap — otherwise a slug that
+  // exists here but not in the collection would fall through to the generic
+  // synthesizer and lose its curated content.
+  const source = records?.length
+    ? [...records, ...rawDestinations.filter((item) => !records.some((r) => r.parent === item.parent && r.slug === item.slug))]
+    : rawDestinations;
   const raw = source.find((item) => item.parent === parent && item.slug === slug);
   if (raw) return { raw, config: buildDestinationConfig(raw) };
   return synthesizeDestination(parent, slug);
