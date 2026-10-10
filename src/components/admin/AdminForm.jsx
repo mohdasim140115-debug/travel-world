@@ -495,8 +495,9 @@ export default function AdminForm({
         ))}
 
         {/* STICKY ACTION BAR */}
-        <div className="fixed inset-x-0 bottom-0 z-20 border-t border-[#E5E7EB] bg-white/95 backdrop-blur">
-          <div className="mx-auto flex max-w-[1600px] flex-wrap items-center justify-between gap-3 px-5 py-3">
+        {/* Clears the pinned sidebar rather than running underneath it. */}
+        <div className="fixed bottom-0 left-[248px] right-0 z-20 border-t border-[#E5E7EB] bg-white/95 backdrop-blur">
+          <div className="flex flex-wrap items-center justify-between gap-3 px-8 py-3">
             <p className="flex items-center gap-2 text-[12.5px] font-medium text-[#64748B]">
               {dirty ? (
                 <>
