@@ -169,6 +169,19 @@ export function hotelSchema({ name, description, image, address, rating, reviewC
   };
 }
 
+/** FAQ rich results — Google can show these straight in the SERP. */
+export function faqSchema(items) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+}
+
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",

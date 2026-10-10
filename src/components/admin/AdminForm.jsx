@@ -11,6 +11,7 @@ import {
   IndianRupee,
   Info,
   ListChecks,
+  MessageCircleQuestion,
   Route,
   Save,
   Search,
@@ -61,6 +62,7 @@ function Field({ field, initialValue, placeholder, onChange }) {
         <option value="" disabled>
           Select...
         </option>
+
         {field.options.map((option) => (
           <option key={option} value={option}>
             {option}
@@ -254,6 +256,7 @@ const CARD_ICONS = {
   calendar: CalendarDays,
   list: ListChecks,
   seo: Search,
+  faq: MessageCircleQuestion,
 };
 
 function Card({ title, icon, children }) {

@@ -41,49 +41,9 @@ import FeatureItem from "@/components/package/FeatureItem";
 import TourPackageCard from "@/components/tours/TourPackageCard";
 import { toCardItem } from "@/components/tours/tourUtils";
 import JsonLd from "@/components/common/JsonLd";
-import { buildMetadata, breadcrumbSchema, tourSchema } from "@/lib/seo";
-
-const DEFAULT_EXCLUSIONS = [
-  "Personal expenses and shopping",
-  "Optional sightseeing and activities",
-  "Meals not specifically mentioned",
-  "Travel insurance unless mentioned",
-  "Additional services requested during the tour",
-];
-
-const DEFAULT_CANCELLATION_POLICY = [
-  { period: "45 days or more before departure", charge: "Registration amount" },
-  { period: "30 - 44 days before departure", charge: "25% of tour cost" },
-  { period: "15 - 29 days before departure", charge: "50% of tour cost" },
-  { period: "8 - 14 days before departure", charge: "75% of tour cost" },
-  { period: "0 - 7 days before departure", charge: "100% of tour cost" },
-];
-
-const DEFAULT_PAYMENT_TERMS = [
-  "A registration amount is payable at the time of booking to confirm your seat on the tour.",
-  "The balance payment is due before the departure date as communicated by your tour manager.",
-  "Bookings made close to the departure date require full payment at the time of booking.",
-  "Cancellation charges apply as per the cancellation policy from the date of written cancellation.",
-];
-
-const DEFAULT_UPGRADES = [
-  { title: "Flight Upgrade", description: "Enhance your travel experience with optional upgrades." },
-  { title: "Premium Hotel", description: "Enhance your travel experience with optional upgrades." },
-  { title: "Private Experience", description: "Enhance your travel experience with optional upgrades." },
-];
-
-function defaultTourDetails(tour) {
-  const firstCity = tour.location.split("•")[0].trim();
-  const isInternational = Boolean(tour.country);
-
-  return {
-    flight: isInternational
-      ? `Return international airfare can be arranged by our team, or you may join the group on arrival at ${firstCity} if travelling on your own flights.`
-      : `Domestic flights or train connections to ${firstCity} can be arranged separately, or join the group directly at the first destination of the tour.`,
-    accommodation: `Comfortable, well-located hotels are used throughout the tour on a twin-sharing basis, as detailed in the itinerary.`,
-    reporting: `Please report at the designated meeting point in ${firstCity} at the time communicated by your tour manager, usually a few hours before the first scheduled activity.`,
-  };
-}
+import FAQAccordion from "@/components/common/FAQAccordion";
+import { withPackageDefaults } from "@/lib/packageDefaults";
+import { buildMetadata, breadcrumbSchema, faqSchema, tourSchema } from "@/lib/seo";
 
 function upgradeIcon(title) {
   const lower = title.toLowerCase();
@@ -145,11 +105,15 @@ export async function generateMetadata({ params }) {
 export default async function PackageDetailPage({ params }) {
   const { slug } = await params;
 
-  const tour = await getPackageBySlug(slug);
+  const stored = await getPackageBySlug(slug);
 
-  if (!tour) {
+  if (!stored) {
     notFound();
   }
+
+  // Standard content fills whatever the admin has not written, so the page
+  // and the edit form show exactly the same text.
+  const tour = withPackageDefaults(stored);
 
   const heroImage = tour.image || getDestinationImage(`${tour.title} ${tour.location}`);
   const galleryImages = [heroImage, ...getDestinationImages(`${tour.title} ${tour.location}`)].filter(
@@ -199,6 +163,12 @@ export default async function PackageDetailPage({ params }) {
   const firstCity = tour.location.split("•")[0]?.trim() || tour.location;
   const secondCity = tour.location.split("•")[1]?.trim() || firstCity;
 
+  // Admin-written FAQs win; otherwise the standard set, answered from this
+  // package's own data.
+  const faqs = tour.faqs.filter(
+    (item) => item?.question && item?.answer,
+  );
+
   return (
     <>
       <JsonLd
@@ -212,6 +182,7 @@ export default async function PackageDetailPage({ params }) {
             days: tour.days,
           }),
           breadcrumbSchema(breadcrumbItems),
+          ...(faqs.length ? [faqSchema(faqs)] : []),
         ]}
       />
 
@@ -472,7 +443,7 @@ export default async function PackageDetailPage({ params }) {
           <div className="mx-auto max-w-[1280px] px-4 py-8 sm:px-6 sm:py-12">
             <SectionHeading title="Tour Details" />
 
-            <TourDetailsTabs details={tour.tourDetails || defaultTourDetails(tour)} />
+            <TourDetailsTabs details={tour.tourDetails} />
           </div>
         </section>
 
@@ -503,7 +474,7 @@ export default async function PackageDetailPage({ params }) {
                 <h3 className="text-[15px] font-semibold text-[#0F172A]">What&apos;s Not Included</h3>
 
                 <div className="mt-4 space-y-3">
-                  {(tour.exclusions || DEFAULT_EXCLUSIONS).map((item) => (
+                  {tour.exclusions.map((item) => (
                     <div key={item} className="flex gap-2.5 text-[14px] text-[#64748B]">
                       <X size={16} className="mt-[1px] shrink-0 text-[#DC2626]" />
                       <span>{item}</span>
@@ -572,25 +543,19 @@ export default async function PackageDetailPage({ params }) {
 
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               <InfoCard icon={CloudSun} title="Weather">
-                {tour.needToKnow?.weather ||
-                  "Weather conditions may vary depending on destination and travel dates."}
+                {tour.needToKnow.weather}
               </InfoCard>
 
               <InfoCard icon={Bus} title="Transport">
-                {tour.needToKnow?.transport ||
-                  "Comfortable transportation will be provided as mentioned in the itinerary."}
+                {tour.needToKnow.transport}
               </InfoCard>
 
               <InfoCard icon={FileCheck2} title="Documents Required for Travel">
-                {tour.needToKnow?.documents ? (
-                  <ul className="space-y-1">
-                    {tour.needToKnow.documents.map((doc) => (
-                      <li key={doc}>• {doc}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  "Carry valid government-issued identification and all necessary travel documents."
-                )}
+                <ul className="space-y-1">
+                  {tour.needToKnow.documents.map((doc) => (
+                    <li key={doc}>• {doc}</li>
+                  ))}
+                </ul>
               </InfoCard>
 
               <InfoCard icon={UserCheck} title="Tour Manager">
@@ -613,7 +578,7 @@ export default async function PackageDetailPage({ params }) {
 
             {(() => {
               const tiers = ["#17A34A", "#F5A623", "#FF7A1A", "#DC2626", "#DC2626"];
-              const policyRows = tour.cancellationPolicy || DEFAULT_CANCELLATION_POLICY;
+              const policyRows = tour.cancellationPolicy;
 
               return (
                 <>
@@ -660,7 +625,7 @@ export default async function PackageDetailPage({ params }) {
             <SectionHeading title="Payment Terms" />
 
             <div className="mt-6 space-y-3 rounded-[14px] border border-[#E5E7EB] bg-[#F8FAFC] p-5 sm:p-6">
-              {(tour.paymentTerms || DEFAULT_PAYMENT_TERMS).map((term, index) => (
+              {tour.paymentTerms.map((term, index) => (
                 <div key={term} className="flex gap-2.5 text-[14px] leading-[1.6] text-[#334155]">
                   <span className={`mt-[2px] shrink-0 font-bold ${index === 0 ? "text-[#FF7A1A]" : "text-[#0F4C81]"}`}>
                     •
@@ -681,7 +646,7 @@ export default async function PackageDetailPage({ params }) {
             <SectionHeading title="Upgrade Available" />
 
             <div className="mt-6 grid gap-4 md:grid-cols-3">
-              {(tour.upgrades || DEFAULT_UPGRADES).map((upgrade) => {
+              {tour.upgrades.map((upgrade) => {
                 const Icon = upgradeIcon(upgrade.title);
 
                 return (
@@ -708,6 +673,25 @@ export default async function PackageDetailPage({ params }) {
             </div>
           </div>
         </section>
+
+        {/* ===================================================
+            FAQs
+        =================================================== */}
+
+        {faqs.length > 0 && (
+          <section className="bg-[#F8FAFC]">
+            <div className="mx-auto max-w-[1280px] px-4 py-8 sm:px-6 sm:py-12">
+              <SectionHeading
+                title="Frequently Asked Questions"
+                subtitle={`Everything travellers ask about the ${tour.title} package`}
+              />
+
+              <div className="mt-6">
+                <FAQAccordion items={faqs} />
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* ===================================================
             RELATED TOURS

@@ -38,14 +38,20 @@ const SPECIALITY_DEFINITIONS = {
   "short-trips": { name: "Short Trips", category: "Short Trips" },
   singles: { name: "Singles Special", keywords: ["singles", "solo"] },
   "road-trips": { name: "Road Trips", keywords: ["road trip", "drive", "self drive"] },
-  luxury: { name: "Luxury Tours", keywords: ["luxury", "premium"] },
+  luxury: { name: "Luxury Tours", category: "Luxury", keywords: ["luxury", "premium"] },
+  group: { name: "Group Tours", category: "Group", keywords: ["group tour"] },
+  religious: {
+    name: "Religious Tours",
+    category: "Religious",
+    keywords: ["temple", "pilgrimage", "yatra", "char dham", "religious", "vaishno"],
+  },
   festive: { name: "Festive Tours", keywords: ["festive", "diwali", "christmas", "new year"] },
   students: { name: "Students' Special", keywords: ["student", "college", "youth"] },
-  adventure: { name: "Adventure & Treks", keywords: ["adventure", "trek", "trekking", "camping", "safari"] },
+  adventure: { name: "Adventure & Treks", category: "Adventure", keywords: ["adventure", "trek", "trekking", "camping", "safari"] },
   "weekend-getaways": { name: "Weekend Getaways", keywords: ["weekend", "short trips"] },
   couple: { name: "Couple Holidays", keywords: ["honeymoon", "couple"] },
   friends: { name: "Friends Trips", keywords: ["group tour", "adventure"] },
-  solo: { name: "Solo Trips", keywords: ["solo", "singles"] },
+  solo: { name: "Solo Trips", category: "Solo", keywords: ["solo", "singles"] },
 };
 
 const FLAGSHIP_SLUGS = [

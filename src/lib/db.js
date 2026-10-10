@@ -90,30 +90,75 @@ function withCreateDefaults(model, data) {
   return doc;
 }
 
+/* =========================================================
+   BUILD-TIME READ CACHE
+   `next build` prerenders 400+ pages, and nearly every one
+   re-reads the same collections — the package catalogue, the
+   destination list, the thirteen home-content collections.
+   That is one Atlas round trip per page per collection, which
+   is what makes the Vercel build crawl.
+
+   The database cannot change while a build runs, so each
+   distinct read is performed once and replayed. This is gated
+   on the build phase: at runtime nothing is cached here, so an
+   admin save still reaches the site immediately.
+========================================================= */
+const IS_BUILD = process.env.NEXT_PHASE === "phase-production-build";
+const buildReads = new Map();
+
+function cachedRead(key, run) {
+  if (!IS_BUILD) return run();
+
+  let pending = buildReads.get(key);
+  if (!pending) {
+    pending = run();
+    // Next retries a page that failed to prerender; a cached rejection
+    // would make every retry fail instantly, so failures are forgotten.
+    pending.catch(() => buildReads.delete(key));
+    buildReads.set(key, pending);
+  }
+  return pending;
+}
+
 function createModel(model) {
   const collection = () => getCollection(model);
+  const readKey = (method, args) => `${model}.${method}:${JSON.stringify(args)}`;
 
   return {
-    async findMany({ where, orderBy, select, take, skip } = {}) {
-      const col = await collection();
-      let cursor = col.find(toFilter(where), { projection: toProjection(select) });
-      const sort = toSort(orderBy);
-      if (sort) cursor = cursor.sort(sort);
-      if (skip) cursor = cursor.skip(skip);
-      if (take) cursor = cursor.limit(take);
-      return (await cursor.toArray()).map(fromDoc);
+    async findMany(args = {}) {
+      const { where, orderBy, select, take, skip } = args;
+
+      const rows = await cachedRead(readKey("findMany", args), async () => {
+        const col = await collection();
+        let cursor = col.find(toFilter(where), { projection: toProjection(select) });
+        const sort = toSort(orderBy);
+        if (sort) cursor = cursor.sort(sort);
+        if (skip) cursor = cursor.skip(skip);
+        if (take) cursor = cursor.limit(take);
+        return (await cursor.toArray()).map(fromDoc);
+      });
+
+      // Callers are free to sort the list they get back, so a shared build
+      // result is handed out as a copy.
+      return IS_BUILD ? rows.slice() : rows;
     },
 
-    async findUnique({ where, select } = {}) {
-      const col = await collection();
-      return fromDoc(await col.findOne(toFilter(where), { projection: toProjection(select) }));
+    async findUnique(args = {}) {
+      const { where, select } = args;
+      return cachedRead(readKey("findUnique", args), async () => {
+        const col = await collection();
+        return fromDoc(await col.findOne(toFilter(where), { projection: toProjection(select) }));
+      });
     },
 
-    async findFirst({ where, orderBy, select } = {}) {
-      const col = await collection();
-      return fromDoc(
-        await col.findOne(toFilter(where), { projection: toProjection(select), sort: toSort(orderBy) })
-      );
+    async findFirst(args = {}) {
+      const { where, orderBy, select } = args;
+      return cachedRead(readKey("findFirst", args), async () => {
+        const col = await collection();
+        return fromDoc(
+          await col.findOne(toFilter(where), { projection: toProjection(select), sort: toSort(orderBy) })
+        );
+      });
     },
 
     async count({ where } = {}) {

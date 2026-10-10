@@ -186,6 +186,7 @@ export const adminModules = {
         { title: "Day-wise Itinerary", icon: "itinerary", fields: ["itinerary"] },
         { title: "Departures", icon: "calendar", fields: ["departures", "departureCities"] },
         { title: "Inclusions & Exclusions", icon: "list", fields: ["inclusions", "exclusions"] },
+        { title: "Frequently Asked Questions", icon: "faq", fields: ["faqs"] },
         {
           title: "Traveller Information",
           icon: "info",
@@ -209,22 +210,20 @@ export const adminModules = {
         label: "Category",
         type: "select",
         required: true,
+        // Trip types only — these drive the /speciality-tours pages. World
+        // grouping comes from the package's country, not its category.
         options: [
+          "Adventure",
           "Family",
+          "General",
+          "Group",
           "Honeymoon Special",
-          "Women's Special",
+          "Luxury",
+          "Religious",
           "Seniors' Special",
           "Short Trips",
-          "Europe",
-          "Western Europe",
-          "Northern Europe",
-          "Mediterranean Europe",
-          "South East Asia",
-          "Japan China Korea",
-          "Australia New Zealand",
-          "America",
-          "Africa",
-          "Middle East",
+          "Solo",
+          "Women's Special",
         ],
       },
       {
@@ -292,6 +291,17 @@ export const adminModules = {
           { name: "day", label: "Day", type: "number", placeholder: "1" },
           { name: "title", label: "Title", type: "text", placeholder: "Delhi – Arrival" },
           { name: "description", label: "Description", type: "textarea" },
+        ],
+      },
+      {
+        name: "faqs",
+        label: "FAQs",
+        type: "rows",
+        addLabel: "Add question",
+        help: "Shown on the package page and sent to Google as FAQ rich-result data. Leave empty to use the standard questions.",
+        columns: [
+          { name: "question", label: "Question", type: "text", placeholder: "What is the best time to visit?" },
+          { name: "answer", label: "Answer", type: "textarea", full: true },
         ],
       },
       {
