@@ -62,15 +62,19 @@ export function buildMetadata({
   // Pages opt *out* of indexing — the not-found branches pass noIndex: true.
   noIndex = false,
   keywords = [],
+  // An admin-set canonical wins over the page's own URL — for a tour that is
+  // deliberately duplicated under two destinations, say.
+  canonical,
   type = "website",
 }) {
-  const url = absoluteUrl(path);
+  const url = canonical ? absoluteUrl(canonical) : absoluteUrl(path);
   const ogImage = image ? absoluteUrl(image) : DEFAULT_OG_IMAGE;
 
   return {
     title,
     description,
-    keywords: [...DEFAULT_KEYWORDS, ...keywords],
+    // The page's own keywords lead; the site-wide list follows, deduplicated.
+    keywords: [...new Set([...keywords, ...DEFAULT_KEYWORDS].filter(Boolean))],
     authors: [{ name: SITE_NAME, url: SITE_URL }],
     creator: SITE_NAME,
     publisher: SITE_NAME,

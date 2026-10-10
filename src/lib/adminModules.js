@@ -120,12 +120,120 @@ export const adminModules = {
     titleField: "title",
     revalidate: ["/", "/package", "/india", "/world"],
     listColumns: ["title", "slug", "category", "price"],
+
+    // A richer list for the catalogue: thumbnail, title with its duration,
+    // location, price and status — grouped so one city's tours sit together.
+    list: {
+      numbered: true,
+      image: "imageUrl",
+      title: { key: "title", meta: ["tourType", "duration"] },
+      columns: [
+        { key: "location", label: "Location" },
+        { key: "price", label: "Price", type: "money", note: "emi", noteSuffix: "/month EMI" },
+        { key: "status", label: "Status", type: "badge" },
+      ],
+      // India tours first, then grouped by city.
+      sortBy: ["region", "location", "title"],
+    },
+
+    // Grouped editor: the long catalogue form reads as sections with the
+    // commercial settings pinned beside it. Anything not listed here still
+    // renders, under "More settings".
+    form: {
+      layout: "columns",
+      previewPath: "/package/{slug}",
+      subtitle: "Edit your tour package details, itinerary, pricing and media.",
+      statusField: "status",
+
+      // Three cards across the top, mirroring how the work actually splits:
+      // what the tour is, what it costs, and how it is presented.
+      columns: [
+        {
+          title: "Basic Information",
+          icon: "info",
+          fields: [
+            "title",
+            "slug",
+            "location",
+            "state",
+            "country",
+            "category",
+            "tourType",
+            "relatedGroup",
+            "description",
+            "imageUrl",
+          ],
+          pairs: [
+            ["state", "country"],
+            ["category", "tourType"],
+          ],
+        },
+        {
+          title: "Pricing & Settings",
+          icon: "pricing",
+          fields: ["price", "emi", "days", "nights", "cities", "status", "rating", "reviews", "highlights"],
+          pairs: [["days", "nights"], ["cities", "status"], ["rating", "reviews"]],
+        },
+        {
+          title: "SEO & Search",
+          icon: "seo",
+          fields: ["metaTitle", "metaDescription", "metaKeywords", "canonicalUrl", "noIndex"],
+          preview: "seo",
+        },
+      ],
+
+      full: [
+        { title: "Day-wise Itinerary", icon: "itinerary", fields: ["itinerary"] },
+        { title: "Departures", icon: "calendar", fields: ["departures", "departureCities"] },
+        { title: "Inclusions & Exclusions", icon: "list", fields: ["inclusions", "exclusions"] },
+        {
+          title: "Traveller Information",
+          icon: "info",
+          fields: ["needToKnow", "tourDetails", "cancellationPolicy", "paymentTerms", "upgrades"],
+        },
+      ],
+    },
     fields: [
       { name: "slug", label: "Slug", type: "text", required: true },
       { name: "title", label: "Title", type: "text", required: true },
       { name: "location", label: "Location", type: "text", required: true },
-      { name: "category", label: "Category", type: "text", required: true },
-      { name: "tourType", label: "Tour Type", type: "text", required: true },
+      {
+        name: "status",
+        label: "Status",
+        type: "select",
+        options: ["Active", "Hidden"],
+        required: true,
+      },
+      {
+        name: "category",
+        label: "Category",
+        type: "select",
+        required: true,
+        options: [
+          "Family",
+          "Honeymoon Special",
+          "Women's Special",
+          "Seniors' Special",
+          "Short Trips",
+          "Europe",
+          "Western Europe",
+          "Northern Europe",
+          "Mediterranean Europe",
+          "South East Asia",
+          "Japan China Korea",
+          "Australia New Zealand",
+          "America",
+          "Africa",
+          "Middle East",
+        ],
+      },
+      {
+        name: "tourType",
+        label: "Tour Type",
+        type: "select",
+        required: true,
+        options: ["Group Tour", "Customized Holiday", "Private Tour"],
+      },
       { name: "days", label: "Days", type: "number", required: true },
       { name: "nights", label: "Nights", type: "number", required: true },
       { name: "cities", label: "Cities count", type: "number", required: true },
@@ -138,6 +246,38 @@ export const adminModules = {
       { name: "country", label: "Country (World packages)", type: "text" },
       { name: "state", label: "State (India packages)", type: "text" },
       { name: "relatedGroup", label: "Related group key", type: "text" },
+      {
+        name: "metaTitle",
+        label: "Meta title",
+        type: "text",
+        // Prefilled with the text the page is serving right now, so the box
+        // shows real, editable content instead of a placeholder that vanishes
+        // the moment you type.
+        prefill: true,
+        placeholderTemplate: "{title} Tour Package — {days}D/{nights}N from ₹{price}",
+        help: "Google shows roughly the first 60 characters.",
+      },
+      {
+        name: "metaDescription",
+        label: "Meta description",
+        type: "textarea",
+        prefill: true,
+        placeholderTemplate: "{description}",
+        help: "Aim for 140–160 characters.",
+      },
+      {
+        name: "metaKeywords",
+        label: "Keywords",
+        type: "string-list",
+        help: "One phrase per line, e.g. “Kashmir honeymoon package”. Added to the site-wide keyword list.",
+      },
+      {
+        name: "canonicalUrl",
+        label: "Canonical URL (optional)",
+        type: "text",
+        placeholder: "Leave blank to use this page's own URL",
+      },
+      { name: "noIndex", label: "Hide this page from Google (noindex)", type: "boolean" },
       { name: "departureCities", label: "Departure cities", type: "string-list" },
       { name: "highlights", label: "Highlights", type: "string-list", required: true },
       { name: "inclusions", label: "Inclusions", type: "string-list", required: true },

@@ -124,10 +124,17 @@ export async function generateMetadata({ params }) {
   }
 
   return buildMetadata({
-    title: `${tour.title} Tour Package — ${tour.days}D/${tour.nights}N from ₹${tour.price}`,
-    description: tour.description,
+    // An admin-written title wins; otherwise one is built from the package.
+    title:
+      tour.metaTitle ||
+      `${tour.title} Tour Package — ${tour.days}D/${tour.nights}N from ₹${tour.price}`,
+    description: tour.metaDescription || tour.description,
     path: `/package/${tour.slug}`,
     image: tour.image,
+    // Admin-managed SEO: keywords, a canonical override and a noindex switch.
+    keywords: Array.isArray(tour.metaKeywords) ? tour.metaKeywords : [],
+    canonical: tour.canonicalUrl || undefined,
+    noIndex: Boolean(tour.noIndex),
   });
 }
 

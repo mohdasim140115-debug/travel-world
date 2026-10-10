@@ -11,9 +11,12 @@ import { db } from "./db.js";
 // The pages read `image`; the collection stores it as `imageUrl`.
 const withImage = (pkg) => (pkg ? { ...pkg, image: pkg.imageUrl ?? null } : pkg);
 
+/** Hidden packages stay in the admin but never reach the public site. */
+const isVisible = (pkg) => pkg.status !== "Hidden";
+
 export async function getAllPackages() {
   const rows = await db.package.findMany({ orderBy: { order: "asc" } });
-  return rows.map(withImage);
+  return rows.filter(isVisible).map(withImage);
 }
 
 export async function getPackageBySlug(slug) {

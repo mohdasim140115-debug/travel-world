@@ -3,20 +3,21 @@
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
 
-export default function JsonListField({ name, initialItems }) {
+const clean = (items) => items.map((item) => item.trim()).filter(Boolean);
+
+export default function JsonListField({ name, initialItems, placeholder, onItemsChange }) {
   const [items, setItems] = useState(initialItems?.length ? initialItems : [""]);
 
-  const updateItem = (index, value) => {
-    setItems((prev) => prev.map((item, i) => (i === index ? value : item)));
+  // One setter for every edit, so the form above can mirror the list live
+  // (the SEO preview shows keywords as they are typed).
+  const apply = (next) => {
+    setItems(next);
+    onItemsChange?.(clean(next));
   };
 
-  const removeItem = (index) => {
-    setItems((prev) => prev.filter((_, i) => i !== index));
-  };
-
-  const addItem = () => setItems((prev) => [...prev, ""]);
-
-  const cleaned = items.map((item) => item.trim()).filter(Boolean);
+  const updateItem = (index, value) => apply(items.map((item, i) => (i === index ? value : item)));
+  const removeItem = (index) => apply(items.filter((_, i) => i !== index));
+  const addItem = () => apply([...items, ""]);
 
   return (
     <div className="flex flex-col gap-2">
@@ -25,6 +26,7 @@ export default function JsonListField({ name, initialItems }) {
           <input
             type="text"
             value={item}
+            placeholder={placeholder}
             onChange={(event) => updateItem(index, event.target.value)}
             className="w-full rounded-[6px] border border-[#D1D5DB] px-3 py-1.5 text-[13px] outline-none focus:border-[#17BEBB]"
           />
@@ -47,7 +49,7 @@ export default function JsonListField({ name, initialItems }) {
         Add item
       </button>
 
-      <input type="hidden" name={name} value={JSON.stringify(cleaned)} />
+      <input type="hidden" name={name} value={JSON.stringify(clean(items))} />
     </div>
   );
 }
