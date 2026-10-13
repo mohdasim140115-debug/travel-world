@@ -16,6 +16,8 @@ import {
   Save,
   Search,
 } from "lucide-react";
+import GalleryField from "./GalleryField";
+import ImageField from "./ImageField";
 import JsonListField from "./JsonListField";
 import ObjectField from "./ObjectField";
 import RowListField from "./RowListField";
@@ -120,29 +122,40 @@ function Field({ field, initialValue, placeholder, onChange }) {
     );
   }
 
-  if (field.type === "image") {
+  if (field.type === "images") {
     return (
-      <div className="flex flex-col gap-2.5">
-        <input
-          type="text"
-          name={field.name}
-          defaultValue={initialValue ?? ""}
-          required={field.required}
-          placeholder="/uploads/destinations/photo.jpg"
-          onChange={onChange}
-          className={commonClasses}
-        />
-        {initialValue && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={initialValue}
-            alt=""
-            className="h-[150px] w-full rounded-[10px] border border-[#E5E7EB] object-cover"
-          />
-        )}
-      </div>
+      <GalleryField name={field.name} initialValue={initialValue} max={field.max} onChange={onChange} />
     );
   }
+
+  if (field.type === "image") {
+    return (
+      <ImageField
+        name={field.name}
+        initialValue={initialValue}
+        required={field.required}
+        onChange={onChange}
+      />
+    );
+  }
+
+  // The server stores a slug url-safe either way; cleaning it on blur means
+  // the admin sees the address the page will actually live at.
+  const onBlur =
+    field.name === "slug"
+      ? (event) => {
+          const clean = event.target.value
+            .trim()
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+
+          if (clean !== event.target.value) {
+            event.target.value = clean;
+            onChange?.({ target: { name: field.name, value: clean } });
+          }
+        }
+      : undefined;
 
   return (
     <input
@@ -153,6 +166,7 @@ function Field({ field, initialValue, placeholder, onChange }) {
       required={field.required}
       placeholder={placeholder}
       onChange={onChange}
+      onBlur={onBlur}
       className={commonClasses}
     />
   );

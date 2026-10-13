@@ -1,4 +1,5 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
+import { resolveSlug } from "@/lib/slugHistory";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -39,6 +40,10 @@ export default async function IndiaDestinationPage({ params }) {
   const result = getDestination("india", destination, await getDestinationRecords(), await getAllPackages());
 
   if (!result) {
+    // A renamed destination keeps its old link working.
+    const renamed = await resolveSlug("destination", destination);
+    if (renamed) permanentRedirect(`/india/${renamed}`);
+
     notFound();
   }
 

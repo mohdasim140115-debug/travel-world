@@ -1,0 +1,36 @@
+[
+  {
+    "model": "package",
+    "id": "6a87249c3a025a8b525a0e2c",
+    "before": {
+      "description": "the best of kashmiri is here , go and book this tour "
+    },
+    "after": {
+      "description": "the best of kashmiri is here , go and book this tour"
+    }
+  },
+  {
+    "model": "package",
+    "id": "6a87249c3a025a8b525a0e25",
+    "before": {
+      "title": "Kashmir Family Tour ",
+      "relatedGroup": "Best kashmir family tour "
+    },
+    "after": {
+      "title": "Kashmir Family Tour",
+      "relatedGroup": "Best kashmir family tour"
+    }
+  },
+  {
+    "model": "package",
+    "id": "6a87249c3a025a8b525a0dd7",
+    "before": {
+      "slug": "ayodhya-lucknow-tour-package ",
+      "title": "Ayodhya Lucknow Tour Package "
+    },
+    "after": {
+      "slug": "ayodhya-lucknow-tour-package",
+      "title": "Ayodhya Lucknow Tour Package"
+    }
+  }
+]

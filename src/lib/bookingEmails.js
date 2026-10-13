@@ -219,11 +219,16 @@ export function notifyTransportBooking(b) {
 /* ---------- enquiry form ---------- */
 
 export function notifyEnquiry(enquiry) {
+  const money = (value) => new Intl.NumberFormat("en-IN").format(value);
+
   const pairs = [
     ["About", enquiry.subject],
+    enquiry.nights ? ["Nights", `${enquiry.nights} nights / ${enquiry.nights + 1} days`] : null,
+    enquiry.guests ? ["Guests", String(enquiry.guests)] : null,
+    enquiry.estimate ? ["Indicative total", `₹${money(enquiry.estimate)}`] : null,
     ["Message", enquiry.message],
     ["Page", enquiry.source],
-  ];
+  ].filter(Boolean);
 
   const shared = { kind: "enquiry", headline: enquiry.subject, pairs };
 

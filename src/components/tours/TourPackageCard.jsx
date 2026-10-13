@@ -87,7 +87,7 @@ export default function TourPackageCard({ item }) {
           </span>
           <span className="flex items-center gap-1.5">
             <CalendarDays size={12} className="text-[#94A3B8]" />
-            {item.dates}
+            {item.nights}
           </span>
         </div>
 
@@ -131,6 +131,7 @@ export default function TourPackageCard({ item }) {
 
           <EnquiryTrigger
             subject={item.title}
+            quote={item.quote}
             stopPropagation
             className="flex items-center gap-1.5 transition-colors hover:text-[#0F4C81]"
           >

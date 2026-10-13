@@ -37,7 +37,7 @@ export const adminModules = {
     model: "enquiry",
     titleField: "name",
     revalidate: [],
-    listColumns: ["name", "phone", "email", "subject", "source", "status"],
+    listColumns: ["name", "phone", "email", "subject", "guests", "nights", "estimate", "status"],
     fields: [
       { name: "name", label: "Name", type: "text", required: true },
       { name: "phone", label: "Phone", type: "text", required: true },
@@ -45,6 +45,9 @@ export const adminModules = {
       { name: "subject", label: "Enquiry about", type: "text" },
       { name: "message", label: "Message", type: "textarea" },
       { name: "source", label: "Page", type: "text" },
+      { name: "guests", label: "Guests", type: "number" },
+      { name: "nights", label: "Nights", type: "number" },
+      { name: "estimate", label: "Indicative total (INR)", type: "number" },
       { name: "status", label: "Status", type: "select", options: ["New", "Review", "Contacted", "Confirmed", "Cancelled"], required: true },
     ],
   },
@@ -183,8 +186,9 @@ export const adminModules = {
       ],
 
       full: [
+        { title: "Gallery Photos", icon: "media", fields: ["gallery"] },
         { title: "Day-wise Itinerary", icon: "itinerary", fields: ["itinerary"] },
-        { title: "Departures", icon: "calendar", fields: ["departures", "departureCities"] },
+        { title: "Departure Cities", icon: "calendar", fields: ["departureCities"] },
         { title: "Inclusions & Exclusions", icon: "list", fields: ["inclusions", "exclusions"] },
         { title: "Frequently Asked Questions", icon: "faq", fields: ["faqs"] },
         {
@@ -241,7 +245,14 @@ export const adminModules = {
       { name: "rating", label: "Rating", type: "number", step: "0.1" },
       { name: "reviews", label: "Reviews count", type: "number" },
       { name: "description", label: "Description", type: "textarea", required: true },
-      { name: "imageUrl", label: "Image", type: "image" },
+      { name: "imageUrl", label: "Cover image", type: "image" },
+      {
+        name: "gallery",
+        label: "Gallery photos",
+        type: "images",
+        max: 4,
+        help: "Up to 4 photos, shown beside the cover image on the package page. Leave empty and the site picks matching destination photos.",
+      },
       { name: "country", label: "Country (World packages)", type: "text" },
       { name: "state", label: "State (India packages)", type: "text" },
       { name: "relatedGroup", label: "Related group key", type: "text" },
@@ -302,18 +313,6 @@ export const adminModules = {
         columns: [
           { name: "question", label: "Question", type: "text", placeholder: "What is the best time to visit?" },
           { name: "answer", label: "Answer", type: "textarea", full: true },
-        ],
-      },
-      {
-        name: "departures",
-        label: "Departure dates",
-        type: "rows",
-        required: true,
-        addLabel: "Add departure",
-        columns: [
-          { name: "date", label: "Date", type: "text", placeholder: "22 Aug 2026" },
-          { name: "price", label: "Price (INR)", type: "number", placeholder: "28000" },
-          { name: "status", label: "Status", type: "select", options: ["Available", "Filling Fast", "Sold Out"] },
         ],
       },
       {

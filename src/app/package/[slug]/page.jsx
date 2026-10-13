@@ -1,10 +1,11 @@
 import Image from "next/image";
 
 import EnquiryTrigger from "@/components/common/EnquiryTrigger";
+import { CONTACT } from "@/lib/contact";
 import PackageGallery from "@/components/package/PackageGallery";
 
 
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import Link from "next/link";
 import {
   CalendarDays,
@@ -34,7 +35,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PackageItinerary from "@/components/package/PackageItinerary";
 import TourDetailsTabs from "@/components/package/TourDetailsTabs";
-import PackageBooking from "@/components/package/PackageBooking";
 import SectionHeading from "@/components/package/SectionHeading";
 import InfoCard from "@/components/package/InfoCard";
 import FeatureItem from "@/components/package/FeatureItem";
@@ -43,6 +43,7 @@ import { toCardItem } from "@/components/tours/tourUtils";
 import JsonLd from "@/components/common/JsonLd";
 import FAQAccordion from "@/components/common/FAQAccordion";
 import { withPackageDefaults } from "@/lib/packageDefaults";
+import { resolveSlug } from "@/lib/slugHistory";
 import { buildMetadata, breadcrumbSchema, faqSchema, tourSchema } from "@/lib/seo";
 
 function upgradeIcon(title) {
@@ -108,6 +109,11 @@ export default async function PackageDetailPage({ params }) {
   const stored = await getPackageBySlug(slug);
 
   if (!stored) {
+    // The tour may simply have been renamed — send the old link to the new one
+    // instead of a dead end.
+    const renamed = await resolveSlug("package", slug);
+    if (renamed) permanentRedirect(`/package/${renamed}`);
+
     notFound();
   }
 
@@ -116,8 +122,15 @@ export default async function PackageDetailPage({ params }) {
   const tour = withPackageDefaults(stored);
 
   const heroImage = tour.image || getDestinationImage(`${tour.title} ${tour.location}`);
-  const galleryImages = [heroImage, ...getDestinationImages(`${tour.title} ${tour.location}`)].filter(
-    (image, index, all) => all.indexOf(image) === index,
+
+  // The admin's own photos win. Only a package with none falls back to the
+  // matching destination stock shots.
+  const extraPhotos = tour.gallery?.length
+    ? tour.gallery
+    : getDestinationImages(`${tour.title} ${tour.location}`);
+
+  const galleryImages = [heroImage, ...extraPhotos].filter(
+    (image, index, all) => image && all.indexOf(image) === index,
   );
 
   const parentCrumb = tour.country
@@ -309,12 +322,13 @@ export default async function PackageDetailPage({ params }) {
                   EMI from <span className="font-semibold text-[#0F4C81]">₹{formatPrice(tour.emi)}/month</span>
                 </p>
 
-                <a
-                  href="#departures"
+                <EnquiryTrigger
+                  subject={tour.title}
+                  quote={{ price: tour.price, nights: tour.nights }}
                   className="mt-5 flex h-[46px] w-full items-center justify-center rounded-[10px] bg-[#FF7A1A] text-[14px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#E56A0F]"
                 >
-                  Dates &amp; Availability
-                </a>
+                  Enquire Now
+                </EnquiryTrigger>
 
                 <div className="mt-5 grid grid-cols-3 gap-2 border-t border-[#E5E7EB] pt-4 text-center">
                   <div>
@@ -329,17 +343,17 @@ export default async function PackageDetailPage({ params }) {
 
                   <div>
                     <CalendarDays size={17} className="mx-auto text-[#0F4C81]" />
-                    <p className="mt-1.5 text-[11px] text-[#475569]">{tour.departures.length} Dates</p>
+                    <p className="mt-1.5 text-[11px] text-[#475569]">{tour.nights} Nights</p>
                   </div>
                 </div>
 
-                <EnquiryTrigger
-                  subject={tour.title}
-                  className="mt-4 flex h-[44px] w-full items-center justify-center gap-2 rounded-[10px] border border-[#0F4C81] bg-white text-[13px] font-semibold text-[#0F4C81] transition hover:bg-[#EEF3FF]"
+                <a
+                  href={CONTACT.phoneHref}
+                  className="mt-4 flex h-[44px] w-full items-center justify-center gap-2 rounded-[10px] border border-[#0F4C81] bg-white text-[13px] font-semibold text-[#0F4C81] no-underline transition hover:bg-[#EEF3FF]"
                 >
                   <Phone size={14} />
-                  Enquire Now
-                </EnquiryTrigger>
+                  {CONTACT.phone}
+                </a>
               </aside>
             </div>
           </div>
@@ -385,14 +399,6 @@ export default async function PackageDetailPage({ params }) {
             </div>
           </div>
         </section>
-
-        {/* ===================================================
-            DEPARTURE SELECTION + BOOKING SUMMARY
-        =================================================== */}
-
-        <div id="departures" className="scroll-mt-[110px]">
-          <PackageBooking tour={tour} />
-        </div>
 
         {/* ===================================================
             STICKY NAVIGATION

@@ -9,10 +9,12 @@ export function toCardItem(pkg, extraTag) {
     tags: ["GROUP TOUR", "SALE", extraTag || pkg.category],
     days: `${pkg.days} Days`,
     cities: `${pkg.cities} Cities`,
-    dates: `${pkg.departures.length} Dates`,
+    nights: `${pkg.nights} Nights`,
     price: formatINR(pkg.price),
     emi: `${formatINR(pkg.emi)}/month`,
     highlights: pkg.highlights.join(", "),
+    // Raw numbers for the enquiry popup, which prices nights x guests itself.
+    quote: { price: pkg.price, nights: pkg.nights },
   };
 }
 

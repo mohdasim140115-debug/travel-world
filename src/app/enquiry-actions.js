@@ -24,6 +24,15 @@ export async function createEnquiry(prevState, formData) {
   const email = text(formData, "email").toLowerCase();
   const message = text(formData, "message");
 
+  // Only the tour enquiry sends these; a general enquiry leaves them null.
+  const whole = (field, max) => {
+    const value = Number(text(formData, field));
+    return Number.isFinite(value) && value > 0 ? Math.min(Math.round(value), max) : null;
+  };
+  const nights = whole("nights", 30);
+  const guests = whole("guests", 30);
+  const estimate = whole("estimate", 100000000);
+
   if (!name || !phone) {
     return { error: "Please enter your name and phone number." };
   }
@@ -68,6 +77,9 @@ export async function createEnquiry(prevState, formData) {
       subject: text(formData, "subject").slice(0, 160) || "General enquiry",
       message: message.slice(0, 1000) || null,
       source: text(formData, "source").slice(0, 200) || null,
+      nights,
+      guests,
+      estimate,
       status: visitor.allowed ? "New" : "Review",
     },
   });
