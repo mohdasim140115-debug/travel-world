@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
-import { getModule } from "@/lib/adminModules";
+import { getModule, listFields } from "@/lib/adminModules";
 import AdminTable from "@/components/admin/AdminTable";
 
 export default async function AdminModuleListPage({ params }) {
@@ -8,7 +8,22 @@ export default async function AdminModuleListPage({ params }) {
   const moduleConfig = getModule(moduleSlug);
   if (!moduleConfig) notFound();
 
-  const rows = await db[moduleConfig.model].findMany({ orderBy: { order: "asc" } });
+  // Only the columns the table draws. Reading whole records sent the entire
+  // catalogue — itineraries, FAQs, SEO copy — to the browser twice over:
+  // 655 KB for the destinations list, where 27 KB is enough.
+  const rows = await db[moduleConfig.model].findMany({
+    orderBy: { order: "asc" },
+    select: listFields(moduleConfig),
+  });
 
-  return <AdminTable moduleSlug={moduleSlug} moduleConfig={moduleConfig} rows={rows} />;
+  // AdminTable is a client component, so whatever it is handed is serialized
+  // into the page. It reads three keys; the rest of the module schema — every
+  // field definition, every select option — does not need to travel.
+  const tableConfig = {
+    label: moduleConfig.label,
+    list: moduleConfig.list,
+    listColumns: moduleConfig.listColumns,
+  };
+
+  return <AdminTable moduleSlug={moduleSlug} moduleConfig={tableConfig} rows={rows} />;
 }

@@ -13,7 +13,7 @@ export const CUSTOMIZED_HOLIDAYS_MENU = {
   indiaHolidays: {
     heading: "India Holidays",
     items: [
-      { name: "Kashmir", href: "/india/jammu-kashmir-tour-packages" },
+      { name: "Kashmir", href: "/india/kashmir-tour-packages" },
       { name: "Kerala", href: "/india/kerala-tour-packages" },
       { name: "Rajasthan", href: "/india/rajasthan-tour-packages" },
       { name: "Goa", href: "/india/goa-tour-packages" },

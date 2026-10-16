@@ -396,7 +396,7 @@ textarea:focus-visible,
 
 .india-tabs-section {
   background: var(--color-sand-bg);
-  padding: 27px 0 50px;
+  padding: 14px 0 50px;
   min-height: 500px;
 }
 
@@ -439,16 +439,17 @@ textarea:focus-visible,
 
 .india-listing-heading {
   display: grid;
-  grid-template-columns: 200px 1fr auto;
-  align-items: start;
-  gap: 20px;
-  padding: 18px 0 12px;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0 12px;
 }
 
 .india-listing-heading h2 {
   font-size: 19px;
   line-height: 1.25;
-  margin: 0 0 4px;
+  margin: 0 0 2px;
+  white-space: nowrap;
   color: var(--color-text-main);
 }
 
@@ -565,7 +566,14 @@ textarea:focus-visible,
   }
 
   .india-tabs-section {
-    padding-top: 18px;
+    padding-top: 12px;
+  }
+
+  /* nowrap keeps the count on one line on a wide screen; a phone needs the
+     wrap back or a long destination name runs off the edge. */
+  .india-listing-heading h2 {
+    white-space: normal;
+    font-size: 17px;
   }
 
   .listing-actions {

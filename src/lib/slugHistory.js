@@ -1,3 +1,4 @@
+import { db } from "./db.js";
 import { getCollection } from "./mongodb.js";
 
 /* =========================================================
@@ -34,12 +35,19 @@ export async function recordSlugChange(model, oldSlug, newSlug) {
   await redirects.deleteOne({ model, from: newSlug });
 }
 
-/** The slug a retired one now points at, or null. */
+/**
+ * The slug a retired one now points at, or null.
+ *
+ * Reads the whole (tiny) redirect list for the model rather than querying by
+ * slug: it goes through the db facade, whose build-time cache then answers
+ * every page from one round trip. Querying per slug meant 230 separate
+ * lookups during a build, and each one timed the page out on a slow link.
+ */
 export async function resolveSlug(model, slug) {
   if (!model || !slug) return null;
 
-  const redirects = await getCollection(COLLECTION);
-  const hit = await redirects.findOne({ model, from: slug });
+  const redirects = await db.slugRedirect.findMany({ where: { model } });
+  const hit = redirects.find((row) => row.from === slug);
 
   return hit?.to && hit.to !== slug ? hit.to : null;
 }

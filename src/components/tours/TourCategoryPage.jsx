@@ -179,9 +179,7 @@ export default function TourCategoryPage({ config }) {
           <div className="india-listing-heading">
             <div>
               <h2>
-                {config.listing.countLine1}
-                <br />
-                {config.listing.countLine2}
+                {config.listing.countLine1} {config.listing.countLine2}
               </h2>
 
               <p>{config.listing.showingLabel}</p>

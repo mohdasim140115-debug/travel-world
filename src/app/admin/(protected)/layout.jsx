@@ -5,6 +5,11 @@ import { adminModules, adminModuleGroups } from "@/lib/adminModules";
 import { logoutAction } from "../login/actions";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 
+// Saving a record writes to Atlas and then revalidates the site. On a slow
+// link that can outlast the platform default, and a cut-off request reaches
+// the browser as "An unexpected response was received from the server".
+export const maxDuration = 60;
+
 export const metadata = {
   title: "Honor Tour & Travels — Admin",
   robots: { index: false, follow: false },

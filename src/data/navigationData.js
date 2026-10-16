@@ -43,7 +43,6 @@ const indiaOverrides = {
   Rajasthan: "rajasthan-tour-packages",
   Kerala: "kerala-tour-packages",
   "Andaman and Nicobar": "andaman-tour-packages",
-  "Jammu and Kashmir": "jammu-kashmir-tour-packages",
 };
 
 export const indiaNavigation = {
@@ -51,7 +50,7 @@ export const indiaNavigation = {
     link("india", "Rajasthan", indiaOverrides["Rajasthan"]),
     link("india", "Kerala", indiaOverrides["Kerala"]),
     link("india", "Andaman and Nicobar", indiaOverrides["Andaman and Nicobar"]),
-    link("india", "Jammu and Kashmir", indiaOverrides["Jammu and Kashmir"]),
+    link("india", "Kashmir"),
     link("india", "Leh Ladakh"),
     link("india", "Sikkim Darjeeling"),
     link("india", "North East"),

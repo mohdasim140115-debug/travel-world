@@ -79,7 +79,7 @@ const staticInterestTours = [
   },
   {
     title: "Honeymoon Special Kashmir",
-    slug: "jammu-kashmir-tour-packages",
+    slug: "kashmir-tour-packages",
     isDestinationLink: true,
     tag: "Honeymoon Special",
     days: "6 Days",

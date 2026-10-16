@@ -114,7 +114,7 @@ const rawRoutes = [
     description:
       "Flying from Mumbai to Srinagar is the fastest way to reach the Kashmir valley, with both non-stop and connecting options operated by major domestic carriers.",
     relatedTours: [
-      { label: "Kashmir Tour Packages", href: "/india/jammu-kashmir-tour-packages" },
+      { label: "Kashmir Tour Packages", href: "/india/kashmir-tour-packages" },
       { label: "India Tour Packages", href: "/india" },
     ],
     otherRoutes: ["delhi-to-srinagar", "mumbai-to-delhi", "pune-to-leh"],
@@ -183,7 +183,7 @@ const rawRoutes = [
     description:
       "Delhi to Srinagar is the quickest gateway to the Kashmir valley, with multiple non-stop flights operating daily during the tourist season.",
     relatedTours: [
-      { label: "Kashmir Tour Packages", href: "/india/jammu-kashmir-tour-packages" },
+      { label: "Kashmir Tour Packages", href: "/india/kashmir-tour-packages" },
       { label: "India Tour Packages", href: "/india" },
     ],
     otherRoutes: ["mumbai-to-srinagar", "delhi-to-mumbai", "delhi-to-bangalore"],

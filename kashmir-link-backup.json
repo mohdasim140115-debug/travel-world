@@ -1,0 +1,515 @@
+[
+  {
+    "collection": "flightRoute",
+    "_id": "6a8724983a025a8b525a0d55",
+    "before": {
+      "slug": "delhi-to-srinagar",
+      "from": "Delhi",
+      "fromCode": "DEL",
+      "to": "Srinagar",
+      "toCode": "SXR",
+      "international": false,
+      "baseDuration": 95,
+      "minPrice": 4800,
+      "maxPrice": 11200,
+      "count": 16,
+      "allowStops": true,
+      "description": "Delhi to Srinagar is the quickest gateway to the Kashmir valley, with multiple non-stop flights operating daily during the tourist season.",
+      "relatedTours": [
+        {
+          "label": "Kashmir Tour Packages",
+          "href": "/india/jammu-kashmir-tour-packages"
+        },
+        {
+          "label": "India Tour Packages",
+          "href": "/india"
+        }
+      ],
+      "otherRoutes": [
+        "mumbai-to-srinagar",
+        "delhi-to-mumbai",
+        "delhi-to-bangalore"
+      ],
+      "order": 7,
+      "createdAt": "2026-08-08T03:17:33.094Z",
+      "updatedAt": "2026-08-08T03:17:33.094Z"
+    }
+  },
+  {
+    "collection": "flightRoute",
+    "_id": "6a8724983a025a8b525a0d4f",
+    "before": {
+      "slug": "mumbai-to-srinagar",
+      "from": "Mumbai",
+      "fromCode": "BOM",
+      "to": "Srinagar",
+      "toCode": "SXR",
+      "international": false,
+      "baseDuration": 155,
+      "minPrice": 7200,
+      "maxPrice": 13900,
+      "count": 18,
+      "allowStops": true,
+      "description": "Flying from Mumbai to Srinagar is the fastest way to reach the Kashmir valley, with both non-stop and connecting options operated by major domestic carriers.",
+      "relatedTours": [
+        {
+          "label": "Kashmir Tour Packages",
+          "href": "/india/jammu-kashmir-tour-packages"
+        },
+        {
+          "label": "India Tour Packages",
+          "href": "/india"
+        }
+      ],
+      "otherRoutes": [
+        "delhi-to-srinagar",
+        "mumbai-to-delhi",
+        "pune-to-leh"
+      ],
+      "order": 1,
+      "createdAt": "2026-08-08T03:17:33.051Z",
+      "updatedAt": "2026-08-08T03:17:33.051Z"
+    }
+  },
+  {
+    "collection": "departureCity",
+    "_id": "6a8724973a025a8b525a0d36",
+    "before": {
+      "slug": "bangalore",
+      "name": "Bangalore",
+      "departures": 78,
+      "startingPrice": 85000,
+      "packageCount": 14,
+      "reviewsLabel": "1,980 Reviews",
+      "intro": "Explore thoughtfully planned tour packages from Bangalore covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "introExtra": "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Bangalore with convenient departure options and dedicated tour managers throughout your journey.",
+      "packageSlugs": [
+        "highlights-of-kerala-tour-package",
+        "best-of-andaman-tour-package",
+        "best-of-thailand-tour-package",
+        "singapore-malaysia-tour-package",
+        "all-of-ladakh-tour-package",
+        "best-of-kashmir-tour-package"
+      ],
+      "linkCloudTargets": [
+        {
+          "name": "Kerala",
+          "href": "/india/kerala-tour-packages"
+        },
+        {
+          "name": "Andaman",
+          "href": "/india/andaman-tour-packages"
+        },
+        {
+          "name": "Thailand",
+          "href": "/world/south-east-asia-tour-packages"
+        },
+        {
+          "name": "Singapore",
+          "href": "/world/south-east-asia-tour-packages"
+        },
+        {
+          "name": "Ladakh",
+          "href": "/india/leh-ladakh-tour-packages"
+        },
+        {
+          "name": "Kashmir",
+          "href": "/india/jammu-kashmir-tour-packages"
+        }
+      ],
+      "order": 4,
+      "createdAt": "2026-08-08T03:17:33.015Z",
+      "updatedAt": "2026-08-08T03:17:33.015Z"
+    }
+  },
+  {
+    "collection": "departureCity",
+    "_id": "6a8724973a025a8b525a0d38",
+    "before": {
+      "slug": "delhi",
+      "name": "Delhi",
+      "departures": 337,
+      "startingPrice": 77000,
+      "packageCount": 22,
+      "reviewsLabel": "3,580 Reviews",
+      "intro": "Explore thoughtfully planned tour packages from Delhi covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "introExtra": "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Delhi with convenient departure options and dedicated tour managers throughout your journey.",
+      "packageSlugs": [
+        "best-of-kashmir-tour-package",
+        "all-of-ladakh-tour-package",
+        "jaipur-mandawa-tour-package",
+        "best-of-shimla",
+        "best-of-andaman-tour-package",
+        "best-of-thailand-tour-package"
+      ],
+      "linkCloudTargets": [
+        {
+          "name": "Kashmir",
+          "href": "/india/jammu-kashmir-tour-packages"
+        },
+        {
+          "name": "Ladakh",
+          "href": "/india/leh-ladakh-tour-packages"
+        },
+        {
+          "name": "Rajasthan",
+          "href": "/india/rajasthan-tour-packages"
+        },
+        {
+          "name": "Shimla",
+          "href": "/india/shimla-tour-packages"
+        },
+        {
+          "name": "Andaman",
+          "href": "/india/andaman-tour-packages"
+        },
+        {
+          "name": "Thailand",
+          "href": "/world/south-east-asia-tour-packages"
+        }
+      ],
+      "order": 6,
+      "createdAt": "2026-08-08T03:17:33.027Z",
+      "updatedAt": "2026-08-08T03:17:33.027Z"
+    }
+  },
+  {
+    "collection": "departureCity",
+    "_id": "6a8724973a025a8b525a0d33",
+    "before": {
+      "slug": "pune",
+      "name": "Pune",
+      "departures": 77,
+      "startingPrice": 31000,
+      "packageCount": 12,
+      "reviewsLabel": "1,860 Reviews",
+      "intro": "Explore thoughtfully planned tour packages from Pune covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "introExtra": "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Pune with convenient departure options and dedicated tour managers throughout your journey.",
+      "packageSlugs": [
+        "highlights-of-rajasthan-tour-package",
+        "best-of-kashmir-tour-package",
+        "highlights-of-kerala-tour-package",
+        "best-of-thailand-tour-package",
+        "best-of-andaman-tour-package",
+        "best-of-shimla"
+      ],
+      "linkCloudTargets": [
+        {
+          "name": "Rajasthan",
+          "href": "/india/rajasthan-tour-packages"
+        },
+        {
+          "name": "Kashmir",
+          "href": "/india/jammu-kashmir-tour-packages"
+        },
+        {
+          "name": "Kerala",
+          "href": "/india/kerala-tour-packages"
+        },
+        {
+          "name": "Thailand",
+          "href": "/world/south-east-asia-tour-packages"
+        },
+        {
+          "name": "Andaman",
+          "href": "/india/andaman-tour-packages"
+        },
+        {
+          "name": "Ladakh",
+          "href": "/india/leh-ladakh-tour-packages"
+        },
+        {
+          "name": "Europe",
+          "href": "/world/europe-tour-packages"
+        }
+      ],
+      "order": 1,
+      "createdAt": "2026-08-08T03:17:32.995Z",
+      "updatedAt": "2026-08-08T03:17:32.995Z"
+    }
+  },
+  {
+    "collection": "departureCity",
+    "_id": "6a8724973a025a8b525a0d39",
+    "before": {
+      "slug": "indore",
+      "name": "Indore",
+      "departures": 296,
+      "startingPrice": 85000,
+      "packageCount": 15,
+      "reviewsLabel": "2,410 Reviews",
+      "intro": "Explore thoughtfully planned tour packages from Indore covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "introExtra": "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Indore with convenient departure options and dedicated tour managers throughout your journey.",
+      "packageSlugs": [
+        "highlights-of-rajasthan-tour-package",
+        "best-of-kashmir-tour-package",
+        "highlights-of-kerala-tour-package",
+        "delhi-agra-tour-package",
+        "best-of-thailand-tour-package",
+        "best-of-andaman-tour-package"
+      ],
+      "linkCloudTargets": [
+        {
+          "name": "Rajasthan",
+          "href": "/india/rajasthan-tour-packages"
+        },
+        {
+          "name": "Kashmir",
+          "href": "/india/jammu-kashmir-tour-packages"
+        },
+        {
+          "name": "Kerala",
+          "href": "/india/kerala-tour-packages"
+        },
+        {
+          "name": "Delhi Agra",
+          "href": "/india/delhi-tour-packages"
+        },
+        {
+          "name": "Thailand",
+          "href": "/world/south-east-asia-tour-packages"
+        },
+        {
+          "name": "Andaman",
+          "href": "/india/andaman-tour-packages"
+        }
+      ],
+      "order": 7,
+      "createdAt": "2026-08-08T03:17:33.034Z",
+      "updatedAt": "2026-08-08T03:17:33.034Z"
+    }
+  },
+  {
+    "collection": "departureCity",
+    "_id": "6a8724973a025a8b525a0d34",
+    "before": {
+      "slug": "ahmedabad",
+      "name": "Ahmedabad",
+      "departures": 318,
+      "startingPrice": 79000,
+      "packageCount": 18,
+      "reviewsLabel": "3,120 Reviews",
+      "intro": "Explore thoughtfully planned tour packages from Ahmedabad covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "introExtra": "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Ahmedabad with convenient departure options and dedicated tour managers throughout your journey.",
+      "packageSlugs": [
+        "highlights-of-rajasthan-tour-package",
+        "highlights-of-kerala-tour-package",
+        "best-of-kashmir-tour-package",
+        "best-of-dubai",
+        "best-of-thailand-tour-package",
+        "european-jewels-tour-package"
+      ],
+      "linkCloudTargets": [
+        {
+          "name": "Rajasthan",
+          "href": "/india/rajasthan-tour-packages"
+        },
+        {
+          "name": "Kerala",
+          "href": "/india/kerala-tour-packages"
+        },
+        {
+          "name": "Kashmir",
+          "href": "/india/jammu-kashmir-tour-packages"
+        },
+        {
+          "name": "Dubai",
+          "href": "/world/middle-east-tour-packages"
+        },
+        {
+          "name": "Thailand",
+          "href": "/world/south-east-asia-tour-packages"
+        },
+        {
+          "name": "Europe",
+          "href": "/world/europe-tour-packages"
+        }
+      ],
+      "order": 2,
+      "createdAt": "2026-08-08T03:17:33.002Z",
+      "updatedAt": "2026-08-08T03:17:33.002Z"
+    }
+  },
+  {
+    "collection": "departureCity",
+    "_id": "6a8724973a025a8b525a0d37",
+    "before": {
+      "slug": "kolkata",
+      "name": "Kolkata",
+      "departures": 322,
+      "startingPrice": 79000,
+      "packageCount": 16,
+      "reviewsLabel": "2,760 Reviews",
+      "intro": "Explore thoughtfully planned tour packages from Kolkata covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "introExtra": "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Kolkata with convenient departure options and dedicated tour managers throughout your journey.",
+      "packageSlugs": [
+        "best-of-andaman-tour-package",
+        "best-of-thailand-tour-package",
+        "highlights-of-china-tour-package",
+        "highlights-of-kerala-tour-package",
+        "kashmir-highlights",
+        "seniors-special-china-tour-package"
+      ],
+      "linkCloudTargets": [
+        {
+          "name": "Andaman",
+          "href": "/india/andaman-tour-packages"
+        },
+        {
+          "name": "Thailand",
+          "href": "/world/south-east-asia-tour-packages"
+        },
+        {
+          "name": "China",
+          "href": "/world/japan-china-korea-tour-packages"
+        },
+        {
+          "name": "Kerala",
+          "href": "/india/kerala-tour-packages"
+        },
+        {
+          "name": "Kashmir",
+          "href": "/india/jammu-kashmir-tour-packages"
+        },
+        {
+          "name": "North East",
+          "href": "/india/north-east-tour-packages"
+        }
+      ],
+      "order": 5,
+      "createdAt": "2026-08-08T03:17:33.021Z",
+      "updatedAt": "2026-08-08T03:17:33.021Z"
+    }
+  },
+  {
+    "collection": "departureCity",
+    "_id": "6a8724973a025a8b525a0d35",
+    "before": {
+      "slug": "hyderabad",
+      "name": "Hyderabad",
+      "departures": 327,
+      "startingPrice": 79000,
+      "packageCount": 19,
+      "reviewsLabel": "3,340 Reviews",
+      "intro": "Explore thoughtfully planned tour packages from Hyderabad covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "introExtra": "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Hyderabad with convenient departure options and dedicated tour managers throughout your journey.",
+      "packageSlugs": [
+        "highlights-of-kerala-tour-package",
+        "best-of-andaman-tour-package",
+        "best-of-thailand-tour-package",
+        "singapore-malaysia-tour-package",
+        "best-of-kashmir-tour-package",
+        "jaipur-mandawa-tour-package"
+      ],
+      "linkCloudTargets": [
+        {
+          "name": "Kerala",
+          "href": "/india/kerala-tour-packages"
+        },
+        {
+          "name": "Andaman",
+          "href": "/india/andaman-tour-packages"
+        },
+        {
+          "name": "Thailand",
+          "href": "/world/south-east-asia-tour-packages"
+        },
+        {
+          "name": "Singapore",
+          "href": "/world/south-east-asia-tour-packages"
+        },
+        {
+          "name": "Kashmir",
+          "href": "/india/jammu-kashmir-tour-packages"
+        },
+        {
+          "name": "Rajasthan",
+          "href": "/india/rajasthan-tour-packages"
+        }
+      ],
+      "order": 3,
+      "createdAt": "2026-08-08T03:17:33.008Z",
+      "updatedAt": "2026-08-08T03:17:33.008Z"
+    }
+  },
+  {
+    "collection": "departureCity",
+    "_id": "6a8724973a025a8b525a0d32",
+    "before": {
+      "slug": "mumbai",
+      "name": "Mumbai",
+      "departures": 1184,
+      "startingPrice": 30000,
+      "packageCount": 27,
+      "reviewsLabel": "9,240 Reviews",
+      "intro": "Explore thoughtfully planned tour packages from Mumbai covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Travel World experiences.",
+      "introExtra": "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Travel World tour packages from Mumbai with convenient departure options and dedicated tour managers throughout your journey.",
+      "packageSlugs": [
+        "jaipur-mandawa-tour-package",
+        "delhi-agra-tour-package",
+        "womens-special-kashmir",
+        "seniors-special-china-tour-package",
+        "best-of-shimla",
+        "best-of-kashmir-tour-package",
+        "best-of-thailand-tour-package",
+        "highlights-of-rajasthan-tour-package"
+      ],
+      "linkCloudTargets": [
+        {
+          "name": "Vietnam",
+          "href": "/world/vietnam-tour-packages"
+        },
+        {
+          "name": "Thailand",
+          "href": "/world/south-east-asia-tour-packages"
+        },
+        {
+          "name": "Kerala",
+          "href": "/india/kerala-tour-packages"
+        },
+        {
+          "name": "Andaman",
+          "href": "/india/andaman-tour-packages"
+        },
+        {
+          "name": "Japan",
+          "href": "/world/japan-china-korea-tour-packages"
+        },
+        {
+          "name": "Europe",
+          "href": "/world/europe-tour-packages"
+        },
+        {
+          "name": "Dubai",
+          "href": "/world/middle-east-tour-packages"
+        },
+        {
+          "name": "Ladakh",
+          "href": "/india/leh-ladakh-tour-packages"
+        },
+        {
+          "name": "Kashmir",
+          "href": "/india/jammu-kashmir-tour-packages"
+        }
+      ],
+      "order": 0,
+      "createdAt": "2026-08-08T03:17:32.988Z",
+      "updatedAt": "2026-08-08T03:17:32.988Z"
+    }
+  },
+  {
+    "collection": "indiaExploreInterest",
+    "_id": "6a8724993a025a8b525a0d80",
+    "before": {
+      "title": "Honeymoon Special Kashmir",
+      "slug": "jammu-kashmir-tour-packages",
+      "isDestinationLink": true,
+      "tag": "Honeymoon Special",
+      "days": "6 Days",
+      "cities": "5 Cities",
+      "price": "₹51,000",
+      "emi": "₹4,963",
+      "order": 1
+    }
+  }
+]

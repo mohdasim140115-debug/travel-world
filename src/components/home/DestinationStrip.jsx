@@ -11,7 +11,7 @@ import PopularDestinations from "./PopularDestinations";
 
 // Homepage copy for Kashmir differs slightly from the destination page name
 const nameAliases = {
-  "Jammu and Kashmir": "Jammu Kashmir",
+  "Jammu and Kashmir": "Kashmir",
 };
 
 // "/india/kerala-tour-packages" -> "India"

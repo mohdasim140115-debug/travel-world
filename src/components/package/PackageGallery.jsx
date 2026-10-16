@@ -5,7 +5,12 @@ import { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, MapPin, X } from "lucide-react";
 
 export default function PackageGallery({ title, location, images }) {
-  const photos = images?.length ? images : [];
+  const photos = (images?.length ? images : []).map((photo) =>
+    typeof photo === "string" ? { src: photo, alt: "", title: "" } : photo,
+  );
+
+  // Falls back to the tour name so no image is ever shipped without an alt.
+  const altFor = (photo, index) => photo?.alt?.trim() || `${title} — photo ${index + 1}`;
   const [index, setIndex] = useState(-1);
   const open = index >= 0;
 
@@ -42,8 +47,9 @@ export default function PackageGallery({ title, location, images }) {
           aria-label={`Open photo gallery for ${title}`}
         >
           <Image
-            src={photos[0]}
-            alt={title}
+            src={photos[0].src}
+            alt={altFor(photos[0], 0)}
+            title={photos[0].title || undefined}
             className="object-cover transition duration-500 group-hover:scale-105"
             fill
             sizes="(max-width: 768px) 100vw, 60vw"
@@ -68,8 +74,9 @@ export default function PackageGallery({ title, location, images }) {
             aria-label="Open photo gallery"
           >
             <Image
-              src={photos[1] || photos[0]}
-              alt=""
+              src={(photos[1] || photos[0]).src}
+              alt={altFor(photos[1] || photos[0], 1)}
+              title={(photos[1] || photos[0]).title || undefined}
               className="object-cover transition duration-500 group-hover:scale-105"
               fill
               sizes="(max-width: 768px) 50vw, 25vw"
@@ -84,8 +91,9 @@ export default function PackageGallery({ title, location, images }) {
             aria-label="Open photo gallery"
           >
             <Image
-              src={photos[2] || photos[0]}
-              alt=""
+              src={(photos[2] || photos[0]).src}
+              alt={altFor(photos[2] || photos[0], 2)}
+              title={(photos[2] || photos[0]).title || undefined}
               className="object-cover transition duration-500 group-hover:scale-105"
               fill
               sizes="(max-width: 768px) 50vw, 25vw"
@@ -126,9 +134,10 @@ export default function PackageGallery({ title, location, images }) {
 
           <div className="relative flex-1" onClick={(event) => event.stopPropagation()}>
             <Image
-              key={photos[index]}
-              src={photos[index]}
-              alt={`${title} — photo ${index + 1}`}
+              key={photos[index].src}
+              src={photos[index].src}
+              alt={altFor(photos[index], index)}
+              title={photos[index].title || undefined}
               className="object-contain"
               fill
               sizes="100vw"
@@ -158,7 +167,7 @@ export default function PackageGallery({ title, location, images }) {
           >
             {photos.map((photo, i) => (
               <button
-                key={photo}
+                key={photo.src}
                 type="button"
                 onClick={() => setIndex(i)}
                 className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-[8px] transition ${
@@ -166,7 +175,7 @@ export default function PackageGallery({ title, location, images }) {
                 }`}
                 aria-label={`Show photo ${i + 1}`}
               >
-                <Image src={photo} alt="" className="object-cover" fill sizes="80px" />
+                  <Image src={photo.src} alt={altFor(photo, i)} className="object-cover" fill sizes="80px" />
               </button>
             ))}
           </div>

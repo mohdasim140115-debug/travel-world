@@ -29,7 +29,7 @@ const BANNER = "/uploads/destinations/banner2.png";
 // The two photo cards in the banner. "Ladakh" has no destination page of its
 // own yet, so it falls back to the India listing.
 const POLAROIDS = [
-  { label: "Kashmir", lookup: "Jammu Kashmir" },
+  { label: "Kashmir", lookup: "Kashmir" },
   { label: "Ladakh", lookup: "Leh Ladakh" },
 ];
 

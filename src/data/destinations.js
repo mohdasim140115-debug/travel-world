@@ -709,37 +709,37 @@ export const rawDestinations = [
   },
 
   {
-    slug: "jammu-kashmir-tour-packages",
+    slug: "kashmir-tour-packages",
     parent: "india",
-    name: "Jammu Kashmir",
-    heading: "Jammu Kashmir Tour Packages",
-    metaTitle: "Jammu Kashmir Tour Packages | Kashmir Holiday Packages",
+    name: "Kashmir",
+    heading: "Kashmir Tour Packages",
+    metaTitle: "Kashmir Tour Packages | Srinagar, Gulmarg & Pahalgam Holidays",
     metaDescription:
-      "Explore Jammu Kashmir tour packages covering Srinagar, Gulmarg, Pahalgam and Sonmarg with Honor Tour & Travels's curated Himalayan group holidays.",
-    breadcrumbTrail: ["India", "Jammu Kashmir Tour Packages"],
+      "Explore Kashmir tour packages covering Srinagar, Gulmarg, Pahalgam and Sonmarg with Honor Tour & Travels's curated Himalayan group holidays.",
+    breadcrumbTrail: ["India", "Kashmir Tour Packages"],
     packageCount: 16,
     liveTourCount: 2,
     reviewsLabel: "1,520 Reviews",
     intro:
-      "Known as paradise on earth, Jammu and Kashmir offers snow-capped mountains, alpine meadows and serene lakes that make it one of India's most breathtaking destinations.",
+      "Known as paradise on earth, Kashmir offers snow-capped mountains, alpine meadows and serene lakes that make it one of India's most breathtaking destinations.",
     introExtra:
-      "Our Jammu Kashmir packages combine houseboat stays on Dal Lake, gondola rides in Gulmarg, valley views in Pahalgam and glacier excursions in Sonmarg, designed for families, couples and groups.",
-    tabs: ["All Jammu Kashmir (16)", "Srinagar", "Gulmarg Pahalgam", "Sonmarg", "Jammu"],
+      "Our Kashmir packages combine houseboat stays on Dal Lake, gondola rides in Gulmarg, valley views in Pahalgam and glacier excursions in Sonmarg, designed for families, couples and groups.",
+    tabs: ["All Kashmir (16)", "Srinagar", "Gulmarg Pahalgam", "Sonmarg", "Jammu"],
     countries: [],
     cities: ["Srinagar (9)", "Gulmarg (6)", "Pahalgam (6)", "Sonmarg (3)", "Jammu (2)"],
-    packageSlugs: ["best-of-kashmir", "kashmir-highlights", "srinagar-gulmarg-pahalgam", "kashmir-family-tour", "jammu-kashmir-explorer"],
+    packageSlugs: [],
     joiningLeavingCities: ["Tours from Mumbai", "Tours from Delhi", "Tours from Ahmedabad", "Tours from Bangalore", "Tours from Chandigarh", "Tours from Amritsar"],
     related: {
-      title: "Explore Jammu Kashmir",
+      title: "Explore Kashmir",
       items: [
         { name: "Srinagar Tour Packages" },
         { name: "Gulmarg Pahalgam Packages" },
         { name: "Sonmarg Tour Packages" },
-        { name: "Jammu Kashmir Family Packages" },
+        { name: "Kashmir Family Packages" },
       ],
     },
     regions: {
-      title: "Jammu Kashmir Packages By Destination",
+      title: "Kashmir Packages By Destination",
       items: [
         { name: "Srinagar", count: "9 tours" },
         { name: "Gulmarg", count: "6 tours" },
@@ -749,12 +749,12 @@ export const rawDestinations = [
         { name: "Houseboat Specials", count: "4 tours" },
       ],
     },
-    faqHeading: "Jammu Kashmir Frequently Asked Questions",
+    faqHeading: "Kashmir Frequently Asked Questions",
     faqSubheading: "We help you prepare for your trip and answer all your travel questions.",
     faqs: [
       {
-        question: "Which places are covered in Jammu Kashmir tour packages?",
-        answer: "Our Jammu Kashmir packages cover Srinagar, Gulmarg, Pahalgam, Sonmarg and Jammu depending on the selected itinerary.",
+        question: "Which places are covered in Kashmir tour packages?",
+        answer: "Our Kashmir packages cover Srinagar, Gulmarg, Pahalgam, Sonmarg and Jammu depending on the selected itinerary.",
       },
       {
         question: "What is the best time to visit Kashmir?",
@@ -770,12 +770,12 @@ export const rawDestinations = [
       },
       {
         question: "Are Kashmir tours suitable for families?",
-        answer: "Yes, our Jammu Kashmir packages are designed to suit families, couples and groups with a comfortable, well-paced itinerary.",
+        answer: "Yes, our Kashmir packages are designed to suit families, couples and groups with a comfortable, well-paced itinerary.",
       },
     ],
     seoParagraphs: [
-      "Jammu and Kashmir is renowned for its snow-capped mountains, alpine meadows, serene lakes and Mughal gardens, earning its reputation as paradise on earth.",
-      "Group tours across Jammu Kashmir are typically planned over 5 to 8 days, covering Srinagar, Gulmarg, Pahalgam and Sonmarg.",
+      "Kashmir is renowned for its snow-capped mountains, alpine meadows, serene lakes and Mughal gardens, earning its reputation as paradise on earth.",
+      "Group tours across Kashmir are typically planned over 5 to 8 days, covering Srinagar, Gulmarg, Pahalgam and Sonmarg.",
     ],
     seoExtraParagraphs: [
       "Family tours, group departures and customized holidays are all available across Kashmir, with comfortable stays including a signature houseboat experience on Dal Lake.",

@@ -37,13 +37,15 @@ export async function generateMetadata({ params }) {
 
 export default async function WorldDestinationPage({ params }) {
   const { destination } = await params;
+
+  // Checked first: an unknown slug is otherwise synthesized into a page, so a
+  // retired address would quietly serve a thin duplicate instead of moving on.
+  const renamed = await resolveSlug("destination", destination);
+  if (renamed) permanentRedirect(`/world/${renamed}`);
+
   const result = getDestination("world", destination, await getDestinationRecords(), await getAllPackages());
 
   if (!result) {
-    // A renamed destination keeps its old link working.
-    const renamed = await resolveSlug("destination", destination);
-    if (renamed) permanentRedirect(`/world/${renamed}`);
-
     notFound();
   }
 

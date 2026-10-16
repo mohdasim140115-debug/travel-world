@@ -121,7 +121,7 @@ export async function updateRecord(moduleSlug, id, formData) {
   // A rename retires a URL that may be indexed or shared, so the old one is
   // written down before it is lost and keeps working as a redirect.
   if (data.slug !== undefined) {
-    const current = await db[moduleConfig.model].findUnique({ where: { id } });
+    const current = await db[moduleConfig.model].findUnique({ where: { id }, select: { slug: true } });
     if (current?.slug && current.slug !== data.slug) {
       await recordSlugChange(moduleConfig.model, current.slug, data.slug);
     }

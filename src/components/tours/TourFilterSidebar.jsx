@@ -78,7 +78,6 @@ export default function TourFilterSidebar({
   priceBounds = { min: 9000, max: 365000 },
   maxPrice,
   onPriceChange,
-  departureCities = [],
   countries = [],
   cities = [],
   durations = ["3 - 8 Days", "9 - 14 Days", "15 - 21 Days", "22+ Days"],
@@ -94,8 +93,6 @@ export default function TourFilterSidebar({
   onToggleCountry,
   selectedCities = [],
   onToggleCity,
-  selectedDepartureCities = [],
-  onToggleDepartureCity,
   onReset,
 }) {
   return (
@@ -125,19 +122,6 @@ export default function TourFilterSidebar({
           </div>
         </div>
       </FilterGroup>
-
-      {departureCities.length > 0 && (
-        <FilterGroup title="Departure City">
-          {departureCities.map((city) => (
-            <Checkbox
-              key={city}
-              label={city}
-              checked={selectedDepartureCities.includes(stripCount(city))}
-              onChange={() => onToggleDepartureCity(stripCount(city))}
-            />
-          ))}
-        </FilterGroup>
-      )}
 
       {(countries ?? []).length > 0 && (
         <SearchableCheckboxGroup

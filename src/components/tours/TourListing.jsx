@@ -55,7 +55,6 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
   const [selectedPackageTypes, setSelectedPackageTypes] = useState([]);
   const [selectedSpecialityTours, setSelectedSpecialityTours] = useState([]);
   const [selectedDurations, setSelectedDurations] = useState([]);
-  const [selectedDepartureCities, setSelectedDepartureCities] = useState([]);
   const [maxPrice, setMaxPrice] = useState(priceBounds.max);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
@@ -83,7 +82,6 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
         packageTypes: selectedPackageTypes,
         specialityTours: selectedSpecialityTours,
         durations: selectedDurations,
-        departureCities: selectedDepartureCities,
         maxPrice: effectiveMaxPrice || priceBounds.max,
       }),
     [
@@ -93,7 +91,6 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
       selectedPackageTypes,
       selectedSpecialityTours,
       selectedDurations,
-      selectedDepartureCities,
       effectiveMaxPrice,
       priceBounds.max,
     ]
@@ -115,7 +112,6 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
     selectedPackageTypes,
     selectedSpecialityTours,
     selectedDurations,
-    selectedDepartureCities,
     effectiveMaxPrice,
   ]);
 
@@ -137,8 +133,6 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
     onToggleSpeciality: (value) => toggle(selectedSpecialityTours, setSelectedSpecialityTours, value),
     selectedDurations,
     onToggleDuration: (value) => toggle(selectedDurations, setSelectedDurations, value),
-    selectedDepartureCities,
-    onToggleDepartureCity: (value) => toggle(selectedDepartureCities, setSelectedDepartureCities, value),
     onReset: handleReset,
   };
 

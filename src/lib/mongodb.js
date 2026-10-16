@@ -27,16 +27,21 @@ if (process.env.DNS_SERVERS) {
 const globalForMongo = globalThis;
 
 function createClient() {
+  // Left at the driver's defaults on purpose. Tightening the pool and the
+  // timeouts was tried and made things worse from a slow connection: an 8s
+  // serverSelectionTimeoutMS failed the build outright, and recycling idle
+  // sockets just bought another TLS handshake, which costs seconds here.
   return new MongoClient(uri, { maxPoolSize: 10 });
 }
 
 const client = globalForMongo.__mongoClient ?? createClient();
 const clientPromise = globalForMongo.__mongoClientPromise ?? client.connect();
 
-if (process.env.NODE_ENV !== "production") {
-  globalForMongo.__mongoClient = client;
-  globalForMongo.__mongoClientPromise = clientPromise;
-}
+// Cached in production too. Several route bundles can load this module inside
+// one serverless instance; without the global each one opened its own pool and
+// paid the TLS and auth handshake again.
+globalForMongo.__mongoClient = client;
+globalForMongo.__mongoClientPromise = clientPromise;
 
 /** Resolves to the app database (name comes from the URI path, or MONGODB_DB). */
 export async function getDb() {

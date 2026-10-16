@@ -43,7 +43,7 @@ export const rawCities = [
       { name: "Europe", href: "/world/europe-tour-packages" },
       { name: "Dubai", href: "/world/middle-east-tour-packages" },
       { name: "Ladakh", href: "/india/leh-ladakh-tour-packages" },
-      { name: "Kashmir", href: "/india/jammu-kashmir-tour-packages" },
+      { name: "Kashmir", href: "/india/kashmir-tour-packages" },
     ],
   },
   {
@@ -67,7 +67,7 @@ export const rawCities = [
     ],
     linkCloudTargets: [
       { name: "Rajasthan", href: "/india/rajasthan-tour-packages" },
-      { name: "Kashmir", href: "/india/jammu-kashmir-tour-packages" },
+      { name: "Kashmir", href: "/india/kashmir-tour-packages" },
       { name: "Kerala", href: "/india/kerala-tour-packages" },
       { name: "Thailand", href: "/world/south-east-asia-tour-packages" },
       { name: "Andaman", href: "/india/andaman-tour-packages" },
@@ -97,7 +97,7 @@ export const rawCities = [
     linkCloudTargets: [
       { name: "Rajasthan", href: "/india/rajasthan-tour-packages" },
       { name: "Kerala", href: "/india/kerala-tour-packages" },
-      { name: "Kashmir", href: "/india/jammu-kashmir-tour-packages" },
+      { name: "Kashmir", href: "/india/kashmir-tour-packages" },
       { name: "Dubai", href: "/world/middle-east-tour-packages" },
       { name: "Thailand", href: "/world/south-east-asia-tour-packages" },
       { name: "Europe", href: "/world/europe-tour-packages" },
@@ -127,7 +127,7 @@ export const rawCities = [
       { name: "Andaman", href: "/india/andaman-tour-packages" },
       { name: "Thailand", href: "/world/south-east-asia-tour-packages" },
       { name: "Singapore", href: "/world/south-east-asia-tour-packages" },
-      { name: "Kashmir", href: "/india/jammu-kashmir-tour-packages" },
+      { name: "Kashmir", href: "/india/kashmir-tour-packages" },
       { name: "Rajasthan", href: "/india/rajasthan-tour-packages" },
     ],
   },
@@ -156,7 +156,7 @@ export const rawCities = [
       { name: "Thailand", href: "/world/south-east-asia-tour-packages" },
       { name: "Singapore", href: "/world/south-east-asia-tour-packages" },
       { name: "Ladakh", href: "/india/leh-ladakh-tour-packages" },
-      { name: "Kashmir", href: "/india/jammu-kashmir-tour-packages" },
+      { name: "Kashmir", href: "/india/kashmir-tour-packages" },
     ],
   },
   {
@@ -183,7 +183,7 @@ export const rawCities = [
       { name: "Thailand", href: "/world/south-east-asia-tour-packages" },
       { name: "China", href: "/world/japan-china-korea-tour-packages" },
       { name: "Kerala", href: "/india/kerala-tour-packages" },
-      { name: "Kashmir", href: "/india/jammu-kashmir-tour-packages" },
+      { name: "Kashmir", href: "/india/kashmir-tour-packages" },
       { name: "North East", href: "/india/north-east-tour-packages" },
     ],
   },
@@ -207,7 +207,7 @@ export const rawCities = [
       "best-of-thailand-tour-package",
     ],
     linkCloudTargets: [
-      { name: "Kashmir", href: "/india/jammu-kashmir-tour-packages" },
+      { name: "Kashmir", href: "/india/kashmir-tour-packages" },
       { name: "Ladakh", href: "/india/leh-ladakh-tour-packages" },
       { name: "Rajasthan", href: "/india/rajasthan-tour-packages" },
       { name: "Shimla", href: "/india/shimla-tour-packages" },
@@ -236,7 +236,7 @@ export const rawCities = [
     ],
     linkCloudTargets: [
       { name: "Rajasthan", href: "/india/rajasthan-tour-packages" },
-      { name: "Kashmir", href: "/india/jammu-kashmir-tour-packages" },
+      { name: "Kashmir", href: "/india/kashmir-tour-packages" },
       { name: "Kerala", href: "/india/kerala-tour-packages" },
       { name: "Delhi Agra", href: "/india/delhi-tour-packages" },
       { name: "Thailand", href: "/world/south-east-asia-tour-packages" },

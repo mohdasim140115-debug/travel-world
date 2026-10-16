@@ -165,6 +165,8 @@ export const adminModules = {
             "relatedGroup",
             "description",
             "imageUrl",
+            "imageAlt",
+            "imageTitle",
           ],
           pairs: [
             ["state", "country"],
@@ -246,6 +248,13 @@ export const adminModules = {
       { name: "reviews", label: "Reviews count", type: "number" },
       { name: "description", label: "Description", type: "textarea", required: true },
       { name: "imageUrl", label: "Cover image", type: "image" },
+      {
+        name: "imageAlt",
+        label: "Cover image — alt text",
+        type: "text",
+        help: "What the photo shows, for Google and for screen readers. Leave blank and the package title is used.",
+      },
+      { name: "imageTitle", label: "Cover image — title", type: "text" },
       {
         name: "gallery",
         label: "Gallery photos",
@@ -923,4 +932,42 @@ export const adminModuleGroups = ["Bookings", "Catalog", "Home Page", "India Pag
 
 export function getModule(slug) {
   return adminModules[slug] ?? null;
+}
+
+/**
+ * The projection an index page needs — everything AdminTable draws, searches
+ * or sorts by, and nothing else. Without it the list hands the browser whole
+ * records: itineraries, FAQs, SEO paragraphs, all of it, for every row.
+ */
+export function listFields(moduleConfig) {
+  const keys = new Set(["id"]);
+  const list = moduleConfig.list;
+
+  if (list) {
+    keys.add(list.title.key);
+    if (list.image) keys.add(list.image);
+
+    for (const key of list.title.meta ?? []) {
+      // "duration" is drawn from days and nights rather than stored.
+      if (key === "duration") {
+        keys.add("days");
+        keys.add("nights");
+      } else {
+        keys.add(key);
+      }
+    }
+
+    for (const column of list.columns) {
+      keys.add(column.key);
+      if (column.note) keys.add(column.note);
+    }
+
+    // The search box also matches on the slug, the thumbnail falls back to a
+    // destination photo looked up by name, and "region" sorting needs these.
+    for (const key of ["slug", "name", "title", "location", "country", "state"]) keys.add(key);
+  } else {
+    for (const key of moduleConfig.listColumns) keys.add(key);
+  }
+
+  return Object.fromEntries([...keys].map((key) => [key, true]));
 }

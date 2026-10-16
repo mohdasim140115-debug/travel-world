@@ -129,8 +129,18 @@ export default async function PackageDetailPage({ params }) {
     ? tour.gallery
     : getDestinationImages(`${tour.title} ${tour.location}`);
 
-  const galleryImages = [heroImage, ...extraPhotos].filter(
-    (image, index, all) => image && all.indexOf(image) === index,
+  // A photo is either a bare URL (older records, and the stock fallbacks) or a
+  // record carrying the alt text and title the admin wrote for it.
+  const toPhoto = (item) =>
+    typeof item === "string"
+      ? { src: item, alt: "", title: "" }
+      : { src: item.url, alt: item.alt ?? "", title: item.title ?? "" };
+
+  const galleryImages = [
+    { src: heroImage, alt: tour.imageAlt ?? "", title: tour.imageTitle ?? "" },
+    ...extraPhotos.map(toPhoto),
+  ].filter(
+    (photo, index, all) => photo.src && all.findIndex((other) => other.src === photo.src) === index,
   );
 
   const parentCrumb = tour.country
@@ -138,7 +148,7 @@ export default async function PackageDetailPage({ params }) {
     : { label: "India", href: "/india" };
 
   const stateSlugOverrides = {
-    "Jammu and Kashmir": "jammu-kashmir-tour-packages",
+    "Jammu and Kashmir": "kashmir-tour-packages",
     "Andaman and Nicobar": "andaman-tour-packages",
     Ladakh: "leh-ladakh-tour-packages",
   };
