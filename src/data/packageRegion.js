@@ -36,9 +36,22 @@ export const WORLD_KEYWORDS = [
   "bali", "denpasar", "ubud", "nusa dua",
 ];
 
+// Whole words only — a substring test let one place name hide inside another
+// ("aswan" sits inside "Jaswant Thada").
+const WORLD_MATCHERS = WORLD_KEYWORDS.map(
+  (keyword) => new RegExp(`\\b${keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`),
+);
+
 export function isIndiaPackage(pkg) {
-  if (pkg.country) return false;
+  if (!pkg) return false;
+
+  // A country filled in decides it — but "India" is a country too. Treating
+  // any filled-in country as abroad sent four Kashmir tours to the World side.
+  const country = String(pkg.country ?? "").trim().toLowerCase();
+  if (country) return country === "india";
+
   if (pkg.state) return true;
-  const haystack = `${pkg.title} ${pkg.location}`.toLowerCase();
-  return !WORLD_KEYWORDS.some((keyword) => haystack.includes(keyword));
+
+  const haystack = `${pkg.title ?? ""} ${pkg.location ?? ""}`.toLowerCase();
+  return !WORLD_MATCHERS.some((matcher) => matcher.test(haystack));
 }

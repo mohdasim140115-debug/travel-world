@@ -183,15 +183,8 @@ export default async function PackageDetailPage({ params }) {
     { name: tour.title, href: `/package/${tour.slug}` },
   ];
 
-  const stayCities = (() => {
-    const parts = String(tour.location ?? "")
-      .split(/[•,|/]/)
-      .map((part) => part.trim())
-      .filter(Boolean);
-
-    const unique = parts.filter((city, index) => parts.indexOf(city) === index);
-    return unique.length ? unique : [String(tour.location ?? "").trim()].filter(Boolean);
-  })();
+  // Admin-written rows; packages that have none get one row per city.
+  const stays = (tour.accommodation ?? []).filter((row) => row?.city);
 
   // Admin-written FAQs win; otherwise the standard set, answered from this
   // package's own data.
@@ -519,16 +512,16 @@ export default async function PackageDetailPage({ params }) {
 
             {/* MOBILE: stacked cards */}
             <div className="mt-6 space-y-3 sm:hidden">
-              {stayCities.map((city) => (
-                <div key={city} className="rounded-[14px] border border-[#E5E7EB] bg-white p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+              {stays.map((row, index) => (
+                <div key={`${row.city}-${index}`} className="rounded-[14px] border border-[#E5E7EB] bg-white p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
                   <p className="text-[10px] font-semibold uppercase tracking-wide text-[#0F4C81]">City</p>
-                  <p className="text-[14px] font-semibold text-[#0F172A]">{city}</p>
+                  <p className="text-[14px] font-semibold text-[#0F172A]">{row.city}</p>
 
                   <p className="mt-3 text-[10px] font-semibold uppercase tracking-wide text-[#0F4C81]">Hotel</p>
-                  <p className="text-[13px] text-[#475569]">Comfortable selected hotel</p>
+                  <p className="text-[13px] text-[#475569]">{row.hotel || "Comfortable selected hotel"}</p>
 
                   <p className="mt-3 text-[10px] font-semibold uppercase tracking-wide text-[#0F4C81]">Check-in / Check-out</p>
-                  <p className="text-[13px] text-[#475569]">As per itinerary</p>
+                  <p className="text-[13px] text-[#475569]">{row.stay || "As per itinerary"}</p>
                 </div>
               ))}
             </div>
@@ -541,16 +534,16 @@ export default async function PackageDetailPage({ params }) {
                 <span>Check-in / Check-out</span>
               </div>
 
-              {stayCities.map((city, index) => (
+              {stays.map((row, index) => (
                 <div
-                  key={city}
+                  key={`${row.city}-${index}`}
                   className={`grid grid-cols-3 px-5 py-4 text-[13px] text-[#334155] ${
                     index % 2 ? "bg-[#F8FAFC]" : ""
                   }`}
                 >
-                  <span>{city}</span>
-                  <span>Comfortable selected hotel</span>
-                  <span>As per itinerary</span>
+                  <span>{row.city}</span>
+                  <span>{row.hotel || "Comfortable selected hotel"}</span>
+                  <span>{row.stay || "As per itinerary"}</span>
                 </div>
               ))}
             </div>

@@ -1,5 +1,6 @@
 import { packages } from "./packages.js";
 import { getParentNamesFor, getSiblingCityNames, getSiblingRegionNames } from "./navigationData.js";
+import { isIndiaPackage } from "./packageRegion.js";
 
 /* =========================================================
    RAW DESTINATION DATA
@@ -1030,74 +1031,6 @@ function matchPackagesByName(name, catalogue = packages) {
  * package added or renamed in the admin appears on its destination pages
  * straight away — a stored list would freeze them at seed time.
  */
-
-
-const INDIA_DESTINATION_KEYWORDS = [
-  "kashmir",
-  "srinagar",
-  "gulmarg",
-  "pahalgam",
-  "sonmarg",
-  "ladakh",
-  "leh",
-  "rajasthan",
-  "jaipur",
-  "udaipur",
-  "jodhpur",
-  "jaisalmer",
-  "kerala",
-  "munnar",
-  "alleppey",
-  "andaman",
-  "port blair",
-  "himachal",
-  "shimla",
-  "manali",
-  "goa",
-  "agra",
-  "varanasi",
-  "ayodhya",
-  "rishikesh",
-  "haridwar",
-  "darjeeling",
-  "gangtok",
-  "ooty",
-  "coorg",
-  "amritsar",
-  "ranthambore",
-  "golden triangle",
-];
-
-function isIndiaPackage(pkg) {
-  if (!pkg) return false;
-
-  const slug = String(pkg.slug || "").toLowerCase();
-
-  // Known India packages
-  if (INDIA_FLAGSHIP_SLUGS.includes(slug)) {
-    return true;
-  }
-
-  const text = [
-    pkg.title,
-    pkg.location,
-    pkg.category,
-    pkg.slug,
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
-
-  // Explicit India category
-  if (/\bindia\b/.test(String(pkg.category || "").toLowerCase())) {
-    return true;
-  }
-
-  return INDIA_DESTINATION_KEYWORDS.some((keyword) =>
-    text.includes(keyword)
-  );
-}
-  
 
 
 export function packagesForDestination(parent, name, catalogue = packages) {

@@ -194,9 +194,19 @@ export const adminModules = {
         { title: "Inclusions & Exclusions", icon: "list", fields: ["inclusions", "exclusions"] },
         { title: "Frequently Asked Questions", icon: "faq", fields: ["faqs"] },
         {
+          title: "Accommodation",
+          icon: "hotel",
+          fields: ["accommodation"],
+        },
+        {
+          title: "Payment Terms",
+          icon: "pricing",
+          fields: ["paymentTerms"],
+        },
+        {
           title: "Traveller Information",
           icon: "info",
-          fields: ["needToKnow", "tourDetails", "cancellationPolicy", "paymentTerms", "upgrades"],
+          fields: ["needToKnow", "tourDetails", "cancellationPolicy", "upgrades"],
         },
       ],
     },
@@ -353,7 +363,24 @@ export const adminModules = {
           { name: "charge", label: "Charge", type: "text", placeholder: "25% of tour cost" },
         ],
       },
-      { name: "paymentTerms", label: "Payment terms", type: "string-list" },
+      {
+        name: "paymentTerms",
+        label: "Payment terms",
+        type: "string-list",
+        help: "One term per line. The first one is shown in bold on the package page.",
+      },
+      {
+        name: "accommodation",
+        label: "Hotels by city",
+        type: "rows",
+        addLabel: "Add city",
+        help: "One row per city on the tour. Filled from the package location until you change it.",
+        columns: [
+          { name: "city", label: "City", type: "text", placeholder: "Srinagar" },
+          { name: "hotel", label: "Hotel", type: "text", placeholder: "Comfortable selected hotel" },
+          { name: "stay", label: "Check-in / Check-out", type: "text", placeholder: "As per itinerary" },
+        ],
+      },
       {
         name: "upgrades",
         label: "Upgrades",

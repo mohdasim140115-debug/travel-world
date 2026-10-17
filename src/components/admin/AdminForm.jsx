@@ -7,6 +7,7 @@ import {
   CalendarDays,
   Check,
   Eye,
+  Hotel,
   Image as ImageIcon,
   IndianRupee,
   Info,
@@ -290,6 +291,7 @@ const CARD_ICONS = {
   list: ListChecks,
   seo: Search,
   faq: MessageCircleQuestion,
+  hotel: Hotel,
 };
 
 function Card({ title, icon, children }) {

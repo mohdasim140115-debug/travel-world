@@ -45,6 +45,25 @@ const price = (value) => new Intl.NumberFormat("en-IN").format(value ?? 0);
 
 const firstCityOf = (tour) => String(tour.location ?? "").split("•")[0]?.trim() || tour.location || "";
 
+/** "Srinagar , Gulmarg" or "Ayodhya • Lucknow" -> ["Srinagar", "Gulmarg"]. */
+export function stayCitiesOf(location) {
+  const parts = String(location ?? "")
+    .split(/[•,|/]/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  const unique = parts.filter((city, index) => parts.indexOf(city) === index);
+  return unique.length ? unique : [String(location ?? "").trim()].filter(Boolean);
+}
+
+export function defaultAccommodation(tour) {
+  return stayCitiesOf(tour.location).map((city) => ({
+    city,
+    hotel: "Comfortable selected hotel",
+    stay: "As per itinerary",
+  }));
+}
+
 export function defaultTourDetails(tour) {
   const firstCity = firstCityOf(tour);
   const isInternational = Boolean(tour.country);
@@ -118,6 +137,7 @@ export function packageDefaults(tour) {
     upgrades: DEFAULT_UPGRADES,
     tourDetails: defaultTourDetails(tour),
     needToKnow: defaultNeedToKnow(),
+    accommodation: defaultAccommodation(tour),
     faqs: defaultFaqs(tour),
   };
 }
