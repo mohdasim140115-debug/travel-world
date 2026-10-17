@@ -6,7 +6,6 @@ import Image from "next/image";
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 function slugifyZoneName(name) {
   return name
@@ -185,69 +184,11 @@ export default function IndiaTourZones({ zones }) {
   const zoneData = Object.keys(zones ?? {}).length ? zones : staticZoneData;
 
   const [activeZone, setActiveZone] = useState("North");
-  const [page, setPage] = useState(1);
 
   const tours = zoneData[activeZone];
 
   return (
     <>
-      {/* =========================
-          PAGINATION
-      ========================== */}
-      <section className="bg-[#f7f7f7] pb-10 pt-8">
-        <div className="india-container">
-          <div className="flex items-center justify-center gap-2">
-            <button
-              type="button"
-              aria-label="Previous page"
-              disabled={page === 1}
-              onClick={() => setPage((prev) => Math.max(1, prev - 1))}
-              className="flex h-8 w-8 items-center justify-center rounded-[3px] border border-[#d3d7dd] bg-white text-[#555] disabled:bg-[#eceff3] disabled:text-[#b9bec6]"
-            >
-              <ChevronLeft size={15} />
-            </button>
-
-            {[1, 2, 3, 4, 5].map((number) => (
-              <button
-                key={number}
-                type="button"
-                onClick={() => setPage(number)}
-                className={`h-8 min-w-8 rounded-[3px] border px-2 text-[11px] font-medium ${
-                  page === number
-                    ? "border-[#0F4C81] bg-white text-[#0F4C81]"
-                    : "border-[#d3d7dd] bg-white text-[#333]"
-                }`}
-              >
-                {number}
-              </button>
-            ))}
-
-            <span className="text-[12px] text-[#777]">...</span>
-
-            <button
-              type="button"
-              onClick={() => setPage(27)}
-              className={`h-8 min-w-8 rounded-[3px] border px-2 text-[11px] ${
-                page === 27
-                  ? "border-[#0F4C81] text-[#0F4C81]"
-                  : "border-[#d3d7dd] text-[#333]"
-              } bg-white`}
-            >
-              27
-            </button>
-
-            <button
-              type="button"
-              aria-label="Next page"
-              disabled={page === 27}
-              onClick={() => setPage((prev) => Math.min(27, prev + 1))}
-              className="flex h-8 w-8 items-center justify-center rounded-[3px] border border-[#d3d7dd] bg-white text-[#555] disabled:bg-[#eceff3]"
-            >
-              <ChevronRight size={15} />
-            </button>
-          </div>
-        </div>
-      </section>
 
       {/* =========================
           PACKAGES BY ZONE

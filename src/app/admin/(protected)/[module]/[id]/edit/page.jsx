@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
-import { getModule } from "@/lib/adminModules";
+import { customOptionFields, getModule } from "@/lib/adminModules";
 import { updateRecord } from "@/app/admin/actions";
 import AdminForm from "@/components/admin/AdminForm";
 import { recordWithDefaults } from "@/lib/adminDefaults";
@@ -17,6 +17,21 @@ export default async function AdminModuleEditPage({ params }) {
   // text rather than an empty box.
   const values = recordWithDefaults(moduleSlug, record);
 
+  // Whatever the other records already use, so a category typed once shows
+  // up in the dropdown everywhere else.
+  const customFields = customOptionFields(moduleConfig);
+  const optionsInUse = {};
+
+  if (customFields.length) {
+    const rows = await db[moduleConfig.model].findMany({
+      select: Object.fromEntries(customFields.map((name) => [name, true])),
+    });
+
+    for (const name of customFields) {
+      optionsInUse[name] = [...new Set(rows.map((row) => row[name]).filter(Boolean))].sort();
+    }
+  }
+
   const title = record[moduleConfig.titleField];
   // A column layout draws its own header, so the page skips the heading and
   // gives the form the whole width instead of a 720px reading column.
@@ -31,13 +46,14 @@ export default async function AdminModuleEditPage({ params }) {
         </h1>
       )}
 
-      <div className={wide ? (columns ? "" : "mt-5") : "mt-5 max-w-[720px]"}>
+      <div className={wide ? (columns ? "" : "mt-5") : "mt-5 max-w-[1000px]"}>
         <AdminForm
           moduleSlug={moduleSlug}
           moduleConfig={moduleConfig}
           action={updateRecord.bind(null, moduleSlug, id)}
           initialValues={values}
           cancelHref={`/admin/${moduleSlug}`}
+          optionsInUse={optionsInUse}
           recordTitle={title}
         />
       </div>

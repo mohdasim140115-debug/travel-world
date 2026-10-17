@@ -93,6 +93,8 @@ export default function TourFilterSidebar({
   onToggleCountry,
   selectedCities = [],
   onToggleCity,
+  sortBy = "deals",
+  onSortChange,
   onReset,
 }) {
   return (
@@ -104,6 +106,19 @@ export default function TourFilterSidebar({
           Reset
         </button>
       </div>
+
+      <FilterGroup title="Sort by">
+        <select
+          value={sortBy}
+          onChange={(event) => onSortChange?.(event.target.value)}
+          className="w-full rounded-[8px] border border-[#D1D5DB] bg-white px-3 py-2 text-[13px] text-[#334155] outline-none focus:border-[#17BEBB]"
+        >
+          <option value="deals">Our recommended order</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+          <option value="duration">Duration: Short to Long</option>
+        </select>
+      </FilterGroup>
 
       <FilterGroup title="Price Range">
         <div className="px-1">

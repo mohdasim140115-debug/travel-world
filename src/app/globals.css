@@ -437,11 +437,14 @@ textarea:focus-visible,
   border-color: var(--color-teal-primary);
 }
 
+/* Two children now that the count block is gone: the live badge on the
+   left, the layout toggle on the right. */
 .india-listing-heading {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
+  gap: 12px;
   padding: 10px 0 12px;
 }
 
@@ -496,13 +499,31 @@ textarea:focus-visible,
   color: var(--color-text-main);
 }
 
+/* Reads as a button now, not as a stray underlined word. */
 .grid-view {
-  border: 0;
-  background: transparent;
-  text-decoration: underline;
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
   color: var(--color-text-secondary);
   cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.grid-view:hover {
+  border-color: var(--color-turquoise);
+  color: var(--color-teal-primary);
+}
+
+.grid-view.is-active {
+  border-color: var(--color-teal-primary);
+  color: var(--color-teal-primary);
 }
 
 /* TEMP */

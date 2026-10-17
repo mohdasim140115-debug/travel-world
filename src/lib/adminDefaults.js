@@ -1,4 +1,4 @@
-import { isBlank, packageDefaults } from "./packageDefaults.js";
+import { fillBlanks, packageDefaults } from "./packageDefaults.js";
 
 /* =========================================================
    ADMIN FORM DEFAULTS
@@ -21,9 +21,5 @@ export function recordWithDefaults(moduleSlug, record) {
   const build = MODULE_DEFAULTS[moduleSlug];
   if (!build || !record) return record;
 
-  const filled = { ...record };
-  for (const [key, value] of Object.entries(build(record))) {
-    if (isBlank(filled[key])) filled[key] = value;
-  }
-  return filled;
+  return fillBlanks(record, build(record));
 }

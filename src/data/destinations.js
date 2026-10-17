@@ -828,14 +828,9 @@ function buildDestinationConfig(raw, catalogue = packages) {
     intro: raw.intro,
     introExtra: raw.introExtra,
     reviewsLabel: raw.reviewsLabel,
-    // Counts follow the tours actually listed, never a stale stored number.
-    tabs: (raw.tabs || []).map((tab, index) =>
-      index === 0 ? `All ${raw.name} (${packageCount})` : tab,
-    ),
     listing: {
-      countLine1: `${packageCount} ${raw.name}`,
-      countLine2: "Holiday Packages",
-      showingLabel: `Showing 1-${Math.min(10, packageCount)} packages from ${packageCount} packages`,
+      // The count line and the tab row were dropped; the cards speak for
+      // themselves. Only the live badge is left.
       liveBadgeLabel: `${liveTourCount} Tours Ongoing in ${raw.name} right now!`,
     },
     filters: {
@@ -1018,9 +1013,15 @@ function matchPackagesByName(name, catalogue = packages) {
 
   const keywords = Array.from(new Set([key, ...(ALIAS_KEYWORDS[key] || []), ...tokens]));
 
+  // Whole words only. A plain substring match put "Jaisalmer Jodhpur" on the
+  // Egypt page, because "Jaswant Thada" contains "aswan" — Egypt's city.
+  const matchers = keywords.map(
+    (keyword) => new RegExp(`\\b${keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i"),
+  );
+
   return catalogue.filter((pkg) => {
     const haystack = `${pkg.title} ${pkg.location} ${pkg.category} ${(pkg.highlights || []).join(" ")}`.toLowerCase();
-    return keywords.some((keyword) => haystack.includes(keyword));
+    return matchers.some((matcher) => matcher.test(haystack));
   });
 }
 
@@ -1029,13 +1030,89 @@ function matchPackagesByName(name, catalogue = packages) {
  * package added or renamed in the admin appears on its destination pages
  * straight away — a stored list would freeze them at seed time.
  */
+
+
+const INDIA_DESTINATION_KEYWORDS = [
+  "kashmir",
+  "srinagar",
+  "gulmarg",
+  "pahalgam",
+  "sonmarg",
+  "ladakh",
+  "leh",
+  "rajasthan",
+  "jaipur",
+  "udaipur",
+  "jodhpur",
+  "jaisalmer",
+  "kerala",
+  "munnar",
+  "alleppey",
+  "andaman",
+  "port blair",
+  "himachal",
+  "shimla",
+  "manali",
+  "goa",
+  "agra",
+  "varanasi",
+  "ayodhya",
+  "rishikesh",
+  "haridwar",
+  "darjeeling",
+  "gangtok",
+  "ooty",
+  "coorg",
+  "amritsar",
+  "ranthambore",
+  "golden triangle",
+];
+
+function isIndiaPackage(pkg) {
+  if (!pkg) return false;
+
+  const slug = String(pkg.slug || "").toLowerCase();
+
+  // Known India packages
+  if (INDIA_FLAGSHIP_SLUGS.includes(slug)) {
+    return true;
+  }
+
+  const text = [
+    pkg.title,
+    pkg.location,
+    pkg.category,
+    pkg.slug,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  // Explicit India category
+  if (/\bindia\b/.test(String(pkg.category || "").toLowerCase())) {
+    return true;
+  }
+
+  return INDIA_DESTINATION_KEYWORDS.some((keyword) =>
+    text.includes(keyword)
+  );
+}
+  
+
+
 export function packagesForDestination(parent, name, catalogue = packages) {
-  let matches = matchPackagesByName(name, catalogue);
+  // A World page must never list an India tour, or the other way round. Even
+  // a perfect keyword match is wrong if it is on the wrong side of the site,
+  // so the side is checked before anything else is considered.
+  const onThisSide = (list) =>
+    list.filter((pkg) => isIndiaPackage(pkg) === (parent === "india"));
+
+  let matches = onThisSide(matchPackagesByName(name, catalogue));
   if (matches.length) return matches;
 
   // No tours of its own: show the region's instead (Gulmarg -> Kashmir).
   for (const sibling of getParentNamesFor(parent, name)) {
-    matches = matchPackagesByName(sibling, catalogue);
+    matches = onThisSide(matchPackagesByName(sibling, catalogue));
     if (matches.length) return matches;
   }
 

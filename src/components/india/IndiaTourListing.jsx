@@ -61,25 +61,7 @@ export default function IndiaTourListing({ catalog = [] }) {
     };
   }, [indiaPackages]);
 
-  const topDepartureCities = useMemo(() => {
-    const counts = countBy(
-      indiaPackages.flatMap((pkg) => pkg.departureCities || []),
-      (city) => city
-    );
-    return Array.from(counts.entries())
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 10)
-      .map(([city, count]) => `${count} tours from ${city}`);
-  }, [indiaPackages]);
-
   return (
-    <TourListing
-      packages={indiaPackages}
-      filters={filters}
-      joiningLeaving={{
-        heading: "View India Tour Packages",
-        cities: topDepartureCities,
-      }}
-    />
+    <TourListing packages={indiaPackages} filters={filters} />
   );
 }

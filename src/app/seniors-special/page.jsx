@@ -35,22 +35,7 @@ const config = {
   introExtra:
     "Every Seniors' Special departure is planned with gentler sightseeing schedules, comfortable transport and dedicated tour managers who understand the needs of senior travellers, making every journey enjoyable and stress-free.",
   reviewsLabel: "2,187 Reviews",
-  tabs: [
-    "All Seniors' Tours (30)",
-    "India",
-    "Europe",
-    "South East Asia",
-    "Dubai",
-    "Sri Lanka",
-    "Nepal",
-    "Rajasthan",
-    "Kashmir",
-    "Kerala",
-  ],
   listing: {
-    countLine1: "30 Seniors' Special Holiday",
-    countLine2: "Packages",
-    showingLabel: "Showing 1-10 packages from 30 packages",
     liveBadgeLabel: "4 Tours Ongoing in Seniors' Special right now!",
   },
   filters: {

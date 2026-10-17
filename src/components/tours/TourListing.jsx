@@ -5,7 +5,7 @@ import { SlidersHorizontal, X } from "lucide-react";
 import TourFilterSidebar from "./TourFilterSidebar";
 import TourPackageCard from "./TourPackageCard";
 import EnquiryTrigger from "@/components/common/EnquiryTrigger";
-import { toCardItem, filterPackages } from "./tourUtils";
+import { toCardItem, filterPackages, packageMatchesKeyword } from "./tourUtils";
 
 /* =========================================================
    GENERIC TOUR LISTING (filters + package cards)
@@ -14,33 +14,24 @@ import { toCardItem, filterPackages } from "./tourUtils";
    actually narrows down the `packages` array below.
 ========================================================= */
 
-function JoiningLeavingBox({ heading, cities }) {
-  return (
-    <div className="rounded-[14px] border border-[#0F4C81] bg-[#F7FAFC] p-4">
-      <h3 className="mb-2 text-[13px] font-semibold text-[#222]">{heading}</h3>
+const PER_PAGE = 12;
 
-      <div className="flex flex-wrap gap-2">
-        {cities.map((city) => (
-          <button
-            key={city}
-            type="button"
-            className="rounded-full border border-[#D1D5DB] bg-white px-3 py-1.5 text-[12px] text-[#555] transition hover:border-[#17BEBB] hover:text-[#0F4C81]"
-          >
-            {city}
-          </button>
-        ))}
-      </div>
+/** [1, "gap", 4, 5, 6, "gap", 20] — first, last and a window around current. */
+function pageItems(current, total) {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
 
-      <p className="mt-3 text-[12px] font-semibold text-[#d21c1c]">
-        Can&apos;t find tours from your city? Check our joining &amp; leaving
-        option. Book your own flights and join directly at the first
-        destination of the tour.
-      </p>
-    </div>
+  const pages = new Set([1, total, current, current - 1, current + 1]);
+  if (current <= 3) [2, 3, 4].forEach((n) => pages.add(n));
+  if (current >= total - 2) [total - 3, total - 2, total - 1].forEach((n) => pages.add(n));
+
+  const sorted = [...pages].filter((n) => n >= 1 && n <= total).sort((a, b) => a - b);
+
+  return sorted.flatMap((page, index) =>
+    index > 0 && page - sorted[index - 1] > 1 ? ["gap", page] : [page],
   );
 }
 
-export default function TourListing({ packages, badgeTag, filters = {}, joiningLeaving }) {
+export default function TourListing({ packages, badgeTag, filters = {}, wideCards = false }) {
   const listingRef = useRef(null);
   const isFirstRender = useRef(true);
 
@@ -55,6 +46,7 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
   const [selectedPackageTypes, setSelectedPackageTypes] = useState([]);
   const [selectedSpecialityTours, setSelectedSpecialityTours] = useState([]);
   const [selectedDurations, setSelectedDurations] = useState([]);
+  const [sortBy, setSortBy] = useState("deals");
   const [maxPrice, setMaxPrice] = useState(priceBounds.max);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
@@ -68,7 +60,7 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
     setSelectedPackageTypes([]);
     setSelectedSpecialityTours([]);
     setSelectedDurations([]);
-    setSelectedDepartureCities([]);
+    setSortBy("deals");
     setMaxPrice(priceBounds.max);
   }
 
@@ -115,11 +107,51 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
     effectiveMaxPrice,
   ]);
 
-  const firstHalf = joiningLeaving ? filteredPackages.slice(0, 4) : filteredPackages;
-  const secondHalf = joiningLeaving ? filteredPackages.slice(4) : [];
+  // "deals" keeps the order the admin set on each package; the rest reorder
+  // a copy so the original list is left alone.
+  const sortedPackages = useMemo(() => {
+    if (sortBy === "deals") return filteredPackages;
+
+    const byKey = {
+      low: (a, b) => a.price - b.price,
+      high: (a, b) => b.price - a.price,
+      duration: (a, b) => a.days - b.days,
+    };
+
+    return byKey[sortBy] ? [...filteredPackages].sort(byKey[sortBy]) : filteredPackages;
+  }, [filteredPackages, sortBy]);
+
+
+
+  const [page, setPage] = useState(1);
+
+  const totalPages = Math.max(1, Math.ceil(sortedPackages.length / PER_PAGE));
+
+  // Filtering down to fewer pages must not strand the visitor on page 7.
+  const currentPage = Math.min(page, totalPages);
+
+  const visiblePackages = sortedPackages.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE);
+
+  const goToPage = (next) => {
+    setPage(next);
+    listingRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  // A country box that every tour on the page matches filters nothing — on a
+  // Kashmir page "India" just sat there. Options that cannot narrow the list
+  // are dropped, and the group disappears when fewer than two are left.
+  const availableCountries = useMemo(() => {
+    const useful = (filters.countries ?? []).filter((country) => {
+      const hits = packages.filter((pkg) => packageMatchesKeyword(pkg, country)).length;
+      return hits > 0 && hits < packages.length;
+    });
+
+    return useful.length > 1 ? useful : [];
+  }, [filters.countries, packages]);
 
   const sidebarProps = {
     ...filters,
+    countries: availableCountries,
     priceBounds,
     maxPrice: effectiveMaxPrice || priceBounds.max,
     onPriceChange: setMaxPrice,
@@ -127,6 +159,8 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
     onToggleCountry: (value) => toggle(selectedCountries, setSelectedCountries, value),
     selectedCities,
     onToggleCity: (value) => toggle(selectedCities, setSelectedCities, value),
+    sortBy,
+    onSortChange: setSortBy,
     selectedPackageTypes,
     onTogglePackageType: (value) => toggle(selectedPackageTypes, setSelectedPackageTypes, value),
     selectedSpecialityTours,
@@ -191,7 +225,9 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
         </div>
       )}
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div
+        className={`grid grid-cols-1 gap-4 sm:grid-cols-2${wideCards ? "" : " lg:grid-cols-3"}`}
+      >
         {filteredPackages.length === 0 && (
           <div className="col-span-full rounded-[14px] border border-dashed border-[#D1D5DB] bg-white p-8 text-center text-[13px] text-[#667085]">
             {packages.length === 0 ? (
@@ -226,29 +262,54 @@ export default function TourListing({ packages, badgeTag, filters = {}, joiningL
           </div>
         )}
 
-        {firstHalf.map((pkg) => (
-          <TourPackageCard
-            key={pkg.slug}
-            item={toCardItem(pkg, badgeTag)}
-          />
-        ))}
-
-        {joiningLeaving && filteredPackages.length > 4 && (
-          <div className="col-span-full">
-            <JoiningLeavingBox
-              heading={joiningLeaving.heading}
-              cities={joiningLeaving.cities}
-            />
-          </div>
-        )}
-
-        {secondHalf.map((pkg) => (
-          <TourPackageCard
-            key={pkg.slug}
-            item={toCardItem(pkg, badgeTag)}
-          />
+        {visiblePackages.map((pkg) => (
+          <TourPackageCard key={pkg.slug} item={toCardItem(pkg, badgeTag)} />
         ))}
       </div>
+
+      {totalPages > 1 && (
+        <nav aria-label="Pages of tours" className="mt-7 flex flex-wrap items-center justify-center gap-2">
+          <button
+            type="button"
+            onClick={() => goToPage(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="h-9 rounded-[8px] border border-[#D1D5DB] bg-white px-3 text-[13px] font-medium text-[#333] transition hover:border-[#17BEBB] disabled:cursor-not-allowed disabled:border-[#E5E7EB] disabled:text-[#b9bec6] disabled:hover:border-[#E5E7EB]"
+          >
+            Previous
+          </button>
+
+          {pageItems(currentPage, totalPages).map((item, index) =>
+            item === "gap" ? (
+              <span key={`gap-${index}`} className="px-1 text-[13px] text-[#777]">
+                …
+              </span>
+            ) : (
+              <button
+                key={item}
+                type="button"
+                onClick={() => goToPage(item)}
+                aria-current={item === currentPage ? "page" : undefined}
+                className={`h-9 min-w-9 rounded-[8px] border px-2 text-[13px] font-medium transition ${
+                  item === page
+                    ? "border-[#0F4C81] bg-[#0F4C81] text-white"
+                    : "border-[#D1D5DB] bg-white text-[#333] hover:border-[#17BEBB]"
+                }`}
+              >
+                {item}
+              </button>
+            ),
+          )}
+
+          <button
+            type="button"
+            onClick={() => goToPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="h-9 rounded-[8px] border border-[#D1D5DB] bg-white px-3 text-[13px] font-medium text-[#333] transition hover:border-[#17BEBB] disabled:cursor-not-allowed disabled:border-[#E5E7EB] disabled:text-[#b9bec6] disabled:hover:border-[#E5E7EB]"
+          >
+            Next
+          </button>
+        </nav>
+      )}
     </div>
   );
 }

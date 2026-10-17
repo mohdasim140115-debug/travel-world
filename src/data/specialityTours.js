@@ -94,11 +94,7 @@ export function getSpecialityConfig(slug, packages = []) {
     intro: `Explore ${name.toLowerCase()} designed around comfort, great value and thoughtfully planned itineraries across India and the world.`,
     introExtra: `Every departure is planned with attentive tour managers, comfortable stays and well-paced sightseeing, making it easy to enjoy a memorable ${name.toLowerCase()} experience.`,
     reviewsLabel: `${800 + packageSlugs.length * 40} Reviews`,
-    tabs: [`All ${name} (${packageSlugs.length})`],
     listing: {
-      countLine1: `${packageSlugs.length} ${name}`,
-      countLine2: "Holiday Packages",
-      showingLabel: `Showing ${packageSlugs.length} of ${packageSlugs.length} packages`,
       liveBadgeLabel: `${Math.max(1, Math.min(3, packageSlugs.length))} Tours Ongoing right now!`,
     },
     filters: {

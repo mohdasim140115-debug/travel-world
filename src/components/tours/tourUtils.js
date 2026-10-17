@@ -6,6 +6,11 @@ export function toCardItem(pkg, extraTag) {
   return {
     slug: pkg.slug,
     title: pkg.title,
+    // The cover photo the admin uploaded. Without this the card fell back to
+    // a stock destination photo, so changing a package image updated the
+    // detail page and left every listing card showing the old picture.
+    image: pkg.image ?? pkg.imageUrl ?? null,
+    imageAlt: pkg.imageAlt ?? "",
     tags: ["GROUP TOUR", "SALE", extraTag || pkg.category],
     days: `${pkg.days} Days`,
     cities: `${pkg.cities} Cities`,

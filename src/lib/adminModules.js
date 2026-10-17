@@ -176,7 +176,7 @@ export const adminModules = {
         {
           title: "Pricing & Settings",
           icon: "pricing",
-          fields: ["price", "emi", "days", "nights", "cities", "status", "rating", "reviews", "highlights"],
+          fields: ["price", "emi", "days", "nights", "cities", "status", "order", "rating", "reviews", "highlights"],
           pairs: [["days", "nights"], ["cities", "status"], ["rating", "reviews"]],
         },
         {
@@ -216,6 +216,7 @@ export const adminModules = {
         label: "Category",
         type: "select",
         required: true,
+        allowCustom: true,
         // Trip types only — these drive the /speciality-tours pages. World
         // grouping comes from the package's country, not its category.
         options: [
@@ -237,6 +238,7 @@ export const adminModules = {
         label: "Tour Type",
         type: "select",
         required: true,
+        allowCustom: true,
         options: ["Group Tour", "Customized Holiday", "Private Tour"],
       },
       { name: "days", label: "Days", type: "number", required: true },
@@ -244,6 +246,12 @@ export const adminModules = {
       { name: "cities", label: "Cities count", type: "number", required: true },
       { name: "price", label: "Price (INR)", type: "number", required: true },
       { name: "emi", label: "EMI (INR/month)", type: "number", required: true },
+      {
+        name: "order",
+        label: "Display order",
+        type: "number",
+        help: "Lower shows first, so 0 (or blank) pins a package to the top of every listing. Numbers can be reused — ties keep their current order.",
+      },
       { name: "rating", label: "Rating", type: "number", step: "0.1" },
       { name: "reviews", label: "Reviews count", type: "number" },
       { name: "description", label: "Description", type: "textarea", required: true },
@@ -332,6 +340,7 @@ export const adminModules = {
           { name: "weather", label: "Weather", type: "textarea" },
           { name: "transport", label: "Transport", type: "textarea" },
           { name: "documents", label: "Documents required (one per line)", type: "list" },
+          { name: "tourManager", label: "Tour manager", type: "textarea" },
         ],
       },
       {
@@ -374,7 +383,7 @@ export const adminModules = {
     model: "destination",
     titleField: "name",
     revalidate: ["/india", "/world"],
-    listColumns: ["name", "parent", "slug", "packageCount"],
+    listColumns: ["name", "parent", "slug", "liveTourCount"],
     fields: [
       { name: "slug", label: "Slug", type: "text", required: true },
       { name: "parent", label: "Parent section", type: "select", options: ["india", "world"], required: true },
@@ -383,12 +392,10 @@ export const adminModules = {
       { name: "metaTitle", label: "Meta title", type: "text", required: true },
       { name: "metaDescription", label: "Meta description", type: "textarea", required: true },
       { name: "breadcrumbTrail", label: "Breadcrumb trail", type: "string-list", required: true },
-      { name: "packageCount", label: "Package count", type: "number" },
       { name: "liveTourCount", label: "Live tour count", type: "number" },
       { name: "reviewsLabel", label: "Reviews label", type: "text" },
       { name: "intro", label: "Intro", type: "textarea", required: true },
       { name: "introExtra", label: "Intro (extra)", type: "textarea" },
-      { name: "tabs", label: "Tabs", type: "string-list" },
       { name: "countries", label: "Countries", type: "string-list" },
       { name: "cities", label: "Cities", type: "string-list" },
       {
@@ -452,7 +459,6 @@ export const adminModules = {
       { name: "name", label: "City name", type: "text", required: true },
       { name: "departures", label: "Departures", type: "number", required: true },
       { name: "startingPrice", label: "Starting price (INR)", type: "number", required: true },
-      { name: "packageCount", label: "Package count", type: "number" },
       { name: "reviewsLabel", label: "Reviews label", type: "text" },
       { name: "intro", label: "Intro", type: "textarea", required: true },
       { name: "introExtra", label: "Intro (extra)", type: "textarea" },
@@ -970,4 +976,9 @@ export function listFields(moduleConfig) {
   }
 
   return Object.fromEntries([...keys].map((key) => [key, true]));
+}
+
+/** The fields on a module that accept a value typed by the admin. */
+export function customOptionFields(moduleConfig) {
+  return moduleConfig.fields.filter((field) => field.allowCustom).map((field) => field.name);
 }

@@ -183,8 +183,15 @@ export default async function PackageDetailPage({ params }) {
     { name: tour.title, href: `/package/${tour.slug}` },
   ];
 
-  const firstCity = tour.location.split("•")[0]?.trim() || tour.location;
-  const secondCity = tour.location.split("•")[1]?.trim() || firstCity;
+  const stayCities = (() => {
+    const parts = String(tour.location ?? "")
+      .split(/[•,|/]/)
+      .map((part) => part.trim())
+      .filter(Boolean);
+
+    const unique = parts.filter((city, index) => parts.indexOf(city) === index);
+    return unique.length ? unique : [String(tour.location ?? "").trim()].filter(Boolean);
+  })();
 
   // Admin-written FAQs win; otherwise the standard set, answered from this
   // package's own data.
@@ -512,7 +519,7 @@ export default async function PackageDetailPage({ params }) {
 
             {/* MOBILE: stacked cards */}
             <div className="mt-6 space-y-3 sm:hidden">
-              {[firstCity, secondCity].map((city) => (
+              {stayCities.map((city) => (
                 <div key={city} className="rounded-[14px] border border-[#E5E7EB] bg-white p-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
                   <p className="text-[10px] font-semibold uppercase tracking-wide text-[#0F4C81]">City</p>
                   <p className="text-[14px] font-semibold text-[#0F172A]">{city}</p>
@@ -534,17 +541,18 @@ export default async function PackageDetailPage({ params }) {
                 <span>Check-in / Check-out</span>
               </div>
 
-              <div className="grid grid-cols-3 px-5 py-4 text-[13px] text-[#334155]">
-                <span>{firstCity}</span>
-                <span>Comfortable selected hotel</span>
-                <span>As per itinerary</span>
-              </div>
-
-              <div className="grid grid-cols-3 bg-[#F8FAFC] px-5 py-4 text-[13px] text-[#334155]">
-                <span>{secondCity}</span>
-                <span>Comfortable selected hotel</span>
-                <span>As per itinerary</span>
-              </div>
+              {stayCities.map((city, index) => (
+                <div
+                  key={city}
+                  className={`grid grid-cols-3 px-5 py-4 text-[13px] text-[#334155] ${
+                    index % 2 ? "bg-[#F8FAFC]" : ""
+                  }`}
+                >
+                  <span>{city}</span>
+                  <span>Comfortable selected hotel</span>
+                  <span>As per itinerary</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -575,7 +583,7 @@ export default async function PackageDetailPage({ params }) {
               </InfoCard>
 
               <InfoCard icon={UserCheck} title="Tour Manager">
-                Tour manager services are provided according to the selected package.
+                {tour.needToKnow.tourManager}
               </InfoCard>
             </div>
           </div>

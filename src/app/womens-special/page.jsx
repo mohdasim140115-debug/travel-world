@@ -35,22 +35,7 @@ const config = {
   introExtra:
     "Every Women's Special departure is planned with attentive tour managers, comfortable stays and well-paced sightseeing, making it easy to explore new destinations while making new friends along the way.",
   reviewsLabel: "3,204 Reviews",
-  tabs: [
-    "All Women's Tours (47)",
-    "India",
-    "Europe",
-    "South East Asia",
-    "Japan",
-    "Dubai",
-    "Sri Lanka",
-    "Nepal",
-    "Rajasthan",
-    "Kashmir",
-  ],
   listing: {
-    countLine1: "47 Women's Special Holiday",
-    countLine2: "Packages",
-    showingLabel: "Showing 1-10 packages from 47 packages",
     liveBadgeLabel: "5 Tours Ongoing in Women's Special right now!",
   },
   filters: {

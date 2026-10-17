@@ -64,6 +64,7 @@ export function defaultNeedToKnow() {
     weather: "Weather conditions may vary depending on destination and travel dates.",
     transport: "Comfortable transportation will be provided as mentioned in the itinerary.",
     documents: ["Carry valid government-issued identification and all necessary travel documents."],
+    tourManager: "Tour manager services are provided according to the selected package.",
   };
 }
 
@@ -130,13 +131,33 @@ export function isBlank(value) {
   return false;
 }
 
+const isPlainObject = (value) =>
+  Boolean(value) && typeof value === "object" && !Array.isArray(value);
+
+/**
+ * Stored values win; anything blank takes the default.
+ *
+ * Grouped fields ("need to know", "tour details") merge key by key rather than
+ * all-or-nothing. A package saved before a new key existed still has the rest
+ * of the group filled in, so adding one — tourManager, say — does not leave an
+ * empty box on every package already in the database.
+ */
+export function fillBlanks(record, defaults) {
+  const filled = { ...record };
+
+  for (const [key, value] of Object.entries(defaults)) {
+    if (isPlainObject(value) && isPlainObject(filled[key])) {
+      filled[key] = fillBlanks(filled[key], value);
+    } else if (isBlank(filled[key])) {
+      filled[key] = value;
+    }
+  }
+
+  return filled;
+}
+
 /** The record as the public page reads it: stored values, blanks filled in. */
 export function withPackageDefaults(tour) {
   if (!tour) return tour;
-
-  const filled = { ...tour };
-  for (const [key, value] of Object.entries(packageDefaults(tour))) {
-    if (isBlank(filled[key])) filled[key] = value;
-  }
-  return filled;
+  return fillBlanks(tour, packageDefaults(tour));
 }

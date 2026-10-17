@@ -6,6 +6,8 @@ import { useState } from "react";
 import Link from "next/link";
 import {
   ChevronDown,
+  Columns2,
+  Columns3,
   ChevronUp,
   Phone,
   Star,
@@ -66,7 +68,9 @@ function GradientPill({ name, count, index, href }) {
 export default function TourCategoryPage({ config }) {
   const [showMoreIntro, setShowMoreIntro] = useState(false);
   const [showMoreSeo, setShowMoreSeo] = useState(false);
-  const [activeTab, setActiveTab] = useState(0);
+  // Three cards a row by default; the toggle drops to two bigger ones. The
+  // button used to do nothing at all.
+  const [wideCards, setWideCards] = useState(false);
   const [season, setSeason] = useState(config.seasons.items[0]);
   const [interest, setInterest] = useState(config.interests.items[0]);
   const [duration, setDuration] = useState(config.durations.items[0]);
@@ -163,44 +167,24 @@ export default function TourCategoryPage({ config }) {
       ========================== */}
       <section className="india-tabs-section">
         <div className="india-container">
-          <div className="india-tabs">
-            {config.tabs.map((tab, index) => (
-              <button
-                key={tab}
-                type="button"
-                className={index === activeTab ? "active" : ""}
-                onClick={() => setActiveTab(index)}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-
           <div className="india-listing-heading">
-            <div>
-              <h2>
-                {config.listing.countLine1} {config.listing.countLine2}
-              </h2>
-
-              <p>{config.listing.showingLabel}</p>
-            </div>
-
             <div className="live-tours-badge">
               <span />
               {config.listing.liveBadgeLabel}
             </div>
 
             <div className="listing-actions">
-              <select defaultValue="deals">
-                <option value="deals">Sort by: Deals</option>
-                <option value="low">Price: Low to High</option>
-                <option value="high">Price: High to Low</option>
-                <option value="duration">Duration</option>
-              </select>
-
-              <button type="button" className="grid-view">
-                <span>⊞</span>
-                Grid View
+              {/* The button offers the layout you are not in, and its icon
+                  shows how many cards a row that layout gives. */}
+              <button
+                type="button"
+                onClick={() => setWideCards((on) => !on)}
+                aria-pressed={wideCards}
+                title={wideCards ? "Show 3 cards per row" : "Show 2 larger cards per row"}
+                className={wideCards ? "grid-view is-active" : "grid-view"}
+              >
+                {wideCards ? <Columns3 size={15} /> : <Columns2 size={15} />}
+                {wideCards ? "3 per row" : "2 per row"}
               </button>
             </div>
           </div>
@@ -208,42 +192,9 @@ export default function TourCategoryPage({ config }) {
           <TourListing
             packages={config.packages}
             filters={config.filters}
-            joiningLeaving={config.joiningLeaving}
+            wideCards={wideCards}
           />
 
-          {config.pagination !== false && (
-            <div className="mt-8 flex items-center justify-center gap-2">
-              <button
-                type="button"
-                className="h-9 rounded-[8px] border border-[#D1D5DB] bg-white px-3 text-[13px] font-medium text-[#333] transition hover:border-[#17BEBB] disabled:text-[#b9bec6]"
-              >
-                Previous
-              </button>
-
-              {[1, 2, 3, 4, 5].map((number) => (
-                <button
-                  key={number}
-                  type="button"
-                  className={`h-9 min-w-9 rounded-[8px] border px-2 text-[13px] font-medium transition ${
-                    number === 1
-                      ? "border-[#0F4C81] bg-white text-[#0F4C81]"
-                      : "border-[#D1D5DB] bg-white text-[#333] hover:border-[#17BEBB]"
-                  }`}
-                >
-                  {number}
-                </button>
-              ))}
-
-              <span className="text-[13px] text-[#777]">...</span>
-
-              <button
-                type="button"
-                className="h-9 rounded-[8px] border border-[#D1D5DB] bg-white px-3 text-[13px] font-medium text-[#333] transition hover:border-[#17BEBB]"
-              >
-                Next
-              </button>
-            </div>
-          )}
         </div>
       </section>
 

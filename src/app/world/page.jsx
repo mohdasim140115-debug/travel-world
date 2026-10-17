@@ -35,23 +35,7 @@ const config = {
   introExtra:
     "From the canals of Europe and the beaches of South East Asia to the deserts of the Middle East and the temples of Japan, our group departures combine comfortable stays, curated sightseeing and experienced tour managers so you can travel the world without the planning stress.",
   reviewsLabel: "8,412 Reviews",
-  tabs: [
-    "All of World (329)",
-    "Europe",
-    "South East Asia",
-    "America",
-    "Japan China Korea",
-    "Australia New Zealand",
-    "Africa",
-    "Mauritius",
-    "Bhutan",
-    "Sri Lanka",
-    "Nepal",
-  ],
   listing: {
-    countLine1: "329 World Holiday",
-    countLine2: "Packages",
-    showingLabel: "Showing 1-10 packages from 329 packages",
     liveBadgeLabel: "16 Tours Ongoing in World right now!",
   },
   filters: {

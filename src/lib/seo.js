@@ -71,7 +71,11 @@ export function buildMetadata({
   const ogImage = image ? absoluteUrl(image) : DEFAULT_OG_IMAGE;
 
   return {
-    title,
+    // `absolute` switches off the root layout's "%s | Honor Tour & Travels"
+    // template. Every caller already passes a finished title — an admin-written
+    // meta title most of all — and the suffix was pushing those past the length
+    // Google shows, and repeating the brand name when the title already had it.
+    title: { absolute: title },
     description,
     // The page's own keywords lead; the site-wide list follows, deduplicated.
     keywords: [...new Set([...keywords, ...DEFAULT_KEYWORDS].filter(Boolean))],

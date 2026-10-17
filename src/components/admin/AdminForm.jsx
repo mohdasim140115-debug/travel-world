@@ -16,13 +16,14 @@ import {
   Save,
   Search,
 } from "lucide-react";
+import ComboSelect from "./ComboSelect";
 import GalleryField from "./GalleryField";
 import ImageField from "./ImageField";
 import JsonListField from "./JsonListField";
 import ObjectField from "./ObjectField";
 import RowListField from "./RowListField";
 
-function Field({ field, initialValue, placeholder, onChange }) {
+function Field({ field, initialValue, placeholder, onChange, extraOptions = [] }) {
   const commonClasses =
     "w-full rounded-[6px] border border-[#D1D5DB] px-3 py-2 text-[13px] outline-none focus:border-[#17BEBB]";
 
@@ -48,6 +49,18 @@ function Field({ field, initialValue, placeholder, onChange }) {
         defaultChecked={Boolean(initialValue)}
         onChange={(event) => onChange?.({ target: { name: field.name, value: event.target.checked } })}
         className="h-4 w-4 rounded border-[#D1D5DB] text-[#17BEBB]"
+      />
+    );
+  }
+
+  if (field.type === "select" && field.allowCustom) {
+    return (
+      <ComboSelect
+        name={field.name}
+        options={[...(field.options ?? []), ...extraOptions]}
+        initialValue={initialValue}
+        required={field.required}
+        onChange={onChange}
       />
     );
   }
@@ -177,7 +190,7 @@ function fillTemplate(template, values) {
   return template.replace(/\{(\w+)\}/g, (_, key) => String(values[key] ?? ""));
 }
 
-function FieldRow({ field, initialValue, values, onChange }) {
+function FieldRow({ field, initialValue, values, onChange, extraOptions }) {
   const placeholder = field.placeholderTemplate
     ? fillTemplate(field.placeholderTemplate, values || {})
     : field.placeholder;
@@ -188,7 +201,13 @@ function FieldRow({ field, initialValue, values, onChange }) {
         {field.label}
         {field.required && <span className="ml-0.5 text-red-500">*</span>}
       </label>
-      <Field field={field} initialValue={initialValue} placeholder={placeholder} onChange={onChange} />
+      <Field
+        field={field}
+        initialValue={initialValue}
+        placeholder={placeholder}
+        onChange={onChange}
+        extraOptions={extraOptions}
+      />
       {field.help ? <p className="mt-1 text-[11px] text-[#94A3B8]">{field.help}</p> : null}
     </div>
   );
@@ -288,7 +307,7 @@ function Card({ title, icon, children }) {
 }
 
 /** Renders one card's fields, putting the pairs it names side by side. */
-function CardBody({ card, seeded, values, onChange }) {
+function CardBody({ card, seeded, values, onChange, optionsInUse = {} }) {
   const partner = new Map();
   for (const [left, right] of card.pairs || []) partner.set(left, right);
 
@@ -302,6 +321,7 @@ function CardBody({ card, seeded, values, onChange }) {
       initialValue={seeded[field.name]}
       values={values}
       onChange={onChange}
+      extraOptions={optionsInUse[field.name]}
     />
   );
 
@@ -371,6 +391,9 @@ export default function AdminForm({
   initialValues = {},
   cancelHref,
   recordTitle,
+  // { fieldName: [values other records already use] } — lets a category typed
+  // on one package show up in the dropdown on all the others.
+  optionsInUse = {},
 }) {
   const [state, formAction, isPending] = useActionState(async (_prev, formData) => {
     try {
@@ -433,7 +456,7 @@ export default function AdminForm({
   );
 
   const fieldsOf = (card) => (
-    <CardBody card={card} seeded={seeded} values={values} onChange={onFieldChange} />
+    <CardBody card={card} seeded={seeded} values={values} onChange={onFieldChange} optionsInUse={optionsInUse} />
   );
 
   // THREE-COLUMN LAYOUT — the package editor.
@@ -586,6 +609,7 @@ export default function AdminForm({
           initialValue={seeded[field.name]}
           values={values}
           onChange={onFieldChange}
+          extraOptions={optionsInUse[field.name]}
         />
       ))}
 
